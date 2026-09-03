@@ -4,6 +4,7 @@ author: "Carter Deslauriers"
 format: html
 editor: visual
 ---
+
 Return Here: [README](README.md)
 
 ## Running Code
@@ -28,14 +29,14 @@ Second Operation, 2 - 2 and 4 - 3
 
 ### Multiplication
 
-Third Operation, 3 * 3 and 4 * 7
+Third Operation, 3 \* 3 and 4 \* 7
 
 ```{r}
 3 * 3
 4 * 7
 ```
 
-### Divison
+git ### Divison
 
 Fourth Operation, 6 / 2 and 7 / 3
 
@@ -43,4 +44,3 @@ Fourth Operation, 6 / 2 and 7 / 3
 6 / 2
 7 / 3
 ```
-
