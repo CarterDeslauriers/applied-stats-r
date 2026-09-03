@@ -4,4 +4,4 @@
 
 |**Assignments**|
 |:-|
-|[Assignment 1](Assingment-1.html)|
+|[Assignment 1](Assignment-1.html)|
