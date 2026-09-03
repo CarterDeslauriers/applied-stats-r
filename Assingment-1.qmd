@@ -4,27 +4,43 @@ author: "Carter Deslauriers"
 format: html
 editor: visual
 ---
-
-## Quarto
-
-Quarto enables you to weave together content and executable code into a finished document. To learn more about Quarto see <https://quarto.org>.
+Return Here: [README](README.md)
 
 ## Running Code
 
 ### Addition
 
-When you click the **Render** button a document will be generated that includes both content and the output of embedded code. You can embed code like this:
+First Operation, 1 + 1 and 2 + 2
 
 ```{r}
 1 + 1
+2 + 2
 ```
 
 ### Subtraction
 
-You can add options to executable code like this
+Second Operation, 2 - 2 and 4 - 3
 
 ```{r}
 2 - 2
+4 - 3
 ```
 
-The `echo: false` option disables the printing of code (only output is displayed).
+### Multiplication
+
+Third Operation, 3 * 3 and 4 * 7
+
+```{r}
+3 * 3
+4 * 7
+```
+
+### Divison
+
+Fourth Operation, 6 / 2 and 7 / 3
+
+```{r}
+6 / 2
+7 / 3
+```
+
