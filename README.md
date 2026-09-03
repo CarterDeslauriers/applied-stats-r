@@ -1,5 +1,5 @@
-# Projects_in_R
+# Projects in R
 
-Statistics Projects using R; including all projects and assignments in MATH421
-
-Here is my first edit to the folder.
+| Assignments |
+|:------------|
+|Assignment 1 |
