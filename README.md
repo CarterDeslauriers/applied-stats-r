@@ -1,5 +1,5 @@
 # Projects in R
 
-| Assignments |
-|:------------|
-|Assignment 1 |
+|**Assignments**|
+|:-|
+|Assignment 1|
