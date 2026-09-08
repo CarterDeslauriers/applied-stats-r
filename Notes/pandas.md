@@ -28,3 +28,5 @@ Otherwise I believe the & condition is read first ie in the right side as == 1 a
 Rather than simply looking for the intersection of the sets
 
 You can go from a dataframe to a matrix with df.values
+
+You can take a list of dictionary where it takes the the values at each key turns them into columns then each index row will be the index, each key will be the variable name and the values will be the number for that row or the value for the key
