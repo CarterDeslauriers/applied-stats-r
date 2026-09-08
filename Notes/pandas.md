@@ -22,3 +22,9 @@ I gives back a copy not modify in place so I need to assign it
 For comparing two series simply series1 == series2 returns a mask or a boolean true false
 Where the values intersect or do not, taking .mean()
 Gives you the average they intersect so total intersections / length or total values
+
+When creating a mask with series say positvies == 1 & other == 0 we need parenthesis around both
+Otherwise I believe the & condition is read first ie in the right side as == 1 and this
+Rather than simply looking for the intersection of the sets
+
+You can go from a dataframe to a matrix with df.values
