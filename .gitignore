@@ -1,1 +1,9 @@
+# R
 .Rhistory
+
+# Python
+venv/
+__pycache
+
+# Data
+*.csv
