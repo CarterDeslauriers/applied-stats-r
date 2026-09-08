@@ -16,4 +16,4 @@
 
 |**Methods**|
 |:-|
-|[SMOTE](Data-level-methods.py)|
+|[SMOTE](Data-level-methods/SMOTE.py)|
