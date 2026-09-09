@@ -1,121 +1,13 @@
 import pandas as pd
 import numpy as np
-from sklearn.linear_model import LogisticRegression
+from IBL_General.Data_Creation import data_creation
+from IBL_General.Validation import validate
+from IBL_General.Logistic_Regression import logistic_regression
 import matplotlib.pyplot as plt
 # See Notes/environment for how I set this up
 
 # See Notes/pandas for pandas notes
 df = pd.read_csv("creditcard.csv")
-
-
-def data_creation(df, rng):
-    # Seperate the classes and take 70% of each for training data
-    # I do this because I dont want the 70% to take all the 0.17% of the frauds
-
-    df_non_fraud = df[df["Class"] == 0]
-    df_fraud = df[df["Class"] == 1]
-
-    # Randomaly permutate the rows of each then take the first 70%
-    # This gives and exact split versus a randomaly generated true false mask
-
-    # Get the counts
-    class_counts = df["Class"].value_counts()
-    non_fraud_count = class_counts.loc[0]
-    fraud_count = class_counts.loc[1]
-
-    # Run the permutation
-    non_fraud_perm = rng.permutation(non_fraud_count)
-    fraud_perm = rng.permutation(fraud_count)
-
-    split_ratio = 0.7
-    cut_non_fraud = int(split_ratio * non_fraud_count)
-    cut_fraud = int(split_ratio * fraud_count)
-
-    # Get the training and test data
-    train_non_fraud = df_non_fraud.iloc[non_fraud_perm[:cut_non_fraud]]
-    train_fraud = df_fraud.iloc[fraud_perm[:cut_fraud]]
-
-    test_non_fraud = df_non_fraud.iloc[non_fraud_perm[cut_non_fraud:]]
-    test_fraud = df_fraud.iloc[fraud_perm[cut_fraud:]]
-
-    # Combine for the samples
-    train_df = pd.concat([train_non_fraud, train_fraud])
-    test_df = pd.concat([test_non_fraud, test_fraud])
-
-    # print(len(train_df), len(test_df))
-    # print(train_df["Class"].mean(), test_df["Class"].mean(), df["Class"].mean())
-
-
-    X_train_df = train_df.drop(columns=["Class", "Time"])
-    y_train_df = train_df["Class"]
-
-    X_test_df = test_df.drop(columns=["Class", "Time"])
-    y_test_df = test_df["Class"]
-
-    means = X_train_df.mean()
-    stds = X_train_df.std()
-
-    X_train_df = (X_train_df - means) / stds
-
-    X_test_df = (X_test_df - means) / stds
-
-    return X_train_df, y_train_df, X_test_df, y_test_df
-
-# First show that a logistic regression will have high accuracy but is useless
-
-# Here I implemented before fully understanding scipy to see the failure of the model
-# Later I will implement myself and take notes
-
-
-
-
-def traditional(X_train_df, y_train_df, X_test_df, y_test_df, name, verbose):
-    model = LogisticRegression(max_iter=1000)
-    model.fit(X_train_df.values, y_train_df.values)
-    predictions = model.predict(X_test_df.values)
-
-    return validate(predictions, y_test_df.values, name, verbose)
-
-
-
-
-
-
-def validate(predictions, y_test_df, name, verbose=True):
-    if verbose:
-        print(f"\n{name} Model")
-
-    accuracy = 100 * (predictions == y_test_df).mean()
-    fraud_guesses = predictions.sum()
-    actual_frauds = y_test_df.sum()
-
-    if verbose:
-        print(f"""\nHere is the percentage of time our model is correct: {accuracy:.2f}%\n
-Now, how many it guessed would be fraud: {fraud_guesses}\n
-Now, the actual amount of frauds: {actual_frauds}\n""")
-
-
-    # Now create the confusion matrix for a better test of accuracy / usefulness
-    # See Notes/validation-metrics.md for notes on the confusion matrix
-
-    false_negatives = ((predictions == 0) & (y_test_df == 1)).sum()
-    true_negatives = ((predictions == 0) & (y_test_df == 0)).sum()
-    false_positives = ((predictions == 1) & (y_test_df == 0)).sum()
-    true_positives = ((predictions == 1) & (y_test_df == 1)).sum()
-    recall = 100 * (true_positives / (true_positives + false_negatives))
-    precision = 100 * (true_positives / (true_positives + false_positives))
-
-    if verbose:
-        print(f"""\nFalse Negatives: {false_negatives}\n
-True Negatives: {true_negatives}\n
-False Positives: {false_positives}\n
-True Positives: {true_positives}\n
-Recall: {recall:.2f}%\n
-Precision: {precision:.2f}%\n""")
-    
-    return recall, precision
-
-
 
 
 
@@ -182,15 +74,15 @@ def SMOTE(X_train_df, y_train_df, X_test_df, y_test_df, rng, name, verbose):
 
 
 
-runs = 50
+runs = 30
 results = []
 for i in range(runs):
     # SEE Notes/numpy for numpy notes
     rng = np.random.default_rng(i)
 
     X_train_df, y_train_df, X_test_df, y_test_df = data_creation(df, rng)
-    r1, p1 = traditional(X_train_df, y_train_df, X_test_df, y_test_df, name="Traditional", verbose=False)
-    r2, p2 = SMOTE(X_train_df, y_train_df, X_test_df, y_test_df, rng, name="SMOTE", verbose=False)
+    r1, p1, other = traditional(X_train_df, y_train_df, X_test_df, y_test_df, name="Traditional", verbose=False)
+    r2, p2, other = SMOTE(X_train_df, y_train_df, X_test_df, y_test_df, rng, name="SMOTE", verbose=False)
     results.append({"Seed": i, "Traditional-Recall": r1, "Traditional-Precision": p1, "SMOTE-Recall": r2, "SMOTE-Precision": p2})
 
     if i % 10 == 0:
@@ -199,7 +91,7 @@ for i in range(runs):
 results_df = pd.DataFrame(results)
 
 # Plot everything
-
+# SEE Notes/matplotlib for matplotlib notes
 plt.hist(results_df["Traditional-Recall"], alpha=0.5, label="Baseline")
 plt.hist(results_df["SMOTE-Recall"], alpha=0.5, label="SMOTE")
 plt.xlabel("Recall (%)")
