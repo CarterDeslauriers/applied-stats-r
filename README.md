@@ -1,8 +1,8 @@
 ## MATH421 - Assignments
 
-|**Assignments**|
-|:-|
-|[Assignment 1](Assignment-1.html)|
+|#|**Assignments**|Topic|
+|:-:|:-||:-|
+|1|[Assignment 1](Assignment-1.html)|Introduction|
 
 
 
@@ -10,6 +10,6 @@
 
 ### Data-level
 
-|**Methods**|
-|:-|
-|[SMOTE](Data-level-methods/SMOTE.py)|
+|**Methods**|Description||Code|
+|:-|:-|:-|
+|SMOTE|Synthetic Minority Over-sampling Technique|[SMOTE.py](Data-level-methods/SMOTE.py)|
