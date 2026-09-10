@@ -2,8 +2,8 @@
 
 |#|**Assignments**|Topic|
 |:-:|:-||:-|
-|1|[Assignment 1](Assignment-1.html)|Introduction|
-|2||[Assignment 2](assignment2q.html)|R Basics|
+|1|[Assignment 1](Assignments/Assignment-1.html)|Introduction|
+|2|[Assignment 2](Assignments/assignment2q.html)|R Basics|
 
 
 
