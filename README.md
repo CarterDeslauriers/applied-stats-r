@@ -1,7 +1,3 @@
-# Projects in R
-
-
-
 ## MATH421 - Assignments
 
 |**Assignments**|
