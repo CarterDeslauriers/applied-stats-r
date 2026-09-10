@@ -10,6 +10,6 @@
 
 ### Data-level
 
-|**Methods**|Description||Code|
+|**Methods**|Description|Code|
 |:-|:-|:-|
 |SMOTE|Synthetic Minority Over-sampling Technique|[SMOTE.py](Data-level-methods/SMOTE.py)|
