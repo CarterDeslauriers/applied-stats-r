@@ -4,6 +4,7 @@ from IBL_General.Data_Creation import data_creation
 from IBL_General.Validation import validate
 from IBL_General.Logistic_Regression import logistic_regression
 from IBL_General.Logistic_Regression import traditional
+from IBL_General.Visualize import scatter_plot
 import matplotlib.pyplot as plt
 # See Notes/environment for how I set this up
 
@@ -82,9 +83,9 @@ for i in range(runs):
     rng = np.random.default_rng(i)
 
     X_train_df, y_train_df, X_test_df, y_test_df = data_creation(df, rng)
-    r1, p1, _ = traditional(X_train_df, y_train_df, X_test_df, y_test_df, name="Traditional", verbose=False, fast=True)
-    r2, p2, _ = SMOTE(X_train_df, y_train_df, X_test_df, y_test_df, rng, name="SMOTE", verbose=False)
-    results.append({"Seed": i, "Traditional-Sensitivity": r1, "Traditional-Precision": p1, "SMOTE-Sensitivity": r2, "SMOTE-Precision": p2})
+    s1, p1, _ = traditional(X_train_df, y_train_df, X_test_df, y_test_df, name="Traditional", verbose=False, fast=True)
+    s2, p2, _ = SMOTE(X_train_df, y_train_df, X_test_df, y_test_df, rng, name="SMOTE", verbose=False)
+    results.append({"Seed": i, "Traditional-Sensitivity": s1, "Traditional-Precision": p1, "SMOTE-Sensitivity": s2, "SMOTE-Precision": p2})
 
     if i % 10 == 0:
         print(f"{(100 * (i / runs)):.0f}% Done")
@@ -92,9 +93,4 @@ for i in range(runs):
 results_df = pd.DataFrame(results)
 
 # Plot everything
-# SEE Notes/matplotlib for matplotlib notes
-plt.hist(results_df["Traditional-Sensitivity"], alpha=0.5, label="Baseline")
-plt.hist(results_df["SMOTE-Sensitivity"], alpha=0.5, label="SMOTE")
-plt.xlabel("Sensitivity (%)")
-plt.legend()
-plt.show()
+scatter_plot(results_df, "SMOTE")
