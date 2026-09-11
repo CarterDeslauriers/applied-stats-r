@@ -1,0 +1,13 @@
+{
+    "files.exclude": {
+        "**/.git": true,
+        "**/.svn": true,
+        "**/.hg": true,
+        "**/.DS_Store": true,
+        "**/Thumbs.db": true,
+        "**/Logistic_Gradient.aux": true,
+        "**/Logistic_Gradient.log": true,
+        "**/Logistic_Gradient.gz": true,
+        "**/Logistic_Gradient.out": true
+    }
+}
