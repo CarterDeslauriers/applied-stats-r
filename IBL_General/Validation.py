@@ -21,7 +21,7 @@ Now, the actual amount of frauds: {actual_frauds}\n""")
     true_negatives = ((predictions == 0) & (y_test_df == 0)).sum()
     false_positives = ((predictions == 1) & (y_test_df == 0)).sum()
     true_positives = ((predictions == 1) & (y_test_df == 1)).sum()
-    recall = 100 * (true_positives / (true_positives + false_negatives))
+    sensitivity = 100 * (true_positives / (true_positives + false_negatives))
     precision = 100 * (true_positives / (true_positives + false_positives))
 
     if verbose:
@@ -29,7 +29,7 @@ Now, the actual amount of frauds: {actual_frauds}\n""")
 True Negatives: {true_negatives}\n
 False Positives: {false_positives}\n
 True Positives: {true_positives}\n
-Recall: {recall:.2f}%\n
+sensitivity: {sensitivity:.2f}%\n
 Precision: {precision:.2f}%\n""")
     
-    return recall, precision, (false_negatives, true_negatives, false_positives, true_positives)
+    return sensitivity, precision, (false_negatives, true_negatives, false_positives, true_positives)

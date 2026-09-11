@@ -3,6 +3,7 @@ import numpy as np
 from IBL_General.Data_Creation import data_creation
 from IBL_General.Validation import validate
 from IBL_General.Logistic_Regression import logistic_regression
+from IBL_General.Logistic_Regression import traditional
 import matplotlib.pyplot as plt
 # See Notes/environment for how I set this up
 
@@ -62,7 +63,7 @@ def SMOTE(X_train_df, y_train_df, X_test_df, y_test_df, rng, name, verbose):
 
     # Now run the regression and re validate
 
-    model = LogisticRegression(max_iter=1000)
+    model = logistic_regression(fast=True)
     model.fit(X_train_matrix, y_train_matrix)
     predictions = model.predict(X_test_df.values)
 
@@ -81,9 +82,9 @@ for i in range(runs):
     rng = np.random.default_rng(i)
 
     X_train_df, y_train_df, X_test_df, y_test_df = data_creation(df, rng)
-    r1, p1, other = traditional(X_train_df, y_train_df, X_test_df, y_test_df, name="Traditional", verbose=False)
-    r2, p2, other = SMOTE(X_train_df, y_train_df, X_test_df, y_test_df, rng, name="SMOTE", verbose=False)
-    results.append({"Seed": i, "Traditional-Recall": r1, "Traditional-Precision": p1, "SMOTE-Recall": r2, "SMOTE-Precision": p2})
+    r1, p1, _ = traditional(X_train_df, y_train_df, X_test_df, y_test_df, name="Traditional", verbose=False, fast=True)
+    r2, p2, _ = SMOTE(X_train_df, y_train_df, X_test_df, y_test_df, rng, name="SMOTE", verbose=False)
+    results.append({"Seed": i, "Traditional-Sensitivity": r1, "Traditional-Precision": p1, "SMOTE-Sensitivity": r2, "SMOTE-Precision": p2})
 
     if i % 10 == 0:
         print(f"{(100 * (i / runs)):.0f}% Done")
@@ -92,8 +93,8 @@ results_df = pd.DataFrame(results)
 
 # Plot everything
 # SEE Notes/matplotlib for matplotlib notes
-plt.hist(results_df["Traditional-Recall"], alpha=0.5, label="Baseline")
-plt.hist(results_df["SMOTE-Recall"], alpha=0.5, label="SMOTE")
-plt.xlabel("Recall (%)")
+plt.hist(results_df["Traditional-Sensitivity"], alpha=0.5, label="Baseline")
+plt.hist(results_df["SMOTE-Sensitivity"], alpha=0.5, label="SMOTE")
+plt.xlabel("Sensitivity (%)")
 plt.legend()
 plt.show()

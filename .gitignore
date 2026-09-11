@@ -4,6 +4,7 @@
 # Python
 venv/
 __pycache
+.env
 
 # Data
 *.csv
