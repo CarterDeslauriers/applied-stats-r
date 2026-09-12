@@ -54,7 +54,12 @@ ${1 + e^{-z}} > 1$ giving $\frac{e^{-z}}{1 + e^{-z}} < e^{-z}$ now $e^{-z} < \ep
 Meaing whenver $z >= N$ where $N > \log(\frac{1}{\epsilon})$ we have 
 $|\frac{1}{1 + e^{-z} - 1}| < \epsilon$ giving $p -> 1 as z -> \inf$. 
 
-For the other direction $|\frac{1}{1 + e^{-z} - 0}| < \epsilon$, (Finish later)
+For the other direction $|\frac{1}{1 + e^{-z} - 0}| < \epsilon$ where
+$|\frac{1}{1 + e^{-z} - 0}|$ = $\frac{1}{1 + e^{-z}}$ since $e^{x} > 0$ always.
+Then $1 < \epsilon{1 + e^{-z}}$ and $\frac{1 - \epsilon}{\epsilon} < e^{-z}$, taking log
+of both sides giving $\log(\frac{1 - \epsilon}{\epsilon}) < -z$, then multiplying by
+$-1$ giving $-\log(\frac{1 - \epsilon}{\epsilon}) > z$. Meaning
+$|\frac{1}{1 + e^{-z} - 0}| < \epsilon$ for large z giving $p -> 0 as z -> -\inf$. 
 
 Now that we have proved $p \in (0, 1)$ and we have defined it as the probabilty
 that $y = 1$ for our model we can define the loss that we are looking to minimize.
@@ -70,9 +75,45 @@ So how can we do this. We want to tune our weights as optimally as possible. The
 we use the gradient specifcaly $\frac{\partial L}{\partial w_j}$. But we defined L
 in terms of $y$ and $p$ so we must chain through to get our derivative.
 
-(To continue dervie the chain rule, then explain b and using 1 at the end of the matrix
-for the $x_d+1$, ie because the $x_j$ comes out and b's will be 1 always)
+Observe by the chain rule $\frac{\partial L}{\partial w_j}$ =
+$\frac{\partial L}{\partial p}$$\frac{\partial p}{\partial z}$$\frac{\partial z}{\partial w_j}$
 
-(After this reformat and its done)
+Moving from right to left we have $\frac{\partial z}{\partial w_j}$ = 
+$x_j$ since taking the partial derivative leaves all other weights as constants
+
+Next $\frac{\partial p}{\partial z}$ = $\sigma'(z)$ = $-1(1 + e^{-z})^-2e^{-z}$
+= $\frac{e^{-z}}{(1 + e^{-z})^2}$. Observe that $\frac{e^{-z}}{(1 + e^{-z})^2}$ = 
+$\frac{e^{-z}}{(1 + e^{-z})}\frac{1}{{(1 + e^{-z})}}$ where the right side is again
+$\sigma(z)$ and the left side is $1 - \sigma(z)$ since $1 - \sigma(z)$ = 
+$1 - \frac{1}{1 + e^{-z}}$ = $\frac{1 + e^{-z}}{1 + e^{-z}} - \frac{1}{1 + e^{-z}}$ = 
+$\frac{e^{-z}}{(1 + e^{-z})}$. Giving $p' = p(1-p)$
+
+Finally $\frac{\partial L}{\partial p}$ = $\frac{-y}{p} + \frac{1 - y}{1 - p}$
+
+Now chaining all three together gives 
+$(\frac{-y}{p} + \frac{1 - y}{1 - p})$$p(1-p)$$x_j$ =
+$(-y(1-p) + (1-y)p)x_j$ = $(-y + py + p -py)x_j$ = $(p - y)x_j$
+For b simply observe $\frac{\partial z}{\partial b} = 1$
+and therefore the gradient is $(p - y)$ there.
+
+We now have the optimal unit of movement of each $w_j$ in order to most efficencly
+decrease our loss. 
+
+In general we have $d$ columns of observations and $n$ rows of data. 
+We can then simply think of each vairbale described above as a vector. 
+Where w is the weight vecotr in which we add b.
+p is the vector of probabilites one for each row $p_i$.
+y is the vector of observations for rows i where $y_i$ is the value 0 or 1
+descirbed throughout.
+To get our final gradient we take Loss as the avergae loss of the rows.
+So $L = \frac{1}{n}\sum_{i=1}^{n}L_i$ where $L_i$ =
+$(p_i - y_i)x_ij$ for each observation j. Then to find the partial derivavite of
+the gradient we have $\frac{\partial L}{\partial w_j}$ =
+$\frac{1}{n}\sum_{i=1}^{n}\frac{\partial L_i}{\partial w_ij}$ since the
+partial deriative of the mean is the mean of the partial derivatives.
+
+In general at optimum we have $\sum_{i=1}^{n}p_i = \sum_{i=1}^{n}y_i$
+and our logistic regression produces its most optimal predictions based on the
+data given which we can further use to predict future data.
 
 \end{document}
