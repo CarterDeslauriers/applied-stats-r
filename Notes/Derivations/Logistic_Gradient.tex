@@ -1,6 +1,55 @@
-\documentclass{article}
+\documentclass[leqno]{article}
 \usepackage{amsmath, amssymb}
+\usepackage{parskip}
+\usepackage{setspace}
+\usepackage{titlesec}
+\onehalfspacing
+\titleformat{\section}{\normalsize\bfseries}{\thesection}{1em}{}
+
+
+
+\title{The Gradient of the Logistic Function}
+\author{Carter Deslauriers}
+\date{\today}
 
 \begin{document}
-Test. $\sigma'(z) = \sigma(z)(1 - \sigma(z))$
+\maketitle
+
+\section{Introduction: Logistic Regression}
+
+
+\section{Loss}
+
+To compute the loss function, we want to determine each individual probabilties distance
+from the true result. For a single obersvetion i it takes the form.
+
+\begin{equation}
+\text{Loss}_i = -\left[\frac{y_i}{\log(p_i)} + \frac{1-y_i}{\log(1-p_i)}\right]
+\end{equation}
+
+In general for n observations we can think of y and p as vectors each of length n,
+where if y takes on the value 1 then the left side is realized and if y takes on the value
+0 then the right side is realized ie $1 - 1 = 0$ then the right side is $0 / \log(1 - p) = 0$.
+
+We calculate a average loss in the form.
+
+\begin{equation}
+\text{Average Loss} = \frac{1}{n}\sum_{i=1}^{n} \text{Loss}_i
+\end{equation}
+
+Or in other words take the average over the n observations.
+
+
+
+\section{Gradient}
+
+The gradient is simply a vector of values in which we would like to move each $w_j$
+in order to minmize error the fastest. It can be thought of geometrically as the
+direction of steepest slope. So we want to step in that direction to move as efficently
+as possible.
+
+We want the change in loss for a change in $w_j$ meaning we want the parital
+derivative in the loss in terms of the change in each weight. 
+Specifclaly we want $\frac{\partial L_i}{\partial w_ij}$
+
 \end{document}
