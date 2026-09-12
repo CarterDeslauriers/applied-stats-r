@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.29 (TeX Live 2026) (preloaded format=pdflatex 2026.3.1)  11 SEP 2026 20:45
+This is pdfTeX, Version 3.141592653-2.6-1.40.29 (TeX Live 2026) (preloaded format=pdflatex 2026.3.1)  12 SEP 2026 16:08
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -161,18 +161,18 @@ L3 programming layer <2026-01-19>
  ***********
  ) 
 Here is how much of TeX's memory you used:
- 2787 strings out of 469006
- 40800 string characters out of 5454814
- 447545 words of memory out of 5000000
- 31483 multiletter control sequences out of 15000+600000
+ 2785 strings out of 469006
+ 40740 string characters out of 5454814
+ 451545 words of memory out of 5000000
+ 31481 multiletter control sequences out of 15000+600000
  634672 words of font info for 68 fonts, out of 8000000 for 9000
  319 hyphenation exceptions out of 8191
  57i,6n,65p,1282b,214s stack positions out of 10000i,1000n,20000p,200000b,200000s
-</usr/local/texlive/2026basic/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/local/texlive/2026basic/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/local/texlive/2026basic/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/local/texlive/2026basic/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi5.pfb></usr/local/texlive/2026basic/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></usr/local/texlive/2026basic/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/local/texlive/2026basic/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/local/texlive/2026basic/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb></usr/local/texlive/2026basic/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/local/texlive/2026basic/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb>
-Output written on Logistic_Gradient.pdf (2 pages, 107284 bytes).
+</usr/local/texlive/2026basic/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/local/texlive/2026basic/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/local/texlive/2026basic/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi5.pfb></usr/local/texlive/2026basic/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></usr/local/texlive/2026basic/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/local/texlive/2026basic/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/local/texlive/2026basic/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb></usr/local/texlive/2026basic/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/local/texlive/2026basic/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2026basic/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy5.pfb></usr/local/texlive/2026basic/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb>
+Output written on Logistic_Gradient.pdf (2 pages, 124934 bytes).
 PDF statistics:
- 61 PDF objects out of 1000 (max. 8388607)
- 36 compressed objects within 1 object stream
+ 66 PDF objects out of 1000 (max. 8388607)
+ 39 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
  1 words of extra memory for PDF output out of 10000 (max. 10000000)
 

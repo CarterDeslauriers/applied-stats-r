@@ -15,41 +15,64 @@
 \begin{document}
 \maketitle
 
-\section{Introduction: Logistic Regression}
+\section{What does a Logistic Function do?}
 
+Take one row of observations. Let there be $d$ observations and a classification $y$
+where $y \in \{0, 1\}$. You can think of $y$ as yes or no, or true or false. Let
+each of the $d$ observations we represented by a variable $x_j$. Where each $x_j$
+is the z-score for observation (the standard deviations from the mean). 
 
-\section{Loss}
+Our goal is simply take these $x_j$ and predict $y$ as best as possible.
+So intuitvely we can take a single observation $x_2$ say and whenever its $> 1$ say
+we let our prediction by $1$ for $y$. But this doens't take into account all our
+observations. So let sum them, let $z = x_1 + x_2 + ... + x_d + b$. We introduced a b
+which is a bias for the guess we want. You can imagine b as if all $x_j$ are 0 then
+what should our guess be. 
 
-To compute the loss function, we want to determine each individual probabilties distance
-from the true result. For a single obersvetion i it takes the form.
+Now you might think now that some observations may be more important
+than others or interact with y in different ways. For example your length of credit
+history might be more imporant than your hair color in predicting if you will
+repay or not. 
 
-\begin{equation}
-\text{Loss}_i = -\left[\frac{y_i}{\log(p_i)} + \frac{1-y_i}{\log(1-p_i)}\right]
-\end{equation}
+So assign a weight $w_j$ to each observation $x_j$. So we have now
+$z = w_1x_1 + w_2x_2 + ... + w_dx_d + b$. (Make these equations). 
 
-In general for n observations we can think of y and p as vectors each of length n,
-where if y takes on the value 1 then the left side is realized and if y takes on the value
-0 then the right side is realized ie $1 - 1 = 0$ then the right side is $0 / \log(1 - p) = 0$.
+But how do we get these weights? We need to say based on these current weights
+how confident are we that $y = 1$ ie given this value of z how confident are we
+that this observation as $y = 1$. Well z is arbitary, $w_1$ can be as big as we want
+z can be $100$, $-0.5$ so on; what does that mean?
 
-We calculate a average loss in the form.
+Take a function $\frac{1}{1 + e^{-z}}$ and let this be how predicted probability
+that $y = 1$. Specifcally let $p = \sigma(z) = \frac{1}{1 + e^{-z}}$. Then observe
+that for every $\epsilon > 0$ theres exits $N \in N$ such that whenever
+$z >= N$ $|\frac{1}{1 + e^{-z} - 1}| < \epsilon$, specifcally choose
+$z > \log(\frac{1}{\epsilon})$. To see this $|\frac{1}{1 + e^{-z} - 1}|$ =
+$|\frac{1}{1 + e^{-z}} - \frac{1 + e^{-z}}{1 + e^{-z}}|$ = $|\frac{-e^{-z}}{1 + e^{-z}}|$
+= $\frac{e^{-z}}{1 + e^{-z}}$ since $e^{x} > 0$ always we have 
+${1 + e^{-z}} > 1$ giving $\frac{e^{-z}}{1 + e^{-z}} < e^{-z}$ now $e^{-z} < \epsilon$
+= $-z < \log(\epsilon)$ = $z > -\log(\epsilon)$ = $z > \log(\frac{1}{\epsilon})$.
+Meaing whenver $z >= N$ where $N > \log(\frac{1}{\epsilon})$ we have 
+$|\frac{1}{1 + e^{-z} - 1}| < \epsilon$ giving $p -> 1 as z -> \inf$. 
 
-\begin{equation}
-\text{Average Loss} = \frac{1}{n}\sum_{i=1}^{n} \text{Loss}_i
-\end{equation}
+For the other direction $|\frac{1}{1 + e^{-z} - 0}| < \epsilon$, (Finish later)
 
-Or in other words take the average over the n observations.
+Now that we have proved $p \in (0, 1)$ and we have defined it as the probabilty
+that $y = 1$ for our model we can define the loss that we are looking to minimize.
+Intuitively we want our probability of $y=1$ distance from the true value. But an
+absoulte difference doens't account for the confidence difference we between
+a precition of .99 and .999 which are 0.01 and 0.001 away from 1 but are dramatically
+different in confidence. Therefore we define the loss using logs. Specifically we
+let the loss = $-\log(p)$ if $y=1$ and $-\log(1 - p)$ if $y=0$. In closed form our loss
+looks like $L = -[y\log(p) + (1 - y)\log(1-p)]$.
 
+As stated before we want to minimze our loss but we want to tune our arbitrary weights.
+So how can we do this. We want to tune our weights as optimally as possible. Therefore
+we use the gradient specifcaly $\frac{\partial L}{\partial w_j}$. But we defined L
+in terms of $y$ and $p$ so we must chain through to get our derivative.
 
+(To continue dervie the chain rule, then explain b and using 1 at the end of the matrix
+for the $x_d+1$, ie because the $x_j$ comes out and b's will be 1 always)
 
-\section{Gradient}
-
-The gradient is simply a vector of values in which we would like to move each $w_j$
-in order to minmize error the fastest. It can be thought of geometrically as the
-direction of steepest slope. So we want to step in that direction to move as efficently
-as possible.
-
-We want the change in loss for a change in $w_j$ meaning we want the parital
-derivative in the loss in terms of the change in each weight. 
-Specifclaly we want $\frac{\partial L_i}{\partial w_ij}$
+(After this reformat and its done)
 
 \end{document}
