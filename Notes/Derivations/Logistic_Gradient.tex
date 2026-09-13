@@ -137,12 +137,12 @@ Now
 
 \begin{align*}
 e^{-z} < \epsilon
-  &\iff -z < \log(\epsilon) \\
-  &\iff z > -\log(\epsilon) \\
-  &\iff z > \log(\frac{1}{\epsilon})
+  &\iff -z < \log\!\left(\epsilon\right) \\
+  &\iff z > -\log\!\left(\epsilon\right) \\
+  &\iff z > \log\!\left(\frac{1}{\epsilon}\right)
 \end{align*}
 
-Meaing whenver $z \geq N$ where $N > \log(\frac{1}{\epsilon})$ we have 
+Meaing whenver $z \geq N$ where $N > \log\!\left(\frac{1}{\epsilon}\right)$ we have 
 
 \begin{equation*}
 \left|\frac{1}{1 + e^{-z}} - 1\right| < \epsilon 
@@ -154,13 +154,13 @@ giving
 \end{equation*}
 
 For the other direction observe that for every $\epsilon > 0$ 
-theres exists $N \in \mathbb{N}$ such that whenever$z \leq -N$ it follows
+theres exists $N \in \mathbb{N}$ such that whenever $z \leq -N$ it follows
 
 \begin{equation*}
 \left|\frac{1}{1 + e^{-z}} - 0\right| < \epsilon 
 \end{equation*}
 
-specifcally choose $N > -\log(\frac{1 - \epsilon}{\epsilon})$
+specifcally choose $N > \log\!\left(\frac{1 - \epsilon}{\epsilon}\right)$
 
 To see this
 
@@ -183,10 +183,10 @@ and
 taking log of both sides and multiplying by $-1$
 
 \begin{equation*}
-\log(\frac{1 - \epsilon}{\epsilon}) < -z \iff -\log(\frac{1 - \epsilon}{\epsilon}) > z
+\log\!\left(\frac{1 - \epsilon}{\epsilon}\right) < -z \iff -\log\!\left(\frac{1 - \epsilon}{\epsilon}\right) > z
 \end{equation*} 
 
-Meaning whenver $z \leq -N$ where $N > -\log(\frac{1 - \epsilon}{\epsilon})$ we have 
+Meaning whenever $z \leq -N$ where $N > \log\!\left(\frac{1 - \epsilon}{\epsilon}\right)$ we have 
 
 \begin{equation*}
 \left|\frac{1}{1 + e^{-z}} - 0\right| < \epsilon
@@ -199,34 +199,34 @@ p \to 0 \text{ as } z \to -\infty
 \end{equation*}
 
 
-Now that we have proved $p \in (0, 1)$ and, we have defined it as the probabilty
+Now that we have proved $p \in (0, 1)$ and we have defined it as the probabilty
 that $y = 1$ for our model, we can define the loss that we are looking to minimize.
 
 % LOSS
 \subsection{Loss}
 
 Intuitively we would want the distance from our predicted probability
-to the true value of $y=0$ or $y=1$ But an absoulte difference 
+to the true value of $y=0$ or $y=1$. But an absoulte difference 
 doens't account for the confidence difference between a prediction of .99 
-and .999, which are 0.01 and 0.001 away from 1 but are dramatically
+and .999 for a $y=1$, which are 0.01 and 0.001 away from 1 but are dramatically
 different in confidence. Therefore we define the loss using logs. Specifically we
 let the loss be
 
 \begin{equation*}
-L = -\log(p)
+L = -\log\!\left(p\right)
 \end{equation*}
 
 if $y=1$ and 
 
 \begin{equation*}
-L -\log(1 - p)
+L -\log\!\left(1 - p\right)
 \end{equation*}
 if $y=0$. 
 
 In closed form our loss looks like 
 
 \begin{equation}
-    L = -[y\log(p) + (1 - y)\log(1-p)]
+    L = -[y\log\!\left(p\right) + (1 - y)\log\!\left(1-p\right)]
 \end{equation}
 
 % GRADIENT
@@ -278,8 +278,8 @@ $\sigma(z)$ and the left side is $1 - \sigma(z)$ since
 
 \begin{align*}
 1 - \sigma(z)
-  &= 1 - \frac{1}{1 + e^{-z}}
-  &= \frac{1 + e^{-z}}{1 + e^{-z}} - \frac{1}{1 + e^{-z}}
+  &= 1 - \frac{1}{1 + e^{-z}} \\
+  &= \frac{1 + e^{-z}}{1 + e^{-z}} - \frac{1}{1 + e^{-z}} \\
   &= \frac{e^{-z}}{(1 + e^{-z})} 
 \end{align*}
   
@@ -299,8 +299,8 @@ Now chaining all three together gives
 
 \begin{align*}
 (\frac{-y}{p} + \frac{1 - y}{1 - p})p(1-p)x_j
-  &= (-y(1-p) + (1-y)p)x_j 
-  &= (-y + py + p -py)x_j 
+  &= (-y(1-p) + (1-y)p)x_j \\
+  &= (-y + py + p -py)x_j \\
   &= (p - y)x_j
 \end{align*}
 
@@ -328,12 +328,11 @@ decrease our loss.
 \subsection{N rows of Data}
 
 In general we have $d$ columns of observations and $n$ rows of data. 
-We can then simply think of each vairbale described above as a vector. 
-Where w is the weight vecotr in which we add b.
+We can then simply think of each variable described above as a vector. 
+Where w is the weight vector in which we add b.
 p is the vector of probabilites one for each row $p_i$.
-y is the vector of observations for rows i where $y_i$ is the value 0 or 1
-descirbed throughout.
-To get our final gradient we take Loss as the avergae loss of the rows.
+y is the vector of observations of $y_i$.
+To get our final gradient we take loss as the avergae loss of the rows.
 
 \begin{equation}
 L = \frac{1}{n}\sum_{i=1}^{n}L_i
@@ -342,7 +341,7 @@ L = \frac{1}{n}\sum_{i=1}^{n}L_i
 where 
 
 \begin{equation*}
-L_i = (p_i - y_i)x_ij
+L_i = (p_i - y_i)x_{ij}
 \end{equation*}
 
 for each observation j. Then to find the partial derivavite of
@@ -350,7 +349,7 @@ the gradient we have
 
 \begin{equation*}
 \frac{\partial L}{\partial w_j} =
-\frac{1}{n}\sum_{i=1}^{n}\frac{\partial L_i}{\partial w_ij}
+\frac{1}{n}\sum_{i=1}^{n}\frac{\partial L_i}{\partial w_{ij}}
 \end{equation*}
 
 since the partial deriative of the mean is the mean of the partial derivatives.
