@@ -5,8 +5,8 @@
 \usepackage{titlesec}
 \onehalfspacing
 \setlength{\jot}{10pt}
-\titleformat{\section}{\normalsize\bfseries}{\thesection}{1em}{}
-\titleformat{\subsection}{\small\bfseries}{\thesubsection}{1em}{}
+\titleformat{\section}{\Large\bfseries}{\thesection}{1em}{}
+\titleformat{\subsection}{\large\bfseries}{\thesubsection}{1em}{}
 
 \newtheorem{definition}{Definition}
 \theoremstyle{remark}
@@ -19,10 +19,10 @@
 \begin{document}
 \maketitle
 
-\section{What does a Logistic Function do?}
+\section{Building Logistic Function}
 
 % SET UP
-\subsection{Setup}
+\subsection{Data and Labels: $d$, $x_j$, $y$}
 
 Take one row of observations. Let there be $d$ observations; where each $x_j$
 is the z-score for jth observation (the standard deviations from the mean), 
@@ -40,7 +40,7 @@ and a single classification observation $y$ where
 You can think of $y$ as yes or no, or true or false.
 
 % MOTIVATION FOR Z
-\subsection{Motivation for z}
+\subsection{Linear Score: $z$, $b$}
 
 Our goal is simply take these $x_j$ and predict $y$ as best as possible.
 So intuitively we can take a single observation call it $x_2$. Choose an arbitrary break
@@ -58,7 +58,7 @@ which is a bias for the guess we want. You can imagine b as, if all $x_j$ are 0 
 what would we like our guess be. 
 
 % MOTIVATION FOR WEIGHTS
-\subsection{Motivation for weights}
+\subsection{Input Weighting: $w_j$}
 
 Now it might be the case that some observations are more important
 than others, or interact with y in different ways. For example your length of credit
@@ -77,7 +77,7 @@ that this observation is a true $y = 1$. Well z is arbitrary, $w_1$ can be as bi
 z can be $100$, $-0.5$ so on; what does that mean?
 
 % SIGMA(Z)
-\subsection{$\sigma(z)$}
+\subsection{Score to Probability: $\sigma(z)$}
 
 Take a function 
 
@@ -95,8 +95,11 @@ Specifically let
 To get a concept of a probability we must have the function $0 \leq p \leq 1$. We would
 also like $p \to 0 \text{ as } z \to -\infty$ and $p \to 1 \text{ as } z \to \infty$.
 
+
+\section{Properties}
+
 % BOUNDS FOR P
-\subsection{Bounds}
+\subsection{Bounds on $p$}
 
 Observe that since $e^{x} > 0$ always we have
 
@@ -113,7 +116,7 @@ and
 Since denominator will always be greater than numerator and positive.
 
 % PROOF FOR P LIMITS
-\subsection{Limits}
+\subsection{Limits of $p$}
 
 Observe that for every $\epsilon > 0$ theres exists $N \in \mathbb{N}$ such that whenever
 $z \geq N$ it follows
@@ -221,7 +224,7 @@ Now that we have proved the limit behavior of p and we have defined it as the pr
 that $y = 1$ for our model, we can define the loss that we are looking to minimize.
 
 % LOSS
-\subsection{Loss}
+\subsection{Loss: $L$}
 
 Intuitively we would want the distance from our predicted probability
 to the true value of $y=0$ or $y=1$. But an absolute difference 
@@ -247,8 +250,10 @@ In closed form our loss looks like
     L = -[y\log\!\left(p\right) + (1 - y)\log\!\left(1-p\right)]
 \end{equation}
 
+\section{Optimization}
+
 % GRADIENT
-\subsection{Gradient}
+\subsection{Gradient: $\frac{\partial L}{\partial w_j}$}
 
 As stated before we want to minimize our loss. So how can we do this. 
 We want to tune our weights as optimally as possible. Therefore
@@ -343,7 +348,7 @@ We now have the optimal unit of movement of each $w_j$ in order to most efficien
 decrease our loss. 
 
 % N ROWS OF DATA
-\subsection{N rows of Data}
+\subsection{Averaging over a Dataset}
 
 In general we have $d$ columns of observations and $n$ rows of data. 
 We can then simply think of each variable described above as a vector. 
