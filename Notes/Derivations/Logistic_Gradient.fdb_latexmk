@@ -1,6 +1,6 @@
 # Fdb version 4
-["pdflatex"] 1789312768.24751 "/Users/carterdeslauriers/Documents/GitHub/applied-stats-r/Notes/Derivations/Logistic_Gradient.tex" "Logistic_Gradient.pdf" "Logistic_Gradient" 1789312768.39051 0
-  "/Users/carterdeslauriers/Documents/GitHub/applied-stats-r/Notes/Derivations/Logistic_Gradient.tex" 1789312768.13898 9846 9739b960939e0412aafc943dd67671c3 ""
+["pdflatex"] 1789314406.75125 "/Users/carterdeslauriers/Documents/GitHub/applied-stats-r/Notes/Derivations/Logistic_Gradient.tex" "Logistic_Gradient.pdf" "Logistic_Gradient" 1789314406.89739 0
+  "/Users/carterdeslauriers/Documents/GitHub/applied-stats-r/Notes/Derivations/Logistic_Gradient.tex" 1789314406.63983 10233 f7150cec6f5304be0730ccef54d88e93 ""
   "/usr/local/texlive/2026basic/texmf-dist/fonts/tfm/public/amsfonts/cmextra/cmex7.tfm" 1246382020 1004 54797486969f23fa377b128694d548df ""
   "/usr/local/texlive/2026basic/texmf-dist/fonts/tfm/public/amsfonts/cmextra/cmex8.tfm" 1246382020 988 bdf658c3bfc2d96d3c8b02cfc1c94c20 ""
   "/usr/local/texlive/2026basic/texmf-dist/fonts/tfm/public/amsfonts/cmextra/cmex9.tfm" 1246382020 996 a18840b13b499c08ac2de96a99eda4bc ""
@@ -39,7 +39,6 @@
   "/usr/local/texlive/2026basic/texmf-dist/fonts/type1/public/amsfonts/cm/cmr9.pfb" 1248133631 33993 9b89b85fd2d9df0482bd47194d1d3bf3 ""
   "/usr/local/texlive/2026basic/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb" 1248133631 32569 5e5ddc8df908dea60932f3c484a54c0d ""
   "/usr/local/texlive/2026basic/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb" 1248133631 32716 08e384dc442464e7285e891af9f45947 ""
-  "/usr/local/texlive/2026basic/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy9.pfb" 1248133631 32442 c975af247b6702f7ca0c299af3616b80 ""
   "/usr/local/texlive/2026basic/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb" 1248133631 34694 ad62b13721ee8eda1dcc8993c8bd7041 ""
   "/usr/local/texlive/2026basic/texmf-dist/tex/generic/ltxcmds/ltxcmds.sty" 1701727651 17865 1a9bd36b4f98178fa551aca822290953 ""
   "/usr/local/texlive/2026basic/texmf-dist/tex/latex/amscls/amsthm.sty" 1591045760 12594 0d51ac3a545aaaa555021326ff22a6cc ""
@@ -66,8 +65,8 @@
   "/usr/local/texlive/2026basic/texmf-var/fonts/map/pdftex/updmap/pdftex.map" 1789169281 79187 e3f5941707347d15c1721f52279213a2 ""
   "/usr/local/texlive/2026basic/texmf-var/web2c/pdftex/pdflatex.fmt" 1772405612 2966183 588a2f29d0aaf280e3a142a37c2dd621 ""
   "/usr/local/texlive/2026basic/texmf.cnf" 1772405582 628 bbc09d6d38872d53c11bb48dc9b14e88 ""
-  "Logistic_Gradient.aux" 1789312768.35847 1098 07202d07616419597fbd8e7fc2ad28de "pdflatex"
-  "Logistic_Gradient.tex" 1789312768.13898 9846 9739b960939e0412aafc943dd67671c3 ""
+  "Logistic_Gradient.aux" 1789314406.86532 1184 9ae6ef585130cab4e1624e21109f7c56 "pdflatex"
+  "Logistic_Gradient.tex" 1789314406.63983 10233 f7150cec6f5304be0730ccef54d88e93 ""
   (generated)
   "Logistic_Gradient.aux"
   "Logistic_Gradient.log"

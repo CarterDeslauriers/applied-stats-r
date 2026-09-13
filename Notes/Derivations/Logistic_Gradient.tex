@@ -28,7 +28,7 @@ Take one row of observations. Let there be $d$ observations; where each $x_j$
 is the z-score for jth observation (the standard deviations from the mean), 
 
 \begin{equation*}
-    x_1, x_2, \ldots , x_d
+    x_1, x_2, \ldots, x_d
 \end{equation*} 
 
 and a single classification observation $y$ where
@@ -50,7 +50,7 @@ into consideration all of our variables when making a desicion. So let
 z be the summation of the $d$ observations.
 
 \begin{equation*}
-z = x_1 + x_2 +, \ldots ,+ x_d + b
+z = x_1 + x_2 + \cdots + x_d + b
 \end{equation*} 
 
 We introduced a b
@@ -68,7 +68,7 @@ repay or not.
 So assign a weight $w_j$ to each observation $x_j$. So we have now
 
 \begin{equation}
-    z = w_1x_1 + w_2x_2 + ... + w_dx_d + b
+    z = w_1x_1 + w_2x_2 + \cdots + w_dx_d + b
 \end{equation}
 
 But how do we get these weights? We need to conlude based on the current weights
@@ -92,10 +92,24 @@ Specifcally let
     p = \sigma(z) = \frac{1}{1 + e^{-z}}
 \end{equation}
 
-To get a concept of a probability we must have the function strictly $p \in [0, 1]$
+To get a concept of a probability we must have the function $0 \leq p \leq 1$. We would
+also like $p \to 0 \text{ as } z \to \infty$ and $p \to 1 \text{ as } z \to -\infty$.
 
-% PROOF FOR P
-\subsection{Proof $p \in (0, 1)$}
+% BOUNDS FOR P
+\subsection{Bounds}
+
+Observe that since $e^{x} > 0$ always we have
+
+\begin{align*}
+1 + e^{-z} > 1
+  &\iff \frac{1}{1 + e^{-z}} < 1 \\
+  &\iff \frac{1}{1 + e^{-z}} > 0
+\end{align*}
+
+Since denomiator will always be greater than numerator and stricly non negative.
+
+% PROOF FOR P LIMITS
+\subsection{Limits}
 
 Observe that for every $\epsilon > 0$ theres exists $N \in \mathbb{N}$ such that whenever
 $z \geq N$ it follows
@@ -121,7 +135,7 @@ To see this
 
 Where the last line follows since $e^{x} > 0$ always.
 
-This gives
+Which also gives
 
 \begin{equation*}
     {1 + e^{-z}} > 1
@@ -199,7 +213,7 @@ p \to 0 \text{ as } z \to -\infty
 \end{equation*}
 
 
-Now that we have proved $p \in (0, 1)$ and we have defined it as the probabilty
+Now that we have proved the limit behavior of p and we have defined it as the probabilty
 that $y = 1$ for our model, we can define the loss that we are looking to minimize.
 
 % LOSS
@@ -219,7 +233,7 @@ L = -\log\!\left(p\right)
 if $y=1$ and 
 
 \begin{equation*}
-L -\log\!\left(1 - p\right)
+L  = -\log\!\left(1 - p\right)
 \end{equation*}
 if $y=0$. 
 
@@ -286,7 +300,7 @@ $\sigma(z)$ and the left side is $1 - \sigma(z)$ since
 Giving 
 
 \begin{equation*}
-p' = p(1-p)
+\sigma'(z) = \sigma(z)(1-\sigma(z))
 \end{equation*}
 
 Finally 
@@ -298,7 +312,7 @@ Finally
 Now chaining all three together gives 
 
 \begin{align*}
-(\frac{-y}{p} + \frac{1 - y}{1 - p})p(1-p)x_j
+\left(\frac{-y}{p} + \frac{1 - y}{1 - p}\right)p(1-p)x_j
   &= (-y(1-p) + (1-y)p)x_j \\
   &= (-y + py + p -py)x_j \\
   &= (p - y)x_j
@@ -344,12 +358,11 @@ where
 L_i = -[y_i\log\!\left(p_i\right) + (1 - y_i)\log\!\left(1-p_i\right)]
 \end{equation*}
 
-for each observation j. Then to find the partial derivavite of
-the gradient we have 
+Then to find the partial derivavite of the gradient we have 
 
 \begin{equation*}
 \frac{\partial L}{\partial w_j} =
-\frac{1}{n}\sum_{i=1}^{n}\frac{\partial L_i}{\partial w_{ij}}
+\frac{1}{n}\sum_{i=1}^{n}\frac{\partial L_i}{\partial w_j}
 \end{equation*}
 
 since the partial deriative of the mean is the mean of the partial derivatives.
