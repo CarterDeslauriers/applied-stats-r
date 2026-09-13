@@ -93,20 +93,24 @@ Specifcally let
 \end{equation}
 
 To get a concept of a probability we must have the function $0 \leq p \leq 1$. We would
-also like $p \to 0 \text{ as } z \to \infty$ and $p \to 1 \text{ as } z \to -\infty$.
+also like $p \to 0 \text{ as } z \to -\infty$ and $p \to 1 \text{ as } z \to \infty$.
 
 % BOUNDS FOR P
 \subsection{Bounds}
 
 Observe that since $e^{x} > 0$ always we have
 
-\begin{align*}
-1 + e^{-z} > 1
-  &\iff \frac{1}{1 + e^{-z}} < 1 \\
-  &\iff \frac{1}{1 + e^{-z}} > 0
-\end{align*}
+\begin{equation*}
+1 + e^{-z} > 1 \iff \frac{1}{1 + e^{-z}} < 1
+\end{equation*}
 
-Since denomiator will always be greater than numerator and stricly non negative.
+and
+
+\begin{equation*}
+1 + e^{-z} > 0 \implies \frac{1}{1 + e^{-z}} > 0
+\end{equation*}
+
+Since denomiator will always be greater than numerator and positive.
 
 % PROOF FOR P LIMITS
 \subsection{Limits}
