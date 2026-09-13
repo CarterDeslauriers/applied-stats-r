@@ -263,7 +263,7 @@ Next
 \begin{align*}
 \frac{\partial p}{\partial z}
   &= \sigma'(z) \\
-  &= -1(1 + e^{-z})^-2e^{-z} \\
+  &= -1(1 + e^{-z})^{-2}(-e^{-z}) \\
   &= \frac{e^{-z}}{(1 + e^{-z})^2} 
 \end{align*}
   
@@ -341,7 +341,7 @@ L = \frac{1}{n}\sum_{i=1}^{n}L_i
 where 
 
 \begin{equation*}
-L_i = (p_i - y_i)x_{ij}
+L_i = -[y_i\log\!\left(p_i\right) + (1 - y_i)\log\!\left(1-p_i\right)]
 \end{equation*}
 
 for each observation j. Then to find the partial derivavite of
@@ -353,6 +353,19 @@ the gradient we have
 \end{equation*}
 
 since the partial deriative of the mean is the mean of the partial derivatives.
+Our model reaches its optimum specifcally when
+
+\begin{equation}
+\frac{\partial L}{\partial w_j} = 0
+\end{equation}
+
+and
+
+\begin{equation*}
+\frac{\partial L}{\partial b} = 0
+\end{equation*}
+
+for all weights $w_j$ and bias $b$.
 
 % OPTIMUM
 \subsection{Optimum}
@@ -365,31 +378,14 @@ In general at optimum we have
 
 Which follows from
 
-\begin{equation*}
-L = \frac{1}{n}\sum_{i=1}^{n}L_i
-\end{equation*}
-
-where
-
-\begin{equation*}
-L_i = (p_i - y_i)x_ij
-\end{equation*}
-
-and for b
-
-\begin{equation*}
-L_i = (p_i - y_i)
-\end{equation*}
-
-giving
-
 \begin{align*}
-\frac{1}{n}\sum_{i=1}^{n} (p_i - y_i) = 0
+\frac{\partial L}{\partial b} = 0
+  &\iff \frac{1}{n}\sum_{i=1}^{n}\frac{\partial L_i}{\partial b} = 0 \\
+  &\iff \frac{1}{n}\sum_{i=1}^{n} (p_i - y_i) = 0 \\
   &\iff \frac{1}{n}\sum_{i=1}^{n} p_i - \frac{1}{n}\sum_{i=1}^{n} y_i = 0 \\
-  &\iff \frac{1}{n}(\sum_{i=1}^{n} p_i = \frac{1}{n}\sum_{i=1}^{n} y_i) \\
+  &\iff \frac{1}{n}\sum_{i=1}^{n} p_i = \frac{1}{n}\sum_{i=1}^{n} y_i \\
   &\iff \sum_{i=1}^{n} p_i = \sum_{i=1}^{n} y_i
 \end{align*}
-
 
 Where our logistic regression will produce its most optimal predictions
 based on our assumptions and data input.
