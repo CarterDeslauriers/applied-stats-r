@@ -8,7 +8,7 @@ __pycache__/
 .vscode/
 
 # LaTeX
-.Ds_Store/
+.DS_Store/
 
 # Data
 *.csv
