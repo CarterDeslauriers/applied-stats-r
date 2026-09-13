@@ -43,10 +43,10 @@ You can think of $y$ as yes or no, or true or false.
 \subsection{Motivation for z}
 
 Our goal is simply take these $x_j$ and predict $y$ as best as possible.
-So intuitvely we can take a single observation call it $x_2$. Choose an arbitray break
+So intuitively we can take a single observation call it $x_2$. Choose an arbitrary break
 $x_2 > 1$ say. Let our prediction by $1$ for $y$ when $x_2 > 1$.
-But this doens't take into account all our observations. We want to take
-into consideration all of our variables when making a desicion. So let
+But this doesn't take into account all our observations. We want to take
+into consideration all of our variables when making a decision. So let
 z be the summation of the $d$ observations.
 
 \begin{equation*}
@@ -62,7 +62,7 @@ what would we like our guess be.
 
 Now it might be the case that some observations are more important
 than others, or interact with y in different ways. For example your length of credit
-history might be more imporant than your hair color in predicting if you will
+history might be more important than your hair color in predicting if you will
 repay or not. 
 
 So assign a weight $w_j$ to each observation $x_j$. So we have now
@@ -71,9 +71,9 @@ So assign a weight $w_j$ to each observation $x_j$. So we have now
     z = w_1x_1 + w_2x_2 + \cdots + w_dx_d + b
 \end{equation}
 
-But how do we get these weights? We need to conlude based on the current weights
+But how do we get these weights? We need to conclude based on the current weights
 how confident we are that $y = 1$ ie given our current value of z how confident are we
-that this observation is a true $y = 1$. Well z is arbitary, $w_1$ can be as big as we want,
+that this observation is a true $y = 1$. Well z is arbitrary, $w_1$ can be as big as we want,
 z can be $100$, $-0.5$ so on; what does that mean?
 
 % SIGMA(Z)
@@ -86,7 +86,7 @@ Take a function
 \end{equation}
 
 and let this be the predicted probability that $y = 1$. 
-Specifcally let 
+Specifically let 
 
 \begin{equation}
     p = \sigma(z) = \frac{1}{1 + e^{-z}}
@@ -110,7 +110,7 @@ and
 1 + e^{-z} > 0 \implies \frac{1}{1 + e^{-z}} > 0
 \end{equation*}
 
-Since denomiator will always be greater than numerator and positive.
+Since denominator will always be greater than numerator and positive.
 
 % PROOF FOR P LIMITS
 \subsection{Limits}
@@ -122,7 +122,7 @@ $z \geq N$ it follows
     \left|\frac{1}{1 + e^{-z}} - 1\right| < \epsilon
 \end{equation*}
 
-specifcally choose
+specifically choose
 
 \begin{equation*}
     N > \log\!\left(\dfrac{1}{\epsilon}\right)
@@ -160,7 +160,7 @@ e^{-z} < \epsilon
   &\iff z > \log\!\left(\frac{1}{\epsilon}\right)
 \end{align*}
 
-Meaing whenver $z \geq N$ where $N > \log\!\left(\frac{1}{\epsilon}\right)$ we have 
+Meaning whenever $z \geq N$ where $N > \log\!\left(\frac{1}{\epsilon}\right)$ we have 
 
 \begin{equation*}
 \left|\frac{1}{1 + e^{-z}} - 1\right| < \epsilon 
@@ -178,7 +178,7 @@ theres exists $N \in \mathbb{N}$ such that whenever $z \leq -N$ it follows
 \left|\frac{1}{1 + e^{-z}} - 0\right| < \epsilon 
 \end{equation*}
 
-specifcally choose $N > \log\!\left(\frac{1 - \epsilon}{\epsilon}\right)$
+specifically choose $N > \log\!\left(\frac{1 - \epsilon}{\epsilon}\right)$
 
 To see this
 
@@ -217,15 +217,15 @@ p \to 0 \text{ as } z \to -\infty
 \end{equation*}
 
 
-Now that we have proved the limit behavior of p and we have defined it as the probabilty
+Now that we have proved the limit behavior of p and we have defined it as the probability
 that $y = 1$ for our model, we can define the loss that we are looking to minimize.
 
 % LOSS
 \subsection{Loss}
 
 Intuitively we would want the distance from our predicted probability
-to the true value of $y=0$ or $y=1$. But an absoulte difference 
-doens't account for the confidence difference between a prediction of .99 
+to the true value of $y=0$ or $y=1$. But an absolute difference 
+doesn't account for the confidence difference between a prediction of .99 
 and .999 for a $y=1$, which are 0.01 and 0.001 away from 1 but are dramatically
 different in confidence. Therefore we define the loss using logs. Specifically we
 let the loss be
@@ -250,9 +250,9 @@ In closed form our loss looks like
 % GRADIENT
 \subsection{Gradient}
 
-As stated before we want to minimze our loss. So how can we do this. 
+As stated before we want to minimize our loss. So how can we do this. 
 We want to tune our weights as optimally as possible. Therefore
-we use the gradient specifcally 
+we use the gradient specifically 
 
 \begin{equation*}
 \frac{\partial L}{\partial w_j}
@@ -339,7 +339,7 @@ and therefore the gradient is
 (p - y)
 \end{equation}
 
-We now have the optimal unit of movement of each $w_j$ in order to most efficencly
+We now have the optimal unit of movement of each $w_j$ in order to most efficiently
 decrease our loss. 
 
 % N ROWS OF DATA
@@ -348,9 +348,9 @@ decrease our loss.
 In general we have $d$ columns of observations and $n$ rows of data. 
 We can then simply think of each variable described above as a vector. 
 Where w is the weight vector in which we add b.
-p is the vector of probabilites one for each row $p_i$.
+p is the vector of probabilities one for each row $p_i$.
 y is the vector of observations of $y_i$.
-To get our final gradient we take loss as the avergae loss of the rows.
+To get our final gradient we take loss as the average loss of the rows.
 
 \begin{equation}
 L = \frac{1}{n}\sum_{i=1}^{n}L_i
@@ -362,15 +362,15 @@ where
 L_i = -[y_i\log\!\left(p_i\right) + (1 - y_i)\log\!\left(1-p_i\right)]
 \end{equation*}
 
-Then to find the partial derivavite of the gradient we have 
+Then to find the partial derivative of the gradient we have 
 
 \begin{equation*}
 \frac{\partial L}{\partial w_j} =
 \frac{1}{n}\sum_{i=1}^{n}\frac{\partial L_i}{\partial w_j}
 \end{equation*}
 
-since the partial deriative of the mean is the mean of the partial derivatives.
-Our model reaches its optimum specifcally when
+since the partial derivative of the mean is the mean of the partial derivatives.
+Our model reaches its optimum specifically when
 
 \begin{equation}
 \frac{\partial L}{\partial w_j} = 0
@@ -407,7 +407,7 @@ Which follows from
 Where our logistic regression will produce its most optimal predictions
 based on our assumptions and data input.
 
-We can then use the model to predict further classifcations by training on data
+We can then use the model to predict further classifications by training on data
 we believe to be representative of the further data we are trying to predict.
 
 \end{document}
