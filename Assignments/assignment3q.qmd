@@ -4,6 +4,8 @@ format: html
 editor: visual
 ---
 
+Return Here: [README](.././)
+
 ***How to do it?***:
 
 - Open the Quarto file of this assignment ([link](assignment3.qmd)) in Rstudio.
@@ -24,8 +26,6 @@ knitr::opts_chunk$set(message = FALSE)
 
 ## Problems
 
-
-
 1.  Create the following data frame
 
 | Rank | Age | Name  |
@@ -35,7 +35,6 @@ knitr::opts_chunk$set(message = FALSE)
 | 2    | 29  | Steve |
 | 3    | 42  | Ricky |
 
-
 ```{r}
 df1 = data.frame(Rank = c(0, 1, 2, 3), 
            Age = c(28, 34, 29, 42),
@@ -44,13 +43,11 @@ df1 = data.frame(Rank = c(0, 1, 2, 3),
 df1
 ```
 
-
 2.  Use `read.csv` to import the Covid19 Vaccination data from WHO: [link](https://bryantstats.github.io/math421/data/us-states.csv).
 
 ```{r}
 df2 = read.csv("https://bryantstats.github.io/math421/data/us-states.csv")
 ```
-
 
 3.  Show the names of the variables in the data
 
@@ -64,7 +61,6 @@ names(df2)
 dim(df2)
 ```
 
-
 5.  How many missing values are there? Show the missing values by columns. What variable has the most number of missing values?
 
 ```{r}
@@ -75,7 +71,6 @@ print("None of the values are missing")
 
 ```
 
-
 6.  What is the class of the `date` column. Change the `date` columns to `date` type using the `as.Date` function. Show the new class of the `date` column.
 
 ```{r}
@@ -84,14 +79,11 @@ df2$date = as.Date(df2$date)
 class(df2$date)
 ```
 
-
 7.  Capitalize the names of all the variables
 
 ```{r}
 names(df2) = toupper(names(df2))
 ```
-
-
 
 8.  Find the average number of cases per day. Find the maximum cases a day.
 
@@ -109,20 +101,17 @@ max(new_daily_cases)
 print("You have to get the daily difference because the data is cumulative")
 ```
 
-
 9.  How many states are there in the data?
 
 ```{r}
 length(unique(df2$STATE))
 ```
 
-
 10. Create a new variable `weekdays` to store the weekday for each rows.
 
 ```{r}
 df2$weekdays = weekdays(df2$DATE)
 ```
-
 
 11. Create the categorical variable `death2` variable taking the values as follows
 
@@ -138,13 +127,11 @@ table(df2$death2)
 prop.table(table(df2$death2))
 ```
 
-
 12. Find the first quartile (Q1), second quartile (Q2) and and third quartile (Q3) of the variable `death`. (Hint: Use the `summary` function)
 
 ```{r}
 summary(df2$DEATHS)
 ```
-
 
 13. Create the categorical variable `death3` variable taking the values as follows
 
@@ -162,7 +149,6 @@ df2$death3 = ifelse(df2$DEATHS < q1, "low_death",
                      ifelse(df2$DEATHS <= q3, "mid_death", "high_death"))
 ```
 
-
 14. Find the average cases in Rhode Island in 2021
 
 ```{r}
@@ -178,13 +164,11 @@ ri_2021 = ri[format(ri$DATE, "%Y") == "2021", ]
 mean(ri_2021$new_cases)
 ```
 
-
 15. Find the median cases by weekdays in Rhode Island in 2021
 
 ```{r}
 aggregate(new_cases ~ weekdays, data=ri_2021, FUN=median)
 ```
-
 
 16. Compare the median cases in Rhode Island in June, July, August and September in 2021.
 
@@ -195,7 +179,6 @@ summer = ri_2021[ri_2021$months %in% c("June", "July", "August", "September"), ]
 
 aggregate(new_cases ~ months, data = summer, FUN = median)
 ```
-
 
 17. Find your own dataset, import it and implement the following functions on the data
 
@@ -211,7 +194,6 @@ aggregate(new_cases ~ months, data = summer, FUN = median)
 - by
 - ifelse
 - case_when
-
 
 ```{r}
 df3 = read.csv("https://bryantstats.github.io/math421/data/titanic.csv")
@@ -234,11 +216,11 @@ mean(df3$Fare)
 min(df3$Fare)
 max(df3$Fare)
 ```
+
 ```{r}
 table(df3$Sex)
 table(df3$Survived, df3$Pclass)
 ```
-
 
 ```{r}
 sum(is.na(df3$Age))
@@ -276,7 +258,6 @@ df3$Wealth = case_when(
 print("Had to install dplyr")
 ```
 
-
 18. In the dataset in #17, practice the follows. You can reuse the code of 17.
 
 - Create a categorical variable from a continuous variable
@@ -293,7 +274,6 @@ df3$Cat_Ticket_Price <- case_when(
 
 ```
 
-
 ```{r}
 df3$Binary_Ticket_Price <- ifelse(
   df3$Cat_Ticket_Price %in% c("Cheap", "Moderate"),
@@ -301,6 +281,5 @@ df3$Binary_Ticket_Price <- ifelse(
   "Expensive"
 )
 ```
-
 
 If you do not have a data, you can use [the titanic dataset](https://www.kaggle.com/competitions/titanic/overview), which can be downloaded at [this link](https://bryantstats.github.io/math421/data/titanic.csv)
