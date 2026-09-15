@@ -1,0 +1,306 @@
+---
+title: "Assignment 3"
+format: html
+editor: visual
+---
+
+***How to do it?***:
+
+- Open the Quarto file of this assignment ([link](assignment3.qmd)) in Rstudio.
+
+- Right under each **question**, insert a code chunk (you can use the hotkey `Ctrl + Alt + I` to add a code chunk) and code the solution for the question.
+
+- `Knit` the rmarkdown file (hotkey: `Ctrl + Alt + K`) to export an html.
+
+- Publish the html file to your Githiub Page.
+
+***Submission***: Submit the link on Github of the assignment to Canvas.
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(message = FALSE)
+```
+
+------------------------------------------------------------------------
+
+## Problems
+
+
+
+1.  Create the following data frame
+
+| Rank | Age | Name  |
+|:-----|:----|:------|
+| 0    | 28  | Tom   |
+| 1    | 34  | Jack  |
+| 2    | 29  | Steve |
+| 3    | 42  | Ricky |
+
+
+```{r}
+df1 = data.frame(Rank = c(0, 1, 2, 3), 
+           Age = c(28, 34, 29, 42),
+           Name = c("Tom", "Jack", "Steve", "Ricky"))
+
+df1
+```
+
+
+2.  Use `read.csv` to import the Covid19 Vaccination data from WHO: [link](https://bryantstats.github.io/math421/data/us-states.csv).
+
+```{r}
+df2 = read.csv("https://bryantstats.github.io/math421/data/us-states.csv")
+```
+
+
+3.  Show the names of the variables in the data
+
+```{r}
+names(df2)
+```
+
+4.  How many columns and rows the data have?
+
+```{r}
+dim(df2)
+```
+
+
+5.  How many missing values are there? Show the missing values by columns. What variable has the most number of missing values?
+
+```{r}
+sum(is.na(df2))
+colSums(is.na(df2))
+
+print("None of the values are missing")
+
+```
+
+
+6.  What is the class of the `date` column. Change the `date` columns to `date` type using the `as.Date` function. Show the new class of the `date` column.
+
+```{r}
+class(df2$date)
+df2$date = as.Date(df2$date)
+class(df2$date)
+```
+
+
+7.  Capitalize the names of all the variables
+
+```{r}
+names(df2) = toupper(names(df2))
+```
+
+
+
+8.  Find the average number of cases per day. Find the maximum cases a day.
+
+```{r}
+# Group the values
+daily = aggregate(CASES ~ DATE, data = df2, FUN = sum)
+
+# Order then so you can difference
+daily = daily[order(daily$DATE), ]
+# Compute the difference per day where the first stays as the first value
+new_daily_cases = c(daily$CASES[1], diff(daily$CASES))
+mean(new_daily_cases)
+max(new_daily_cases)
+
+print("You have to get the daily difference because the data is cumulative")
+```
+
+
+9.  How many states are there in the data?
+
+```{r}
+length(unique(df2$STATE))
+```
+
+
+10. Create a new variable `weekdays` to store the weekday for each rows.
+
+```{r}
+df2$weekdays = weekdays(df2$DATE)
+```
+
+
+11. Create the categorical variable `death2` variable taking the values as follows
+
+- `has_death` if there is a death that day
+- `no_death` if there is no death that day
+
+Find the frequency and relative frequency of `no_death` and `has_death`.
+
+```{r}
+df2$death2 = ifelse(df2$DEATHS > 0, "has_death", "no_death")
+
+table(df2$death2)
+prop.table(table(df2$death2))
+```
+
+
+12. Find the first quartile (Q1), second quartile (Q2) and and third quartile (Q3) of the variable `death`. (Hint: Use the `summary` function)
+
+```{r}
+summary(df2$DEATHS)
+```
+
+
+13. Create the categorical variable `death3` variable taking the values as follows
+
+- `low_death` if the number of deaths smaller than the 25 percentile (Q1)
+
+- `mid_death` if the number of deaths from Q1 to Q3
+
+- `high_death` if the number of deaths greater than Q3
+
+```{r}
+q1 = quantile(df2$DEATHS, 0.25)
+q3 = quantile(df2$DEATHS, 0.75)
+
+df2$death3 = ifelse(df2$DEATHS < q1, "low_death",
+                     ifelse(df2$DEATHS <= q3, "mid_death", "high_death"))
+```
+
+
+14. Find the average cases in Rhode Island in 2021
+
+```{r}
+# Get just Rhode Island
+ri = df2[df2$STATE == "Rhode Island", ]
+ri = ri[order(ri$DATE), ]
+
+daily_ri = aggregate(CASES ~ DATE, data = ri, FUN = sum)
+
+ri$new_cases = c(daily_ri$CASES[1], diff(daily_ri$CASES))
+ri_2021 = ri[format(ri$DATE, "%Y") == "2021", ]
+
+mean(ri_2021$new_cases)
+```
+
+
+15. Find the median cases by weekdays in Rhode Island in 2021
+
+```{r}
+aggregate(new_cases ~ weekdays, data=ri_2021, FUN=median)
+```
+
+
+16. Compare the median cases in Rhode Island in June, July, August and September in 2021.
+
+```{r}
+ri_2021$months = months(ri_2021$DATE)
+
+summer = ri_2021[ri_2021$months %in% c("June", "July", "August", "September"), ]
+
+aggregate(new_cases ~ months, data = summer, FUN = median)
+```
+
+
+17. Find your own dataset, import it and implement the following functions on the data
+
+- head
+- str
+- names
+- mean, min, max
+- table
+- is.na
+- colSums
+- class
+- cor
+- by
+- ifelse
+- case_when
+
+
+```{r}
+df3 = read.csv("https://bryantstats.github.io/math421/data/titanic.csv")
+```
+
+```{r}
+head(df3)
+```
+
+```{r}
+str(df3)
+```
+
+```{r}
+names(df3)
+```
+
+```{r}
+mean(df3$Fare)
+min(df3$Fare)
+max(df3$Fare)
+```
+```{r}
+table(df3$Sex)
+table(df3$Survived, df3$Pclass)
+```
+
+
+```{r}
+sum(is.na(df3$Age))
+```
+
+```{r}
+colSums(is.na(df3))
+```
+
+```{r}
+class(df3$Age)
+```
+
+```{r}
+cor(df3$Fare, df3$Pclass)
+```
+
+```{r}
+by(df3, df3$Sex, summary)
+```
+
+```{r}
+df3$Rich = ifelse(df3$Fare > 100, 1, 0)
+```
+
+```{r}
+library(dplyr)
+
+df3$Wealth = case_when(
+  df3$Pclass == 1  ~ "Weathly",
+  df3$Pclass == 2 ~ "Moderate",
+  df3$Pclass == 3  ~ "Poor"
+)
+
+print("Had to install dplyr")
+```
+
+
+18. In the dataset in #17, practice the follows. You can reuse the code of 17.
+
+- Create a categorical variable from a continuous variable
+- From one categorical variable, create a new categorical variable with fewer categories
+
+```{r}
+df3$Cat_Ticket_Price <- case_when(
+  df3$Fare < 50  ~ "Cheap",
+  df3$Fare < 100 ~ "Moderate",
+  df3$Fare < 150 ~ "Slightly Expensive",
+  TRUE           ~ "Expensive"
+)
+
+
+```
+
+
+```{r}
+df3$Binary_Ticket_Price <- ifelse(
+  df3$Cat_Ticket_Price %in% c("Cheap", "Moderate"),
+  "Affordable",
+  "Expensive"
+)
+```
+
+
+If you do not have a data, you can use [the titanic dataset](https://www.kaggle.com/competitions/titanic/overview), which can be downloaded at [this link](https://bryantstats.github.io/math421/data/titanic.csv)
