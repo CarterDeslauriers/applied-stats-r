@@ -1,0 +1,74 @@
+---
+title: "Data Wrangling Base R"
+format: html
+editor: visual
+---
+
+## Import Data using read.csv
+
+```{r}
+df_t1 = read.csv("Data/titanic.csv")
+```
+
+### Show first 6 rows of data
+
+```{r}
+head(df_t1)
+```
+
+### Determine how many missing
+
+```{r}
+sum(is.na(df_t1))
+```
+
+### Check which variables how the missing data
+
+```{r}
+colSums(is.na(df_t1))
+```
+
+### Structure
+
+```{r}
+str(df_t1)
+```
+
+### Names or the variable names
+```{r}
+names(df_t1)
+```
+
+### Index into columns
+```{r}
+mean(df_t1$Age, na.rm=TRUE)
+median(df_t1$Age, na.rm=TRUE)
+```
+
+
+### Average Ticket Price
+```{r}
+mean(df_t1$Ticket)
+median(df_t1$Ticket)
+```
+
+
+### Get counts of each category
+```{r}
+table(df_t1$Sex)
+```
+
+### To get proportion of male and female survive
+```{r}
+sum(df_t1$Sex == "male" & df_t1$Survived == 1) / sum(df_t1$Sex == "male")
+
+sum(df_t1$Sex == "female" & df_t1$Survived == 1) / sum(df_t1$Sex == "female")
+```
+
+
+
+
+
+
+
+
