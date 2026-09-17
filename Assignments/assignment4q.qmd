@@ -36,6 +36,11 @@ install.packages('tidyverse')
 
 Use `read_csv` function to import the US Covid 19 data at [link](https://bryantstats.github.io/math421/data/all-states-history.csv). Don't forget to import `tidyverse` (library(tidyverse)) so that you can use read_csv.
 
+```{r, warning=FALSE}
+library(tidyverse)
+df = read_csv("https://bryantstats.github.io/math421/data/all-states-history.csv")
+```
+
 ------------------------------------------------------------------------
 
 #### 3. Fix the date and ceate some new variables
@@ -46,6 +51,19 @@ Use `read_csv` function to import the US Covid 19 data at [link](https://bryants
 
 ```{r, eval=FALSE}
 library(lubridate)
+df$month = month(df$date)
+
+# day of the week
+df$weekday = wday(df$date)
+
+# day of the month
+df$monthday <- mday(df$date)
+```
+
+
+```{r}
+library(lubridate)
+
 df$month = month(df$date)
 
 # day of the week
@@ -71,13 +89,32 @@ df$daily_death <- case_when(
 
 - Create variable `month2` that takes three values: early_month (day of the month from 1-10), mid_month (day of the month from 11-20), and end_month (day of the month \> 20).
 
+```{r}
+df$month2 = case_when(
+  df$monthday <= 10 ~ "early_month",
+  df$monthday <= 20 ~ "mid_month",
+  TRUE ~ "end_month"
+)
+```
+
+
 - Create variable `weekend` that takes two values: 1 if it's Saturday or Sunday and 0 otherwise.
+
+```{r}
+df$weekend = ifelse(df$weekday %in% c("Saturday", "Sunday"), 1, 0)
+```
+
 
 ------------------------------------------------------------------------
 
 #### 5. Select function
 
 Use the select function to deselect the column `totalTestsViral` from the data.
+
+```{r}
+df = select(df, -totalTestsViral)
+```
+
 
 ------------------------------------------------------------------------
 
@@ -100,6 +137,26 @@ log(16, 2)
 
 ```
 
+
+
+
+```{r}
+x = c(1:10)
+
+x %>% sqrt
+y = x %>% sqrt
+
+x %>% sum
+z = y %>% sum
+
+x %>% log
+a = z %>% log
+
+
+16 %>% log(2)
+
+```
+
 ------------------------------------------------------------------------
 
 #### 7. Combo 1: group_by + summarise
@@ -114,9 +171,30 @@ df %>%
 
 - Calculate the median number of cases (`positiveIncrease`) by `month`
 
+```{r}
+df %>%
+  group_by(month) %>%
+  summarize(median(positiveIncrease))
+```
+
+
 - Calculate the average number of cases (`positiveIncrease`) by `month2`
 
+```{r}
+df %>%
+  group_by(month2) %>%
+  summarize(mean(positiveIncrease))
+```
+
+
 - Calculate the median number of cases (`positiveIncrease`) by `weekend`
+
+```{r}
+df %>%
+  group_by(weekend) %>%
+  summarize(median(positiveIncrease))
+```
+
 
 ------------------------------------------------------------------------
 
@@ -133,17 +211,69 @@ df %>%
 
 - Calculate the median number of cases (`positiveIncrease`) on the weekend by `month` in October and November 2020.
 
+```{r}
+df %>% 
+  filter(date>"2020-10-01"&date<"2020-12-01") %>% 
+  group_by(month) %>% 
+  summarise(positve_increase = mean(positiveIncrease))
+```
+
+
 - Calculate the average number of death at different periods of a month (`month2` variable) in Fall 2020
+
+```{r}
+df %>% 
+  filter(date>"2020-09-01"&date<"2020-12-01") %>% 
+  group_by(month2) %>% 
+  summarise(avg_death = mean(death))
+```
+
 
 - Compare the average number of hospitalizations between weekdays and weekends in Summer 2020
 
+```{r}
+df %>% 
+  filter(date>"2020-06-01"&date<"2020-9-01") %>% 
+  group_by(weekday) %>% 
+  summarise(avg_hospital = mean(hospitalized))
+```
+
+
 - Redo Questions 14 and 15 in [Assignment 3](assignment3q.html) using the combos. Notice: you also need to use the data used in Assignment 3.
+
+```{r}
+df2 = read_csv("https://bryantstats.github.io/math421/data/us-states.csv")
+df2$weekdays = weekdays(df2$date)
+
+df2 %>% 
+  filter(state>"Rhode Island"&date>="2021-01-01"&date<="2021-12-31") %>% 
+  group_by(date) %>% 
+  summarise(avg_cases = mean(cases))
+
+df2 %>% 
+  filter(state>"Rhode Island"&date>="2021-01-01"&date<="2021-12-31") %>% 
+  group_by(weekdays) %>% 
+  summarise(avg_cases = median(cases))
+
+print("I did'nt difference here so you are getting the cumulative number")
+
+```
+
 
 ------------------------------------------------------------------------
 
 #### 9. Combo 3: filter + group_by + summarise + arrange
 
 Use the arrange function to find a month that has the highest number of deaths on the weekend.
+
+```{r}
+df %>% 
+  filter(weekday == 1) %>% 
+  group_by(month) %>% 
+  summarise(total_deaths = sum(death, na.rm = TRUE)) %>% 
+  arrange(desc(total_deaths))
+```
+
 
 ------------------------------------------------------------------------
 
@@ -162,3 +292,23 @@ You can use the [Adult Census Income](https://bryantstats.github.io/math421/data
 - group_by + summarise
 - filter + group_by + summarise
 - filter + group_by + summarise + arrange
+
+
+```{r}
+  df3 = read_csv("https://bryantstats.github.io/math421/data/titanic.csv")
+```
+
+```{r}
+age_column = select(df3, Age)
+```
+
+```{r}
+older = filter(df3, Age > 40)
+```
+
+```{r}
+
+```
+
+
+
