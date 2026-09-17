@@ -4,6 +4,8 @@ format: html
 editor: visual
 ---
 
+Return Here: [README](.././)
+
 ***How to do it?***:
 
 - Open the Quarto file of this assignment ([link](assignment4q.qmd)) in Rstudio.
@@ -101,7 +103,7 @@ df$month2 = case_when(
 - Create variable `weekend` that takes two values: 1 if it's Saturday or Sunday and 0 otherwise.
 
 ```{r}
-df$weekend = ifelse(df$weekday %in% c("Saturday", "Sunday"), 1, 0)
+df$weekend = ifelse(df$weekday %in% c(1, 7), 1, 0)
 ```
 
 
@@ -142,17 +144,9 @@ log(16, 2)
 
 ```{r}
 x = c(1:10)
-
-x %>% sqrt
-y = x %>% sqrt
-
-x %>% sum
-z = y %>% sum
-
-x %>% log
-a = z %>% log
-
-
+x %>% sqrt()
+x %>% sqrt() %>% sum()
+x %>% sqrt() %>% sum() %>% log()
 16 %>% log(2)
 
 ```
@@ -213,9 +207,9 @@ df %>%
 
 ```{r}
 df %>% 
-  filter(date>"2020-10-01"&date<"2020-12-01") %>% 
+  filter(date>"2020-10-01"&date<"2020-12-01"&weekend==1) %>% 
   group_by(month) %>% 
-  summarise(positve_increase = mean(positiveIncrease))
+  summarise(positve_increase = median(positiveIncrease))
 ```
 
 
@@ -234,8 +228,8 @@ df %>%
 ```{r}
 df %>% 
   filter(date>"2020-06-01"&date<"2020-9-01") %>% 
-  group_by(weekday) %>% 
-  summarise(avg_hospital = mean(hospitalized))
+  group_by(weekend) %>% 
+  summarise(avg_hospital = mean(hospitalized, na.rm=TRUE))
 ```
 
 
@@ -246,12 +240,12 @@ df2 = read_csv("https://bryantstats.github.io/math421/data/us-states.csv")
 df2$weekdays = weekdays(df2$date)
 
 df2 %>% 
-  filter(state>"Rhode Island"&date>="2021-01-01"&date<="2021-12-31") %>% 
+  filter(state=="Rhode Island"&date>="2021-01-01"&date<="2021-12-31") %>% 
   group_by(date) %>% 
   summarise(avg_cases = mean(cases))
 
 df2 %>% 
-  filter(state>"Rhode Island"&date>="2021-01-01"&date<="2021-12-31") %>% 
+  filter(state=="Rhode Island"&date>="2021-01-01"&date<="2021-12-31") %>% 
   group_by(weekdays) %>% 
   summarise(avg_cases = median(cases))
 
@@ -268,7 +262,7 @@ Use the arrange function to find a month that has the highest number of deaths o
 
 ```{r}
 df %>% 
-  filter(weekday == 1) %>% 
+  filter(weekend == 1) %>% 
   group_by(month) %>% 
   summarise(total_deaths = sum(death, na.rm = TRUE)) %>% 
   arrange(desc(total_deaths))
@@ -307,8 +301,43 @@ older = filter(df3, Age > 40)
 ```
 
 ```{r}
-
+mutate(df3, age_months = Age * 12)
 ```
+
+```{r}
+summarise(df3, avg_fare = mean(Fare))
+```
+
+```{r}
+arrange(df3, desc(Fare))
+```
+
+```{r}
+count(df3, Pclass)
+```
+
+```{r}
+arrange(count(df3, Embarked), desc(n))
+```
+
+```{r}
+arrange(count(filter(df3, Survived == 1), Pclass), desc(n))
+```
+
+```{r}
+summarise(group_by(df3, Pclass), avg_fare = mean(Fare, na.rm = TRUE))
+```
+
+```{r}
+summarise(group_by(filter(df3, Sex == "female"), Pclass), rate = mean(Survived, na.rm = TRUE))
+```
+
+```{r}
+arrange(summarise(group_by(filter(df3, Sex == "female"), Pclass), rate = mean(Survived, na.rm = TRUE)), desc(rate))
+```
+
+
+
 
 
 
