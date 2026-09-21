@@ -83,7 +83,7 @@ for i in range(runs):
     rng = np.random.default_rng(i)
 
     X_train_df, y_train_df, X_test_df, y_test_df = data_creation(df, rng)
-    s1, p1, _ = traditional(X_train_df, y_train_df, X_test_df, y_test_df, name="Traditional", verbose=False, fast=True)
+    s1, p1, _ = traditional(X_train_df, y_train_df, X_test_df, y_test_df, name="Traditional", verbose=False, cut_off=0.002, fast=True)
     s2, p2, _ = SMOTE(X_train_df, y_train_df, X_test_df, y_test_df, rng, name="SMOTE", verbose=False)
     results.append({"Seed": i, "Traditional-Sensitivity": s1, "Traditional-Precision": p1, "SMOTE-Sensitivity": s2, "SMOTE-Precision": p2})
 
