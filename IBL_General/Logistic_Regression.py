@@ -89,21 +89,30 @@ class logistic_regression:
         return prediction.astype(int)
     
 
+    def predict_probability(self, X):
+
+        X = np.asarray(X)
+        z = np.clip(X @ self.w + self.b, -500, 500)
+
+        return 1 / (1 + np.exp(-z))
+    
 
 
 
 
 
 
-def traditional(X_train, y_train, X_test, y_test, name, verbose, fast=False):
+
+def traditional(X_train, y_train, X_test, y_test, name, verbose, cut_off=0.5, fast=False):
 
     X_train = np.asarray(X_train)
     X_test = np.asarray(X_test)
     y_train = np.asarray(y_train)
     y_test = np.asarray(y_test)
 
-    model = logistic_regression(fast=fast)
+    model = logistic_regression(cut_off=cut_off, fast=fast)
     model.fit(X_train, y_train)
+    p = model.predict_probability(X_test)
     predictions = model.predict(X_test)
 
-    return validate(predictions, y_test, name, verbose)
+    return validate(predictions, y_test, name, verbose), p
