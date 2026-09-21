@@ -38,7 +38,9 @@ Precision: {precision:.2f}%\n""")
 
 
 def curves_creation(p, y_test_df):
-    thresholds = np.quantile(p, np.linspace(0, 1, 500))
+    top = np.sort(p)[-2000:]
+    spread = np.quantile(p, np.linspace(0, 1, 500))
+    thresholds = np.unique(np.concatenate([top, spread]))
 
     fprs = []
     sens = []

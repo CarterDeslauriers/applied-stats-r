@@ -58,7 +58,7 @@ for i in range(runs):
     rng = np.random.default_rng(i)
 
     X_train_df, y_train_df, X_test_df, y_test_df = data_creation(df, rng)
-    (s1, p1, raw1) = traditional(X_train_df, y_train_df, X_test_df, y_test_df, name="Traditional", verbose=False, cut_off=0.002, fast=True)
+    (s1, p1, raw1), prob1 = traditional(X_train_df, y_train_df, X_test_df, y_test_df, name="Traditional", verbose=False, cut_off=0.002, fast=True)
     (s2, p2, raw2), prob2 = Ensemble(X_train_df, y_train_df, X_test_df, y_test_df, 4, rng, name="Ensemble", verbose=False)
     results.append({"Seed": i, "Traditional-Sensitivity": s1, "Traditional-Precision": p1, "Ensemble-Sensitivity": s2, "Ensemble-Precision": p2})
 
