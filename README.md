@@ -6,6 +6,7 @@
 |2|[Assignment 2](Assignments/assignment2q.html)|R Basics|
 |3|[Assignment 3](Assignments/assignment3q.html)|Data Wrangling|
 |4|[Assignment 4](Assignments/assignment4q.html)|Data Wrangling 2|
+|4.1|[Assignment 4 ex-credit](Assignments/assignment4_extra_credits.html)|Extra Credit|
 
 
 ## Imbalanced Learning Methods

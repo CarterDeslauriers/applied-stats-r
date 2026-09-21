@@ -7,6 +7,8 @@ output: # rmarkdown::github_document
 title: "Assignment 4 - Extra Credits"
 ---
 
+Return Here: [README](.././)
+
 ***How to do it?***: 
 
 - Open the Rmarkdown file of this assignment ([link](assignment4_extra_credits.Rmd)) in Rstudio. 
@@ -135,3 +137,72 @@ df %>% summarise_if(is.numeric, mean, na.rm=TRUE)
 - group_by + summarise
 - filter + group_by + summarise
 - filter + group_by + summarise + arrange
+
+
+1. Show data in Rating column
+
+```{r}
+df %>% select(IMDB_Rating)
+```
+
+2. Show data for Covid year
+
+```{r}
+df %>% filter(Released_Year==2020)
+```
+
+3. Turn Gross into millions
+
+```{r}
+df %>% mutate(Gross_millions = Gross/1000000)
+```
+
+4. Summarize Gross
+
+```{r}
+df %>% summarize(avg_gross = mean(Gross, na.rm=TRUE))
+```
+
+5. Arrange movies by runtime
+
+```{r}
+df %>% arrange(desc(Runtime))
+```
+
+6. Count the number of movies, or rows in the data
+
+```{r}
+df %>% count()
+```
+
+7. Count the number of movies per year
+
+```{r}
+df %>% count(Released_Year) %>% arrange(desc(n))
+```
+
+8. Count the number of movies in the 2010's
+
+```{r}
+df %>% filter(Released_Year >= 2010, Released_Year <= 2019) %>% count(Released_Year) %>% arrange(desc(n))
+```
+
+9. Groupby year get total gross
+
+```{r}
+df %>% group_by(Released_Year) %>% summarize(total_gross = sum(Gross, na.rm=TRUE))
+```
+
+10. Filter to 2010's groupby year get total gross
+
+```{r}
+df %>% filter(Released_Year >= 2010, Released_Year <= 2019) %>% group_by(Released_Year) %>% summarize(total_gross = sum(Gross, na.rm=TRUE))
+```
+
+
+10. Filter to 2010's groupby year get total gross sort descending
+
+```{r}
+df %>% filter(Released_Year >= 2010, Released_Year <= 2019) %>% group_by(Released_Year) %>% summarize(total_gross = sum(Gross, na.rm=TRUE)) %>% arrange(desc(total_gross))
+```
+

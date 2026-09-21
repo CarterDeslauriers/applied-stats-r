@@ -62,7 +62,6 @@ df$weekday = wday(df$date)
 df$monthday <- mday(df$date)
 ```
 
-
 ```{r}
 library(lubridate)
 
@@ -99,13 +98,11 @@ df$month2 = case_when(
 )
 ```
 
-
 - Create variable `weekend` that takes two values: 1 if it's Saturday or Sunday and 0 otherwise.
 
 ```{r}
 df$weekend = ifelse(df$weekday %in% c(1, 7), 1, 0)
 ```
-
 
 ------------------------------------------------------------------------
 
@@ -116,7 +113,6 @@ Use the select function to deselect the column `totalTestsViral` from the data.
 ```{r}
 df = select(df, -totalTestsViral)
 ```
-
 
 ------------------------------------------------------------------------
 
@@ -138,9 +134,6 @@ log(sum(sqrt(x)))
 log(16, 2)
 
 ```
-
-
-
 
 ```{r}
 x = c(1:10)
@@ -171,7 +164,6 @@ df %>%
   summarize(median(positiveIncrease))
 ```
 
-
 - Calculate the average number of cases (`positiveIncrease`) by `month2`
 
 ```{r}
@@ -180,7 +172,6 @@ df %>%
   summarize(mean(positiveIncrease))
 ```
 
-
 - Calculate the median number of cases (`positiveIncrease`) by `weekend`
 
 ```{r}
@@ -188,7 +179,6 @@ df %>%
   group_by(weekend) %>%
   summarize(median(positiveIncrease))
 ```
-
 
 ------------------------------------------------------------------------
 
@@ -212,7 +202,6 @@ df %>%
   summarise(positve_increase = median(positiveIncrease))
 ```
 
-
 - Calculate the average number of death at different periods of a month (`month2` variable) in Fall 2020
 
 ```{r}
@@ -222,7 +211,6 @@ df %>%
   summarise(avg_death = mean(death))
 ```
 
-
 - Compare the average number of hospitalizations between weekdays and weekends in Summer 2020
 
 ```{r}
@@ -231,7 +219,6 @@ df %>%
   group_by(weekend) %>% 
   summarise(avg_hospital = mean(hospitalized, na.rm=TRUE))
 ```
-
 
 - Redo Questions 14 and 15 in [Assignment 3](assignment3q.html) using the combos. Notice: you also need to use the data used in Assignment 3.
 
@@ -253,7 +240,6 @@ print("I did'nt difference here so you are getting the cumulative number")
 
 ```
 
-
 ------------------------------------------------------------------------
 
 #### 9. Combo 3: filter + group_by + summarise + arrange
@@ -267,7 +253,6 @@ df %>%
   summarise(total_deaths = sum(death, na.rm = TRUE)) %>% 
   arrange(desc(total_deaths))
 ```
-
 
 ------------------------------------------------------------------------
 
@@ -286,7 +271,6 @@ You can use the [Adult Census Income](https://bryantstats.github.io/math421/data
 - group_by + summarise
 - filter + group_by + summarise
 - filter + group_by + summarise + arrange
-
 
 ```{r}
   df3 = read_csv("https://bryantstats.github.io/math421/data/titanic.csv")
@@ -335,9 +319,3 @@ summarise(group_by(filter(df3, Sex == "female"), Pclass), rate = mean(Survived, 
 ```{r}
 arrange(summarise(group_by(filter(df3, Sex == "female"), Pclass), rate = mean(Survived, na.rm = TRUE)), desc(rate))
 ```
-
-
-
-
-
-
