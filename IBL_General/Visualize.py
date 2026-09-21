@@ -27,14 +27,21 @@ def scatter_plot(results_df, model_name):
 
 def curves_plot(baseline, method, model_name):
     # baseline and method are (fprs, sens, precs)
+    # fpr is false positive rate, its those I guessed positive and was wrong
+    # so fp / the total that are negative
+    # how many of the negaitve did I classify as positive
 
     fig, (ax1, ax2) = plt.subplots(1, 2)
 
     ax1.plot(baseline[0], baseline[1], color=colors["baseline"], label="Baseline")
     ax1.plot(method[0], method[1], color=colors["method"], label=model_name)
+    ax1.set_ylabel("Sensitivity (%)")
+    ax1.set_xlabel(" False Positive Rate (%)")
 
     ax2.plot(baseline[1], baseline[2], color=colors["baseline"], label="Baseline")
     ax2.plot(method[1], method[2], color=colors["method"], label=model_name)
+    ax2.set_ylabel("Precision (%)")
+    ax2.set_xlabel("Sensitivity (%)")
 
     ax1.legend()
     ax2.legend()

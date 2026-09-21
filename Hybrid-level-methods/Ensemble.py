@@ -72,4 +72,4 @@ results_df = pd.DataFrame(results)
 
 base = curves_creation(prob1, y_test_df.values)
 method = curves_creation(prob2, y_test_df.values)
-curves_plot(base, method, "SMOTE")
+curves_plot(base, method, "Ensemble")
