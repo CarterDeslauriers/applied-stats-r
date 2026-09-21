@@ -1,6 +1,6 @@
+import numpy as np
 
-
-def validate(predictions, y_test_df, name, verbose=True):
+def validate(predictions, y_test_df, name, verbose=False):
     if verbose:
         print(f"\n{name} Model")
 
@@ -33,3 +33,26 @@ sensitivity: {sensitivity:.2f}%\n
 Precision: {precision:.2f}%\n""")
     
     return sensitivity, precision, (false_negatives, true_negatives, false_positives, true_positives)
+
+
+
+
+def curves_creation(p, y_test_df):
+    thresholds = np.quantile(p, np.linspace(0, 1, 500))
+
+    fprs = []
+    sens = []
+    precs = []
+    for t in thresholds:
+        predictions = (p >= t).astype(int)
+
+        s1, p1, (fn, tn, fp, tp) = validate(predictions, y_test_df, "", verbose=False)
+        s1 /= 100
+        p1 /= 100
+
+        fprs.append(fp / (fp + tn))
+        sens.append(s1)
+        precs.append(p1)
+
+
+    return fprs, sens, precs

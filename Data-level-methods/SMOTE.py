@@ -2,9 +2,11 @@ import pandas as pd
 import numpy as np
 from IBL_General.Data_Creation import data_creation
 from IBL_General.Validation import validate
+from IBL_General.Validation import curves_creation
 from IBL_General.Logistic_Regression import logistic_regression
 from IBL_General.Logistic_Regression import traditional
 from IBL_General.Visualize import scatter_plot
+from IBL_General.Visualize import curves_plot
 import matplotlib.pyplot as plt
 # See Notes/environment for how I set this up
 
@@ -66,25 +68,27 @@ def SMOTE(X_train_df, y_train_df, X_test_df, y_test_df, rng, name, verbose):
 
     model = logistic_regression(fast=True)
     model.fit(X_train_matrix, y_train_matrix)
+    p = model.predict_probability(X_test_df.values)
     predictions = model.predict(X_test_df.values)
 
 
-    return validate(predictions, y_test_df.values, name, verbose)
+    return validate(predictions, y_test_df.values, name, verbose), p
     
 
 
 
 
 
-runs = 30
+runs = 1
 results = []
 for i in range(runs):
     # SEE Notes/numpy for numpy notes
     rng = np.random.default_rng(i)
 
     X_train_df, y_train_df, X_test_df, y_test_df = data_creation(df, rng)
-    s1, p1, _ = traditional(X_train_df, y_train_df, X_test_df, y_test_df, name="Traditional", verbose=False, cut_off=0.002, fast=True)
-    s2, p2, _ = SMOTE(X_train_df, y_train_df, X_test_df, y_test_df, rng, name="SMOTE", verbose=False)
+    (s1, p1, raw1), prob1 = traditional(X_train_df, y_train_df, X_test_df, y_test_df, name="Traditional", verbose=False, cut_off=0.002, fast=True)
+    (s2, p2, raw2), prob2 = SMOTE(X_train_df, y_train_df, X_test_df, y_test_df, rng, name="SMOTE", verbose=False)
+    # For varying across runs
     results.append({"Seed": i, "Traditional-Sensitivity": s1, "Traditional-Precision": p1, "SMOTE-Sensitivity": s2, "SMOTE-Precision": p2})
 
     if i % 10 == 0:
@@ -93,4 +97,8 @@ for i in range(runs):
 results_df = pd.DataFrame(results)
 
 # Plot everything
-scatter_plot(results_df, "SMOTE")
+# scatter_plot(results_df, "SMOTE")
+
+base = curves_creation(prob1, y_test_df.values)
+method = curves_creation(prob2, y_test_df.values)
+curves_plot(base, method, "SMOTE")

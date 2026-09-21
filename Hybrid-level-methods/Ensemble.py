@@ -2,9 +2,11 @@ import pandas as pd
 import numpy as np
 from IBL_General.Data_Creation import data_creation
 from IBL_General.Validation import validate
+from IBL_General.Validation import curves_creation
 from IBL_General.Logistic_Regression import logistic_regression
 from IBL_General.Logistic_Regression import traditional
 from IBL_General.Visualize import scatter_plot
+from IBL_General.Visualize import curves_plot
 import matplotlib.pyplot as plt
 
 df = pd.read_csv("creditcard.csv")
@@ -38,7 +40,7 @@ def Ensemble(X_train_df, y_train_df, X_test_df, y_test_df, T, rng, name, verbose
     avg_p = np.mean(ps, axis=0)
     predictions = np.where(avg_p > 0.5, 1, 0)
 
-    return validate(predictions, y_test_df.values, name, verbose)
+    return validate(predictions, y_test_df.values, name, verbose), p
 
 # This takes the data, splits into X and y. 
 # Gets the counts of each.
@@ -49,15 +51,15 @@ def Ensemble(X_train_df, y_train_df, X_test_df, y_test_df, T, rng, name, verbose
 
 
 
-runs = 30
+runs = 1
 results = []
 for i in range(runs):
     # SEE Notes/numpy for numpy notes
     rng = np.random.default_rng(i)
 
     X_train_df, y_train_df, X_test_df, y_test_df = data_creation(df, rng)
-    s1, p1, _ = traditional(X_train_df, y_train_df, X_test_df, y_test_df, name="Traditional", verbose=False, cut_off=0.002, fast=True)
-    s2, p2, _ = Ensemble(X_train_df, y_train_df, X_test_df, y_test_df, 4, rng, name="Ensemble", verbose=False)
+    (s1, p1, raw1) = traditional(X_train_df, y_train_df, X_test_df, y_test_df, name="Traditional", verbose=False, cut_off=0.002, fast=True)
+    (s2, p2, raw2), prob2 = Ensemble(X_train_df, y_train_df, X_test_df, y_test_df, 4, rng, name="Ensemble", verbose=False)
     results.append({"Seed": i, "Traditional-Sensitivity": s1, "Traditional-Precision": p1, "Ensemble-Sensitivity": s2, "Ensemble-Precision": p2})
 
     if i % 10 == 0:
@@ -66,4 +68,8 @@ for i in range(runs):
 results_df = pd.DataFrame(results)
 
 # Plot everything
-scatter_plot(results_df, "Ensemble")
+# scatter_plot(results_df, "Ensemble")
+
+base = curves_creation(prob1, y_test_df.values)
+method = curves_creation(prob2, y_test_df.values)
+curves_plot(base, method, "SMOTE")

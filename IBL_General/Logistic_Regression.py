@@ -103,7 +103,7 @@ class logistic_regression:
 
 
 
-def traditional(X_train, y_train, X_test, y_test, name, verbose, cut_off, fast=False):
+def traditional(X_train, y_train, X_test, y_test, name, verbose, cut_off=0.5, fast=False):
 
     X_train = np.asarray(X_train)
     X_test = np.asarray(X_test)
@@ -112,6 +112,7 @@ def traditional(X_train, y_train, X_test, y_test, name, verbose, cut_off, fast=F
 
     model = logistic_regression(cut_off=cut_off, fast=fast)
     model.fit(X_train, y_train)
+    p = model.predict_probability(X_test)
     predictions = model.predict(X_test)
 
-    return validate(predictions, y_test, name, verbose)
+    return validate(predictions, y_test, name, verbose), p
