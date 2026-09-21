@@ -16,6 +16,7 @@
 |**Methods**|Description|Code|
 |:-|:-|:-|
 |SMOTE|Synthetic Minority Over-sampling Technique|[SMOTE.py](Data-level-methods/SMOTE.py)|
+|Ensemble|Easy Ensemble|[Ensemble.py](Hybrid-level-methods/Ensemble.py)|
 
 ## Notes
 
