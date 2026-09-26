@@ -8,6 +8,7 @@
 |4|[Assignment 4](Assignments/assignment4q.html)|Data Wrangling 2|
 |4.1|[Assignment 4 ex-credit](Assignments/assignment4_extra_credits.html)|Extra Credit|
 |5.1|[Assignment 5 p1](Assignments/assignment5_part1.html)|Missing Values|
+|5.2|[Assignment 5 p2](Assignments/assignment5_part2.html)|Missing Values Extra Credit|
 
 ## Imbalanced Learning Methods
 

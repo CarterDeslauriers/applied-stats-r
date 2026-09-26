@@ -7,6 +7,9 @@ output: # rmarkdown::github_document
 title: "Assignment 5 - Part 2"
 ---
 
+
+Return Here: [README](.././)
+
 ***How to do it?***: 
 
 - Open the Rmarkdown file of this assignment ([link](assignment5_part2.Rmd)) in Rstudio. 
@@ -27,19 +30,83 @@ knitr::opts_chunk$set(message = FALSE)
 
 1. Download the c2015 dataset to your computer at [this link](../data/c2015.xlsx). Load the library `readxl` (library(readxl)) then use the function `read_excel()` to read the c2015 dataset.  The data is from Fatality Analysis Reporting System (FARS). The data includes vital accidents information, such as when, where, and how the accident happened. FARS also includes the drivers and passengers' information, such as age,gender etc.  Some of the fatal accident had multiple vehicles involved.  More information about FARS can be found at: https://www.nhtsa.gov/research-data/fatality-analysis-reporting-system-fars
 
+```{r}
+library("tidyverse")
+library(readxl)
+df = read_excel("Data/c2015.xlsx")
+```
+
+
 2. Let's study the variable `SEX`. How many missing values in the NAs form? 
+
+```{r}
+sum(is.na(df$SEX))
+```
+
 
 3. Still with variable `SEX`. There are missing values in this variables that are not `NAs`. Identify the forms of missing values in this variable. Change all the forms of missing values to `NAs`. 
 
+```{r}
+table(df$SEX)
+```
+
+```{r}
+df = df %>% mutate(SEX = na_if(SEX, "Unknown"))
+df = df %>% mutate(SEX = na_if(SEX, "Not Rep"))
+```
+
+
+```{r}
+table(df$SEX)
+```
+
+
 4. Still with variable `SEX`. After all the missing values are in the `NAs` form.  Change the missing values of this variable to the majority sex. 
+
+```{r}
+df = df %>% mutate(SEX = replace_na(SEX, names(which.max(table(SEX)))))
+```
+
+```{r}
+table(df$SEX)
+```
+
 
 5. Let's study variable `AGE`. Use the `table` function to check out the values of these variable and forms of missing values. Use `na_if` to change all the forms of missing values to `NAs`. 
 
+```{r}
+table(df$AGE)
+df = df %>% mutate(AGE = na_if(AGE, "Unknown"))
+table(df$AGE)
+```
+
+
 6. Still with variable `AGE`.  Use the `str_replace` to replace `Less than 1` to '0' (character 0, not number 0).
+
+```{r}
+df = df %>% mutate(AGE = str_replace(AGE, "Less than 1", "0"))
+table(df$AGE)
+```
+
 
 7. Still with variable `AGE`. Use the `class` function to check the type of this variable.  Use the `as.numeric` function to change the type of the variable to numeric.
 
+```{r}
+class(df$AGE)
+
+df = df %>% mutate(AGE = as.numeric(AGE))
+
+class(df$AGE)
+```
+
+
 8. Still with variable `AGE`. Replace the missing values `NAs` by the mean of the variable. 
+
+```{r}
+df = df %>% mutate(AGE = replace_na(AGE, mean(AGE, na.rm=TRUE)))
+table(df$AGE)
+```
+
 `
 9. Let's fix the variable `TRAV_SP`. Do the follows.
 
@@ -50,4 +117,28 @@ knitr::opts_chunk$set(message = FALSE)
 - Check the type of this variable using `class`. Use `as.numeric` to change the type to numeric.
 - Use `replace_na` to replace the `NAs` to the median of the variable. 
 
+```{r}
+table(df$TRAV_SP)
+
+df = df %>% mutate(TRAV_SP = str_remove(TRAV_SP, "MPH"))
+df = df %>% filter(TRAV_SP != "Greater")
+df = df %>% mutate(TRAV_SP = str_replace(TRAV_SP, "Stopped", "0"))
+df = df %>% mutate(TRAV_SP = na_if(TRAV_SP, "Unknown"))
+class(df$TRAV_SP)
+df = df %>% mutate(TRAV_SP = as.numeric(TRAV_SP))
+df = df %>% mutate(TRAV_SP = replace_na(TRAV_SP, median(TRAV_SP, na.rm = TRUE)))
+
+table(df$TRAV_SP)
+class(df$TRAV_SP)
+```
+
+
 10. Find the correlation between Age of the drivers and Travel speed (`TRAV_SP`). Hint:  You want to look at the seat positions (`SEAT_POS` variable) to filter out the observations about the drivers, then calculate the correlation. 
+
+```{r}
+table(df$SEAT_POS)
+drivers = df %>% filter(SEAT_POS == "Front Seat, Left Side")
+cor(drivers$AGE, drivers$TRAV_SP, use = "complete.obs")
+
+```
+
