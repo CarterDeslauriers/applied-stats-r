@@ -4,7 +4,9 @@ from IBL_General.Data_Creation import data_creation
 from IBL_General.Validation import validate
 from IBL_General.Validation import curves_creation
 from IBL_General.Logistic_Regression import logistic_regression
-from IBL_General.Logistic_Regression import traditional
+# from IBL_General.Logistic_Regression import traditional
+from IBL_General.Decision_Tree import decision_tree
+from IBL_General.Decision_Tree import traditional
 from IBL_General.Visualize import scatter_plot
 from IBL_General.Visualize import curves_plot
 import matplotlib.pyplot as plt
@@ -40,7 +42,7 @@ def Ensemble(X_train_df, y_train_df, X_test_df, y_test_df, T, rng, name, verbose
     avg_p = np.mean(ps, axis=0)
     predictions = np.where(avg_p > 0.5, 1, 0)
 
-    return validate(predictions, y_test_df.values, name, verbose), p
+    return validate(predictions, y_test_df.values, name, verbose), avg_p
 
 # This takes the data, splits into X and y. 
 # Gets the counts of each.
