@@ -91,6 +91,7 @@ df$daily_death <- case_when(
 - Create variable `month2` that takes three values: early_month (day of the month from 1-10), mid_month (day of the month from 11-20), and end_month (day of the month \> 20).
 
 ```{r}
+# For case when its df$vairable = case_when(then what you want so df$other_varibale <= whatever ~ "Whatever you want to name it")
 df$month2 = case_when(
   df$monthday <= 10 ~ "early_month",
   df$monthday <= 20 ~ "mid_month",
@@ -101,6 +102,7 @@ df$month2 = case_when(
 - Create variable `weekend` that takes two values: 1 if it's Saturday or Sunday and 0 otherwise.
 
 ```{r}
+# If else basically np.where function so df$new_variable = ifelse(variable = whatever, yes, no values)
 df$weekend = ifelse(df$weekday %in% c(1, 7), 1, 0)
 ```
 
@@ -111,7 +113,9 @@ df$weekend = ifelse(df$weekday %in% c(1, 7), 1, 0)
 Use the select function to deselect the column `totalTestsViral` from the data.
 
 ```{r}
-df = select(df, -totalTestsViral)
+# select literally select and the variable
+df1 = select(df, -totalTestsViral)
+df %>% select(state)
 ```
 
 ------------------------------------------------------------------------
@@ -142,6 +146,8 @@ x %>% sqrt() %>% sum()
 x %>% sqrt() %>% sum() %>% log()
 16 %>% log(2)
 
+# Just gods in order os start with what you want the next calls the action on it and so on
+
 ```
 
 ------------------------------------------------------------------------
@@ -154,6 +160,8 @@ This combo is used when you want to apply a function/calculation to different gr
 df %>% 
   group_by(weekday) %>% 
   summarise(mean(positiveIncrease))
+
+# goes in order so use the pipe operator groubly by what you want then summarize basically summarize(operatin(column))
 ```
 
 - Calculate the median number of cases (`positiveIncrease`) by `month`
@@ -191,6 +199,8 @@ df %>%
   filter(month==1|month==2) %>% 
   group_by(month) %>% 
   summarise(positve_increase = mean(positiveIncrease))
+
+# Filter for rows, select for columns
 ```
 
 - Calculate the median number of cases (`positiveIncrease`) on the weekend by `month` in October and November 2020.
@@ -215,7 +225,7 @@ df %>%
 
 ```{r}
 df %>% 
-  filter(date>"2020-06-01"&date<"2020-9-01") %>% 
+  filter(date>"2020-01-01"&date<"2020-05-01"&state=="RI") %>% 
   group_by(weekend) %>% 
   summarise(avg_hospital = mean(hospitalized, na.rm=TRUE))
 ```
@@ -286,6 +296,8 @@ older = filter(df3, Age > 40)
 
 ```{r}
 mutate(df3, age_months = Age * 12)
+# could also do
+df3 %>% mutate(age_months = Age * 12)
 ```
 
 ```{r}

@@ -9,6 +9,7 @@
 |4.1|[Assignment 4 ex-credit](Assignments/assignment4_extra_credits.html)|Extra Credit|
 |5.1|[Assignment 5 p1](Assignments/assignment5_part1.html)|Missing Values|
 |5.2|[Assignment 5 p2](Assignments/assignment5_part2.html)|Missing Values Extra Credit|
+|6|[Assignment 6](Assignements/assignment6.html)|Visualization - Mapping|
 
 ## Imbalanced Learning Methods
 
