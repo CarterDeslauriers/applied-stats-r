@@ -113,6 +113,6 @@ def traditional(X_train, y_train, X_test, y_test, name, verbose, cut_off=0.5, fa
     model = logistic_regression(cut_off=cut_off, fast=fast)
     model.fit(X_train, y_train)
     p = model.predict_probability(X_test)
-    predictions = model.predict(X_test)
+    predictions = (p >= cut_off).astype(int)
 
     return validate(predictions, y_test, name, verbose), p
