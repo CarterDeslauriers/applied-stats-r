@@ -10,6 +10,9 @@
 |5.1|[Assignment 5 p1](Assignments/assignment5_part1.html)|Missing Values|
 |5.2|[Assignment 5 p2](Assignments/assignment5_part2.html)|Missing Values Extra Credit|
 |6|[Assignment 6](Assignements/assignment6.html)|Visualization - Mapping|
+|7|[Assignment 7](Assignments/assignment7.html)|Visualization - Aesthetics|
+|7.1|[Figure](Assignments/Gross_by_Meta_Score.png)|Image for Assignment 7|
+
 
 ## Imbalanced Learning Methods
 

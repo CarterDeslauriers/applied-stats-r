@@ -122,7 +122,7 @@ df4$sex = replace_na(df4$sex, names(which.max(table(df4$sex))))
 
 df4$native.country = replace_na(df4$native.country, names(which.max(table(df4$native.country))))
 
-df4$age = replace_na(df4$age, median(df4$age))
+df4$age = replace_na(df4$age, 25)
 ```
 
 
