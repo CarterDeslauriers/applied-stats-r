@@ -12,6 +12,7 @@
 |6|[Assignment 6](Assignments/assignment6.html)|Visualization - Mapping|
 |7|[Assignment 7](Assignments/assignment7.html)|Visualization - Aesthetics|
 |7.1|[Figure](Assignments/Gross_by_Meta_Score.png)|Image for Assignment 7|
+|7.2|[Assignment 7 ex-credit](Assignments/assignment7_extra_credits.html)|Extra Credit|
 
 
 ## Imbalanced Learning Methods

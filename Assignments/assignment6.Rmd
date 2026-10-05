@@ -82,7 +82,7 @@ df %>% ggplot() + geom_boxplot(mapping=aes(IMDB_Rating))
 
 ```{r}
 # Class here
-df %>% ggplot() + geom_bar(mapping=aes(Certificate))
+df %>% ggplot() + geom_bar(mapping=aes(y=Certificate))
 ```
 
 
@@ -137,7 +137,7 @@ df %>% ggplot() + geom_boxplot(mapping = aes(year_break, Gross))
 
 ```{r}
 # My catgeorical variables hoenstly have to maybe data points
-df %>% ggplot() + geom_bar(mapping = aes(year_break, color=Genre))
+df %>% group_by(Genre) %>% summarize(n= n()) |> arrange(desc(n)) |> head(5) |> ggplot() + geom_col(mapping = aes(y=Genre, x =n))
 ```
 
 

@@ -36,7 +36,6 @@ df = read_csv("Data/imdb_top_1000.csv")
 df %>% names
 ```
 
-
 1.  Make a plot using `facet_wrap` by one categorical variable (`facet_wrap(~variable1)`)
 
 ```{r}
@@ -46,13 +45,11 @@ df$Main_Genre = str_extract(df$Genre, "^[^,]+")
 table(df$Main_Genre)
 ```
 
-
 ```{r}
 df %>% filter(Main_Genre %in% c("Action", "Comedy")) %>% ggplot() + geom_point(mapping=aes(Meta_score, Gross)) + facet_wrap(~Main_Genre) + labs(x="Meta_score", 
        y = "Gross", 
        title = "Gross by Score")
 ```
-
 
 2.  Make a plot using `facet_wrap` by two categorical variables (`facet_wrap(~variable1+variable2)`)
 
@@ -64,7 +61,6 @@ df %>% filter(Main_Genre %in% c("Action", "Comedy")) %>% ggplot() + geom_point(m
        title = "Gross by Score Split on 2010")
 ```
 
-
 3.  Make a plot using `position ='dodge'`.
 
 ```{r}
@@ -73,7 +69,6 @@ df %>% filter(Main_Genre %in% c("Horror", "Action")) %>% ggplot() + geom_bar(map
        title = "Counts Split on 2010")
 ```
 
-
 4.  Make a plot using `position ='fill'`.
 
 ```{r}
@@ -81,7 +76,6 @@ df %>% filter(Main_Genre %in% c("Horror", "Action")) %>% ggplot() + geom_bar(map
        y = "Gross", 
        title = "Gross % by Score Split Year")
 ```
-
 
 5.  Make a plot using `geom_col`.
 
@@ -92,7 +86,6 @@ df %>% filter(Main_Genre %in% c("Horror", "Action", "Adventure")) %>% ggplot() +
 # Its a summation per each one
 ```
 
-
 6.  Change the theme of one of your plots.
 
 ```{r}
@@ -100,7 +93,6 @@ df %>% filter(Main_Genre %in% c("Horror", "Action", "Adventure")) %>% ggplot() +
        y = "Gross", 
        title = "Gross by Genres, Dark")
 ```
-
 
 7.  Make a plot using combo filter + ggplot
 
@@ -110,7 +102,6 @@ df %>% filter(Main_Genre %in% c("Animation", "Biography", "Action", "Horror", "C
        title = "Gross % Split 2010")
 ```
 
-
 8.  Make a plot using combo group_by + summarise + geom_col
 
 ```{r}
@@ -118,7 +109,6 @@ df %>% filter(Main_Genre %in% c("Animation", "Biography", "Action", "Horror", "C
        y = "Average_Gross", 
        title = "Average Gross per Genre")
 ```
-
 
 9.  Save a plot and put a link of the plot to your Github Webpage. To link a plot `abc.png` you just need to insert the following on the README.md
 
@@ -129,7 +119,6 @@ gg = df %>% filter(Main_Genre %in% c("Animation", "Biography", "Action", "Horror
 
 ggsave(filename="Gross_by_Meta_Score.png", plot=gg)
 ```
-
 
 ```{r, eval=FALSE}
 [Link to the plot](abc.png)
@@ -168,7 +157,6 @@ df %>%
                                     color = vaccine))
 ```
 
-
 - Change `geom_point` to `geom_line` in the above codes to have the corresponding line plots.
 
 ```{r}
@@ -179,7 +167,6 @@ df %>%
                                     y = total_vaccinations, 
                                     color = vaccine))
 ```
-
 
 11. (Using the same dataset as in 10.) Sometime we need to do some calculations on the data before plotting. For example, the below codes is to compare the total vaccines (including all types of vaccines) by date between the US and the EU
 
@@ -226,9 +213,7 @@ df %>%
                          color=location))
 ```
 
-
 - Use `geom_point` compare the total vaccines (including all types of vaccines) by date between countries/regions in South America in 2021
-
 
 ```{r}
 df %>% 
@@ -240,7 +225,3 @@ df %>%
                          y=total_vac2, 
                          color=location))
 ```
-
-
-
-
