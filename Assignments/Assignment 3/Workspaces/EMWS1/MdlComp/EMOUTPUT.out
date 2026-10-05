@@ -1,0 +1,221 @@
+*------------------------------------------------------------*
+User:                student
+Date:                October 03, 2026
+Time:                18:01:32
+*------------------------------------------------------------*
+* Training Output
+*------------------------------------------------------------*
+ 
+ 
+ 
+ 
+Variable Summary
+ 
+          Measurement    Frequency
+ Role        Level         Count
+ 
+TARGET      BINARY           1
+ 
+ 
+ 
+ 
+ 
+                                                                                        BINNED_KS_
+                                                               _KS_PROB_                   PROB_
+Obs     TARGET      TARGETLABEL    _AUR_    _GINI_      KS       CUTOFF     _KS_BIN_      CUTOFF
+ 
+ 1     diagnosis                   0.988     0.976    0.935      0.301        0.935        0.938
+ 
+ 
+ 
+ 
+ 
+                                                                  _VKS_              _VBINNED_
+                                                                  PROB_     _VKS_     KS_PROB_
+Obs     TARGET      TARGETLABEL    _VAUR_    _VGINI_     VKS     CUTOFF_     BIN_     CUTOFF_
+ 
+ 1     diagnosis                    0.923     0.846     0.821     0.301     0.799      0.938
+ 
+ 
+ 
+ 
+ 
+                                                                                        BINNED_KS_
+                                                               _KS_PROB_                   PROB_
+Obs     TARGET      TARGETLABEL    _AUR_    _GINI_      KS       CUTOFF     _KS_BIN_      CUTOFF
+ 
+ 1     diagnosis                   0.996     0.992    0.974      0.091        0.941        0.51
+ 
+ 
+ 
+ 
+ 
+                                                                  _VKS_              _VBINNED_
+                                                                  PROB_     _VKS_     KS_PROB_
+Obs     TARGET      TARGETLABEL    _VAUR_    _VGINI_     VKS     CUTOFF_     BIN_     CUTOFF_
+ 
+ 1     diagnosis                    0.912     0.824     0.834     0.091     0.807      0.467
+ 
+ 
+ 
+ 
+ 
+                                                                                        BINNED_KS_
+                                                               _KS_PROB_                   PROB_
+Obs     TARGET      TARGETLABEL    _AUR_    _GINI_      KS       CUTOFF     _KS_BIN_      CUTOFF
+ 
+ 1     diagnosis                   0.988     0.976    0.935      0.301        0.935        0.938
+ 
+ 
+ 
+ 
+ 
+                                                                  _VKS_              _VBINNED_
+                                                                  PROB_     _VKS_     KS_PROB_
+Obs     TARGET      TARGETLABEL    _VAUR_    _VGINI_     VKS     CUTOFF_     BIN_     CUTOFF_
+ 
+ 1     diagnosis                    0.923     0.846     0.821     0.301     0.799      0.938
+ 
+ 
+ 
+ 
+ 
+                                                                                        BINNED_KS_
+                                                               _KS_PROB_                   PROB_
+Obs     TARGET      TARGETLABEL    _AUR_    _GINI_      KS       CUTOFF     _KS_BIN_      CUTOFF
+ 
+ 1     diagnosis                   0.963     0.926    0.891      0.301        0.885        0.65
+ 
+ 
+ 
+ 
+ 
+                                                                  _VKS_              _VBINNED_
+                                                                  PROB_     _VKS_     KS_PROB_
+Obs     TARGET      TARGETLABEL    _VAUR_    _VGINI_     VKS     CUTOFF_     BIN_     CUTOFF_
+ 
+ 1     diagnosis                    0.885      0.77     0.754     0.301     0.739       0.65
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Fit Statistics
+Model Selection based on Valid: Misclassification Rate (_VMISC_)
+ 
+                                                           Train:                           Valid:
+                                           Valid:          Average          Train:          Average
+Selected    Model       Model        Misclassification     Squared    Misclassification     Squared
+ Model      Node     Description            Rate            Error            Rate            Error
+ 
+   Y        Tree     Gini Tree            0.08092         0.020296         0.025253        0.076983
+            Tree3    ChiSq Tree           0.08092         0.020296         0.025253        0.076983
+            Tree2    Entropy Tree         0.08092         0.010762         0.012626        0.082005
+            Tree4    4-Leaf Tree          0.10405         0.034828         0.040404        0.097632
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Fit Statistics Table
+Target: diagnosis
+ 
+Data Role=Train
+ 
+Statistics                                                           Tree      Tree3      Tree2      Tree4
+ 
+Train: Bin-Based Two-Way Kolmogorov-Smirnov Probability Cutoff      0.938      0.938      0.510      0.650
+Train: Kolmogorov-Smirnov Statistic                                 0.935      0.935      0.974      0.891
+Train: Average Squared Error                                        0.020      0.020      0.011      0.035
+Train: Roc Index                                                    0.988      0.988      0.996      0.963
+Train: Cumulative Percent Captured Response                        27.211     27.211     27.211     27.211
+Train: Percent Captured Response                                   13.605     13.605     13.605     13.605
+Selection Criterion: Valid: Misclassification Rate                  0.081      0.081      0.081      0.104
+Train: Total Degrees of Freedom                                   396.000    396.000    396.000    396.000
+Train: Divisor for ASE                                            792.000    792.000    792.000    792.000
+Train: Gain                                                       169.388    169.388    169.388    169.388
+Train: Gini Coefficient                                             0.976      0.976      0.992      0.926
+Train: Bin-Based Two-Way Kolmogorov-Smirnov Statistic               0.935      0.935      0.941      0.885
+Train: Kolmogorov-Smirnov Probability Cutoff                        0.301      0.301      0.091      0.301
+Train: Cumulative Lift                                              2.694      2.694      2.694      2.694
+Train: Lift                                                         2.694      2.694      2.694      2.694
+Train: Maximum Absolute Error                                       0.987      0.987      0.995      0.959
+Train: Misclassification Rate                                       0.025      0.025      0.013      0.040
+Train: Sum of Frequencies                                         396.000    396.000    396.000    396.000
+Train: Root Average Squared Error                                   0.142      0.142      0.104      0.187
+Train: Cumulative Percent Response                                100.000    100.000    100.000    100.000
+Train: Percent Response                                           100.000    100.000    100.000    100.000
+Train: Sum of Squared Errors                                       16.074     16.074      8.523     27.584
+ 
+ 
+Data Role=Valid
+ 
+Statistics                                                           Tree      Tree3      Tree2      Tree4
+ 
+Valid: Kolmogorov-Smirnov Statistic                                 0.821      0.821      0.834      0.754
+Valid: Average Squared Error                                        0.077      0.077      0.082      0.098
+Valid: Roc Index                                                    0.923      0.923      0.912      0.885
+Valid: Bin-Based Two-Way Kolmogorov-Smirnov Probability Cutoff      0.938      0.938      0.467      0.650
+Valid: Cumulative Percent Captured Response                        25.263     25.263     24.291     25.263
+Valid: Percent Captured Response                                   12.632     12.632     12.146     12.632
+Valid: Divisor for VASE                                           346.000    346.000    346.000    346.000
+Valid: Gain                                                       142.807    142.807    133.468    142.807
+Valid: Gini Coefficient                                             0.846      0.846      0.824      0.770
+Valid: Bin-Based Two-Way Kolmogorov-Smirnov Statistic               0.799      0.799      0.807      0.739
+Valid: Kolmogorov-Smirnov Probability Cutoff                        0.301      0.301      0.091      0.301
+Valid: Cumulative Lift                                              2.428      2.428      2.335      2.428
+Valid: Lift                                                         2.428      2.428      2.335      2.428
+Valid: Maximum Absolute Error                                       1.000      1.000      1.000      1.000
+Valid: Misclassification Rate                                       0.081      0.081      0.081      0.104
+Valid: Sum of Frequencies                                         173.000    173.000    173.000    173.000
+Valid: Root Average Squared Error                                   0.277      0.277      0.286      0.312
+Valid: Cumulative Percent Response                                 91.228     91.228     87.719     91.228
+Valid: Percent Response                                            91.228     91.228     87.719     91.228
+Valid: Sum of Squared Errors                                       26.636     26.636     28.374     33.781
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Event Classification Table
+Model Selection based on Valid: Misclassification Rate (_VMISC_)
+ 
+Model       Model        Data                     Target      False       True        False       True
+Node     Description     Role         Target      Label     Negative    Negative    Positive    Positive
+ 
+Tree     Gini Tree       TRAIN       diagnosis                  9          248          1          138
+Tree     Gini Tree       VALIDATE    diagnosis                  8          102          6           57
+Tree2    Entropy Tree    TRAIN       diagnosis                  2          246          3          145
+Tree2    Entropy Tree    VALIDATE    diagnosis                  6          100          8           59
+Tree3    ChiSq Tree      TRAIN       diagnosis                  9          248          1          138
+Tree3    ChiSq Tree      VALIDATE    diagnosis                  8          102          6           57
+Tree4    4-Leaf Tree     TRAIN       diagnosis                 16          249          .          131
+Tree4    4-Leaf Tree     VALIDATE    diagnosis                 13          103          5           52
+
+
+*------------------------------------------------------------*
+* Score Output
+*------------------------------------------------------------*
+
+
+*------------------------------------------------------------*
+* Report Output
+*------------------------------------------------------------*

@@ -1,0 +1,73 @@
+*------------------------------------------------------------*
+User:                student
+Date:                October 03, 2026
+Time:                18:24:59
+*------------------------------------------------------------*
+* Training Output
+*------------------------------------------------------------*
+ 
+ 
+ 
+ 
+Variable Summary
+ 
+            Measurement    Frequency
+Role           Level         Count
+ 
+ID           NOMINAL            1
+INPUT        INTERVAL          27
+REJECTED     INTERVAL           3
+TARGET       BINARY             1
+ 
+ 
+ 
+ 
+Partition Summary
+ 
+                                      Number of
+Type              Data Set          Observations
+ 
+DATA        EMWS1.FIMPORT2_train         569
+TRAIN       EMWS1.Part2_TRAIN            396
+VALIDATE    EMWS1.Part2_VALIDATE         173
+
+
+*------------------------------------------------------------*
+* Score Output
+*------------------------------------------------------------*
+
+
+*------------------------------------------------------------*
+* Report Output
+*------------------------------------------------------------*
+ 
+ 
+ 
+ 
+Summary Statistics for Class Targets
+ 
+Data=DATA
+ 
+             Numeric    Formatted    Frequency
+Variable      Value       Value        Count      Percent    Label
+ 
+diagnosis       .           B           357       62.7417
+diagnosis       .           M           212       37.2583
+ 
+ 
+Data=TRAIN
+ 
+             Numeric    Formatted    Frequency
+Variable      Value       Value        Count      Percent    Label
+ 
+diagnosis       .           B           249       62.8788
+diagnosis       .           M           147       37.1212
+ 
+ 
+Data=VALIDATE
+ 
+             Numeric    Formatted    Frequency
+Variable      Value       Value        Count      Percent    Label
+ 
+diagnosis       .           B           108       62.4277
+diagnosis       .           M            65       37.5723

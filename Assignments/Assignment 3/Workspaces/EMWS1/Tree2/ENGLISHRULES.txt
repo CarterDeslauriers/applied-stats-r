@@ -1,0 +1,85 @@
+*------------------------------------------------------------*
+ Node = 3
+*------------------------------------------------------------*
+if perimeter_worst >= 114.6
+then 
+ Tree Node Identifier   = 3
+ Number of Observations = 121
+ Predicted: diagnosis=M = 1.00
+ Predicted: diagnosis=B = 0.00
+ 
+*------------------------------------------------------------*
+ Node = 4
+*------------------------------------------------------------*
+if perimeter_worst < 114.6 or MISSING
+AND concave points_worst < 0.11135 or MISSING
+then 
+ Tree Node Identifier   = 4
+ Number of Observations = 218
+ Predicted: diagnosis=M = 0.00
+ Predicted: diagnosis=B = 1.00
+ 
+*------------------------------------------------------------*
+ Node = 9
+*------------------------------------------------------------*
+if perimeter_worst < 114.6 or MISSING
+AND concave points_worst >= 0.1603
+then 
+ Tree Node Identifier   = 9
+ Number of Observations = 14
+ Predicted: diagnosis=M = 0.93
+ Predicted: diagnosis=B = 0.07
+ 
+*------------------------------------------------------------*
+ Node = 10
+*------------------------------------------------------------*
+if perimeter_worst < 114.6 or MISSING
+AND concave points_worst < 0.1603 AND concave points_worst >= 0.11135 or MISSING
+AND area_worst < 724.05
+then 
+ Tree Node Identifier   = 10
+ Number of Observations = 19
+ Predicted: diagnosis=M = 0.00
+ Predicted: diagnosis=B = 1.00
+ 
+*------------------------------------------------------------*
+ Node = 14
+*------------------------------------------------------------*
+if perimeter_worst < 114.6 or MISSING
+AND fractal_dimension_worst < 0.0754
+AND concave points_worst < 0.1603 AND concave points_worst >= 0.11135 or MISSING
+AND area_worst >= 724.05 or MISSING
+then 
+ Tree Node Identifier   = 14
+ Number of Observations = 6
+ Predicted: diagnosis=M = 1.00
+ Predicted: diagnosis=B = 0.00
+ 
+*------------------------------------------------------------*
+ Node = 16
+*------------------------------------------------------------*
+if radius_mean < 14.43
+AND perimeter_worst < 114.6 or MISSING
+AND fractal_dimension_worst >= 0.0754 or MISSING
+AND concave points_worst < 0.1603 AND concave points_worst >= 0.11135 or MISSING
+AND area_worst >= 724.05 or MISSING
+then 
+ Tree Node Identifier   = 16
+ Number of Observations = 7
+ Predicted: diagnosis=M = 0.71
+ Predicted: diagnosis=B = 0.29
+ 
+*------------------------------------------------------------*
+ Node = 17
+*------------------------------------------------------------*
+if radius_mean >= 14.43 or MISSING
+AND perimeter_worst < 114.6 or MISSING
+AND fractal_dimension_worst >= 0.0754 or MISSING
+AND concave points_worst < 0.1603 AND concave points_worst >= 0.11135 or MISSING
+AND area_worst >= 724.05 or MISSING
+then 
+ Tree Node Identifier   = 17
+ Number of Observations = 11
+ Predicted: diagnosis=M = 0.09
+ Predicted: diagnosis=B = 0.91
+ 

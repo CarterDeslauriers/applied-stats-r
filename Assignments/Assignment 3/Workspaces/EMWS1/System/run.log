@@ -1,0 +1,551 @@
+NOTE: PROCEDURE PRINTTO used (Total process time):
+      real time           0.00 seconds
+      cpu time            0.01 seconds
+      
+
+Traverser: Traverser invoked.  MPCONNECT command is !sascmdv -nosyntaxcheck -noasynchio -noobjectserver. 
+Traverser: Beginning flow traversal 
+17185      data _null_;
+MPRINT(EM_DIAGRAM):    data _null_;
+17186      file emwipmsg;
+MPRINT(EM_DIAGRAM):   file emwipmsg;
+17187      put '<Node Id="FIMPORT2" Event="Run" Pid="20424" Gridid=""/>';
+MPRINT(EM_DIAGRAM):   put '<Node Id="FIMPORT2" Event="Run" Pid="20424" Gridid=""/>';
+17188      run;
+MPRINT(EM_DIAGRAM):   run;
+
+NOTE: The file EMWIPMSG is:
+      Local Host Name=G10-5CG42033X6,
+      Local Host IP addr=fe80::f578:ee3f:403a:d01e%12,
+      Peer Hostname Name=G10-5CG42033X6,
+      Peer IP addr=127.0.0.1,Peer Name=N/A,
+      Peer Portno=60296,Lrecl=32767,Recfm=Variable
+
+NOTE: 1 record was written to the file EMWIPMSG.
+      The minimum record length was 55.
+      The maximum record length was 55.
+NOTE: DATA statement used (Total process time):
+      real time           0.01 seconds
+      cpu time            0.01 seconds
+      
+
+17189      %let emloopmode =;
+*------------------------------------------------------------* 
+* 
+* FIMPORT2 : Beginning update before running 
+* datetime : 03OCT2026:18:24:52 
+* 
+*------------------------------------------------------------* 
+MPRINT(EM_DIAGRAM):     *------------------------------------------------------------*;
+MPRINT(EM_DIAGRAM):   * FIMPORT2: Generation of macros and macro variables;
+MPRINT(EM_DIAGRAM):   * To see the code generated, set the EM_DEBUG macro variable to SOURCE or _ALL_;
+MPRINT(EM_DIAGRAM):   *------------------------------------------------------------*;
+MPRINT(EM_DIAGRAM):   *------------------------------------------------------------*;
+MPRINT(EM_DIAGRAM):   * FIMPORT2: EM Macro Variables and Macros;
+MPRINT(EM_DIAGRAM):   *------------------------------------------------------------*;
+MPRINT(EM_DIAGRAM):   *------------------------------------------------------------* ;
+MPRINT(EM_DIAGRAM):   * System Macro Variables;
+MPRINT(EM_DIAGRAM):   *------------------------------------------------------------* ;
+MPRINT(EM_DIAGRAM):   data _null_;
+MPRINT(EM_DIAGRAM):   length string $2000;
+MPRINT(EM_DIAGRAM):   string = 'Assignment 3';
+MPRINT(EM_DIAGRAM):   call symput('EM_PROJECTNAME', trim(string));
+MPRINT(EM_DIAGRAM):   string = 'Assignment 3';
+MPRINT(EM_DIAGRAM):   call symput('EM_WSNAME', trim(string));
+MPRINT(EM_DIAGRAM):   run;
+MPRINT(EM_DIAGRAM):   *------------------------------------------------------------* ;
+MPRINT(EM_DIAGRAM):   * Properties Macro Variables ;
+MPRINT(EM_DIAGRAM):   *------------------------------------------------------------* ;
+MPRINT(EM_DIAGRAM):   *------------------------------------------------------------*;
+MPRINT(EM_DIAGRAM):   * Files Macro Variables;
+MPRINT(EM_DIAGRAM):   *------------------------------------------------------------*;
+MPRINT(EM_DIAGRAM):   *------------------------------------------------------------*;
+MPRINT(EM_DIAGRAM):   * Import Macro Variables;
+MPRINT(EM_DIAGRAM):   *------------------------------------------------------------*;
+MPRINT(EM_DIAGRAM):   *------------------------------------------------------------*;
+MPRINT(EM_DIAGRAM):   * Export Macro Variables;
+MPRINT(EM_DIAGRAM):   *------------------------------------------------------------*;
+MPRINT(EM_DIAGRAM):   *------------------------------------------------------------*;
+MPRINT(EM_DIAGRAM):   * Decision Macro Variables;
+MPRINT(EM_DIAGRAM):   *------------------------------------------------------------*;
+MPRINT(EM_DIAGRAM):   *------------------------------------------------------------*;
+MPRINT(EM_DIAGRAM):   * Statement Macro Variables;
+MPRINT(EM_DIAGRAM):   *------------------------------------------------------------*;
+17394      %let emexceptionString =;
+17395      %let EMEXCEPTIONSTRING=;
+17396      *------------------------------------------------------------*;
+MPRINT(EM_DIAGRAM):    *------------------------------------------------------------*;
+17397      * UPDATE: FIMPORT2;
+MPRINT(EM_DIAGRAM):   * UPDATE: FIMPORT2;
+17398      *------------------------------------------------------------*;
+MPRINT(EM_DIAGRAM):   *------------------------------------------------------------*;
+17399      %let EM_ACTION = UPDATE;
+17400      %let syscc = 0;
+17401      /* Fimport.source */
+17402      %macro main;
+17403            %if %upcase(&EM_ACTION) = CREATE %then %do;
+17404               filename temp catalog 'sashelp.emsamp.Fimport_create.source';
+17405               %include temp;
+17406               filename temp;
+17407               %create;
+17408            %end;
+17409            %else
+17410            %if %upcase(&EM_ACTION) = TRAIN %then %do;
+17411               filename temp catalog 'sashelp.emsamp.Fimport_train.source';
+17412               %include temp;
+17413               filename temp;
+17414               %train;
+17415            %end;
+17416            %else
+17417            %if %upcase(&EM_ACTION) = UPDATE %then %do;
+17418               filename temp catalog 'sashelp.emsamp.Fimport_update.source';
+17419               %include temp;
+17420               filename temp;
+17421               %update;
+17422            %end;
+17423            %else
+17424            %if %upcase(&EM_ACTION) = PROPERTY %then %do;
+17425               filename temp catalog 'sashelp.emsamp.Fimport_actions.source';
+17426               %include temp;
+17427               filename temp;
+17428               %property;
+17429            %end;
+17430             %else
+17431            %if %upcase(&EM_ACTION) = SCORE %then %do;
+17432               filename temp catalog 'sashelp.emsamp.Fimport_score.source';
+17433               %include temp;
+17434               filename temp;
+17435               %score;
+17436            %end;
+17437            %else
+17438            %if %upcase(&EM_ACTION) = REPORT %then %do;
+17439               filename temp catalog 'sashelp.emsamp.Fimport_report.source';
+17440               %include temp;
+17441               filename temp;
+17442               %report;
+17443            %end;
+17444            %else
+17445            %if %upcase(&EM_ACTION) = OPENVARIABLESET %then %do;
+17446               filename temp catalog 'sashelp.emsamp.Fimport_actions.source';
+17447               %include temp;
+17448               filename temp;
+17449               %openvariableset;
+17450            %end;
+17451            %else
+17452            %if %upcase(&EM_ACTION) = CLOSEVARIABLESET %then %do;
+17453               filename temp catalog 'sashelp.emsamp.Fimport_actions.source';
+17454               %include temp;
+17455               filename temp;
+17456               %closevariableset;
+17457            %end;
+17458      %mend main;
+17459      %main;
+MPRINT(EM_DIAGRAM):    
+MPRINT(MAIN):   filename temp catalog 'sashelp.emsamp.Fimport_update.source';
+NOTE: %INCLUDE (level 1) file TEMP is file SASHELP.EMSAMP.FIMPORT_UPDATE.SOURCE.
+17460     +%macro update;
+17461     +    %let oldrole = %str();
+17462     +    data _null_;
+17463     +       set &em_data_exportset;
+17464     +       where NODEPORT='TRAIN';
+17465     +       call symput('oldrole', ROLE);
+17466     +    run;
+17467     +    %if &oldrole ne &em_property_role %then %do;
+17468     +        data &em_data_exportset;
+17469     +           set &em_data_exportset;
+17470     +           if NODEPORT='TRAIN' then do;
+17471     +              ROLE="&em_property_role";
+17472     +              NEEDUPDATE='Y';
+17473     +              EXPORT='Y';
+17474     +           end;
+17475     +        run;
+17476     +        filename x "&EM_NODEDIR.&EM_DSEP._updatePath.st";
+17477     +        data _null_;
+17478     +           file x;
+17479     +           put ' ';
+17480     +        run;
+17481     +        filename x;
+17482     +    %end;
+17483     +    %else %do;
+17484     +        data &em_data_exportset;
+17485     +           set &em_data_exportset;
+17486     +           if NODEPORT='TRAIN' then do;
+17487     +              ROLE="&em_property_role";
+17488     +              NEEDUPDATE='Y';
+17489     +              EXPORT='Y';
+17490     +           end;
+17491     +        run;
+17492     +    %end;
+17493     +
+17494     +    %em_getname(key=EMCMETADEFAULT, type=DATA);
+17495     +    %if %sysfunc(exist(&em_user_emcmetadefault)) and ^%sysfunc(exist(&em_lib..&em_nodeid._CMETA_TRAIN)) %then %do;
+17496     +        data &em_lib..&em_nodeid._CMETA_TRAIN;
+17497     +           set &em_user_emcmetadefault;
+17498     +           drop DROP;
+17499     +           where DROP='N';
+17500     +        run;
+17501     +    %end;
+17502     +
+17503     +%mend update;
+17504     +
+17505     +
+17506     +
+17507     +
+NOTE: %INCLUDE (level 1) ending.
+MPRINT(MAIN):   filename temp;
+NOTE: Fileref TEMP has been deassigned.
+MPRINT(UPDATE):   data _null_;
+MPRINT(UPDATE):   set EMWS1.FIMPORT2_ExportSet;
+MPRINT(UPDATE):   where NODEPORT='TRAIN';
+MPRINT(UPDATE):   call symput('oldrole', ROLE);
+MPRINT(UPDATE):   run;
+
+NOTE: There were 1 observations read from the data set EMWS1.FIMPORT2_EXPORTSET.
+      WHERE NODEPORT='TRAIN';
+NOTE: DATA statement used (Total process time):
+      real time           0.00 seconds
+      cpu time            0.01 seconds
+      
+
+MPRINT(UPDATE):   data EMWS1.FIMPORT2_ExportSet;
+MPRINT(UPDATE):   set EMWS1.FIMPORT2_ExportSet;
+MPRINT(UPDATE):   if NODEPORT='TRAIN' then do;
+MPRINT(UPDATE):   ROLE="TRAIN";
+MPRINT(UPDATE):   NEEDUPDATE='Y';
+MPRINT(UPDATE):   EXPORT='Y';
+MPRINT(UPDATE):   end;
+MPRINT(UPDATE):   run;
+
+NOTE: There were 6 observations read from the data set EMWS1.FIMPORT2_EXPORTSET.
+NOTE: The data set EMWS1.FIMPORT2_EXPORTSET has 6 observations and 18 variables.
+NOTE: DATA statement used (Total process time):
+      real time           0.00 seconds
+      cpu time            0.00 seconds
+      
+
+MPRINT(UPDATE):  ;
+MPRINT(MAIN):  ;
+MPRINT(EM_DIAGRAM):  ;
+MPRINT(EM_DIAGRAM):   *------------------------------------------------------------*;
+MPRINT(EM_DIAGRAM):   * End UPDATE: FIMPORT2;
+MPRINT(EM_DIAGRAM):   *------------------------------------------------------------*;
+17508      *------------------------------------------------------------*;
+17509      * End UPDATE: FIMPORT2;
+17510      *------------------------------------------------------------*;
+
+17511      %em_delMacro;
+MPRINT(EM_DIAGRAM):   
+MPRINT(EM_DIAGRAM):  ;
+
+MPRINT(EM_DIAGRAM):    filename _emtool_ 'C:\Users\student\OneDrive - Bryant University\Documents\GitHub\Projects_in_R\Assignments\Assignment 3\Workspaces\EMWS1\FIMPORT2\PROPERTIES.xml' encoding="UTF-8" NOBOM;
+17513      %let _HPDMGRIDHOST=;
+17514      %let _HPDMGRIDINSTALLLOC=;
+17515      %let _HPDMGRIDDATASERVER=;
+17516      %hpdm_gridSetOPtions;
+MPRINT(EM_DIAGRAM):   
+MPRINT(HPDM_GRIDSETOPTIONS):   data _null_;
+MPRINT(HPDM_GRIDSETOPTIONS):   length optionString string $2000;
+MPRINT(HPDM_GRIDSETOPTIONS):   optionString = reverse(getoption('SET'));
+MPRINT(HPDM_GRIDSETOPTIONS):   index = index(optionString, reverse('GRIDHOST'));
+MPRINT(HPDM_GRIDSETOPTIONS):   if index then do;
+MPRINT(HPDM_GRIDSETOPTIONS):   string = reverse(substr(optionString, 1, index-4));
+MPRINT(HPDM_GRIDSETOPTIONS):   host = '"'!!strip(tranwrd(scan(string, 1, ']'), '"', ''))!!'"';
+MPRINT(HPDM_GRIDSETOPTIONS):   call symput('_HPDMGRIDHOST', strip(host));
+MPRINT(HPDM_GRIDSETOPTIONS):   end;
+MPRINT(HPDM_GRIDSETOPTIONS):   index = index(optionString, reverse('GRIDINSTALLLOC'));
+MPRINT(HPDM_GRIDSETOPTIONS):   if index then do;
+MPRINT(HPDM_GRIDSETOPTIONS):   string = reverse(substr(optionString, 1, index-4));
+MPRINT(HPDM_GRIDSETOPTIONS):   install = '"'!!strip(tranwrd(scan(string, 1, ']'), '"', ''))!!'"';
+MPRINT(HPDM_GRIDSETOPTIONS):   call symput('_HPDMGRIDINSTALLLOC', strip(install));
+MPRINT(HPDM_GRIDSETOPTIONS):   end;
+MPRINT(HPDM_GRIDSETOPTIONS):   index = index(optionString, reverse('GRIDDATASERVER'));
+MPRINT(HPDM_GRIDSETOPTIONS):   if index then do;
+MPRINT(HPDM_GRIDSETOPTIONS):   string = reverse(substr(optionString, 1, index-4));
+MPRINT(HPDM_GRIDSETOPTIONS):   server = '"'!!strip(tranwrd(scan(string, 1, ']'), '"', ''))!!'"';
+MPRINT(HPDM_GRIDSETOPTIONS):   call symput('_HPDMGRIDDATASERVER', strip(server));
+MPRINT(HPDM_GRIDSETOPTIONS):   end;
+MPRINT(HPDM_GRIDSETOPTIONS):   run;
+
+NOTE: DATA statement used (Total process time):
+      real time           0.00 seconds
+      cpu time            0.00 seconds
+      
+
+MPRINT(EM_DIAGRAM):  ;
+
+*------------------------------------------------------------* 
+* 
+* FIMPORT2 : End update 
+* datetime : 03OCT2026:18:24:52 
+* 
+*------------------------------------------------------------* 
+17517      %em_getactionstatus(emlib =EMWS1, nodeid=FIMPORT2);
+MPRINT(EM_DIAGRAM):   
+MPRINT(EM_GETACTIONSTATUS):   proc display c=sashelp.emutil.getactionstatus.scl;
+MPRINT(EM_GETACTIONSTATUS):   run;
+
+17518      %let em_filemodtime=;
+17519      data _null_;
+MPRINT(EM_GETACTIONSTATUS):   data _null_;
+17520      format modate best.;
+MPRINT(EM_GETACTIONSTATUS):   format modate best.;
+17521      set sashelp.Vextfl;
+MPRINT(EM_GETACTIONSTATUS):   set sashelp.Vextfl;
+17522      where fileref eq "#LN00156";
+MPRINT(EM_GETACTIONSTATUS):   where fileref eq "#LN00156";
+17523      call symput('EM_FILEMODTIME', put(modate, best.));
+MPRINT(EM_GETACTIONSTATUS):   call symput('EM_FILEMODTIME', put(modate, best.));
+17524      run;
+MPRINT(EM_GETACTIONSTATUS):   run;
+
+NOTE: There were 1 observations read from the data set SASHELP.VEXTFL.
+      WHERE fileref='#LN00156';
+NOTE: DATA statement used (Total process time):
+      real time           0.05 seconds
+      cpu time            0.01 seconds
+      
+
+17525      %symdel em_filemodtime;
+WARNING: Attempt to delete macro variable EM_FILEMODTIME failed. Variable not found.
+17526      %let em_Train = N;
+17527      %let em_Score = N;
+17528      %let em_Report = N;
+17529      %let em_Run = N;
+NOTE: PROCEDURE DISPLAY used (Total process time):
+      real time           0.12 seconds
+      cpu time            0.11 seconds
+      
+
+MPRINT(EM_GETACTIONSTATUS):     
+MPRINT(EM_DIAGRAM):  ;
+
+Node "FIMPORT2" has already run. 
+Node "FIMPORT2" succeeded. 
+17530      data _null_;
+MPRINT(EM_DIAGRAM):    data _null_;
+17531      file emwipmsg;
+MPRINT(EM_DIAGRAM):   file emwipmsg;
+17532      put '<Node Id="FIMPORT2" Event="Complete" Pid="20424" Gridid=""/>';
+MPRINT(EM_DIAGRAM):   put '<Node Id="FIMPORT2" Event="Complete" Pid="20424" Gridid=""/>';
+17533      run;
+MPRINT(EM_DIAGRAM):   run;
+
+NOTE: The file EMWIPMSG is:
+      Local Host Name=G10-5CG42033X6,
+      Local Host IP addr=fe80::f578:ee3f:403a:d01e%12,
+      Peer Hostname Name=G10-5CG42033X6,
+      Peer IP addr=127.0.0.1,Peer Name=N/A,
+      Peer Portno=60296,Lrecl=32767,Recfm=Variable
+
+NOTE: 1 record was written to the file EMWIPMSG.
+      The minimum record length was 60.
+      The maximum record length was 60.
+NOTE: DATA statement used (Total process time):
+      real time           0.00 seconds
+      cpu time            0.00 seconds
+      
+
+Traverser: WaitingNode "TREE5" 
+Traverser: WaitingNode "TREE6" 
+Traverser: WaitingNode "TREE7" 
+Traverser: WaitingNode "TREE8" 
+Traverser: WaitingNode "MDLCOMP2" 
+traverser_readyNode_note 
+17534      data _null_;
+MPRINT(EM_DIAGRAM):    data _null_;
+17535      file emwipmsg;
+MPRINT(EM_DIAGRAM):   file emwipmsg;
+17536      put '<Node Id="Part2" Event="Run" Pid="20424" Gridid=""/>';
+MPRINT(EM_DIAGRAM):   put '<Node Id="Part2" Event="Run" Pid="20424" Gridid=""/>';
+17537      run;
+MPRINT(EM_DIAGRAM):   run;
+
+NOTE: The file EMWIPMSG is:
+      Local Host Name=G10-5CG42033X6,
+      Local Host IP addr=fe80::f578:ee3f:403a:d01e%12,
+      Peer Hostname Name=G10-5CG42033X6,
+      Peer IP addr=127.0.0.1,Peer Name=N/A,
+      Peer Portno=60296,Lrecl=32767,Recfm=Variable
+
+NOTE: 1 record was written to the file EMWIPMSG.
+      The minimum record length was 52.
+      The maximum record length was 52.
+NOTE: DATA statement used (Total process time):
+      real time           0.00 seconds
+      cpu time            0.00 seconds
+      
+
+17538      %let emloopmode =;
+*------------------------------------------------------------* 
+* 
+* Part2 : Beginning update before running 
+* datetime : 03OCT2026:18:24:53 
+* 
+*------------------------------------------------------------* 
+MPRINT(EM_DIAGRAM):     data WORK.Part2_FILTERSET;
+MPRINT(EM_DIAGRAM):   length PORT $32 USE $1;
+MPRINT(EM_DIAGRAM):   DROP DELTACODE APPLYDELTA APPLYSCORE IMPORTPORT;
+MPRINT(EM_DIAGRAM):   set EMWS1.FIMPORT2_exportSet ;
+MPRINT(EM_DIAGRAM):   PORT = '';
+MPRINT(EM_DIAGRAM):   USE = '';
+MPRINT(EM_DIAGRAM):   where role in( "RAW" "TRAIN" "DOCUMENT" ) and EXPORT = 'Y' ;
+MPRINT(EM_DIAGRAM):   run;
+NOTE: This SAS session is using a registry in WORK.  All changes will be lost at the end of this session.
+17556      data _null_;
+MPRINT(EM_DIAGRAM):    data _null_;
+17557      set EMWS1.FIMPORT2_CMeta_TRAIN (obs=1);
+MPRINT(EM_DIAGRAM):   set EMWS1.FIMPORT2_CMeta_TRAIN (obs=1);
+17558      run;
+MPRINT(EM_DIAGRAM):   run;
+
+NOTE: There were 1 observations read from the data set EMWS1.FIMPORT2_CMETA_TRAIN.
+NOTE: DATA statement used (Total process time):
+      real time           0.00 seconds
+      cpu time            0.00 seconds
+      
+
+17559      data _null_;
+MPRINT(EM_DIAGRAM):    data _null_;
+17560      set EMWS1.FIMPORT2_CMeta_TRAIN (obs=1);
+MPRINT(EM_DIAGRAM):   set EMWS1.FIMPORT2_CMeta_TRAIN (obs=1);
+17561      run;
+MPRINT(EM_DIAGRAM):   run;
+
+NOTE: There were 1 observations read from the data set EMWS1.FIMPORT2_CMETA_TRAIN.
+NOTE: DATA statement used (Total process time):
+      real time           0.00 seconds
+      cpu time            0.00 seconds
+      
+
+17562      data _null_;
+MPRINT(EM_DIAGRAM):    data _null_;
+17563      set EMWS1.FIMPORT2_CMeta_TRAIN (obs=1);
+MPRINT(EM_DIAGRAM):   set EMWS1.FIMPORT2_CMeta_TRAIN (obs=1);
+17564      run;
+MPRINT(EM_DIAGRAM):   run;
+
+NOTE: There were 1 observations read from the data set EMWS1.FIMPORT2_CMETA_TRAIN.
+NOTE: DATA statement used (Total process time):
+      real time           0.00 seconds
+      cpu time            0.00 seconds
+      
+
+17565      *------------------------------------------------------------*;
+MPRINT(EM_DIAGRAM):    *------------------------------------------------------------*;
+17566      * Part2: Update Variables Set;
+MPRINT(EM_DIAGRAM):   * Part2: Update Variables Set;
+17567      *------------------------------------------------------------*;
+MPRINT(EM_DIAGRAM):   *------------------------------------------------------------*;
+
+17568      data EMWS1.Part2_VariableSet;
+MPRINT(EM_DIAGRAM):    data EMWS1.Part2_VariableSet;
+17569      length PARTITIONROLE $14;
+MPRINT(EM_DIAGRAM):   length PARTITIONROLE $14;
+17570      set EMWS1.FIMPORT2_CMeta_TRAIN;
+MPRINT(EM_DIAGRAM):   set EMWS1.FIMPORT2_CMeta_TRAIN;
+17571      run;
+MPRINT(EM_DIAGRAM):   run;
+
+NOTE: Variable PARTITIONROLE is uninitialized.
+NOTE: There were 32 observations read from the data set EMWS1.FIMPORT2_CMETA_TRAIN.
+NOTE: The data set EMWS1.PART2_VARIABLESET has 32 observations and 21 variables.
+NOTE: DATA statement used (Total process time):
+      real time           0.00 seconds
+      cpu time            0.01 seconds
+      
+
+17572      * Part2: End of Update Variables Set;
+MPRINT(EM_DIAGRAM):    * Part2: End of Update Variables Set;
+17573      *------------------------------------------------------------*;
+MPRINT(EM_DIAGRAM):   *------------------------------------------------------------*;
+
+MPRINT(EM_DIAGRAM):    filename _emtool_ 'C:\Users\student\OneDrive - Bryant University\Documents\GitHub\Projects_in_R\Assignments\Assignment 3\Workspaces\EMWS1\Part2\PROPERTIES.xml' encoding="UTF-8" NOBOM;
+17575      %let _HPDMGRIDHOST=;
+17576      %let _HPDMGRIDINSTALLLOC=;
+17577      %let _HPDMGRIDDATASERVER=;
+17578      %hpdm_gridSetOPtions;
+MPRINT(EM_DIAGRAM):   
+MPRINT(HPDM_GRIDSETOPTIONS):   data _null_;
+MPRINT(HPDM_GRIDSETOPTIONS):   length optionString string $2000;
+MPRINT(HPDM_GRIDSETOPTIONS):   optionString = reverse(getoption('SET'));
+MPRINT(HPDM_GRIDSETOPTIONS):   index = index(optionString, reverse('GRIDHOST'));
+MPRINT(HPDM_GRIDSETOPTIONS):   if index then do;
+MPRINT(HPDM_GRIDSETOPTIONS):   string = reverse(substr(optionString, 1, index-4));
+MPRINT(HPDM_GRIDSETOPTIONS):   host = '"'!!strip(tranwrd(scan(string, 1, ']'), '"', ''))!!'"';
+MPRINT(HPDM_GRIDSETOPTIONS):   call symput('_HPDMGRIDHOST', strip(host));
+MPRINT(HPDM_GRIDSETOPTIONS):   end;
+MPRINT(HPDM_GRIDSETOPTIONS):   index = index(optionString, reverse('GRIDINSTALLLOC'));
+MPRINT(HPDM_GRIDSETOPTIONS):   if index then do;
+MPRINT(HPDM_GRIDSETOPTIONS):   string = reverse(substr(optionString, 1, index-4));
+MPRINT(HPDM_GRIDSETOPTIONS):   install = '"'!!strip(tranwrd(scan(string, 1, ']'), '"', ''))!!'"';
+MPRINT(HPDM_GRIDSETOPTIONS):   call symput('_HPDMGRIDINSTALLLOC', strip(install));
+MPRINT(HPDM_GRIDSETOPTIONS):   end;
+MPRINT(HPDM_GRIDSETOPTIONS):   index = index(optionString, reverse('GRIDDATASERVER'));
+MPRINT(HPDM_GRIDSETOPTIONS):   if index then do;
+MPRINT(HPDM_GRIDSETOPTIONS):   string = reverse(substr(optionString, 1, index-4));
+MPRINT(HPDM_GRIDSETOPTIONS):   server = '"'!!strip(tranwrd(scan(string, 1, ']'), '"', ''))!!'"';
+MPRINT(HPDM_GRIDSETOPTIONS):   call symput('_HPDMGRIDDATASERVER', strip(server));
+MPRINT(HPDM_GRIDSETOPTIONS):   end;
+MPRINT(HPDM_GRIDSETOPTIONS):   run;
+
+NOTE: DATA statement used (Total process time):
+      real time           0.00 seconds
+      cpu time            0.00 seconds
+      
+
+MPRINT(EM_DIAGRAM):  ;
+
+*------------------------------------------------------------* 
+* 
+* Part2 : End update 
+* datetime : 03OCT2026:18:24:53 
+* 
+*------------------------------------------------------------* 
+17579      %em_getactionstatus(emlib =EMWS1, nodeid=Part2);
+MPRINT(EM_DIAGRAM):   
+MPRINT(EM_GETACTIONSTATUS):   proc display c=sashelp.emutil.getactionstatus.scl;
+MPRINT(EM_GETACTIONSTATUS):   run;
+
+17580      %let em_Train = Y;
+17581      %let em_Report = Y;
+17582      %let em_Score = Y;
+17583      %let em_Run = Y;
+NOTE: PROCEDURE DISPLAY used (Total process time):
+      real time           0.02 seconds
+      cpu time            0.01 seconds
+      
+
+MPRINT(EM_GETACTIONSTATUS):   
+MPRINT(EM_DIAGRAM):  ;
+
+17584      %let emloopmode =;
+17585      %let emloopnumber =0;
+17586      %let emloopId =Part2;
+*------------------------------------------------------------* 
+* 
+* Part2 : Running 
+* datetime : 03OCT2026:18:24:53 
+* 
+*------------------------------------------------------------* 
+17587      %let SYSCC =0;
+17588      %let EMGROUPMODE =;
+17589      %let EMGROUPID =;
+MPRINT(EM_DIAGRAM):      filename temp catalog 'sashelp.emutil.em_vardist.source';
+MPRINT(EM_DIAGRAM):   filename temp;
+MPRINT(EM_DIAGRAM):   filename temp catalog 'sashelp.emutil.em_classdist.source';
+MPRINT(EM_DIAGRAM):   filename temp;
+MPRINT(EM_DIAGRAM):   filename temp catalog 'sashelp.emutil.em_checksetinit.source';
+MPRINT(EM_DIAGRAM):   filename temp;
+MPRINT(EM_DIAGRAM):   filename temp catalog 'sashelp.emutil.em_checkerror.source';
+MPRINT(EM_DIAGRAM):   filename temp;
+MPRINT(EM_DIAGRAM):   filename temp catalog 'sashelp.emutil.em_odsliston.source';
+MPRINT(EM_DIAGRAM):   filename temp;
+MPRINT(EM_DIAGRAM):   filename temp catalog 'sashelp.emutil.em_odslistoff.source';
+MPRINT(EM_DIAGRAM):   filename temp;
+MPRINT(EM_DIAGRAM):   filename temp catalog 'sashelp.emutil.em_getvarname.source';
+MPRINT(EM_DIAGRAM):   filename temp;
+MPRINT(EM_DIAGRAM):   filename temp catalog 'sashelp.emassmt.em_assess.source';
+MPRINT(EM_DIAGRAM):   filename temp;
+MPRINT(EM_DIAGRAM):    filename L3N26M0W "C:\Users\student\OneDrive - Bryant University\Documents\GitHub\Projects_in_R\Assignments\Assignment 3\Workspaces\EMWS1\Part2\EMTRAIN.log" encoding="UTF-8" NOBOM;
+MPRINT(EM_DIAGRAM):   proc printto log=L3N26M0W new;
+MPRINT(EM_DIAGRAM):   run;

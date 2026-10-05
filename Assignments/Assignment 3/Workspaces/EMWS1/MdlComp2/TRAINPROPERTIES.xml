@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" ?><_ROOT_  NumberOfReportedLevels="1E-6" NormalizeReportingVariables="Y" DecileBin="20" LiftEpsilon="1E-6"
+ ProfitEpsilon="1E-6" RoiEpsilon="1E-6" ScoreDistBin="20" RocChart="Y" RocEpsilon="0.01"
+ AssessAllTargetLevels="N" SelectionData="DEFAULT" HPCriteria="DEFAULT" intervalViyaCriteria="DEFAULT"
+ classViyaCriteria="DEFAULT" SelectionTable="TRAIN" SelectionCriteria="DEFAULT" SelectionDepth="10"
+ NumberofBins="20" RecomputeAssess="N" TargetName="diagnosis" ModelId="Tree5" ModelDescription="Gini Tree 2"
+ ModelCriteria="Valid: Misclassification Rate" ForceRun="N" RunAction="Train" Component="ModelCompare"
+ RawCreateTime="2106671059.5" CreateTime="03OCT2026:18:24:19" RunId="e4954ef0-a69c-4ab6-802f-6ca50350e357"
+ StatisticUsed="_VMISC_" TargetLabel="" RawLastTimeRun="2106671175" RawRunTime="19.82400012"
+ LastTimeRun="03OCT2026:18:26:15" RunTime="0 Hr. 0 Min. 19.82 Sec.">
+<VARIABLEPROPERTIES/>
+<FILEPROPERTIES/>
+</_ROOT_>

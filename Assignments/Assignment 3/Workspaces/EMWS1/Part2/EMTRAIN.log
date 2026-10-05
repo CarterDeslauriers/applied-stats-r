@@ -1,0 +1,431 @@
+MPRINT(EM_DIAGRAM):    data _null_;
+MPRINT(EM_DIAGRAM):   call symput('NLDATE', strip(put(date(), NLDATE.)));
+MPRINT(EM_DIAGRAM):   call symput('NLTIME', strip(put(datetime(), NLTIME.)));
+MPRINT(EM_DIAGRAM):   run;
+MPRINT(EM_DIAGRAM):   data _null_;
+MPRINT(EM_DIAGRAM):   nldate= sasmsg("sashelp.dmine", "log_date_note", 'N', "October 03, 2026" );
+MPRINT(EM_DIAGRAM):   nltime= sasmsg("sashelp.dmine", "log_time_note", 'N', "18:24:53" );
+MPRINT(EM_DIAGRAM):   put "*------------------------------------------------------------*";
+MPRINT(EM_DIAGRAM):   put "* Training Log";
+MPRINT(EM_DIAGRAM):   put nldate;
+MPRINT(EM_DIAGRAM):   put nltime;
+MPRINT(EM_DIAGRAM):   put "*------------------------------------------------------------*";
+MPRINT(EM_DIAGRAM):   run;
+*------------------------------------------------------------*
+* Training Log
+Date:                October 03, 2026
+Time:                18:24:53
+*------------------------------------------------------------*
+MPRINT(EM_DIAGRAM):    filename O3N26M0W "C:\Users\student\OneDrive - Bryant University\Documents\GitHub\Projects_in_R\Assignments\Assignment 3\Workspaces\EMWS1\Part2\EMTRAIN.out" encoding="UTF-8" NOBOM;
+MPRINT(EM_DIAGRAM):   proc printto print=O3N26M0W new;
+MPRINT(EM_DIAGRAM):   run;
+MPRINT(EM_DIAGRAM):    filename _LOG "C:\Users\student\OneDrive - Bryant University\Documents\GitHub\Projects_in_R\Assignments\Assignment 3\Workspaces\EMWS1\Part2\EMLOG.log" encoding="UTF-8" NOBOM;
+MPRINT(EM_DIAGRAM):    data _null_;
+MPRINT(EM_DIAGRAM):   call symput('NLDATE', strip(put(date(), NLDATE.)));
+MPRINT(EM_DIAGRAM):   call symput('NLTIME', strip(put(datetime(), NLTIME.)));
+MPRINT(EM_DIAGRAM):   run;
+MPRINT(EM_DIAGRAM):   data _null_;
+MPRINT(EM_DIAGRAM):   nldate= sasmsg("sashelp.dmine", "log_date_note", 'N', "October 03, 2026" );
+MPRINT(EM_DIAGRAM):   nltime= sasmsg("sashelp.dmine", "log_time_note", 'N', "18:24:53" );
+MPRINT(EM_DIAGRAM):   file _LOG;
+MPRINT(EM_DIAGRAM):   put "*------------------------------------------------------------*";
+MPRINT(EM_DIAGRAM):   put "User:                student";
+MPRINT(EM_DIAGRAM):   put nldate;
+MPRINT(EM_DIAGRAM):   put nltime;
+MPRINT(EM_DIAGRAM):   put "Site:                70082322";
+MPRINT(EM_DIAGRAM):   put "Platform:            X64_10PRO";
+MPRINT(EM_DIAGRAM):   put "Maintenance Release: 9.04.01M7P080520";
+MPRINT(EM_DIAGRAM):   put "EM Version:          15.2";
+MPRINT(EM_DIAGRAM):   put "* ";
+MPRINT(EM_DIAGRAM):   run;
+MPRINT(EM_DIAGRAM):    filename _LOGIN "C:\Users\student\OneDrive - Bryant University\Documents\GitHub\Projects_in_R\Assignments\Assignment 3\Workspaces\EMWS1\Part2\EMTRAIN.log" encoding="UTF-8" NOBOM;
+MPRINT(EM_COPYFILE):   data _null_;
+MPRINT(EM_COPYFILE):   length line $20000;
+MPRINT(EM_COPYFILE):   file _LOG MOD lrecl=20000;
+MPRINT(EM_COPYFILE):   fid=fopen("_LOGIN",'i',20000,'v');
+MPRINT(EM_COPYFILE):   if fid > 0 then do;
+MPRINT(EM_COPYFILE):   do while(^fread(fid));
+MPRINT(EM_COPYFILE):   rlen = frlen(fid);
+MPRINT(EM_COPYFILE):   rc= fget(fid,line,20000);
+MPRINT(EM_COPYFILE):   start = length(line)-length(left(line))+1;
+MPRINT(EM_COPYFILE):   line=strip(line);
+MPRINT(EM_COPYFILE):   put @start line;
+MPRINT(EM_COPYFILE):   end;
+MPRINT(EM_COPYFILE):   if fid > 0 then rc=fclose(fid);
+MPRINT(EM_COPYFILE):   end;
+MPRINT(EM_COPYFILE):   run;
+MPRINT(EM_DIAGRAM):  ;
+MPRINT(EM_DIAGRAM):   filename _LOGIN;
+MPRINT(EM_DIAGRAM):    data _null_;
+MPRINT(EM_DIAGRAM):   file _LOG mod;
+MPRINT(EM_DIAGRAM):   put _page_;
+MPRINT(EM_DIAGRAM):   run;
+MPRINT(EM_DIAGRAM):   filename _LOGIN "C:\Users\student\OneDrive - Bryant University\Documents\GitHub\Projects_in_R\Assignments\Assignment 3\Workspaces\EMWS1\Part2\EMSCORE.log" encoding="UTF-8" NOBOM;
+MPRINT(EM_DIAGRAM):  ;
+MPRINT(EM_DIAGRAM):   data _null_;
+MPRINT(EM_DIAGRAM):   file _LOG mod;
+MPRINT(EM_DIAGRAM):   put _page_;
+MPRINT(EM_DIAGRAM):   run;
+MPRINT(EM_DIAGRAM):    filename _LOGIN "C:\Users\student\OneDrive - Bryant University\Documents\GitHub\Projects_in_R\Assignments\Assignment 3\Workspaces\EMWS1\Part2\EMREPORT.log" encoding="UTF-8" NOBOM;
+MPRINT(EM_DIAGRAM):  ;
+MPRINT(EM_DIAGRAM):   filename _LOGIN;
+MPRINT(EM_DIAGRAM):    filename _LOG;
+MPRINT(EM_DIAGRAM):    filename _OUT "C:\Users\student\OneDrive - Bryant University\Documents\GitHub\Projects_in_R\Assignments\Assignment 3\Workspaces\EMWS1\Part2\EMOUTPUT.out" encoding="UTF-8" NOBOM;
+MPRINT(EM_DIAGRAM):    data _null_;
+MPRINT(EM_DIAGRAM):   call symput('NLDATE', strip(put(date(), NLDATE.)));
+MPRINT(EM_DIAGRAM):   call symput('NLTIME', strip(put(datetime(), NLTIME.)));
+MPRINT(EM_DIAGRAM):   run;
+MPRINT(EM_DIAGRAM):   data _null_;
+MPRINT(EM_DIAGRAM):   nldate= sasmsg("sashelp.dmine", "log_date_note", 'N', "October 03, 2026" );
+MPRINT(EM_DIAGRAM):   nltime= sasmsg("sashelp.dmine", "log_time_note", 'N', "18:24:53" );
+MPRINT(EM_DIAGRAM):   file _OUT;
+MPRINT(EM_DIAGRAM):   put "*------------------------------------------------------------*";
+MPRINT(EM_DIAGRAM):   put "User:                student";
+MPRINT(EM_DIAGRAM):   put nldate;
+MPRINT(EM_DIAGRAM):   put nltime;
+MPRINT(EM_DIAGRAM):   put "*------------------------------------------------------------*";
+MPRINT(EM_DIAGRAM):   put "* Training Output";
+MPRINT(EM_DIAGRAM):   put "*------------------------------------------------------------*";
+MPRINT(EM_DIAGRAM):   run;
+MPRINT(EM_DIAGRAM):    filename _OUTIN "C:\Users\student\OneDrive - Bryant University\Documents\GitHub\Projects_in_R\Assignments\Assignment 3\Workspaces\EMWS1\Part2\EMTRAIN.out" encoding="UTF-8" NOBOM;
+MPRINT(EM_DIAGRAM):   ;
+MPRINT(EM_COPYFILE):   data _null_;
+MPRINT(EM_COPYFILE):   length line $20000;
+MPRINT(EM_COPYFILE):   file _OUT MOD lrecl=20000;
+MPRINT(EM_COPYFILE):   fid=fopen("_OUTIN",'i',20000,'v');
+MPRINT(EM_COPYFILE):   if fid > 0 then do;
+MPRINT(EM_COPYFILE):   do while(^fread(fid));
+MPRINT(EM_COPYFILE):   rlen = frlen(fid);
+MPRINT(EM_COPYFILE):   rc= fget(fid,line,20000);
+MPRINT(EM_COPYFILE):   start = length(line)-length(left(line))+1;
+MPRINT(EM_COPYFILE):   line=strip(line);
+MPRINT(EM_COPYFILE):   put @start line;
+MPRINT(EM_COPYFILE):   end;
+MPRINT(EM_COPYFILE):   if fid > 0 then rc=fclose(fid);
+MPRINT(EM_COPYFILE):   end;
+MPRINT(EM_COPYFILE):   run;
+MPRINT(EM_DIAGRAM):  ;
+MPRINT(EM_DIAGRAM):   filename _OUTIN;
+MPRINT(EM_DIAGRAM):    data _null_;
+MPRINT(EM_DIAGRAM):   file _OUT mod;
+MPRINT(EM_DIAGRAM):   put _page_;
+MPRINT(EM_DIAGRAM):   put // "*------------------------------------------------------------*";
+MPRINT(EM_DIAGRAM):   put "* Score Output";
+MPRINT(EM_DIAGRAM):   put "*------------------------------------------------------------*";
+MPRINT(EM_DIAGRAM):   run;
+MPRINT(EM_DIAGRAM):    filename _OUTIN "C:\Users\student\OneDrive - Bryant University\Documents\GitHub\Projects_in_R\Assignments\Assignment 3\Workspaces\EMWS1\Part2\EMSCORE.out" encoding="UTF-8" NOBOM;
+MPRINT(EM_DIAGRAM):  ;
+MPRINT(EM_DIAGRAM):   filename _OUTIN;
+MPRINT(EM_DIAGRAM):    data _null_;
+MPRINT(EM_DIAGRAM):   file _OUT mod;
+MPRINT(EM_DIAGRAM):   put _page_;
+MPRINT(EM_DIAGRAM):   put // "*------------------------------------------------------------*";
+MPRINT(EM_DIAGRAM):   put "* Report Output";
+MPRINT(EM_DIAGRAM):   put "*------------------------------------------------------------*";
+MPRINT(EM_DIAGRAM):   run;
+MPRINT(EM_DIAGRAM):    filename _OUTIN "C:\Users\student\OneDrive - Bryant University\Documents\GitHub\Projects_in_R\Assignments\Assignment 3\Workspaces\EMWS1\Part2\EMREPORT.out" encoding="UTF-8" NOBOM;
+MPRINT(EM_DIAGRAM):  ;
+MPRINT(EM_DIAGRAM):   filename _OUTIN;
+MPRINT(EM_DIAGRAM):    filename _OUT;
+MPRINT(EM_DIAGRAM):    filename _emtool_ 'C:\Users\student\OneDrive - Bryant University\Documents\GitHub\Projects_in_R\Assignments\Assignment 3\Workspaces\EMWS1\Part2\EMRUNSTATUS.xml' encoding="UTF-8" NOBOM;
+MPRINT(EM_DIAGRAM):    filename _emtool_ 'C:\Users\student\OneDrive - Bryant University\Documents\GitHub\Projects_in_R\Assignments\Assignment 3\Workspaces\EMWS1\Part2\EMRUNSTATUS.xml' encoding="UTF-8" NOBOM;
+22446      proc freq data=EMWS1.Part2_VariableSet noprint;
+MPRINT(EM_DIAGRAM):    proc freq data=EMWS1.Part2_VariableSet noprint;
+22447      table ROLE*LEVEL/out=WORK.Part2META;
+MPRINT(EM_DIAGRAM):   table ROLE*LEVEL/out=WORK.Part2META;
+22448      run;
+MPRINT(EM_DIAGRAM):   run;
+
+NOTE: There were 32 observations read from the data set EMWS1.PART2_VARIABLESET.
+NOTE: The data set WORK.PART2META has 4 observations and 4 variables.
+NOTE: PROCEDURE FREQ used (Total process time):
+      real time           0.17 seconds
+      cpu time            0.00 seconds
+      
+
+22449      proc print data=WORK.Part2META label noobs;
+MPRINT(EM_DIAGRAM):   proc print data=WORK.Part2META label noobs;
+22450      var ROLE LEVEL COUNT;
+MPRINT(EM_DIAGRAM):   var ROLE LEVEL COUNT;
+22451      label ROLE = "%sysfunc(sasmsg(sashelp.dmine, meta_role_vlabel, NOQUOTE))" LEVEL = "%sysfunc(sasmsg(sashelp.dmine, meta_level_vlabel, NOQUOTE))" COUNT = "%sysfunc(sasmsg(sashelp.dmine, rpt_count_vlabel, NOQUOTE))";
+MPRINT(EM_DIAGRAM):   label ROLE = "Role" LEVEL = "Measurement Level" COUNT = "Frequency Count";
+22452      title9 ' ';
+MPRINT(EM_DIAGRAM):   title9 ' ';
+22453      title10 "%sysfunc(sasmsg(sashelp.dmine, rpt_varSummary_title  , NOQUOTE))";
+MPRINT(EM_DIAGRAM):   title10 "Variable Summary";
+MPRINT(EM_DIAGRAM):   run;
+22454      run;
+
+NOTE: There were 4 observations read from the data set WORK.PART2META.
+NOTE: The PROCEDURE PRINT printed page 1.
+NOTE: PROCEDURE PRINT used (Total process time):
+      real time           0.04 seconds
+      cpu time            0.03 seconds
+      
+
+22455      title10;
+MPRINT(EM_DIAGRAM):   title10;
+MPRINT(EM_DIAGRAM):    *------------------------------------------------------------*;
+MPRINT(EM_DIAGRAM):   * Part2: Preparing metadata for Training;
+MPRINT(EM_DIAGRAM):   *------------------------------------------------------------*;
+MPRINT(EM_DIAGRAM):   data WORK.M3AM8EHE;
+MPRINT(EM_DIAGRAM):   set WORK.M3AM8EHE;
+MPRINT(EM_DIAGRAM):   where(PARTITIONROLE ne '' or ROLE='TARGET');
+MPRINT(EM_DIAGRAM):   run;
+22463      *------------------------------------------------------------*;
+MPRINT(EM_DIAGRAM):    *------------------------------------------------------------*;
+22464      * Part2: Determine number of observations;
+MPRINT(EM_DIAGRAM):   * Part2: Determine number of observations;
+22465      *------------------------------------------------------------*;
+MPRINT(EM_DIAGRAM):   *------------------------------------------------------------*;
+22466      proc sql;
+MPRINT(EM_DIAGRAM):   proc sql;
+22467      reset noprint;
+MPRINT(EM_DIAGRAM):   reset noprint;
+22468      select count(*) into :_tmpa from EMWS1.FIMPORT2_train
+22469      ;
+MPRINT(EM_DIAGRAM):   select count(*) into :_tmpa from EMWS1.FIMPORT2_train ;
+NOTE: View EMWS1.FIMPORT2_TRAIN.VIEW used (Total process time):
+      real time           0.06 seconds
+      cpu time            0.04 seconds
+      
+NOTE: There were 569 observations read from the data set EMWS1.FIMPORT2_DATA.
+22470      quit;
+MPRINT(EM_DIAGRAM):   quit;
+NOTE: PROCEDURE SQL used (Total process time):
+      real time           0.08 seconds
+      cpu time            0.07 seconds
+      
+
+trainPct=70 validatePct=30 testPct=0 
+NOTE: View EMWS1.FIMPORT2_TRAIN.VIEW used (Total process time):
+      real time           0.04 seconds
+      cpu time            0.04 seconds
+      
+22471      *------------------------------------------------------------*;
+MPRINT(EM_DIAGRAM):    *------------------------------------------------------------*;
+22472      * Part2: Retrieving stratification variable(s) levels;
+MPRINT(EM_DIAGRAM):   * Part2: Retrieving stratification variable(s) levels;
+22473      *------------------------------------------------------------*;
+MPRINT(EM_DIAGRAM):   *------------------------------------------------------------*;
+22474      proc freq data=EMWS1.FIMPORT2_train noprint;
+MPRINT(EM_DIAGRAM):   proc freq data=EMWS1.FIMPORT2_train noprint;
+22475      format
+22476      diagnosis $1.
+22477      ;
+MPRINT(EM_DIAGRAM):   format diagnosis $1. ;
+22478      table
+22479      diagnosis
+22480      /out=WORK.Part2_FREQ(drop=percent);
+MPRINT(EM_DIAGRAM):   table diagnosis /out=WORK.Part2_FREQ(drop=percent);
+22481      run;
+MPRINT(EM_DIAGRAM):   run;
+
+NOTE: View EMWS1.FIMPORT2_TRAIN.VIEW used (Total process time):
+      real time           0.06 seconds
+      cpu time            0.03 seconds
+      
+NOTE: There were 569 observations read from the data set EMWS1.FIMPORT2_DATA.
+NOTE: There were 569 observations read from the data set EMWS1.FIMPORT2_TRAIN.
+NOTE: The data set WORK.PART2_FREQ has 2 observations and 2 variables.
+NOTE: PROCEDURE FREQ used (Total process time):
+      real time           0.08 seconds
+      cpu time            0.06 seconds
+      
+
+22482      proc sort data=WORK.Part2_FREQ;
+MPRINT(EM_DIAGRAM):    proc sort data=WORK.Part2_FREQ;
+22483      by descending count;
+MPRINT(EM_DIAGRAM):   by descending count;
+22484      run;
+MPRINT(EM_DIAGRAM):   run;
+
+NOTE: There were 2 observations read from the data set WORK.PART2_FREQ.
+NOTE: The data set WORK.PART2_FREQ has 2 observations and 2 variables.
+NOTE: PROCEDURE SORT used (Total process time):
+      real time           0.02 seconds
+      cpu time            0.01 seconds
+      
+
+MPRINT(EM_DIAGRAM):   * Part2: Retrieving levels that meet minimum requirement;
+22485      * Part2: Retrieving levels that meet minimum requirement;
+22486      data WORK.Part2_FREQ2(keep = count);
+MPRINT(EM_DIAGRAM):   data WORK.Part2_FREQ2(keep = count);
+22487      set WORK.Part2_FREQ;
+MPRINT(EM_DIAGRAM):   set WORK.Part2_FREQ;
+22488      where (.01 * 70 * count) >= 3;
+MPRINT(EM_DIAGRAM):   where (.01 * 70 * count) >= 3;
+22489      run;
+MPRINT(EM_DIAGRAM):   run;
+
+NOTE: There were 2 observations read from the data set WORK.PART2_FREQ.
+      WHERE (0.7*count)>=3;
+NOTE: The data set WORK.PART2_FREQ2 has 2 observations and 1 variables.
+NOTE: DATA statement used (Total process time):
+      real time           0.04 seconds
+      cpu time            0.01 seconds
+      
+
+22490      *------------------------------------------------------------*;
+MPRINT(EM_DIAGRAM):    *------------------------------------------------------------*;
+22491      * Part2: Create stratified partitioning;
+MPRINT(EM_DIAGRAM):   * Part2: Create stratified partitioning;
+22492      *------------------------------------------------------------*;
+MPRINT(EM_DIAGRAM):   *------------------------------------------------------------*;
+22493      data
+22494      EMWS1.Part2_TRAIN(label="")
+22495      EMWS1.Part2_VALIDATE(label="")
+22496      ;
+MPRINT(EM_DIAGRAM):   data EMWS1.Part2_TRAIN(label="") EMWS1.PART2_VALIDATE(label="") ;
+22497      retain _seed_ 12345;
+MPRINT(EM_DIAGRAM):   retain _seed_ 12345;
+22498      drop _seed_ _genvalue_;
+MPRINT(EM_DIAGRAM):   drop _seed_ _genvalue_;
+22499      call ranuni(_seed_, _genvalue_);
+MPRINT(EM_DIAGRAM):   call ranuni(_seed_, _genvalue_);
+22500      label _dataobs_ = "%sysfunc(sasmsg(sashelp.dmine, sample_dataobs_vlabel, NOQUOTE))";
+MPRINT(EM_DIAGRAM):   label _dataobs_ = "Observation Number";
+22501      _dataobs_ = _N_;
+MPRINT(EM_DIAGRAM):   _dataobs_ = _N_;
+22502      drop _c00:;
+MPRINT(EM_DIAGRAM):   drop _c00:;
+22503      set EMWS1.FIMPORT2_train;
+MPRINT(EM_DIAGRAM):   set EMWS1.FIMPORT2_train;
+22504      length _Pformat1 $51;
+MPRINT(EM_DIAGRAM):   length _Pformat1 $51;
+22505      drop _Pformat1;
+MPRINT(EM_DIAGRAM):   drop _Pformat1;
+22506      _Pformat1 = strip(put(diagnosis, $1.));
+MPRINT(EM_DIAGRAM):   _Pformat1 = strip(put(diagnosis, $1.));
+22507      if
+22508      _Pformat1 = 'B'
+22509      then do;
+MPRINT(EM_DIAGRAM):   if _Pformat1 = 'B' then do;
+22510      if (357+1-_C000003)*_genvalue_ <= (250 - _C000001) then do;
+MPRINT(EM_DIAGRAM):   if (357+1-_C000003)*_genvalue_ <= (250 - _C000001) then do;
+22511      _C000001 + 1;
+MPRINT(EM_DIAGRAM):   _C000001 + 1;
+22512      output EMWS1.Part2_TRAIN;
+MPRINT(EM_DIAGRAM):   output EMWS1.Part2_TRAIN;
+22513      end;
+MPRINT(EM_DIAGRAM):   end;
+22514      else do;
+MPRINT(EM_DIAGRAM):   else do;
+22515      _C000002 + 1;
+MPRINT(EM_DIAGRAM):   _C000002 + 1;
+22516      output EMWS1.Part2_VALIDATE;
+MPRINT(EM_DIAGRAM):   output EMWS1.Part2_VALIDATE;
+22517      end;
+MPRINT(EM_DIAGRAM):   end;
+22518      _C000003+1;
+MPRINT(EM_DIAGRAM):   _C000003+1;
+22519      end;
+MPRINT(EM_DIAGRAM):   end;
+22520      else if
+22521      _Pformat1 = 'M'
+22522      then do;
+MPRINT(EM_DIAGRAM):   else if _Pformat1 = 'M' then do;
+22523      if (212+1-_C000006)*_genvalue_ <= (148 - _C000004) then do;
+MPRINT(EM_DIAGRAM):   if (212+1-_C000006)*_genvalue_ <= (148 - _C000004) then do;
+22524      _C000004 + 1;
+MPRINT(EM_DIAGRAM):   _C000004 + 1;
+22525      output EMWS1.Part2_TRAIN;
+MPRINT(EM_DIAGRAM):   output EMWS1.Part2_TRAIN;
+22526      end;
+MPRINT(EM_DIAGRAM):   end;
+22527      else do;
+MPRINT(EM_DIAGRAM):   else do;
+22528      _C000005 + 1;
+MPRINT(EM_DIAGRAM):   _C000005 + 1;
+22529      output EMWS1.Part2_VALIDATE;
+MPRINT(EM_DIAGRAM):   output EMWS1.Part2_VALIDATE;
+22530      end;
+MPRINT(EM_DIAGRAM):   end;
+22531      _C000006+1;
+MPRINT(EM_DIAGRAM):   _C000006+1;
+22532      end;
+MPRINT(EM_DIAGRAM):   end;
+22533      run;
+MPRINT(EM_DIAGRAM):   run;
+
+NOTE: View EMWS1.FIMPORT2_TRAIN.VIEW used (Total process time):
+      real time           0.05 seconds
+      cpu time            0.04 seconds
+      
+NOTE: There were 569 observations read from the data set EMWS1.FIMPORT2_DATA.
+NOTE: There were 569 observations read from the data set EMWS1.FIMPORT2_TRAIN.
+NOTE: The data set EMWS1.PART2_TRAIN has 396 observations and 33 variables.
+NOTE: The data set EMWS1.PART2_VALIDATE has 173 observations and 33 variables.
+NOTE: DATA statement used (Total process time):
+      real time           0.07 seconds
+      cpu time            0.07 seconds
+      
+
+22534      data _tempNobs;
+MPRINT(EM_DIAGRAM):    data _tempNobs;
+22535      length Type $8 Table $32 Nobs 8;
+MPRINT(EM_DIAGRAM):   length Type $8 Table $32 Nobs 8;
+22536      label type= "%sysfunc(sasmsg(sashelp.dmine, meta_type_vlabel,    NOQUOTE))" table = "%sysfunc(sasmsg(sashelp.dmine, meta_dataset_vlabel, NOQUOTE))" nobs = "%sysfunc(sasmsg(sashelp.dmine,  rpt_numObs_vlabel,   NOQUOTE))";
+MPRINT(EM_DIAGRAM):   label type= "Type" table = "Data Set" nobs = "Number of Observations";
+22537      type='DATA';
+MPRINT(EM_DIAGRAM):   type='DATA';
+22538      table="EMWS1.FIMPORT2_train";
+MPRINT(EM_DIAGRAM):   table="EMWS1.FIMPORT2_train";
+22539      Nobs=569;
+MPRINT(EM_DIAGRAM):   Nobs=569;
+22540      output;
+MPRINT(EM_DIAGRAM):   output;
+22541      type='TRAIN';
+MPRINT(EM_DIAGRAM):   type='TRAIN';
+22542      table="EMWS1.Part2_TRAIN";
+MPRINT(EM_DIAGRAM):   table="EMWS1.Part2_TRAIN";
+22543      Nobs=396;
+MPRINT(EM_DIAGRAM):   Nobs=396;
+22544      output;
+MPRINT(EM_DIAGRAM):   output;
+22545      type='VALIDATE';
+MPRINT(EM_DIAGRAM):   type='VALIDATE';
+22546      table="EMWS1.Part2_VALIDATE";
+MPRINT(EM_DIAGRAM):   table="EMWS1.Part2_VALIDATE";
+22547      Nobs=173;
+MPRINT(EM_DIAGRAM):   Nobs=173;
+22548      output;
+MPRINT(EM_DIAGRAM):   output;
+22549      run;
+MPRINT(EM_DIAGRAM):   run;
+
+NOTE: The data set WORK._TEMPNOBS has 3 observations and 3 variables.
+NOTE: DATA statement used (Total process time):
+      real time           0.00 seconds
+      cpu time            0.00 seconds
+      
+
+22550      %let _cn = %sysfunc(getoption(CENTER));
+22551      %let _nb = %sysfunc(getoption(NUMBER));
+22552      options nonumber nocenter;
+MPRINT(EM_DIAGRAM):   options nonumber nocenter;
+22553      proc print data=_tempNobs noobs label;
+MPRINT(EM_DIAGRAM):   proc print data=_tempNobs noobs label;
+22554      title9 ' ';
+MPRINT(EM_DIAGRAM):   title9 ' ';
+22555      title10 "%sysfunc(sasmsg(sashelp.dmine, rpt_partitionSummary_title, NOQUOTE))";
+MPRINT(EM_DIAGRAM):   title10 "Partition Summary";
+MPRINT(EM_DIAGRAM):   run;
+22556      run;
+
+NOTE: There were 3 observations read from the data set WORK._TEMPNOBS.
+NOTE: The PROCEDURE PRINT printed page 2.
+NOTE: PROCEDURE PRINT used (Total process time):
+      real time           0.02 seconds
+      cpu time            0.00 seconds
+      
+
+22557      title10;
+MPRINT(EM_DIAGRAM):   title10;
+22558      options &_cn &_nb;
+MPRINT(EM_DIAGRAM):   options NOCENTER NONUMBER;
+MPRINT(EM_DIAGRAM):   run;
+22559      run;
+
+MPRINT(EM_DIAGRAM):    proc printto;
+MPRINT(EM_DIAGRAM):   run;

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?><_ROOT_  Location="CATALOG" Catalog="SASHELP.EMSAMP.Fimport.SOURCE" ImportType="Local" GuessRows="500"
+ Delimiter="," NameRow="Y" SkipRows="0" MaxRows="1000000" MaxCols="10000" FileType="csv"
+ Role="TRAIN" ForceRun="N" Summarize="N" AdvancedAdvisor="N" RunAction="Train" Component="FileImport"
+ IFileName="C:\Users\student\OneDrive - Bryant University\Documents\GitHub\Projects_in_R\Assignments\Data\breast_cancer.csv"
+ AccessTable="NoTableName" UserID="NoUserID" Password="NoPassword" RawCreateTime="2106670797.7"
+ CreateTime="03OCT2026:18:19:58" RunId="c7881135-be4a-4944-ac99-fdbf75abe789">
+<VARIABLEPROPERTIES/>
+<FILEPROPERTIES ><![CDATA[
+USERTRAINCODE
+USERSCORECODE
+USERREPORTCODE
+VARIABLESETDELTA
+DELTACODE
+]]>
+</FILEPROPERTIES></_ROOT_>

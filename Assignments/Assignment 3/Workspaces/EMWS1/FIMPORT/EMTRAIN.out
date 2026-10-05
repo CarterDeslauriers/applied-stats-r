@@ -1,0 +1,85 @@
+ 
+                                                                                                                                                                                                                                                                
+ 
+ 
+Variable Summary
+
+            Measurement    Frequency
+Role           Level         Count
+
+ID           NOMINAL            1   
+INPUT        INTERVAL          27   
+REJECTED     INTERVAL           3   
+TARGET       BINARY             1   
+ 
+                                                                                                                                                                                                                                                                
+ 
+ 
+
+The CONTENTS Procedure
+
+Data Set Name        EMWS1.FIMPORT_DATA            Observations          569
+Member Type          DATA                          Variables             32 
+Engine               V9                            Indexes               0  
+Created              10/03/2026 17:59:47           Observation Length    256
+Last Modified        10/03/2026 17:59:47           Deleted Observations  0  
+Protection                                         Compressed            NO 
+Data Set Type                                      Sorted                NO 
+Label                                                                       
+Data Representation  WINDOWS_64                                             
+Encoding             wlatin1  Western (Windows)                             
+
+
+                                                                   Engine/Host Dependent Information
+
+Data Set Page Size          65536                                                                                                                                       
+Number of Data Set Pages    3                                                                                                                                           
+First Data Page             1                                                                                                                                           
+Max Obs per Page            255                                                                                                                                         
+Obs in First Data Page      237                                                                                                                                         
+Number of Data Set Repairs  0                                                                                                                                           
+ExtendObsCounter            YES                                                                                                                                         
+Filename                    C:\Users\student\OneDrive - Bryant University\Documents\GitHub\Projects_in_R\Assignments\Assignment 3\Workspaces\EMWS1\fimport_data.sas7bdat
+Release Created             9.0401M7                                                                                                                                    
+Host Created                X64_10PRO                                                                                                                                   
+Owner Name                  G10-5CG42033X6\student                                                                                                                      
+File Size                   256KB                                                                                                                                       
+File Size (bytes)           262144                                                                                                                                      
+
+
+                        Alphabetic List of Variables and Attributes
+ 
+ #    Variable                   Type    Len    Format     Informat    Label
+
+ 6    area_mean                  Num       8    BEST12.    BEST32.                         
+15    area_se                    Num       8    BEST12.    BEST32.                         
+24    area_worst                 Num       8    BEST12.    BEST32.                         
+ 8    compactness_mean           Num       8    BEST12.    BEST32.                         
+17    compactness_se             Num       8    BEST12.    BEST32.                         
+26    compactness_worst          Num       8    BEST12.    BEST32.                         
+30    concave_points_mean        Num       8                           concave points_mean 
+31    concave_points_se          Num       8                           concave points_se   
+32    concave_points_worst       Num       8                           concave points_worst
+ 9    concavity_mean             Num       8    BEST12.    BEST32.                         
+18    concavity_se               Num       8    BEST12.    BEST32.                         
+27    concavity_worst            Num       8    BEST12.    BEST32.                         
+ 2    diagnosis                  Char      1    $1.        $1.                             
+11    fractal_dimension_mean     Num       8    BEST12.    BEST32.                         
+20    fractal_dimension_se       Num       8    BEST12.    BEST32.                         
+29    fractal_dimension_worst    Num       8    BEST12.    BEST32.                         
+ 1    id                         Num       8    BEST12.    BEST32.                         
+ 5    perimeter_mean             Num       8    BEST12.    BEST32.                         
+14    perimeter_se               Num       8    BEST12.    BEST32.                         
+23    perimeter_worst            Num       8    BEST12.    BEST32.                         
+ 3    radius_mean                Num       8    BEST12.    BEST32.                         
+12    radius_se                  Num       8    BEST12.    BEST32.                         
+21    radius_worst               Num       8    BEST12.    BEST32.                         
+ 7    smoothness_mean            Num       8    BEST12.    BEST32.                         
+16    smoothness_se              Num       8    BEST12.    BEST32.                         
+25    smoothness_worst           Num       8    BEST12.    BEST32.                         
+10    symmetry_mean              Num       8    BEST12.    BEST32.                         
+19    symmetry_se                Num       8    BEST12.    BEST32.                         
+28    symmetry_worst             Num       8    BEST12.    BEST32.                         
+ 4    texture_mean               Num       8    BEST12.    BEST32.                         
+13    texture_se                 Num       8    BEST12.    BEST32.                         
+22    texture_worst              Num       8    BEST12.    BEST32.                         

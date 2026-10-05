@@ -1,0 +1,42 @@
+*------------------------------------------------------------*
+ Node = 2
+*------------------------------------------------------------*
+if perimeter_worst < 107.2 or MISSING
+then 
+ Tree Node Identifier   = 2
+ Number of Observations = 245
+ Predicted: diagnosis=M = 0.04
+ Predicted: diagnosis=B = 0.96
+ 
+*------------------------------------------------------------*
+ Node = 7
+*------------------------------------------------------------*
+if perimeter_worst >= 114.6 or MISSING
+then 
+ Tree Node Identifier   = 7
+ Number of Observations = 121
+ Predicted: diagnosis=M = 1.00
+ Predicted: diagnosis=B = 0.00
+ 
+*------------------------------------------------------------*
+ Node = 10
+*------------------------------------------------------------*
+if perimeter_worst < 114.6 AND perimeter_worst >= 107.2
+AND area_mean < 608.95
+then 
+ Tree Node Identifier   = 10
+ Number of Observations = 10
+ Predicted: diagnosis=M = 1.00
+ Predicted: diagnosis=B = 0.00
+ 
+*------------------------------------------------------------*
+ Node = 11
+*------------------------------------------------------------*
+if perimeter_worst < 114.6 AND perimeter_worst >= 107.2
+AND area_mean >= 608.95 or MISSING
+then 
+ Tree Node Identifier   = 11
+ Number of Observations = 20
+ Predicted: diagnosis=M = 0.30
+ Predicted: diagnosis=B = 0.70
+ 
