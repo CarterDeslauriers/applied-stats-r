@@ -46,7 +46,13 @@ table(df$Main_Genre)
 ```
 
 ```{r}
-df %>% filter(Main_Genre %in% c("Action", "Comedy")) %>% ggplot() + geom_point(mapping=aes(Meta_score, Gross)) + facet_wrap(~Main_Genre) + labs(x="Meta_score", 
+df = df %>% drop_na(Meta_score)
+df$Meta_Split = ifelse(df$Meta_score > median(df$Meta_score, na.rm =TRUE), "High Score", "Low Score")
+
+
+# filter(Main_Genre %in% c("Action", "Comedy"))
+
+df %>% ggplot() + geom_col(mapping=aes(Meta_Split, Gross)) + labs(x="Meta_score", 
        y = "Gross", 
        title = "Gross by Score")
 ```
