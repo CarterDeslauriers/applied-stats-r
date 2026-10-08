@@ -14,6 +14,7 @@
 |7.1|[Figure](Assignments/Gross_by_Meta_Score.png)|Image for Assignment 7|
 |7.2|[Assignment 7 ex-credit](Assignments/assignment7_extra_credits.html)|Extra Credit|
 |8|[Assignment 8](Assignments/assignment8.html)|Animation|
+|9|[Assignment 9](Assignments/assignment9.html)|Animation - Transition Reveal|
 
 ## Imbalanced Learning Methods
 
