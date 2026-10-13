@@ -67,8 +67,22 @@ df = read_csv("Data/WHO-COVID-19-global-data.csv")
 
 
 ```{r}
-df %>% names
+df %>% names 
 ```
+```{r}
+table(df$Country)
+```
+
+
+
+```{r}
+df$post2022 = df$Date_reported >= "2022-01-01"
+
+g = df %>% filter(Country %in% c("Japan", "China")) %>% ggplot() + geom_col(mapping = aes(Country, Cumulative_cases)) + transition_states(post2022)
+                  
+animate(g)
+```
+
 
 ```{r}
 # First filter to 2021, then mutate to get month column

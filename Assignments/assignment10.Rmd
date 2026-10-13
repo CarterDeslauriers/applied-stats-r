@@ -7,6 +7,8 @@ output:
 title: "Assignment 10: Predictive Modeling - Part 1"
 ---
 
+Return Here: [README](.././)
+
 ***How to do it?***: 
 
 - Open the Rmarkdown file of this assignment ([link](assignment10.Rmd)) in Rstudio. 
@@ -28,27 +30,139 @@ knitr::opts_chunk$set(message = FALSE)
 
 1. Use the `Adult Census Income` dataset.  We will predict the income (whether or not it is more than 50k or not) of an adult. Import the dataset.  Partition the data into 80% training and 20% testing.  
 
+```{r}
+library("tidyverse")
+library("caret")
+set.seed(1234)
+df = read_csv("Data/adult_census.csv")  %>% mutate(
+    workclass      = factor(workclass),
+    education      = factor(education),
+    marital.status = factor(marital.status),
+    occupation     = factor(occupation),
+    relationship   = factor(relationship),
+    race           = factor(race),
+    sex            = factor(sex),
+    native.country = factor(native.country),
+    income         = factor(income)
+  )
+split_index = createDataPartition(df$income, p=.8, list=FALSE)
+training = df[split_index, ]
+testing = df[-split_index, ]
+```
+
+
 2. Practice Decision Tree.  Do the follows:
+
+```{r}
+library(rpart)
+```
+
 
   - Use `rpart` package, create a decision tree with maximum depth of 3. 
   
+```{r}
+tree = rpart(income ~ ., data = training, control = rpart.control(maxdepth=3))
+```
+
+  
   - Calculate the accuracy of the model on the testing data. Notice that the positive outcome here is not `1` but `>50K` or `<50K`. 
+  
+  
+```{r}
+predict = predict(tree, testing, type="class")
+confusion = confusionMatrix(data = predict, reference = testing$income, positive = ">50K")
+confusion$overal[1]
+```
+
   
   - Plot the tree
   
+```{r}
+library(rattle)
+fancyRpartPlot(tree)
+```
+
+  
   - Plot the variable importance by the tree
+  
+```{r}
+tree$variable.importance
+```
+
   
 3. Create 3 more trees and compare the testing accuracy of these trees, which tree give the highest testing accuracy.
 
+```{r}
+tree1 = rpart(income ~ ., data = training, control = rpart.control(maxdepth=1))
+tree2 = rpart(income ~ ., data = training, control = rpart.control(maxdepth=2))
+tree3 = rpart(income ~ ., data = training, control = rpart.control(maxdepth=3))
+
+predict = predict(tree1, testing, type="class")
+confusion = confusionMatrix(data = predict, reference = testing$income, positive = ">50K")
+confusion$overal[1]
+
+predict = predict(tree2, testing, type="class")
+confusion = confusionMatrix(data = predict, reference = testing$income, positive = ">50K")
+confusion$overal[1]
+
+predict = predict(tree3, testing, type="class")
+confusion = confusionMatrix(data = predict, reference = testing$income, positive = ">50K")
+confusion$overal[1]
+```
+
+
 4. Practice Random Forest.  Do the follows: 
 
-  - Use `randomForest` package, create a random forest of 1000 trees. 
+  - Use `randomForest` package, create a random forest of 1000 trees.
+  
+```{r}
+library("randomForest")
+forest = randomForest(income ~ ., data = training, ntree=1000)
+```
+
   
   - Calculate the accuracy of the model on the testing data. 
   
+```{r}
+predict = predict(forest, testing, type="class")
+confusion = confusionMatrix(data = predict, reference = testing$income, positive = ">50K")
+confusion$overal[1]
+```
+
+  
   - Plot the variable importance by the forest
+  
+```{r}
+importance(forest)
+```
+
 
 5. Create 3 more forests and compare the testing accuracy of these forests, which forest give the highest testing accuracy.
 
+```{r}
+forest1 = randomForest(income ~ ., data = training, ntree=10)
+forest2 = randomForest(income ~ ., data = training, ntree=100)
+forest3 = randomForest(income ~ ., data = training, ntree=500)
+
+predict = predict(forest1, testing, type="class")
+confusion = confusionMatrix(data = predict, reference = testing$income, positive = ">50K")
+confusion$overal[1]
+
+predict = predict(forest2, testing, type="class")
+confusion = confusionMatrix(data = predict, reference = testing$income, positive = ">50K")
+confusion$overal[1]
+
+predict = predict(forest3, testing, type="class")
+confusion = confusionMatrix(data = predict, reference = testing$income, positive = ">50K")
+confusion$overal[1]
+```
+
+
 6. What is the best model (in term of testing accuracy) among all models (including trees and forests) you have trained?
+
+```{r}
+print("It is actually the forest trained with 100 trees (Accurary .8636 > .863 the next highest.")
+print("Its likely that using more tree is potentially slighlty overfitting but forests are robust to overfitting so it has almost 0 actual effect.")
+print("It also makes sense the forest are slightly better than the tree as the forest decreases variance and also uses more compute i.e. is just a bunch of simple trees.")
+```
 

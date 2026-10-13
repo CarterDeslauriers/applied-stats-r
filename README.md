@@ -15,6 +15,7 @@
 |7.2|[Assignment 7 ex-credit](Assignments/assignment7_extra_credits.html)|Extra Credit|
 |8|[Assignment 8](Assignments/assignment8.html)|Animation|
 |9|[Assignment 9](Assignments/assignment9.html)|Animation - Transition Reveal|
+|10|[Assignment 10](Assignments/assignment10.html)|Predictive modeling - Tree and Forests|
 
 ## Imbalanced Learning Methods
 
