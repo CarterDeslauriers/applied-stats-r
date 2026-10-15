@@ -31,19 +31,86 @@ knitr::opts_chunk$set(message = FALSE, warning = FALSE)
 1. Install the package mlbench and use the follows to import the data
 
 ```{r}
-library("mlbench")
-library("tidyverse")
-data(PimaIndiansDiabetes)
-df <- tibble(PimaIndiansDiabetes)
+library(mlbench)
+library(tidyverse)
+data(SynthDiabetes)
+df <- as_tibble(SynthDiabetes)
+df %>% names
 ```
 
 Train and Test a decision tree and a random forest with caret. Plot the variable importance of these models. 
 
 ```{r}
+library(caret)
+df <- df %>%
+  mutate(
+    pregnant = as.factor(pregnant),
+    glucose  = as.factor(glucose),
+    pressure = as.factor(pressure),
+    triceps  = as.factor(triceps),
+    insulin  = as.factor(insulin),
+    mass     = as.factor(mass),
+    pedigree = as.factor(pedigree),
+    age      = as.factor(age),
+    diabetes = as.factor(diabetes)
+  )
 
+df = drop_na(df)
+
+split_index = createDataPartition(df$diabetes, p = .7, list = FALSE)
+df_train = df[split_index, ]
+df_test = df[-split_index, ]
+```
+
+
+```{r}
+tree = train(diabetes~., data = df_train, method="rpart2", maxdepth=3)
+predict = predict(tree, df_test)
+confusion = confusionMatrix(data=predict, reference=df_test$diabetes, positive="pos")
+confusion$overal[1]
+plot(varImp(tree), top=10)
+```
+
+```{r}
+# Taking a long time so I switched to ntree=20
+forest = train(diabetes~., data = df_train, method="rf", ntree=20)
+predict = predict(forest, df_test)
+confusion = confusionMatrix(data=predict, reference=df_test$diabetes, positive="pos")
+confusion$overal[1]
+plot(varImp(forest), top=10)
 ```
 
 
 2. Train and Test a `glmnet` model. Plot the variable importance of the model. 
 
+```{r}
+glmnet = train(diabetes~., data = df_train, method="glmnet")
+predict = predict(glmnet, df_test)
+confusion = confusionMatrix(data=predict, reference=df_test$diabetes, positive="pos")
+confusion$overal[1]
+plot(varImp(glmnet), top=10)
+```
+
+
 3. Train and test two models that are not `ranger`, `glmnet` or `rpart`  with caret. If possible, plot the variable importance of the model. 
+
+
+```{r}
+knn = train(diabetes~., data = df_train, method="knn")
+predict = predict(knn, df_test)
+confusion = confusionMatrix(data=predict, reference=df_test$diabetes, positive="pos")
+confusion$overal[1]
+# plot(varImp(knn), top=10)
+# Was not letting me plot
+```
+
+
+```{r}
+nnet = train(diabetes~., data = df_train, method="nnet", maxit = 20, trace=FALSE)
+predict = predict(nnet, df_test)
+confusion = confusionMatrix(data=predict, reference=df_test$diabetes, positive="pos")
+confusion$overal[1]
+plot(varImp(nnet), top=10)
+```
+
+
