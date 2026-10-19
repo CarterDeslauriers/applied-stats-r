@@ -71,7 +71,9 @@ df$death_per_cases = df$Cumulative_deaths / df$Cumulative_cases
 
 # Depends on the point in time, it changes over time so you could calculate the average by time, or the max
 
-df %>% arrange(desc(death_per_cases)) %>% group_by(Country) %>% slice(1) %>% arrange(desc(Cumulative_deaths)) %>% head(3)
+df %>% filter(Date_reported >= "2020-01-01", Date_reported < "2021-01-01") %>%  arrange(desc(death_per_cases)) %>% group_by(Country) %>% slice(1) %>% arrange(desc(Cumulative_deaths)) %>% select(death_per_cases) %>% head(3)
+
+df %>% filter(Date_reported >= "2022-01-01", Date_reported < "2023-01-01") %>%  arrange(desc(death_per_cases)) %>% group_by(Country) %>% slice(1) %>% arrange(desc(Cumulative_deaths)) %>% select(death_per_cases) %>% head(3)
 
 print("This gives based on the max at any point in time")
 ```

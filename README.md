@@ -17,6 +17,7 @@
 |9|[Assignment 9](Assignments/assignment9.html)|Animation - Transition Reveal|
 |10|[Assignment 10](Assignments/assignment10.html)|Predictive modeling - Tree and Forests|
 |11|[Assignment 11](Assignments/assignment11.html)|Universal package modeling|
+|12|[Assignment 12](Assignments/assignment12.html)|Model Tuning|
 
 ## Imbalanced Learning Methods
 

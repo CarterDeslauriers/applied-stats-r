@@ -31,6 +31,7 @@ knitr::opts_chunk$set(message = FALSE, warning = FALSE)
 1. Install the package mlbench and use the follows to import the data
 
 ```{r}
+# Could not find the other data, think mlbench dropped it or I am looking in the wrong place
 library(mlbench)
 library(tidyverse)
 data(SynthDiabetes)
