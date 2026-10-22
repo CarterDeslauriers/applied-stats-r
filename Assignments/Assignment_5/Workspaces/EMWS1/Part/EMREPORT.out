@@ -1,0 +1,31 @@
+ 
+                                                                                                                                                                                                                                                                
+ 
+ 
+Summary Statistics for Class Targets
+
+Data=DATA
+
+             Numeric    Formatted    Frequency
+Variable      Value       Value        Count      Percent    Label
+
+diagnosis       .           B           357       62.7417         
+diagnosis       .           M           212       37.2583         
+
+
+Data=TRAIN
+
+             Numeric    Formatted    Frequency
+Variable      Value       Value        Count      Percent    Label
+
+diagnosis       .           B           249       62.8788         
+diagnosis       .           M           147       37.1212         
+
+
+Data=VALIDATE
+
+             Numeric    Formatted    Frequency
+Variable      Value       Value        Count      Percent    Label
+
+diagnosis       .           B           108       62.4277         
+diagnosis       .           M            65       37.5723         

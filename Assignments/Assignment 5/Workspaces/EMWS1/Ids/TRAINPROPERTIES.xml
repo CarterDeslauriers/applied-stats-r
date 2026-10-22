@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?><_ROOT_  DataSource="breastcancer" Scope="LOCAL" Role="RAW" Library="BCW" Table="BREAST_CANCER"
+ NCols="32" NObs="569" NBytes="197632" Segment="" DataSourceRole="RAW" OutputType="VIEW"
+ ForceRun="N" ComputeStatistics="N" DataSelection="DATASOURCE" NewTable="" MetaAdvisor="BASIC"
+ ApplyIntervalLevelLowerLimit="Y" IntervalLowerLimit="20" ApplyMaxPercentMissing="Y"
+ MaxPercentMissing="50" ApplyMaxClassLevels="Y" MaxClassLevels="20" IdentifyEmptyColumns="Y"
+ VariableValidation="STRICT" NewVariableRole="REJECT" DropMapVariables="Y" DsId="breastcancer"
+ DsSampleName="" DsSampleSizeType="" DsSampleSize="" DsCreatedBy="student" DsCreateDate="2108238165.3"
+ DsModifiedBy="student" DsModifyDate="2108238165.3" DsScope="LOCAL" Sample="D" SampleSizeType="PERCENT"
+ SampleSizePercent="20" SampleSizeObs="10000" DBPassThrough="Y" RunAction="Train"
+ Component="DataSource" RawCreateTime="2108238253.5" CreateTime="21OCT2026:21:44:13"
+ Description="" Data="BCW.BREAST_CANCER" CMeta="WORK.M3JPVLVC" RunId="bce5eaaf-7d05-48f6-a61a-293ce4741c7f"
+ RawLastTimeRun="2108238754.2" RawRunTime="7.0829999447" LastTimeRun="21OCT2026:21:52:34"
+ RunTime="0 Hr. 0 Min. 7.08 Sec.">
+<VARIABLEPROPERTIES/>
+<FILEPROPERTIES/>
+</_ROOT_>

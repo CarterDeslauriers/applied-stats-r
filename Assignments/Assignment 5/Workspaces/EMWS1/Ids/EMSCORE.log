@@ -1,0 +1,102 @@
+MPRINT(EM_DIAGRAM):    data _null_;
+MPRINT(EM_DIAGRAM):   call symput('NLDATE', strip(put(date(), NLDATE.)));
+MPRINT(EM_DIAGRAM):   call symput('NLTIME', strip(put(datetime(), NLTIME.)));
+MPRINT(EM_DIAGRAM):   run;
+MPRINT(EM_DIAGRAM):   data _null_;
+MPRINT(EM_DIAGRAM):   nldate= sasmsg("sashelp.dmine", "log_date_note", 'N', "October 21, 2026" );
+MPRINT(EM_DIAGRAM):   nltime= sasmsg("sashelp.dmine", "log_time_note", 'N', "21:52:40" );
+MPRINT(EM_DIAGRAM):   put "*------------------------------------------------------------*";
+MPRINT(EM_DIAGRAM):   put "* Score Log";
+MPRINT(EM_DIAGRAM):   put nldate;
+MPRINT(EM_DIAGRAM):   put nltime;
+MPRINT(EM_DIAGRAM):   put "*------------------------------------------------------------*";
+MPRINT(EM_DIAGRAM):   run;
+*------------------------------------------------------------*
+* Score Log
+Date:                October 21, 2026
+Time:                21:52:40
+*------------------------------------------------------------*
+MPRINT(EM_DIAGRAM):    filename O0Q5TE60 "C:\Users\student\OneDrive - Bryant University\Documents\GitHub\Projects_in_R\Assignments\Assignment 5\Workspaces\EMWS1\Ids\EMSCORE.out" encoding="UTF-8" NOBOM;
+MPRINT(EM_DIAGRAM):   proc printto print=O0Q5TE60 new;
+MPRINT(EM_DIAGRAM):   run;
+23000      *------------------------------------------------------------*;
+MPRINT(EM_DIAGRAM):    *------------------------------------------------------------*;
+23001      * Ids: Computing metadata for DATA data;
+MPRINT(EM_DIAGRAM):   * Ids: Computing metadata for DATA data;
+23002      *------------------------------------------------------------*;
+MPRINT(EM_DIAGRAM):   *------------------------------------------------------------*;
+
+NOTE: View EMWS1.IDS_DATA.VIEW used (Total process time):
+      real time           0.09 seconds
+      cpu time            0.09 seconds
+      
+23003      data EMWS1.Ids_EMINFO;
+MPRINT(EM_DIAGRAM):    data EMWS1.Ids_EMINFO;
+23004      length TARGET KEY $32 DATA $43;
+MPRINT(EM_DIAGRAM):   length TARGET KEY $32 DATA $43;
+23005      TARGET="";
+MPRINT(EM_DIAGRAM):   TARGET="";
+23006      KEY="IDSTABLE";
+MPRINT(EM_DIAGRAM):   KEY="IDSTABLE";
+23007      DATA="BCW.BREAST_CANCER";
+MPRINT(EM_DIAGRAM):   DATA="BCW.BREAST_CANCER";
+23008      output;
+MPRINT(EM_DIAGRAM):   output;
+23009      TARGET="diagnosis";
+MPRINT(EM_DIAGRAM):   TARGET="diagnosis";
+23010      KEY="DECDATA";
+MPRINT(EM_DIAGRAM):   KEY="DECDATA";
+23011      DATA="EMWS1.Ids_diagnosis_DD";
+MPRINT(EM_DIAGRAM):   DATA="EMWS1.Ids_diagnosis_DD";
+23012      output;
+MPRINT(EM_DIAGRAM):   output;
+23013      TARGET="diagnosis";
+MPRINT(EM_DIAGRAM):   TARGET="diagnosis";
+23014      KEY="DECMETA";
+MPRINT(EM_DIAGRAM):   KEY="DECMETA";
+23015      DATA="EMWS1.Ids_diagnosis_DM";
+MPRINT(EM_DIAGRAM):   DATA="EMWS1.Ids_diagnosis_DM";
+23016      output;
+MPRINT(EM_DIAGRAM):   output;
+23017      TARGET="";
+MPRINT(EM_DIAGRAM):   TARGET="";
+23018      KEY="STATS";
+MPRINT(EM_DIAGRAM):   KEY="STATS";
+23019      DATA="EMWS1.Ids_EMSTATDEFAULT";
+MPRINT(EM_DIAGRAM):   DATA="EMWS1.Ids_EMSTATDEFAULT";
+23020      output;
+MPRINT(EM_DIAGRAM):   output;
+23021      run;
+MPRINT(EM_DIAGRAM):   run;
+
+NOTE: The data set EMWS1.IDS_EMINFO has 4 observations and 3 variables.
+NOTE: DATA statement used (Total process time):
+      real time           0.01 seconds
+      cpu time            0.03 seconds
+      
+
+NOTE: View EMWS1.IDS_DATA.VIEW used (Total process time):
+      real time           0.06 seconds
+      cpu time            0.06 seconds
+      
+23022      data EMWS1.Ids_CMeta_DATA;
+MPRINT(EM_DIAGRAM):    data EMWS1.Ids_CMeta_DATA;
+23023      set EMWS1.Ids_VariableSet;
+MPRINT(EM_DIAGRAM):   set EMWS1.Ids_VariableSet;
+23024      drop DROP;
+MPRINT(EM_DIAGRAM):   drop DROP;
+23025      where DROP='N';
+MPRINT(EM_DIAGRAM):   where DROP='N';
+23026      run;
+MPRINT(EM_DIAGRAM):   run;
+
+NOTE: There were 32 observations read from the data set EMWS1.IDS_VARIABLESET.
+      WHERE DROP='N';
+NOTE: The data set EMWS1.IDS_CMETA_DATA has 32 observations and 20 variables.
+NOTE: DATA statement used (Total process time):
+      real time           0.02 seconds
+      cpu time            0.00 seconds
+      
+
+MPRINT(EM_DIAGRAM):    proc printto;
+MPRINT(EM_DIAGRAM):   run;

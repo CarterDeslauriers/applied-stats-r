@@ -1,0 +1,208 @@
+*------------------------------------------------------------*
+User:                student
+Date:                October 21, 2026
+Time:                21:54:42
+*------------------------------------------------------------*
+* Training Output
+*------------------------------------------------------------*
+ 
+ 
+ 
+ 
+Variable Summary
+ 
+            Measurement    Frequency
+Role           Level         Count
+ 
+FREQ         INTERVAL           1
+INPUT        INTERVAL          27
+REJECTED     INTERVAL           4
+TARGET       BINARY             1
+ 
+ 
+ 
+ 
+Model Events
+ 
+                                     Number
+                      Measurement      of
+ Target      Event       Level       Levels      Order       Label
+ 
+diagnosis      M        BINARY          2      Descending
+ 
+ 
+ 
+ 
+Predicted and decision variables
+ 
+Type           Variable              Label
+ 
+TARGET       diagnosis
+PREDICTED    P_diagnosisM    Predicted: diagnosis=M
+RESIDUAL     R_diagnosisM    Residual: diagnosis=M
+PREDICTED    P_diagnosisB    Predicted: diagnosis=B
+RESIDUAL     R_diagnosisB    Residual: diagnosis=B
+FROM         F_diagnosis     From: diagnosis
+INTO         I_diagnosis     Into: diagnosis
+ 
+ 
+ 
+ 
+ 
+The DMREG Procedure
+ 
+                Model Information
+ 
+Training Data Set              WORK.EM_DMREG.VIEW
+DMDB Catalog                   WORK.REG_DMDB
+Target Variable                diagnosis
+Target Measurement Level       Ordinal
+Number of Target Categories    2
+Error                          MBernoulli
+Link Function                  Logit
+Number of Model Parameters     28
+Number of Observations         35
+Frequency Variable             _resamp_
+Sum of Frequencies             40
+ 
+ 
+           Target Profile
+ 
+ Ordered                       Total
+   Value     diagnosis     Frequency
+ 
+       1     M                    11
+       2     B                    29
+ 
+ 
+ 
+ 
+ 
+The DMREG Procedure
+ 
+Newton-Raphson Ridge Optimization
+ 
+Without Parameter Scaling
+ 
+Parameter Estimates              28
+ 
+                                             Optimization Start
+ 
+Active Constraints                                  0  Objective Function                       23.526751094
+Max Abs Gradient Element                 6.9746618046
+ 
+ 
+                                                                                                        Ratio
+                                                                                                      Between
+                                                                                                       Actual
+                                                                 Objective     Max Abs                    and
+                     Function         Active        Objective     Function    Gradient              Predicted
+Iter     Restarts       Calls    Constraints         Function       Change     Element     Ridge       Change
+ 
+   1            0           2              0          3.91583      19.6109      2.0473         0        1.021
+   2            0           3              0          1.38663       2.5292      0.7331         0        1.256
+   3            0           4              0          0.50516       0.8815      0.2676         0        1.262
+   4            0           5              0          0.18556       0.3196      0.0982         0        1.264
+   5            0           6              0          0.06833       0.1172      0.0361         0        1.264
+   6            0           7              0          0.02518       0.0432      0.0133         0        1.264
+   7            0           8              0          0.00928       0.0159     0.00490         0        1.264
+ 
+                                            Optimization Results
+ 
+Iterations                                          7  Function Calls                                     10
+Hessian Calls                                       8  Active Constraints                                  0
+Objective Function                       0.0092769489  Max Abs Gradient Element                 0.0048958776
+Ridge                                               0  Actual Over Pred Change                  1.2644274827
+ 
+Convergence criterion (ABSCONV=0.0235267511) satisfied.
+ 
+NOTE: At least one element of the gradient is greater than 1e-3.
+ 
+ 
+ 
+     Likelihood Ratio Test for Global Null Hypothesis: BETA=0
+ 
+     -2 Log Likelihood          Likelihood
+  Intercept     Intercept &          Ratio
+       Only      Covariates     Chi-Square       DF     Pr > ChiSq
+ 
+     47.054           0.019        47.0349       27         0.0098
+ 
+ 
+                                  Analysis of Maximum Likelihood Estimates
+ 
+                                             Standard          Wald                  Standardized
+Parameter                  DF    Estimate       Error    Chi-Square    Pr > ChiSq        Estimate    Exp(Est)
+ 
+Intercept                   1    -13.3822      1283.1          0.00        0.9917                       0.000
+area_mean                   1      0.0781      3.1954          0.00        0.9805         10.0194       1.081
+area_se                     1     -1.5391     19.5216          0.01        0.9372        -21.3987       0.215
+area_worst                  1      0.1154      2.2119          0.00        0.9584         23.2878       1.122
+compactness_mean            1       897.9      6815.3          0.02        0.8952         24.0914     999.000
+compactness_se              1      1011.6      9443.3          0.01        0.9147          8.5675     999.000
+compactness_worst           1      -299.6      2578.1          0.01        0.9075        -21.1549       0.000
+concave_points_mean         1    -16.4821      3843.6          0.00        0.9966         -0.3371       0.000
+concave_points_se           1      -369.8     16961.4          0.00        0.9826         -1.2746       0.000
+concave_points_worst        1       141.1      3190.2          0.00        0.9647          4.8027     999.000
+concavity_mean              1      -245.8      3646.6          0.00        0.9463        -10.0359       0.000
+concavity_se                1      -595.5      3577.4          0.03        0.8678         -8.9285       0.000
+concavity_worst             1       160.9      1269.3          0.02        0.8991         17.0037     999.000
+fractal_dimension_mean      1      -771.3     13696.2          0.00        0.9551         -2.8953       0.000
+fractal_dimension_se        1     -6223.0     76903.6          0.01        0.9355         -7.5943       0.000
+fractal_dimension_worst     1      1335.3     12792.1          0.01        0.9169         12.5833     999.000
+perimeter_mean              1     -9.5151     44.9186          0.04        0.8322        -91.0299       0.000
+perimeter_se                1     13.4182       234.2          0.00        0.9543         11.5323     999.000
+perimeter_worst             1     -2.3905     27.3875          0.01        0.9304        -32.9241       0.092
+radius_mean                 1     64.7988           .           .           .                   .     999.000
+radius_se                   1     55.3503      2586.6          0.00        0.9829          5.8886     999.000
+radius_worst                1      2.1630       272.7          0.00        0.9937          3.9588       8.697
+smoothness_mean             1      -505.3      9236.3          0.00        0.9564         -4.1199       0.000
+smoothness_se               1      2436.0     55588.6          0.00        0.9650          2.8695     999.000
+smoothness_worst            1      -246.9      9040.6          0.00        0.9782         -2.9683       0.000
+symmetry_mean               1     17.8436      2555.5          0.00        0.9944          0.2300     999.000
+symmetry_se                 1      -129.3      6479.3          0.00        0.9841         -0.3855       0.000
+symmetry_worst              1     34.1569      1596.3          0.00        0.9829          1.0257     999.000
+ 
+ 
+          Odds Ratio Estimates
+ 
+                                   Point
+Effect                          Estimate
+ 
+area_mean                          1.081
+area_se                            0.215
+area_worst                         1.122
+compactness_mean                 999.000
+compactness_se                   999.000
+compactness_worst                 <0.001
+concave_points_mean               <0.001
+concave_points_se                 <0.001
+concave_points_worst             999.000
+concavity_mean                    <0.001
+concavity_se                      <0.001
+concavity_worst                  999.000
+fractal_dimension_mean            <0.001
+fractal_dimension_se              <0.001
+fractal_dimension_worst          999.000
+perimeter_mean                    <0.001
+perimeter_se                     999.000
+perimeter_worst                    0.092
+radius_mean                      999.000
+radius_se                        999.000
+radius_worst                       8.697
+smoothness_mean                   <0.001
+smoothness_se                    999.000
+smoothness_worst                  <0.001
+symmetry_mean                    999.000
+symmetry_se                       <0.001
+symmetry_worst                   999.000
+
+
+*------------------------------------------------------------*
+* Score Output
+*------------------------------------------------------------*
+
+
+*------------------------------------------------------------*
+* Report Output
+*------------------------------------------------------------*

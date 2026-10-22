@@ -1,0 +1,315 @@
+data EMWS1.MdlComp_EMRANK;
+length PARENT $16 MODEL $16 MODELDESCRIPTION $81 DATAROLE $20 TARGET $32 TARGETLABEL $200;
+label PARENT = "%sysfunc(sasmsg(sashelp.dmine, rpt_parent_vlabel  ,  NOQUOTE))" MODEL = "%sysfunc(sasmsg(sashelp.dmine, rpt_modelnode_vlabel, NOQUOTE))" MODELDESCRIPTION = "%sysfunc(sasmsg(sashelp.dmine, rpt_modeldesc_vlabel, NOQUOTE))" TARGETLABEL =
+   "%sysfunc(sasmsg(sashelp.dmine, meta_targetlabel_vlabel, NOQUOTE))";
+retain parent "Boost" MODEL "Boost" MODELDESCRIPTION "GB 200" TARGETLABEL "";
+set EMWS1.Boost_EMRANK;
+where upcase(TARGET) = upcase("diagnosis");
+run;
+data EMWS1.MdlComp_EMSCOREDIST;
+length PARENT $16 MODEL $16 MODELDESCRIPTION $81 DATAROLE $20 TARGET $32 TARGETLABEL $200;
+label PARENT = "%sysfunc(sasmsg(sashelp.dmine, rpt_parent_vlabel  ,  NOQUOTE))" MODEL = "%sysfunc(sasmsg(sashelp.dmine, rpt_modelnode_vlabel, NOQUOTE))" MODELDESCRIPTION = "%sysfunc(sasmsg(sashelp.dmine, rpt_modeldesc_vlabel, NOQUOTE))" TARGETLABEL =
+   "%sysfunc(sasmsg(sashelp.dmine, meta_targetlabel_vlabel, NOQUOTE))";
+retain parent "Boost" MODEL "Boost" MODELDESCRIPTION "GB 200" TARGETLABEL "";
+set EMWS1.Boost_EMSCOREDIST;
+where upcase(TARGET) = upcase("diagnosis");
+run;
+data EMWS1.MdlComp_EMOUTFIT;
+length PARENT $16 MODEL $16 MODELDESCRIPTION $81 TARGET $32 TARGETLABEL $200;
+label PARENT = "%sysfunc(sasmsg(sashelp.dmine, rpt_parent_vlabel  ,  NOQUOTE))" MODEL = "%sysfunc(sasmsg(sashelp.dmine, rpt_modelnode_vlabel, NOQUOTE))" MODELDESCRIPTION = "%sysfunc(sasmsg(sashelp.dmine, rpt_modeldesc_vlabel, NOQUOTE))" TARGETLABEL =
+   "%sysfunc(sasmsg(sashelp.dmine, meta_targetlabel_vlabel, NOQUOTE))";
+retain parent "Boost" MODEL "Boost" MODELDESCRIPTION "GB 200" TARGETLABEL "";
+set WORK.Boost_OUTFIT;
+where upcase(TARGET) = upcase("diagnosis");
+run;
+data EMWS1.MdlComp_EMCLASSIFICATION;
+length PARENT $16 MODEL $16 MODELDESCRIPTION $81 DATAROLE $20 TARGET $32 TARGETLABEL $200;
+label PARENT = "%sysfunc(sasmsg(sashelp.dmine, rpt_parent_vlabel  ,  NOQUOTE))" MODEL = "%sysfunc(sasmsg(sashelp.dmine, rpt_modelnode_vlabel, NOQUOTE))" MODELDESCRIPTION = "%sysfunc(sasmsg(sashelp.dmine, rpt_modeldesc_vlabel, NOQUOTE))" TARGETLABEL =
+   "%sysfunc(sasmsg(sashelp.dmine, meta_targetlabel_vlabel, NOQUOTE))";
+retain parent "Boost" MODEL "Boost" MODELDESCRIPTION "GB 200" TARGETLABEL "";
+set EMWS1.Boost_EMCLASSIFICATION;
+where upcase(TARGET) = upcase("diagnosis");
+run;
+data EMWS1.MdlComp_EMEVENTREPORT;
+length PARENT $16 MODEL $16 MODELDESCRIPTION $81 DATAROLE $20 TARGET $32 TARGETLABEL $200;
+label PARENT = "%sysfunc(sasmsg(sashelp.dmine, rpt_parent_vlabel  ,  NOQUOTE))" MODEL = "%sysfunc(sasmsg(sashelp.dmine, rpt_modelnode_vlabel, NOQUOTE))" MODELDESCRIPTION = "%sysfunc(sasmsg(sashelp.dmine, rpt_modeldesc_vlabel, NOQUOTE))" TARGETLABEL =
+   "%sysfunc(sasmsg(sashelp.dmine, meta_targetlabel_vlabel, NOQUOTE))";
+retain parent "Boost" MODEL "Boost" MODELDESCRIPTION "GB 200" TARGETLABEL "";
+set EMWS1.Boost_EMEVENTREPORT;
+where upcase(TARGET) = upcase("diagnosis");
+run;
+data work.MdlComp_TEMP;
+length PARENT $16 MODEL $16 MODELDESCRIPTION $81 DATAROLE $20 TARGET $32 TARGETLABEL $200;
+label PARENT = "%sysfunc(sasmsg(sashelp.dmine, rpt_parent_vlabel  ,  NOQUOTE))" MODEL = "%sysfunc(sasmsg(sashelp.dmine, rpt_modelnode_vlabel, NOQUOTE))" MODELDESCRIPTION = "%sysfunc(sasmsg(sashelp.dmine, rpt_modeldesc_vlabel, NOQUOTE))" TARGET =
+   "%sysfunc(sasmsg(sashelp.dmine, rpt_targetvar_vlabel, NOQUOTE))" TARGETLABEL = "%sysfunc(sasmsg(sashelp.dmine, meta_targetlabel_vlabel, NOQUOTE))";
+retain parent "HPDMForest3" MODEL "HPDMForest3" MODELDESCRIPTION "RF 150 m3" TARGETLABEL "";
+set EMWS1.HPDMForest3_EMRANK;
+where upcase(TARGET) = upcase("diagnosis");
+run;
+data EMWS1.MdlComp_EMRANK;
+set EMWS1.MdlComp_EMRANK work.MdlComp_TEMP;
+run;
+data work.MdlComp_TEMP;
+length PARENT $16 MODEL $16 MODELDESCRIPTION $81 DATAROLE $20 TARGET $32 TARGETLABEL $200;
+label PARENT = "%sysfunc(sasmsg(sashelp.dmine, rpt_parent_vlabel  ,  NOQUOTE))" MODEL = "%sysfunc(sasmsg(sashelp.dmine, rpt_modelnode_vlabel, NOQUOTE))" MODELDESCRIPTION = "%sysfunc(sasmsg(sashelp.dmine, rpt_modeldesc_vlabel, NOQUOTE))" TARGET =
+   "%sysfunc(sasmsg(sashelp.dmine, rpt_targetvar_vlabel, NOQUOTE))" TARGETLABEL = "%sysfunc(sasmsg(sashelp.dmine, meta_targetlabel_vlabel, NOQUOTE))";
+retain parent "HPDMForest3" MODEL "HPDMForest3" MODELDESCRIPTION "RF 150 m3" TARGETLABEL "";
+set EMWS1.HPDMForest3_EMSCOREDIST;
+where upcase(TARGET) = upcase("diagnosis");
+run;
+data EMWS1.MdlComp_EMSCOREDIST;
+set EMWS1.MdlComp_EMSCOREDIST work.MdlComp_TEMP;
+run;
+data work.MdlComp_TEMP;
+length PARENT $16 MODEL $16 MODELDESCRIPTION $81 TARGET $32 TARGETLABEL $200;
+label PARENT = "%sysfunc(sasmsg(sashelp.dmine, rpt_parent_vlabel  ,  NOQUOTE))" MODEL = "%sysfunc(sasmsg(sashelp.dmine, rpt_modelnode_vlabel, NOQUOTE))" MODELDESCRIPTION = "%sysfunc(sasmsg(sashelp.dmine, rpt_modeldesc_vlabel, NOQUOTE))" TARGET =
+   "%sysfunc(sasmsg(sashelp.dmine, rpt_targetvar_vlabel, NOQUOTE))" TARGETLABEL = "%sysfunc(sasmsg(sashelp.dmine, meta_targetlabel_vlabel, NOQUOTE))";
+retain parent "HPDMForest3" MODEL "HPDMForest3" MODELDESCRIPTION "RF 150 m3" TARGETLABEL "";
+set WORK.HPDMForest3_OUTFIT;
+where upcase(TARGET) = upcase("diagnosis");
+run;
+data EMWS1.MdlComp_EMOUTFIT;
+set EMWS1.MdlComp_EMOUTFIT work.MdlComp_TEMP;
+run;
+data work.MdlComp_TEMP;
+length PARENT $16 MODEL $16 MODELDESCRIPTION $81 DATAROLE $20 TARGET $32 TARGETLABEL $200;
+label PARENT = "%sysfunc(sasmsg(sashelp.dmine, rpt_parent_vlabel  ,  NOQUOTE))" MODEL = "%sysfunc(sasmsg(sashelp.dmine, rpt_modelnode_vlabel, NOQUOTE))" MODELDESCRIPTION = "%sysfunc(sasmsg(sashelp.dmine, rpt_modeldesc_vlabel, NOQUOTE))" TARGET =
+   "%sysfunc(sasmsg(sashelp.dmine, rpt_targetvar_vlabel, NOQUOTE))" TARGETLABEL = "%sysfunc(sasmsg(sashelp.dmine, meta_targetlabel_vlabel, NOQUOTE))";
+retain parent "HPDMForest3" MODEL "HPDMForest3" MODELDESCRIPTION "RF 150 m3" TARGETLABEL "";
+set EMWS1.HPDMForest3_EMCLASSIFICATION;
+where upcase(TARGET) = upcase("diagnosis");
+run;
+data EMWS1.MdlComp_EMCLASSIFICATION;
+set EMWS1.MdlComp_EMCLASSIFICATION work.MdlComp_TEMP;
+run;
+data work.MdlComp_TEMP;
+length PARENT $16 MODEL $16 MODELDESCRIPTION $81 DATAROLE $20 TARGET $32 TARGETLABEL $200;
+label PARENT = "%sysfunc(sasmsg(sashelp.dmine, rpt_parent_vlabel  ,  NOQUOTE))" MODEL = "%sysfunc(sasmsg(sashelp.dmine, rpt_modelnode_vlabel, NOQUOTE))" MODELDESCRIPTION = "%sysfunc(sasmsg(sashelp.dmine, rpt_modeldesc_vlabel, NOQUOTE))" TARGET =
+   "%sysfunc(sasmsg(sashelp.dmine, rpt_targetvar_vlabel, NOQUOTE))" TARGETLABEL = "%sysfunc(sasmsg(sashelp.dmine, meta_targetlabel_vlabel, NOQUOTE))";
+retain parent "HPDMForest3" MODEL "HPDMForest3" MODELDESCRIPTION "RF 150 m3" TARGETLABEL "";
+set EMWS1.HPDMForest3_EMEVENTREPORT;
+where upcase(TARGET) = upcase("diagnosis");
+run;
+data EMWS1.MdlComp_EMEVENTREPORT;
+set EMWS1.MdlComp_EMEVENTREPORT work.MdlComp_TEMP;
+run;
+data work.MdlComp_TEMP;
+length PARENT $16 MODEL $16 MODELDESCRIPTION $81 DATAROLE $20 TARGET $32 TARGETLABEL $200;
+label PARENT = "%sysfunc(sasmsg(sashelp.dmine, rpt_parent_vlabel  ,  NOQUOTE))" MODEL = "%sysfunc(sasmsg(sashelp.dmine, rpt_modelnode_vlabel, NOQUOTE))" MODELDESCRIPTION = "%sysfunc(sasmsg(sashelp.dmine, rpt_modeldesc_vlabel, NOQUOTE))" TARGET =
+   "%sysfunc(sasmsg(sashelp.dmine, rpt_targetvar_vlabel, NOQUOTE))" TARGETLABEL = "%sysfunc(sasmsg(sashelp.dmine, meta_targetlabel_vlabel, NOQUOTE))";
+retain parent "HPDMForest2" MODEL "HPDMForest2" MODELDESCRIPTION "RF 200" TARGETLABEL "";
+set EMWS1.HPDMForest2_EMRANK;
+where upcase(TARGET) = upcase("diagnosis");
+run;
+data EMWS1.MdlComp_EMRANK;
+set EMWS1.MdlComp_EMRANK work.MdlComp_TEMP;
+run;
+data work.MdlComp_TEMP;
+length PARENT $16 MODEL $16 MODELDESCRIPTION $81 DATAROLE $20 TARGET $32 TARGETLABEL $200;
+label PARENT = "%sysfunc(sasmsg(sashelp.dmine, rpt_parent_vlabel  ,  NOQUOTE))" MODEL = "%sysfunc(sasmsg(sashelp.dmine, rpt_modelnode_vlabel, NOQUOTE))" MODELDESCRIPTION = "%sysfunc(sasmsg(sashelp.dmine, rpt_modeldesc_vlabel, NOQUOTE))" TARGET =
+   "%sysfunc(sasmsg(sashelp.dmine, rpt_targetvar_vlabel, NOQUOTE))" TARGETLABEL = "%sysfunc(sasmsg(sashelp.dmine, meta_targetlabel_vlabel, NOQUOTE))";
+retain parent "HPDMForest2" MODEL "HPDMForest2" MODELDESCRIPTION "RF 200" TARGETLABEL "";
+set EMWS1.HPDMForest2_EMSCOREDIST;
+where upcase(TARGET) = upcase("diagnosis");
+run;
+data EMWS1.MdlComp_EMSCOREDIST;
+set EMWS1.MdlComp_EMSCOREDIST work.MdlComp_TEMP;
+run;
+data work.MdlComp_TEMP;
+length PARENT $16 MODEL $16 MODELDESCRIPTION $81 TARGET $32 TARGETLABEL $200;
+label PARENT = "%sysfunc(sasmsg(sashelp.dmine, rpt_parent_vlabel  ,  NOQUOTE))" MODEL = "%sysfunc(sasmsg(sashelp.dmine, rpt_modelnode_vlabel, NOQUOTE))" MODELDESCRIPTION = "%sysfunc(sasmsg(sashelp.dmine, rpt_modeldesc_vlabel, NOQUOTE))" TARGET =
+   "%sysfunc(sasmsg(sashelp.dmine, rpt_targetvar_vlabel, NOQUOTE))" TARGETLABEL = "%sysfunc(sasmsg(sashelp.dmine, meta_targetlabel_vlabel, NOQUOTE))";
+retain parent "HPDMForest2" MODEL "HPDMForest2" MODELDESCRIPTION "RF 200" TARGETLABEL "";
+set WORK.HPDMForest2_OUTFIT;
+where upcase(TARGET) = upcase("diagnosis");
+run;
+data EMWS1.MdlComp_EMOUTFIT;
+set EMWS1.MdlComp_EMOUTFIT work.MdlComp_TEMP;
+run;
+data work.MdlComp_TEMP;
+length PARENT $16 MODEL $16 MODELDESCRIPTION $81 DATAROLE $20 TARGET $32 TARGETLABEL $200;
+label PARENT = "%sysfunc(sasmsg(sashelp.dmine, rpt_parent_vlabel  ,  NOQUOTE))" MODEL = "%sysfunc(sasmsg(sashelp.dmine, rpt_modelnode_vlabel, NOQUOTE))" MODELDESCRIPTION = "%sysfunc(sasmsg(sashelp.dmine, rpt_modeldesc_vlabel, NOQUOTE))" TARGET =
+   "%sysfunc(sasmsg(sashelp.dmine, rpt_targetvar_vlabel, NOQUOTE))" TARGETLABEL = "%sysfunc(sasmsg(sashelp.dmine, meta_targetlabel_vlabel, NOQUOTE))";
+retain parent "HPDMForest2" MODEL "HPDMForest2" MODELDESCRIPTION "RF 200" TARGETLABEL "";
+set EMWS1.HPDMForest2_EMCLASSIFICATION;
+where upcase(TARGET) = upcase("diagnosis");
+run;
+data EMWS1.MdlComp_EMCLASSIFICATION;
+set EMWS1.MdlComp_EMCLASSIFICATION work.MdlComp_TEMP;
+run;
+data work.MdlComp_TEMP;
+length PARENT $16 MODEL $16 MODELDESCRIPTION $81 DATAROLE $20 TARGET $32 TARGETLABEL $200;
+label PARENT = "%sysfunc(sasmsg(sashelp.dmine, rpt_parent_vlabel  ,  NOQUOTE))" MODEL = "%sysfunc(sasmsg(sashelp.dmine, rpt_modelnode_vlabel, NOQUOTE))" MODELDESCRIPTION = "%sysfunc(sasmsg(sashelp.dmine, rpt_modeldesc_vlabel, NOQUOTE))" TARGET =
+   "%sysfunc(sasmsg(sashelp.dmine, rpt_targetvar_vlabel, NOQUOTE))" TARGETLABEL = "%sysfunc(sasmsg(sashelp.dmine, meta_targetlabel_vlabel, NOQUOTE))";
+retain parent "HPDMForest2" MODEL "HPDMForest2" MODELDESCRIPTION "RF 200" TARGETLABEL "";
+set EMWS1.HPDMForest2_EMEVENTREPORT;
+where upcase(TARGET) = upcase("diagnosis");
+run;
+data EMWS1.MdlComp_EMEVENTREPORT;
+set EMWS1.MdlComp_EMEVENTREPORT work.MdlComp_TEMP;
+run;
+data work.MdlComp_TEMP;
+length PARENT $16 MODEL $16 MODELDESCRIPTION $81 DATAROLE $20 TARGET $32 TARGETLABEL $200;
+label PARENT = "%sysfunc(sasmsg(sashelp.dmine, rpt_parent_vlabel  ,  NOQUOTE))" MODEL = "%sysfunc(sasmsg(sashelp.dmine, rpt_modelnode_vlabel, NOQUOTE))" MODELDESCRIPTION = "%sysfunc(sasmsg(sashelp.dmine, rpt_modeldesc_vlabel, NOQUOTE))" TARGET =
+   "%sysfunc(sasmsg(sashelp.dmine, rpt_targetvar_vlabel, NOQUOTE))" TARGETLABEL = "%sysfunc(sasmsg(sashelp.dmine, meta_targetlabel_vlabel, NOQUOTE))";
+retain parent "HPDMForest" MODEL "HPDMForest" MODELDESCRIPTION "RF 100" TARGETLABEL "";
+set EMWS1.HPDMForest_EMRANK;
+where upcase(TARGET) = upcase("diagnosis");
+run;
+data EMWS1.MdlComp_EMRANK;
+set EMWS1.MdlComp_EMRANK work.MdlComp_TEMP;
+run;
+data work.MdlComp_TEMP;
+length PARENT $16 MODEL $16 MODELDESCRIPTION $81 DATAROLE $20 TARGET $32 TARGETLABEL $200;
+label PARENT = "%sysfunc(sasmsg(sashelp.dmine, rpt_parent_vlabel  ,  NOQUOTE))" MODEL = "%sysfunc(sasmsg(sashelp.dmine, rpt_modelnode_vlabel, NOQUOTE))" MODELDESCRIPTION = "%sysfunc(sasmsg(sashelp.dmine, rpt_modeldesc_vlabel, NOQUOTE))" TARGET =
+   "%sysfunc(sasmsg(sashelp.dmine, rpt_targetvar_vlabel, NOQUOTE))" TARGETLABEL = "%sysfunc(sasmsg(sashelp.dmine, meta_targetlabel_vlabel, NOQUOTE))";
+retain parent "HPDMForest" MODEL "HPDMForest" MODELDESCRIPTION "RF 100" TARGETLABEL "";
+set EMWS1.HPDMForest_EMSCOREDIST;
+where upcase(TARGET) = upcase("diagnosis");
+run;
+data EMWS1.MdlComp_EMSCOREDIST;
+set EMWS1.MdlComp_EMSCOREDIST work.MdlComp_TEMP;
+run;
+data work.MdlComp_TEMP;
+length PARENT $16 MODEL $16 MODELDESCRIPTION $81 TARGET $32 TARGETLABEL $200;
+label PARENT = "%sysfunc(sasmsg(sashelp.dmine, rpt_parent_vlabel  ,  NOQUOTE))" MODEL = "%sysfunc(sasmsg(sashelp.dmine, rpt_modelnode_vlabel, NOQUOTE))" MODELDESCRIPTION = "%sysfunc(sasmsg(sashelp.dmine, rpt_modeldesc_vlabel, NOQUOTE))" TARGET =
+   "%sysfunc(sasmsg(sashelp.dmine, rpt_targetvar_vlabel, NOQUOTE))" TARGETLABEL = "%sysfunc(sasmsg(sashelp.dmine, meta_targetlabel_vlabel, NOQUOTE))";
+retain parent "HPDMForest" MODEL "HPDMForest" MODELDESCRIPTION "RF 100" TARGETLABEL "";
+set WORK.HPDMForest_OUTFIT;
+where upcase(TARGET) = upcase("diagnosis");
+run;
+data EMWS1.MdlComp_EMOUTFIT;
+set EMWS1.MdlComp_EMOUTFIT work.MdlComp_TEMP;
+run;
+data work.MdlComp_TEMP;
+length PARENT $16 MODEL $16 MODELDESCRIPTION $81 DATAROLE $20 TARGET $32 TARGETLABEL $200;
+label PARENT = "%sysfunc(sasmsg(sashelp.dmine, rpt_parent_vlabel  ,  NOQUOTE))" MODEL = "%sysfunc(sasmsg(sashelp.dmine, rpt_modelnode_vlabel, NOQUOTE))" MODELDESCRIPTION = "%sysfunc(sasmsg(sashelp.dmine, rpt_modeldesc_vlabel, NOQUOTE))" TARGET =
+   "%sysfunc(sasmsg(sashelp.dmine, rpt_targetvar_vlabel, NOQUOTE))" TARGETLABEL = "%sysfunc(sasmsg(sashelp.dmine, meta_targetlabel_vlabel, NOQUOTE))";
+retain parent "HPDMForest" MODEL "HPDMForest" MODELDESCRIPTION "RF 100" TARGETLABEL "";
+set EMWS1.HPDMForest_EMCLASSIFICATION;
+where upcase(TARGET) = upcase("diagnosis");
+run;
+data EMWS1.MdlComp_EMCLASSIFICATION;
+set EMWS1.MdlComp_EMCLASSIFICATION work.MdlComp_TEMP;
+run;
+data work.MdlComp_TEMP;
+length PARENT $16 MODEL $16 MODELDESCRIPTION $81 DATAROLE $20 TARGET $32 TARGETLABEL $200;
+label PARENT = "%sysfunc(sasmsg(sashelp.dmine, rpt_parent_vlabel  ,  NOQUOTE))" MODEL = "%sysfunc(sasmsg(sashelp.dmine, rpt_modelnode_vlabel, NOQUOTE))" MODELDESCRIPTION = "%sysfunc(sasmsg(sashelp.dmine, rpt_modeldesc_vlabel, NOQUOTE))" TARGET =
+   "%sysfunc(sasmsg(sashelp.dmine, rpt_targetvar_vlabel, NOQUOTE))" TARGETLABEL = "%sysfunc(sasmsg(sashelp.dmine, meta_targetlabel_vlabel, NOQUOTE))";
+retain parent "HPDMForest" MODEL "HPDMForest" MODELDESCRIPTION "RF 100" TARGETLABEL "";
+set EMWS1.HPDMForest_EMEVENTREPORT;
+where upcase(TARGET) = upcase("diagnosis");
+run;
+data EMWS1.MdlComp_EMEVENTREPORT;
+set EMWS1.MdlComp_EMEVENTREPORT work.MdlComp_TEMP;
+run;
+data work.MdlComp_TEMP;
+length PARENT $16 MODEL $16 MODELDESCRIPTION $81 DATAROLE $20 TARGET $32 TARGETLABEL $200;
+label PARENT = "%sysfunc(sasmsg(sashelp.dmine, rpt_parent_vlabel  ,  NOQUOTE))" MODEL = "%sysfunc(sasmsg(sashelp.dmine, rpt_modelnode_vlabel, NOQUOTE))" MODELDESCRIPTION = "%sysfunc(sasmsg(sashelp.dmine, rpt_modeldesc_vlabel, NOQUOTE))" TARGET =
+   "%sysfunc(sasmsg(sashelp.dmine, rpt_targetvar_vlabel, NOQUOTE))" TARGETLABEL = "%sysfunc(sasmsg(sashelp.dmine, meta_targetlabel_vlabel, NOQUOTE))";
+retain parent "EndGrp" MODEL "EndGrp" MODELDESCRIPTION "Bagging" TARGETLABEL "";
+set EMWS1.EndGrp_EMRANK;
+where upcase(TARGET) = upcase("diagnosis");
+run;
+data EMWS1.MdlComp_EMRANK;
+set EMWS1.MdlComp_EMRANK work.MdlComp_TEMP;
+run;
+data work.MdlComp_TEMP;
+length PARENT $16 MODEL $16 MODELDESCRIPTION $81 DATAROLE $20 TARGET $32 TARGETLABEL $200;
+label PARENT = "%sysfunc(sasmsg(sashelp.dmine, rpt_parent_vlabel  ,  NOQUOTE))" MODEL = "%sysfunc(sasmsg(sashelp.dmine, rpt_modelnode_vlabel, NOQUOTE))" MODELDESCRIPTION = "%sysfunc(sasmsg(sashelp.dmine, rpt_modeldesc_vlabel, NOQUOTE))" TARGET =
+   "%sysfunc(sasmsg(sashelp.dmine, rpt_targetvar_vlabel, NOQUOTE))" TARGETLABEL = "%sysfunc(sasmsg(sashelp.dmine, meta_targetlabel_vlabel, NOQUOTE))";
+retain parent "EndGrp" MODEL "EndGrp" MODELDESCRIPTION "Bagging" TARGETLABEL "";
+set EMWS1.EndGrp_EMSCOREDIST;
+where upcase(TARGET) = upcase("diagnosis");
+run;
+data EMWS1.MdlComp_EMSCOREDIST;
+set EMWS1.MdlComp_EMSCOREDIST work.MdlComp_TEMP;
+run;
+data work.MdlComp_TEMP;
+length PARENT $16 MODEL $16 MODELDESCRIPTION $81 TARGET $32 TARGETLABEL $200;
+label PARENT = "%sysfunc(sasmsg(sashelp.dmine, rpt_parent_vlabel  ,  NOQUOTE))" MODEL = "%sysfunc(sasmsg(sashelp.dmine, rpt_modelnode_vlabel, NOQUOTE))" MODELDESCRIPTION = "%sysfunc(sasmsg(sashelp.dmine, rpt_modeldesc_vlabel, NOQUOTE))" TARGET =
+   "%sysfunc(sasmsg(sashelp.dmine, rpt_targetvar_vlabel, NOQUOTE))" TARGETLABEL = "%sysfunc(sasmsg(sashelp.dmine, meta_targetlabel_vlabel, NOQUOTE))";
+retain parent "EndGrp" MODEL "EndGrp" MODELDESCRIPTION "Bagging" TARGETLABEL "";
+set WORK.EndGrp_OUTFIT;
+where upcase(TARGET) = upcase("diagnosis");
+run;
+data EMWS1.MdlComp_EMOUTFIT;
+set EMWS1.MdlComp_EMOUTFIT work.MdlComp_TEMP;
+run;
+data work.MdlComp_TEMP;
+length PARENT $16 MODEL $16 MODELDESCRIPTION $81 DATAROLE $20 TARGET $32 TARGETLABEL $200;
+label PARENT = "%sysfunc(sasmsg(sashelp.dmine, rpt_parent_vlabel  ,  NOQUOTE))" MODEL = "%sysfunc(sasmsg(sashelp.dmine, rpt_modelnode_vlabel, NOQUOTE))" MODELDESCRIPTION = "%sysfunc(sasmsg(sashelp.dmine, rpt_modeldesc_vlabel, NOQUOTE))" TARGET =
+   "%sysfunc(sasmsg(sashelp.dmine, rpt_targetvar_vlabel, NOQUOTE))" TARGETLABEL = "%sysfunc(sasmsg(sashelp.dmine, meta_targetlabel_vlabel, NOQUOTE))";
+retain parent "EndGrp" MODEL "EndGrp" MODELDESCRIPTION "Bagging" TARGETLABEL "";
+set EMWS1.EndGrp_EMCLASSIFICATION;
+where upcase(TARGET) = upcase("diagnosis");
+run;
+data EMWS1.MdlComp_EMCLASSIFICATION;
+set EMWS1.MdlComp_EMCLASSIFICATION work.MdlComp_TEMP;
+run;
+data work.MdlComp_TEMP;
+length PARENT $16 MODEL $16 MODELDESCRIPTION $81 DATAROLE $20 TARGET $32 TARGETLABEL $200;
+label PARENT = "%sysfunc(sasmsg(sashelp.dmine, rpt_parent_vlabel  ,  NOQUOTE))" MODEL = "%sysfunc(sasmsg(sashelp.dmine, rpt_modelnode_vlabel, NOQUOTE))" MODELDESCRIPTION = "%sysfunc(sasmsg(sashelp.dmine, rpt_modeldesc_vlabel, NOQUOTE))" TARGET =
+   "%sysfunc(sasmsg(sashelp.dmine, rpt_targetvar_vlabel, NOQUOTE))" TARGETLABEL = "%sysfunc(sasmsg(sashelp.dmine, meta_targetlabel_vlabel, NOQUOTE))";
+retain parent "EndGrp" MODEL "EndGrp" MODELDESCRIPTION "Bagging" TARGETLABEL "";
+set EMWS1.EndGrp_EMEVENTREPORT;
+where upcase(TARGET) = upcase("diagnosis");
+run;
+data EMWS1.MdlComp_EMEVENTREPORT;
+set EMWS1.MdlComp_EMEVENTREPORT work.MdlComp_TEMP;
+run;
+data work.MdlComp_TEMP;
+length PARENT $16 MODEL $16 MODELDESCRIPTION $81 DATAROLE $20 TARGET $32 TARGETLABEL $200;
+label PARENT = "%sysfunc(sasmsg(sashelp.dmine, rpt_parent_vlabel  ,  NOQUOTE))" MODEL = "%sysfunc(sasmsg(sashelp.dmine, rpt_modelnode_vlabel, NOQUOTE))" MODELDESCRIPTION = "%sysfunc(sasmsg(sashelp.dmine, rpt_modeldesc_vlabel, NOQUOTE))" TARGET =
+   "%sysfunc(sasmsg(sashelp.dmine, rpt_targetvar_vlabel, NOQUOTE))" TARGETLABEL = "%sysfunc(sasmsg(sashelp.dmine, meta_targetlabel_vlabel, NOQUOTE))";
+retain parent "EndGrp2" MODEL "EndGrp2" MODELDESCRIPTION "Boosting" TARGETLABEL "";
+set EMWS1.EndGrp2_EMRANK;
+where upcase(TARGET) = upcase("diagnosis");
+run;
+data EMWS1.MdlComp_EMRANK;
+set EMWS1.MdlComp_EMRANK work.MdlComp_TEMP;
+run;
+data work.MdlComp_TEMP;
+length PARENT $16 MODEL $16 MODELDESCRIPTION $81 DATAROLE $20 TARGET $32 TARGETLABEL $200;
+label PARENT = "%sysfunc(sasmsg(sashelp.dmine, rpt_parent_vlabel  ,  NOQUOTE))" MODEL = "%sysfunc(sasmsg(sashelp.dmine, rpt_modelnode_vlabel, NOQUOTE))" MODELDESCRIPTION = "%sysfunc(sasmsg(sashelp.dmine, rpt_modeldesc_vlabel, NOQUOTE))" TARGET =
+   "%sysfunc(sasmsg(sashelp.dmine, rpt_targetvar_vlabel, NOQUOTE))" TARGETLABEL = "%sysfunc(sasmsg(sashelp.dmine, meta_targetlabel_vlabel, NOQUOTE))";
+retain parent "EndGrp2" MODEL "EndGrp2" MODELDESCRIPTION "Boosting" TARGETLABEL "";
+set EMWS1.EndGrp2_EMSCOREDIST;
+where upcase(TARGET) = upcase("diagnosis");
+run;
+data EMWS1.MdlComp_EMSCOREDIST;
+set EMWS1.MdlComp_EMSCOREDIST work.MdlComp_TEMP;
+run;
+data work.MdlComp_TEMP;
+length PARENT $16 MODEL $16 MODELDESCRIPTION $81 TARGET $32 TARGETLABEL $200;
+label PARENT = "%sysfunc(sasmsg(sashelp.dmine, rpt_parent_vlabel  ,  NOQUOTE))" MODEL = "%sysfunc(sasmsg(sashelp.dmine, rpt_modelnode_vlabel, NOQUOTE))" MODELDESCRIPTION = "%sysfunc(sasmsg(sashelp.dmine, rpt_modeldesc_vlabel, NOQUOTE))" TARGET =
+   "%sysfunc(sasmsg(sashelp.dmine, rpt_targetvar_vlabel, NOQUOTE))" TARGETLABEL = "%sysfunc(sasmsg(sashelp.dmine, meta_targetlabel_vlabel, NOQUOTE))";
+retain parent "EndGrp2" MODEL "EndGrp2" MODELDESCRIPTION "Boosting" TARGETLABEL "";
+set WORK.EndGrp2_OUTFIT;
+where upcase(TARGET) = upcase("diagnosis");
+run;
+data EMWS1.MdlComp_EMOUTFIT;
+set EMWS1.MdlComp_EMOUTFIT work.MdlComp_TEMP;
+run;
+data work.MdlComp_TEMP;
+length PARENT $16 MODEL $16 MODELDESCRIPTION $81 DATAROLE $20 TARGET $32 TARGETLABEL $200;
+label PARENT = "%sysfunc(sasmsg(sashelp.dmine, rpt_parent_vlabel  ,  NOQUOTE))" MODEL = "%sysfunc(sasmsg(sashelp.dmine, rpt_modelnode_vlabel, NOQUOTE))" MODELDESCRIPTION = "%sysfunc(sasmsg(sashelp.dmine, rpt_modeldesc_vlabel, NOQUOTE))" TARGET =
+   "%sysfunc(sasmsg(sashelp.dmine, rpt_targetvar_vlabel, NOQUOTE))" TARGETLABEL = "%sysfunc(sasmsg(sashelp.dmine, meta_targetlabel_vlabel, NOQUOTE))";
+retain parent "EndGrp2" MODEL "EndGrp2" MODELDESCRIPTION "Boosting" TARGETLABEL "";
+set EMWS1.EndGrp2_EMCLASSIFICATION;
+where upcase(TARGET) = upcase("diagnosis");
+run;
+data EMWS1.MdlComp_EMCLASSIFICATION;
+set EMWS1.MdlComp_EMCLASSIFICATION work.MdlComp_TEMP;
+run;
+data work.MdlComp_TEMP;
+length PARENT $16 MODEL $16 MODELDESCRIPTION $81 DATAROLE $20 TARGET $32 TARGETLABEL $200;
+label PARENT = "%sysfunc(sasmsg(sashelp.dmine, rpt_parent_vlabel  ,  NOQUOTE))" MODEL = "%sysfunc(sasmsg(sashelp.dmine, rpt_modelnode_vlabel, NOQUOTE))" MODELDESCRIPTION = "%sysfunc(sasmsg(sashelp.dmine, rpt_modeldesc_vlabel, NOQUOTE))" TARGET =
+   "%sysfunc(sasmsg(sashelp.dmine, rpt_targetvar_vlabel, NOQUOTE))" TARGETLABEL = "%sysfunc(sasmsg(sashelp.dmine, meta_targetlabel_vlabel, NOQUOTE))";
+retain parent "EndGrp2" MODEL "EndGrp2" MODELDESCRIPTION "Boosting" TARGETLABEL "";
+set EMWS1.EndGrp2_EMEVENTREPORT;
+where upcase(TARGET) = upcase("diagnosis");
+run;
+data EMWS1.MdlComp_EMEVENTREPORT;
+set EMWS1.MdlComp_EMEVENTREPORT work.MdlComp_TEMP;
+run;

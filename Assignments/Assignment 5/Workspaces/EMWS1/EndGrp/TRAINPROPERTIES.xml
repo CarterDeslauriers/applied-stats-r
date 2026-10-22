@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" ?><_ROOT_  Location="CATALOG" Catalog="SASHELP.EMUTIL.ENDGP.SOURCE" ToolType="MODEL" ForceRun="N"
+ RunAction="Train" Component="EndGroup" RawCreateTime="2108238543.5" CreateTime="21OCT2026:21:49:03"
+ RunId="038a40d0-2e87-4581-98e1-ef8e10c489b9" RawLastTimeRun="2108239178.9" RawRunTime="23.69299984"
+ LastTimeRun="21OCT2026:21:59:39" RunTime="0 Hr. 0 Min. 23.69 Sec.">
+<VARIABLEPROPERTIES/>
+<FILEPROPERTIES ><![CDATA[
+USERTRAINCODE
+USERSCORECODE
+USERREPORTCODE
+]]>
+</FILEPROPERTIES></_ROOT_>

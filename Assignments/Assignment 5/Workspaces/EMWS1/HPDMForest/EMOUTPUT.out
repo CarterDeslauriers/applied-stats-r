@@ -1,0 +1,602 @@
+*------------------------------------------------------------*
+User:                student
+Date:                October 21, 2026
+Time:                21:54:24
+*------------------------------------------------------------*
+* Training Output
+*------------------------------------------------------------*
+ 
+ 
+ 
+ 
+Variable Summary
+ 
+            Measurement    Frequency
+Role           Level         Count
+ 
+ID           INTERVAL           1
+INPUT        INTERVAL          27
+REJECTED     INTERVAL           4
+TARGET       BINARY             1
+ 
+ 
+ 
+ 
+Model Events
+ 
+                                     Number
+                      Measurement      of
+ Target      Event       Level       Levels      Order       Label
+ 
+diagnosis      M        BINARY          2      Descending
+ 
+ 
+ 
+ 
+Predicted and decision variables
+ 
+Type           Variable              Label
+ 
+TARGET       diagnosis
+PREDICTED    P_diagnosisM    Predicted: diagnosis=M
+RESIDUAL     R_diagnosisM    Residual: diagnosis=M
+PREDICTED    P_diagnosisB    Predicted: diagnosis=B
+RESIDUAL     R_diagnosisB    Residual: diagnosis=B
+FROM         F_diagnosis     From: diagnosis
+INTO         I_diagnosis     Into: diagnosis
+ 
+ 
+ 
+ 
+ 
+The HPFOREST Procedure
+ 
+      Performance Information
+ 
+Execution Mode       Single-Machine
+Number of Threads    4
+ 
+ 
+                 Data Access Information
+ 
+Data                         Engine    Role     Path
+ 
+WORK.HPDMFOREST_TRAINDATA    V9        Input    On Client
+ 
+ 
+                   Model Information
+ 
+Parameter                          Value
+ 
+Variables to Try                       5    (Default)
+Maximum Trees                        100
+Actual Trees                         100
+Inbag Fraction                       0.6
+Prune Fraction                         0    (Default)
+Prune Threshold                      0.1    (Default)
+Leaf Fraction                    0.00001    (Default)
+Leaf Size Setting                      1    (Default)
+Leaf Size Used                         1
+Category Bins                         30
+Interval Bins                        100
+Minimum Category Size                  5
+Node Size                         100000    (Default)
+Maximum Depth                         50
+Alpha                               0.05
+Exhaustive                          5000
+Rows of Sequence to Skip               5    (Default)
+Split Criterion                        .    Gini
+Preselection Method                    .    BinnedSearch
+Missing Value Handling                 .    Valid value
+ 
+ 
+                          Number of Observations
+ 
+Type                                 NTrain          NValid          NTotal
+ 
+Number of Observations Read             396             173             569
+Number of Observations Used             396             173             569
+ 
+ 
+               Baseline Fit Statistics
+ 
+Statistic                        Value      Validation
+ 
+Average Square Error             0.233           0.235
+Misclassification Rate           0.371           0.376
+Log Loss                         0.660           0.662
+ 
+ 
+                                                                     Fit Statistics
+ 
+                           Average    Average    Average
+                            Square     Square     Square    Misclassification    Misclassification    Misclassification        Log        Log        Log
+   Number       Number       Error      Error      Error                 Rate                 Rate                 Rate       Loss       Loss       Loss
+ of Trees    of Leaves     (Train)      (OOB)    (Valid)              (Train)                (OOB)              (Valid)    (Train)      (OOB)    (Valid)
+ 
+        1           12     0.02020     0.0503     0.0867              0.02020               0.0503               0.0867     0.4652     1.1585      1.996
+        2           20     0.01831     0.0717     0.0650              0.02525               0.0736               0.0751     0.2042     1.6118      1.117
+        3           34     0.01150     0.0620     0.0649              0.01010               0.0690               0.0925     0.0367     1.2517      0.878
+        4           48     0.01057     0.0489     0.0654              0.01515               0.0657               0.0925     0.0368     0.8317      0.765
+        5           63     0.01030     0.0529     0.0569              0.00758               0.0659               0.0867     0.0396     0.8175      0.512
+        6           76     0.00933     0.0530     0.0548              0.01010               0.0582               0.0925     0.0381     0.7936      0.508
+        7           98     0.00850     0.0455     0.0530              0.00505               0.0619               0.0867     0.0367     0.4943      0.385
+        8          110     0.00754     0.0428     0.0530              0.00758               0.0485               0.0867     0.0345     0.4860      0.387
+        9          123     0.00708     0.0378     0.0535              0.00253               0.0431               0.0751     0.0337     0.3171      0.390
+       10          134     0.00677     0.0353     0.0540              0.00505               0.0431               0.0809     0.0328     0.2591      0.390
+       11          147     0.00653     0.0314     0.0544              0.00505               0.0405               0.0751     0.0316     0.1978      0.392
+       12          162     0.00644     0.0332     0.0548              0.00253               0.0429               0.0809     0.0321     0.2030      0.392
+       13          171     0.00638     0.0336     0.0547              0.00000               0.0455               0.0809     0.0322     0.2038      0.392
+       14          186     0.00639     0.0335     0.0528              0.00253               0.0429               0.0751     0.0322     0.2043      0.387
+       15          198     0.00613     0.0322     0.0528              0.00000               0.0455               0.0694     0.0312     0.2007      0.388
+       16          207     0.00606     0.0321     0.0543              0.00000               0.0455               0.0751     0.0316     0.2017      0.392
+       17          222     0.00601     0.0312     0.0541              0.00000               0.0480               0.0694     0.0320     0.1486      0.393
+       18          236     0.00587     0.0315     0.0550              0.00000               0.0480               0.0751     0.0318     0.1497      0.395
+       19          247     0.00593     0.0318     0.0565              0.00000               0.0455               0.0694     0.0316     0.1501      0.399
+       20          257     0.00587     0.0317     0.0566              0.00000               0.0505               0.0694     0.0315     0.1501      0.401
+       21          268     0.00567     0.0314     0.0573              0.00000               0.0505               0.0694     0.0309     0.1491      0.403
+       22          281     0.00554     0.0307     0.0582              0.00000               0.0480               0.0694     0.0307     0.1479      0.407
+       23          300     0.00548     0.0313     0.0585              0.00000               0.0480               0.0694     0.0306     0.1493      0.408
+       24          314     0.00550     0.0313     0.0584              0.00000               0.0480               0.0694     0.0306     0.1494      0.409
+       25          327     0.00514     0.0302     0.0586              0.00000               0.0455               0.0694     0.0295     0.1471      0.410
+       26          341     0.00518     0.0306     0.0578              0.00000               0.0455               0.0694     0.0300     0.1486      0.407
+       27          354     0.00525     0.0311     0.0578              0.00000               0.0480               0.0694     0.0303     0.1500      0.408
+       28          370     0.00524     0.0314     0.0586              0.00000               0.0505               0.0694     0.0303     0.1509      0.411
+       29          383     0.00528     0.0319     0.0586              0.00000               0.0480               0.0694     0.0308     0.1531      0.411
+       30          394     0.00530     0.0316     0.0584              0.00000               0.0455               0.0694     0.0309     0.1530      0.411
+       31          409     0.00517     0.0316     0.0577              0.00000               0.0429               0.0694     0.0306     0.1531      0.409
+       32          421     0.00519     0.0314     0.0570              0.00000               0.0429               0.0694     0.0305     0.1531      0.406
+       33          434     0.00531     0.0317     0.0563              0.00000               0.0429               0.0694     0.0311     0.1530      0.404
+       34          447     0.00524     0.0307     0.0558              0.00000               0.0455               0.0694     0.0307     0.1001      0.402
+       35          462     0.00538     0.0313     0.0565              0.00000               0.0505               0.0694     0.0312     0.1020      0.404
+       36          475     0.00542     0.0317     0.0564              0.00000               0.0505               0.0694     0.0313     0.1031      0.404
+       37          487     0.00540     0.0318     0.0565              0.00000               0.0505               0.0694     0.0314     0.1036      0.405
+       38          500     0.00543     0.0309     0.0565              0.00000               0.0505               0.0694     0.0313     0.1016      0.405
+       39          513     0.00542     0.0308     0.0566              0.00000               0.0530               0.0694     0.0312     0.1012      0.406
+       40          522     0.00556     0.0310     0.0565              0.00000               0.0505               0.0694     0.0314     0.1015      0.406
+       41          536     0.00559     0.0313     0.0563              0.00000               0.0505               0.0694     0.0315     0.1026      0.405
+       42          552     0.00551     0.0313     0.0564              0.00000               0.0505               0.0694     0.0313     0.1020      0.405
+       43          564     0.00546     0.0309     0.0561              0.00000               0.0480               0.0694     0.0311     0.1013      0.404
+       44          575     0.00548     0.0308     0.0561              0.00000               0.0480               0.0694     0.0310     0.1013      0.294
+       45          588     0.00548     0.0305     0.0561              0.00000               0.0480               0.0694     0.0310     0.1003      0.294
+       46          602     0.00544     0.0305     0.0565              0.00000               0.0480               0.0694     0.0309     0.1003      0.295
+       47          617     0.00537     0.0303     0.0567              0.00000               0.0480               0.0694     0.0307     0.1001      0.296
+       48          633     0.00531     0.0303     0.0565              0.00000               0.0480               0.0694     0.0305     0.1003      0.296
+       49          648     0.00522     0.0302     0.0564              0.00000               0.0480               0.0694     0.0302     0.0999      0.296
+       50          662     0.00522     0.0305     0.0564              0.00000               0.0480               0.0694     0.0303     0.1006      0.296
+       51          675     0.00518     0.0306     0.0566              0.00000               0.0505               0.0694     0.0302     0.1008      0.297
+       52          688     0.00518     0.0304     0.0565              0.00000               0.0480               0.0694     0.0302     0.1001      0.297
+       53          702     0.00516     0.0305     0.0561              0.00000               0.0480               0.0694     0.0300     0.1002      0.297
+       54          714     0.00513     0.0306     0.0559              0.00000               0.0455               0.0694     0.0300     0.1007      0.296
+       55          726     0.00519     0.0310     0.0557              0.00000               0.0455               0.0694     0.0303     0.1020      0.295
+       56          738     0.00520     0.0312     0.0561              0.00000               0.0455               0.0694     0.0305     0.1028      0.296
+       57          749     0.00516     0.0309     0.0562              0.00000               0.0429               0.0694     0.0303     0.1018      0.297
+       58          764     0.00520     0.0310     0.0563              0.00000               0.0455               0.0694     0.0303     0.1023      0.297
+       59          781     0.00520     0.0314     0.0558              0.00000               0.0455               0.0751     0.0306     0.1035      0.295
+       60          796     0.00516     0.0311     0.0555              0.00000               0.0429               0.0751     0.0306     0.1029      0.294
+       61          803     0.00524     0.0313     0.0556              0.00000               0.0429               0.0751     0.0307     0.1034      0.295
+       62          814     0.00528     0.0315     0.0555              0.00000               0.0480               0.0694     0.0308     0.1041      0.294
+       63          828     0.00530     0.0317     0.0554              0.00000               0.0429               0.0694     0.0310     0.1045      0.294
+       64          838     0.00526     0.0311     0.0548              0.00000               0.0404               0.0694     0.0308     0.1031      0.292
+       65          847     0.00532     0.0313     0.0544              0.00000               0.0429               0.0751     0.0310     0.1036      0.291
+       66          856     0.00536     0.0313     0.0544              0.00000               0.0429               0.0694     0.0311     0.1037      0.291
+       67          870     0.00537     0.0315     0.0544              0.00000               0.0429               0.0694     0.0312     0.1044      0.291
+       68          886     0.00543     0.0317     0.0541              0.00000               0.0480               0.0694     0.0315     0.1047      0.287
+       69          903     0.00540     0.0314     0.0545              0.00000               0.0480               0.0694     0.0314     0.1041      0.288
+       70          914     0.00544     0.0312     0.0544              0.00000               0.0480               0.0694     0.0314     0.1036      0.288
+       71          924     0.00543     0.0311     0.0543              0.00000               0.0480               0.0694     0.0314     0.1034      0.288
+       72          939     0.00547     0.0313     0.0546              0.00000               0.0455               0.0694     0.0315     0.1039      0.289
+       73          951     0.00546     0.0312     0.0546              0.00000               0.0455               0.0694     0.0314     0.1036      0.289
+       74          967     0.00546     0.0312     0.0546              0.00000               0.0455               0.0694     0.0314     0.1036      0.290
+       75          978     0.00544     0.0312     0.0547              0.00000               0.0455               0.0694     0.0313     0.1037      0.290
+       76          990     0.00547     0.0315     0.0545              0.00000               0.0455               0.0694     0.0315     0.1045      0.290
+       77         1005     0.00543     0.0313     0.0544              0.00000               0.0455               0.0751     0.0315     0.1041      0.290
+       78         1017     0.00542     0.0313     0.0545              0.00000               0.0455               0.0694     0.0315     0.1042      0.290
+       79         1030     0.00546     0.0315     0.0547              0.00000               0.0455               0.0751     0.0315     0.1045      0.291
+       80         1044     0.00549     0.0316     0.0548              0.00000               0.0480               0.0694     0.0317     0.1049      0.292
+       81         1057     0.00549     0.0314     0.0549              0.00000               0.0455               0.0751     0.0316     0.1042      0.292
+       82         1072     0.00542     0.0313     0.0549              0.00000               0.0455               0.0751     0.0315     0.1038      0.292
+       83         1083     0.00541     0.0314     0.0551              0.00000               0.0455               0.0751     0.0315     0.1041      0.293
+       84         1100     0.00538     0.0314     0.0553              0.00000               0.0455               0.0751     0.0314     0.1042      0.294
+       85         1116     0.00535     0.0315     0.0554              0.00000               0.0455               0.0751     0.0313     0.1044      0.294
+       86         1130     0.00537     0.0318     0.0555              0.00000               0.0455               0.0751     0.0314     0.1049      0.294
+       87         1145     0.00539     0.0318     0.0554              0.00000               0.0480               0.0751     0.0315     0.1050      0.294
+       88         1159     0.00541     0.0320     0.0553              0.00000               0.0480               0.0751     0.0316     0.1057      0.295
+       89         1170     0.00545     0.0321     0.0548              0.00000               0.0480               0.0751     0.0319     0.1061      0.293
+       90         1185     0.00546     0.0321     0.0548              0.00000               0.0480               0.0751     0.0319     0.1061      0.293
+       91         1201     0.00545     0.0323     0.0550              0.00000               0.0505               0.0751     0.0320     0.1067      0.293
+       92         1212     0.00545     0.0323     0.0550              0.00000               0.0505               0.0751     0.0320     0.1070      0.293
+       93         1231     0.00545     0.0324     0.0551              0.00000               0.0505               0.0751     0.0321     0.1074      0.294
+       94         1243     0.00548     0.0323     0.0551              0.00000               0.0505               0.0751     0.0322     0.1073      0.294
+       95         1262     0.00548     0.0324     0.0551              0.00000               0.0455               0.0751     0.0321     0.1074      0.294
+       96         1275     0.00544     0.0321     0.0551              0.00000               0.0480               0.0694     0.0320     0.1067      0.294
+       97         1292     0.00538     0.0318     0.0553              0.00000               0.0480               0.0694     0.0319     0.1059      0.295
+       98         1308     0.00533     0.0316     0.0554              0.00000               0.0480               0.0694     0.0318     0.1055      0.296
+       99         1326     0.00531     0.0315     0.0555              0.00000               0.0455               0.0694     0.0317     0.1054      0.296
+      100         1336     0.00531     0.0313     0.0557              0.00000               0.0455               0.0694     0.0318     0.1051      0.297
+ 
+ 
+                                    Loss Reduction Variable Importance
+ 
+                             Number                     OOB       Valid                     OOB       Valid
+Variable                   of Rules        Gini        Gini        Gini      Margin      Margin      Margin
+ 
+area_worst                       92    0.084712     0.07677     0.05768    0.169424     0.16140    0.142561
+perimeter_worst                  93    0.080848     0.07295     0.05028    0.161697     0.15245    0.131208
+concave_points_worst             80    0.053605     0.04573     0.04717    0.107211     0.09956    0.099822
+radius_worst                     70    0.050109     0.04498     0.03129    0.100217     0.09472    0.082130
+concave_points_mean              63    0.043292     0.03693     0.04233    0.086584     0.07970    0.084769
+area_mean                        36    0.024419     0.02050     0.01168    0.048838     0.04472    0.036668
+concavity_mean                   51    0.025387     0.01653     0.01734    0.050774     0.04208    0.041727
+perimeter_mean                   36    0.016258     0.01169     0.00611    0.032516     0.02767    0.022570
+radius_mean                      44    0.013740     0.00948     0.00465    0.027481     0.02346    0.018523
+area_se                          36    0.007483     0.00490     0.00809    0.014966     0.01272    0.015945
+concavity_worst                  40    0.006442     0.00405     0.00300    0.012885     0.00991    0.009224
+compactness_worst                26    0.004757     0.00285     0.00277    0.009513     0.00750    0.006844
+compactness_mean                 19    0.005757     0.00129     0.00165    0.011514     0.00732    0.006892
+fractal_dimension_worst          32    0.003407     0.00072    -0.00100    0.006814     0.00457    0.001779
+concavity_se                     21    0.002040     0.00025    -0.00005    0.004080     0.00206    0.002662
+smoothness_worst                 64    0.006622    -0.00019     0.00093    0.013244     0.00647    0.006916
+concave_points_se                24    0.003072    -0.00035     0.00032    0.006144     0.00298    0.003258
+fractal_dimension_se             16    0.001034    -0.00096    -0.00023    0.002068    -0.00023    0.000839
+radius_se                        62    0.007736    -0.00107     0.00469    0.015473     0.00691    0.012447
+fractal_dimension_mean           16    0.001284    -0.00110    -0.00163    0.002567     0.00001    0.000039
+smoothness_mean                  46    0.004681    -0.00145     0.00014    0.009363     0.00328    0.004556
+perimeter_se                     32    0.001894    -0.00175    -0.00069    0.003787     0.00089    0.001622
+smoothness_se                    27    0.002056    -0.00229    -0.00213    0.004111     0.00023    0.000012
+compactness_se                   27    0.002185    -0.00250    -0.00228    0.004370    -0.00026    0.000242
+symmetry_se                      67    0.004211    -0.00253    -0.00456    0.008422     0.00169    0.000193
+symmetry_worst                   62    0.005179    -0.00310    -0.00029    0.010357     0.00222    0.005881
+symmetry_mean                    54    0.003839    -0.00502    -0.00078    0.007678    -0.00068    0.003242
+ 
+ 
+          Procedure Task Timing
+ 
+Task                 Seconds      Percent
+ 
+Reading Data            0.00       0.00%
+Training Forest         0.36     100.00%
+Saving Model            0.00       0.00%
+ 
+ 
+ 
+ 
+ 
+The ASTORE Procedure
+ 
+               Store Key
+ 
+5EB14BBD98571C01222D4A8A5841CCB80AB0E0B2
+ 
+ 
+          Basic Information
+ 
+Analytic Engine    hpforest
+Time Created       21Oct2026:21:54:14
+ 
+ 
+                                 Input Variables
+ 
+                                                                Raw     Format
+Name                             Length    Role     Type        Type    Name
+ 
+area_mean                             8    Input    Interval    Num
+area_se                               8    Input    Interval    Num
+area_worst                            8    Input    Interval    Num
+compactness_mean                      8    Input    Interval    Num
+compactness_se                        8    Input    Interval    Num
+compactness_worst                     8    Input    Interval    Num
+concave_points_mean                   8    Input    Interval    Num
+concave_points_se                     8    Input    Interval    Num
+concave_points_worst                  8    Input    Interval    Num
+concavity_mean                        8    Input    Interval    Num
+concavity_se                          8    Input    Interval    Num
+concavity_worst                       8    Input    Interval    Num
+fractal_dimension_mean                8    Input    Interval    Num
+fractal_dimension_se                  8    Input    Interval    Num
+fractal_dimension_worst               8    Input    Interval    Num
+perimeter_mean                        8    Input    Interval    Num
+perimeter_se                          8    Input    Interval    Num
+perimeter_worst                       8    Input    Interval    Num
+radius_mean                           8    Input    Interval    Num
+radius_se                             8    Input    Interval    Num
+radius_worst                          8    Input    Interval    Num
+smoothness_mean                       8    Input    Interval    Num
+smoothness_se                         8    Input    Interval    Num
+smoothness_worst                      8    Input    Interval    Num
+symmetry_mean                         8    Input    Interval    Num
+symmetry_se                           8    Input    Interval    Num
+symmetry_worst                        8    Input    Interval    Num
+ 
+ 
+                         Output Variables
+ 
+Name                  Length    Type         Label
+ 
+P_diagnosisM               8    Num          Predicted: diagnosis=M
+P_diagnosisB               8    Num          Predicted: diagnosis=B
+I_diagnosis               32    Character    Into: diagnosis
+_WARN_                     4    Character    Warnings
+
+
+*------------------------------------------------------------*
+* Score Output
+*------------------------------------------------------------*
+ 
+ 
+ 
+The HP4SCORE Procedure
+ 
+      Performance Information
+ 
+Execution Mode       Single-Machine
+Number of Threads    1
+ 
+ 
+             Data Access Information
+ 
+Data                Engine    Role      Path
+ 
+WORK._SCORETRAIN    V9        Input     On Client
+WORK._OUTTEMP       V9        Output    On Client
+ 
+ 
+          Number of Observations
+ 
+Type                                      N
+ 
+Number of Observations Read             396
+Number of Observations Used             396
+Sum of Frequencies Used                 396
+ 
+ 
+        Procedure Task Timing
+ 
+Task              Seconds      Percent
+ 
+Scoring Data         0.00       0.00%
+ 
+ 
+ 
+The HP4SCORE Procedure
+ 
+      Performance Information
+ 
+Execution Mode       Single-Machine
+Number of Threads    1
+ 
+ 
+                Data Access Information
+ 
+Data                      Engine    Role      Path
+ 
+EMWS1.HPDMFOREST_TRAIN    V9        Input     On Client
+WORK._OUTTEMP             V9        Output    On Client
+ 
+ 
+          Number of Observations
+ 
+Type                                      N
+ 
+Number of Observations Read             396
+Number of Observations Used             396
+Sum of Frequencies Used                 396
+ 
+ 
+        Procedure Task Timing
+ 
+Task              Seconds      Percent
+ 
+Scoring Data         0.02     100.00%
+ 
+ 
+ 
+The HP4SCORE Procedure
+ 
+      Performance Information
+ 
+Execution Mode       Single-Machine
+Number of Threads    1
+ 
+ 
+                 Data Access Information
+ 
+Data                         Engine    Role      Path
+ 
+EMWS1.HPDMFOREST_VALIDATE    V9        Input     On Client
+WORK._OUTTEMP                V9        Output    On Client
+ 
+ 
+          Number of Observations
+ 
+Type                                      N
+ 
+Number of Observations Read             173
+Number of Observations Used             173
+Sum of Frequencies Used                 173
+ 
+ 
+        Procedure Task Timing
+ 
+Task              Seconds      Percent
+ 
+Scoring Data         0.01     100.00%
+
+
+*------------------------------------------------------------*
+* Report Output
+*------------------------------------------------------------*
+ 
+ 
+ 
+ 
+Fit Statistics
+ 
+Target=diagnosis Target Label=' '
+ 
+   Fit
+Statistics    Statistics Label                     Train    Validation
+ 
+ _ASE_        Average Squared Error                0.005        0.056
+ _DIV_        Divisor for ASE                    792.000      346.000
+ _MAX_        Maximum Absolute Error               0.400        1.000
+ _NOBS_       Sum of Frequencies                 396.000      173.000
+ _RASE_       Root Average Squared Error           0.073        0.236
+ _SSE_        Sum of Squared Errors                4.203       19.276
+ _DISF_       Frequency of Classified Cases      396.000      173.000
+ _MISC_       Misclassification Rate               0.000        0.069
+ _WRONG_      Number of Wrong Classifications      0.000       12.000
+ 
+ 
+ 
+ 
+Classification Table
+ 
+Data Role=TRAIN Target Variable=diagnosis Target Label=' '
+ 
+                       Target        Outcome     Frequency       Total
+Target    Outcome    Percentage    Percentage      Count      Percentage
+ 
+  B          B           100           100          249         62.8788
+  M          M           100           100          147         37.1212
+ 
+ 
+Data Role=VALIDATE Target Variable=diagnosis Target Label=' '
+ 
+                       Target        Outcome     Frequency       Total
+Target    Outcome    Percentage    Percentage      Count      Percentage
+ 
+  B          B         95.2830       93.5185        101         58.3815
+  M          B          4.7170        7.6923          5          2.8902
+  B          M         10.4478        6.4815          7          4.0462
+  M          M         89.5522       92.3077         60         34.6821
+ 
+ 
+ 
+ 
+Event Classification Table
+ 
+Data Role=TRAIN Target=diagnosis Target Label=' '
+ 
+  False       True        False       True
+Negative    Negative    Positive    Positive
+ 
+    .          249          .          147
+ 
+ 
+Data Role=VALIDATE Target=diagnosis Target Label=' '
+ 
+  False       True        False       True
+Negative    Negative    Positive    Positive
+ 
+    5          101          7          60
+ 
+ 
+ 
+ 
+Assessment Score Rankings
+ 
+Data Role=TRAIN Target Variable=diagnosis Target Label=' '
+ 
+                                                                                           Mean
+                               Cumulative        %       Cumulative      Number of      Posterior
+Depth       Gain      Lift        Lift       Response    % Response    Observations    Probability
+ 
+   5     169.388    2.69388      2.69388        100        100.000          20           1.00000
+  10     169.388    2.69388      2.69388        100        100.000          20           1.00000
+  15     169.388    2.69388      2.69388        100        100.000          20           1.00000
+  20     169.388    2.69388      2.69388        100        100.000          20           1.00000
+  25     169.388    2.69388      2.69388        100        100.000          19           0.99579
+  30     169.388    2.69388      2.69388        100        100.000          20           0.97050
+  35     169.388    2.69388      2.69388        100        100.000          20           0.87550
+  40     149.057    1.07755      2.49057         40         92.453          20           0.42000
+  45     121.229    0.00000      2.21229          0         82.123          20           0.07350
+  50     100.000    0.00000      2.00000          0         74.242          19           0.03842
+  55      81.651    0.00000      1.81651          0         67.431          20           0.01550
+  60      66.387    0.00000      1.66387          0         61.765          20           0.00900
+  65      53.488    0.00000      1.53488          0         56.977          20           0.00000
+  70      42.446    0.00000      1.42446          0         52.878          20           0.00000
+  75      33.333    0.00000      1.33333          0         49.495          19           0.00000
+  80      24.921    0.00000      1.24921          0         46.372          20           0.00000
+  85      17.507    0.00000      1.17507          0         43.620          20           0.00000
+  90      10.924    0.00000      1.10924          0         41.176          20           0.00000
+  95       5.040    0.00000      1.05040          0         38.992          20           0.00000
+ 100       0.000    0.00000      1.00000          0         37.121          19           0.00000
+ 
+ 
+Data Role=VALIDATE Target Variable=diagnosis Target Label=' '
+ 
+                                                                                           Mean
+                               Cumulative        %       Cumulative      Number of      Posterior
+Depth       Gain      Lift        Lift       Response    % Response    Observations    Probability
+ 
+   5     166.154    2.66154      2.66154      100.000      100.000           9           1.00000
+  10     166.154    2.66154      2.66154      100.000      100.000           9           1.00000
+  15     166.154    2.66154      2.66154      100.000      100.000           8           1.00000
+  20     166.154    2.66154      2.66154      100.000      100.000           9           0.99444
+  25     166.154    2.66154      2.66154      100.000      100.000           9           0.98444
+  30     161.036    2.32885      2.61036       87.500       98.077           8           0.93000
+  35     144.338    1.47863      2.44338       55.556       91.803           9           0.83556
+  40     131.934    1.47863      2.31934       55.556       87.143           9           0.53333
+  45     114.970    0.66538      2.14970       25.000       80.769           8           0.26375
+  50      92.732    0.00000      1.92732        0.000       72.414           9           0.11778
+  55      74.663    0.00000      1.74663        0.000       65.625           9           0.04000
+  60      62.690    0.19011      1.62690        7.143       61.126           8           0.02000
+  65      50.742    0.12674      1.50742        4.762       56.637           9           0.01667
+  70      39.816    0.02640      1.39816        0.992       52.532           9           0.00444
+  75      31.505    0.04753      1.31505        1.786       49.409           8           0.00000
+  80      23.298    0.04753      1.23298        1.786       46.326           9           0.00000
+  85      16.089    0.04753      1.16089        1.786       43.617           9           0.00000
+  90      10.380    0.04753      1.10380        1.786       41.472           8           0.00000
+  95       4.618    0.04753      1.04618        1.786       39.307           9           0.00000
+ 100       0.000    0.04753      1.00000        1.786       37.572           8           0.00000
+ 
+ 
+ 
+ 
+Assessment Score Distribution
+ 
+Data Role=TRAIN Target Variable=diagnosis Target Label=' '
+ 
+ Posterior     Number                     Mean
+Probability      of      Number of     Posterior
+   Range       Events    Nonevents    Probability    Percentage
+ 
+ 0.95-1.00       115          0         0.99609        29.0404
+ 0.90-0.95        11          0         0.93182         2.7778
+ 0.85-0.90         7          0         0.87571         1.7677
+ 0.80-0.85         4          0         0.84000         1.0101
+ 0.75-0.80         2          0         0.77500         0.5051
+ 0.70-0.75         3          0         0.73000         0.7576
+ 0.65-0.70         2          0         0.68000         0.5051
+ 0.60-0.65         3          0         0.64333         0.7576
+ 0.35-0.40         0          1         0.40000         0.2525
+ 0.25-0.30         0          4         0.28000         1.0101
+ 0.20-0.25         0          4         0.23000         1.0101
+ 0.15-0.20         0          2         0.18000         0.5051
+ 0.10-0.15         0          3         0.11667         0.7576
+ 0.05-0.10         0         15         0.07267         3.7879
+ 0.00-0.05         0        220         0.00623        55.5556
+ 
+ 
+Data Role=VALIDATE Target Variable=diagnosis Target Label=' '
+ 
+ Posterior     Number                     Mean
+Probability      of      Number of     Posterior
+   Range       Events    Nonevents    Probability    Percentage
+ 
+ 0.95-1.00       46           0         0.99413        26.5896
+ 0.90-0.95        3           1         0.93000         2.3121
+ 0.85-0.90        3           3         0.88500         3.4682
+ 0.80-0.85        2           1         0.82333         1.7341
+ 0.75-0.80        1           0         0.79000         0.5780
+ 0.70-0.75        3           1         0.73750         2.3121
+ 0.50-0.55        2           1         0.52000         1.7341
+ 0.35-0.40        1           0         0.36000         0.5780
+ 0.30-0.35        1           3         0.33750         2.3121
+ 0.25-0.30        0           2         0.27500         1.1561
+ 0.20-0.25        1           2         0.23000         1.7341
+ 0.15-0.20        0           3         0.19667         1.7341
+ 0.10-0.15        0           3         0.12667         1.7341
+ 0.05-0.10        0           5         0.07000         2.8902
+ 0.00-0.05        2          83         0.00765        49.1329

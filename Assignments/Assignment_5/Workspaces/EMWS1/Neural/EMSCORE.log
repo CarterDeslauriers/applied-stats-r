@@ -1,0 +1,1925 @@
+MPRINT(EM_DIAGRAM):    data _null_;
+MPRINT(EM_DIAGRAM):   call symput('NLDATE', strip(put(date(), NLDATE.)));
+MPRINT(EM_DIAGRAM):   call symput('NLTIME', strip(put(datetime(), NLTIME.)));
+MPRINT(EM_DIAGRAM):   run;
+MPRINT(EM_DIAGRAM):   data _null_;
+MPRINT(EM_DIAGRAM):   nldate= sasmsg("sashelp.dmine", "log_date_note", 'N', "October 21, 2026" );
+MPRINT(EM_DIAGRAM):   nltime= sasmsg("sashelp.dmine", "log_time_note", 'N', "22:28:22" );
+MPRINT(EM_DIAGRAM):   put "*------------------------------------------------------------*";
+MPRINT(EM_DIAGRAM):   put "* Score Log";
+MPRINT(EM_DIAGRAM):   put nldate;
+MPRINT(EM_DIAGRAM):   put nltime;
+MPRINT(EM_DIAGRAM):   put "*------------------------------------------------------------*";
+MPRINT(EM_DIAGRAM):   run;
+*------------------------------------------------------------*
+* Score Log
+Date:                October 21, 2026
+Time:                22:28:22
+*------------------------------------------------------------*
+MPRINT(EM_DIAGRAM):    filename O1O8M8QC "C:\Users\student\OneDrive - Bryant University\Documents\GitHub\Projects_in_R\Assignments\Assignment_5\Workspaces\EMWS1\Neural\EMSCORE.out" encoding="UTF-8" NOBOM;
+MPRINT(EM_DIAGRAM):   proc printto print=O1O8M8QC new;
+MPRINT(EM_DIAGRAM):   run;
+107954     data work.outkey;
+MPRINT(EM_DIAGRAM):    data work.outkey;
+107955     set EMWS1.Neural_OUTKEY;
+MPRINT(EM_DIAGRAM):   set EMWS1.Neural_OUTKEY;
+107956     if upcase(ROLE) in('HIDDEN', 'STANDARD');
+MPRINT(EM_DIAGRAM):   if upcase(ROLE) in('HIDDEN', 'STANDARD');
+107957     run;
+MPRINT(EM_DIAGRAM):   run;
+
+NOTE: There were 42 observations read from the data set EMWS1.NEURAL_OUTKEY.
+NOTE: The data set WORK.OUTKEY has 30 observations and 8 variables.
+NOTE: DATA statement used (Total process time):
+      real time           0.01 seconds
+      cpu time            0.01 seconds
+      
+
+107958     filename emflow "C:\Users\student\OneDrive - Bryant University\Documents\GitHub\Projects_in_R\Assignments\Assignment_5\Workspaces\EMWS1\Neural\EMFLOWSCORE.sas";
+MPRINT(EM_DIAGRAM):    filename emflow "C:\Users\student\OneDrive - Bryant University\Documents\GitHub\Projects_in_R\Assignments\Assignment_5\Workspaces\EMWS1\Neural\EMFLOWSCORE.sas";
+MPRINT(EM_DIAGRAM):   *------------------------------------------------------------*;
+MPRINT(EM_DIAGRAM):   * Neural: Scoring DATA data;
+MPRINT(EM_DIAGRAM):   *------------------------------------------------------------*;
+107959     *------------------------------------------------------------*;
+107960     * Neural: Scoring DATA data;
+107961     *------------------------------------------------------------*;
+107962     data EMWS1.Neural_TRAIN
+107963     / view=EMWS1.Neural_TRAIN
+107964     ;
+MPRINT(EM_DIAGRAM):   data EMWS1.Neural_TRAIN / view=EMWS1.Neural_TRAIN ;
+107965     set EMWS1.Part_TRAIN
+107966     ;
+MPRINT(EM_DIAGRAM):   set EMWS1.Part_TRAIN ;
+107967     %inc emflow;
+NOTE: %INCLUDE (level 1) file EMFLOW is file C:\Users\student\OneDrive - Bryant University\Documents\GitHub\Projects_in_R\Assignments\Assignment_5\Workspaces\EMWS1\Neural\EMFLOWSCORE.sas.
+107968    +***********************************;
+MPRINT(EM_DIAGRAM):   ***********************************;
+107969    +*** Begin Scoring Code for Neural;
+MPRINT(EM_DIAGRAM):   *** Begin Scoring Code for Neural;
+107970    +***********************************;
+MPRINT(EM_DIAGRAM):   ***********************************;
+107971    +DROP _DM_BAD _EPS _NOCL_ _MAX_ _MAXP_ _SUM_ _NTRIALS;
+MPRINT(EM_DIAGRAM):   DROP _DM_BAD _EPS _NOCL_ _MAX_ _MAXP_ _SUM_ _NTRIALS;
+107972    + _DM_BAD = 0;
+MPRINT(EM_DIAGRAM):   _DM_BAD = 0;
+107973    + _NOCL_ = .;
+MPRINT(EM_DIAGRAM):   _NOCL_ = .;
+107974    + _MAX_ = .;
+MPRINT(EM_DIAGRAM):   _MAX_ = .;
+107975    + _MAXP_ = .;
+MPRINT(EM_DIAGRAM):   _MAXP_ = .;
+107976    + _SUM_ = .;
+MPRINT(EM_DIAGRAM):   _SUM_ = .;
+107977    + _NTRIALS = .;
+MPRINT(EM_DIAGRAM):   _NTRIALS = .;
+107978    + _EPS =                1E-10;
+MPRINT(EM_DIAGRAM):   _EPS = 1E-10;
+107979    +LENGTH _WARN_ $4
+107980    +      F_diagnosis  $ 1
+107981    +      I_diagnosis  $ 1
+107982    +      U_diagnosis  $ 1
+107983    +;
+MPRINT(EM_DIAGRAM):   LENGTH _WARN_ $4 F_diagnosis $ 1 I_diagnosis $ 1 U_diagnosis $ 1 ;
+107984    +      label S_area_mean = 'Standard: area_mean' ;
+MPRINT(EM_DIAGRAM):   label S_area_mean = 'Standard: area_mean' ;
+107985    +
+107986    +      label S_area_se = 'Standard: area_se' ;
+MPRINT(EM_DIAGRAM):   label S_area_se = 'Standard: area_se' ;
+107987    +
+107988    +      label S_area_worst = 'Standard: area_worst' ;
+MPRINT(EM_DIAGRAM):   label S_area_worst = 'Standard: area_worst' ;
+107989    +
+107990    +      label S_compactness_mean = 'Standard: compactness_mean' ;
+MPRINT(EM_DIAGRAM):   label S_compactness_mean = 'Standard: compactness_mean' ;
+107991    +
+107992    +      label S_compactness_se = 'Standard: compactness_se' ;
+MPRINT(EM_DIAGRAM):   label S_compactness_se = 'Standard: compactness_se' ;
+107993    +
+107994    +      label S_compactness_worst = 'Standard: compactness_worst' ;
+MPRINT(EM_DIAGRAM):   label S_compactness_worst = 'Standard: compactness_worst' ;
+107995    +
+107996    +      label S_concave_points_mean = 'Standard: concave_points_mean' ;
+MPRINT(EM_DIAGRAM):   label S_concave_points_mean = 'Standard: concave_points_mean' ;
+107997    +
+107998    +      label S_concave_points_se = 'Standard: concave_points_se' ;
+MPRINT(EM_DIAGRAM):   label S_concave_points_se = 'Standard: concave_points_se' ;
+107999    +
+108000    +      label S_concave_points_worst = 'Standard: concave_points_worst' ;
+MPRINT(EM_DIAGRAM):   label S_concave_points_worst = 'Standard: concave_points_worst' ;
+108001    +
+108002    +      label S_concavity_mean = 'Standard: concavity_mean' ;
+MPRINT(EM_DIAGRAM):   label S_concavity_mean = 'Standard: concavity_mean' ;
+108003    +
+108004    +      label S_concavity_se = 'Standard: concavity_se' ;
+MPRINT(EM_DIAGRAM):   label S_concavity_se = 'Standard: concavity_se' ;
+108005    +
+108006    +      label S_concavity_worst = 'Standard: concavity_worst' ;
+MPRINT(EM_DIAGRAM):   label S_concavity_worst = 'Standard: concavity_worst' ;
+108007    +
+108008    +      label S_fractal_dimension_mean = 'Standard: fractal_dimension_mean' ;
+MPRINT(EM_DIAGRAM):   label S_fractal_dimension_mean = 'Standard: fractal_dimension_mean' ;
+108009    +
+108010    +      label S_fractal_dimension_se = 'Standard: fractal_dimension_se' ;
+MPRINT(EM_DIAGRAM):   label S_fractal_dimension_se = 'Standard: fractal_dimension_se' ;
+108011    +
+108012    +      label S_fractal_dimension_worst = 'Standard: fractal_dimension_worst' ;
+MPRINT(EM_DIAGRAM):   label S_fractal_dimension_worst = 'Standard: fractal_dimension_worst' ;
+108013    +
+108014    +      label S_perimeter_mean = 'Standard: perimeter_mean' ;
+MPRINT(EM_DIAGRAM):   label S_perimeter_mean = 'Standard: perimeter_mean' ;
+108015    +
+108016    +      label S_perimeter_se = 'Standard: perimeter_se' ;
+MPRINT(EM_DIAGRAM):   label S_perimeter_se = 'Standard: perimeter_se' ;
+108017    +
+108018    +      label S_perimeter_worst = 'Standard: perimeter_worst' ;
+MPRINT(EM_DIAGRAM):   label S_perimeter_worst = 'Standard: perimeter_worst' ;
+108019    +
+108020    +      label S_radius_mean = 'Standard: radius_mean' ;
+MPRINT(EM_DIAGRAM):   label S_radius_mean = 'Standard: radius_mean' ;
+108021    +
+108022    +      label S_radius_se = 'Standard: radius_se' ;
+MPRINT(EM_DIAGRAM):   label S_radius_se = 'Standard: radius_se' ;
+108023    +
+108024    +      label S_radius_worst = 'Standard: radius_worst' ;
+MPRINT(EM_DIAGRAM):   label S_radius_worst = 'Standard: radius_worst' ;
+108025    +
+108026    +      label S_smoothness_mean = 'Standard: smoothness_mean' ;
+MPRINT(EM_DIAGRAM):   label S_smoothness_mean = 'Standard: smoothness_mean' ;
+108027    +
+108028    +      label S_smoothness_se = 'Standard: smoothness_se' ;
+MPRINT(EM_DIAGRAM):   label S_smoothness_se = 'Standard: smoothness_se' ;
+108029    +
+108030    +      label S_smoothness_worst = 'Standard: smoothness_worst' ;
+MPRINT(EM_DIAGRAM):   label S_smoothness_worst = 'Standard: smoothness_worst' ;
+108031    +
+108032    +      label S_symmetry_mean = 'Standard: symmetry_mean' ;
+MPRINT(EM_DIAGRAM):   label S_symmetry_mean = 'Standard: symmetry_mean' ;
+108033    +
+108034    +      label S_symmetry_se = 'Standard: symmetry_se' ;
+MPRINT(EM_DIAGRAM):   label S_symmetry_se = 'Standard: symmetry_se' ;
+108035    +
+108036    +      label S_symmetry_worst = 'Standard: symmetry_worst' ;
+MPRINT(EM_DIAGRAM):   label S_symmetry_worst = 'Standard: symmetry_worst' ;
+108037    +
+108038    +      label H11 = 'Hidden: H1=1' ;
+MPRINT(EM_DIAGRAM):   label H11 = 'Hidden: H1=1' ;
+108039    +
+108040    +      label H12 = 'Hidden: H1=2' ;
+MPRINT(EM_DIAGRAM):   label H12 = 'Hidden: H1=2' ;
+108041    +
+108042    +      label H13 = 'Hidden: H1=3' ;
+MPRINT(EM_DIAGRAM):   label H13 = 'Hidden: H1=3' ;
+108043    +
+108044    +      label I_diagnosis = 'Into: diagnosis' ;
+MPRINT(EM_DIAGRAM):   label I_diagnosis = 'Into: diagnosis' ;
+108045    +
+108046    +      label F_diagnosis = 'From: diagnosis' ;
+MPRINT(EM_DIAGRAM):   label F_diagnosis = 'From: diagnosis' ;
+108047    +
+108048    +      label U_diagnosis = 'Unnormalized Into: diagnosis' ;
+MPRINT(EM_DIAGRAM):   label U_diagnosis = 'Unnormalized Into: diagnosis' ;
+108049    +
+108050    +      label P_diagnosisM = 'Predicted: diagnosis=M' ;
+MPRINT(EM_DIAGRAM):   label P_diagnosisM = 'Predicted: diagnosis=M' ;
+108051    +
+108052    +      label R_diagnosisM = 'Residual: diagnosis=M' ;
+MPRINT(EM_DIAGRAM):   label R_diagnosisM = 'Residual: diagnosis=M' ;
+108053    +
+108054    +      label P_diagnosisB = 'Predicted: diagnosis=B' ;
+MPRINT(EM_DIAGRAM):   label P_diagnosisB = 'Predicted: diagnosis=B' ;
+108055    +
+108056    +      label R_diagnosisB = 'Residual: diagnosis=B' ;
+MPRINT(EM_DIAGRAM):   label R_diagnosisB = 'Residual: diagnosis=B' ;
+108057    +
+108058    +      label  _WARN_ = "Warnings";
+MPRINT(EM_DIAGRAM):   label _WARN_ = "Warnings";
+108059    +
+108060    +*** *************************;
+MPRINT(EM_DIAGRAM):   *** *************************;
+108061    +*** Checking missing input Interval
+108062    +*** *************************;
+MPRINT(EM_DIAGRAM):   *** Checking missing input Interval *** *************************;
+108063    +
+108064    +IF NMISS(
+108065    +   area_mean ,
+108066    +   area_se ,
+108067    +   area_worst ,
+108068    +   compactness_mean ,
+108069    +   compactness_se ,
+108070    +   compactness_worst ,
+108071    +   concave_points_mean ,
+108072    +   concave_points_se ,
+108073    +   concave_points_worst ,
+108074    +   concavity_mean ,
+108075    +   concavity_se ,
+108076    +   concavity_worst ,
+108077    +   fractal_dimension_mean ,
+108078    +   fractal_dimension_se ,
+108079    +   fractal_dimension_worst ,
+108080    +   perimeter_mean ,
+108081    +   perimeter_se ,
+108082    +   perimeter_worst ,
+108083    +   radius_mean ,
+108084    +   radius_se ,
+108085    +   radius_worst ,
+108086    +   smoothness_mean ,
+108087    +   smoothness_se ,
+108088    +   smoothness_worst ,
+108089    +   symmetry_mean ,
+108090    +   symmetry_se ,
+108091    +   symmetry_worst   ) THEN DO;
+MPRINT(EM_DIAGRAM):   IF NMISS( area_mean , area_se , area_worst , compactness_mean , compactness_se , compactness_worst , concave_points_mean , concave_points_se , concave_points_worst , concavity_mean , concavity_se , concavity_worst , 
+fractal_dimension_mean , fractal_dimension_se , fractal_dimension_worst , perimeter_mean , perimeter_se , perimeter_worst , radius_mean , radius_se , radius_worst , smoothness_mean , smoothness_se , smoothness_worst , symmetry_mean , symmetry_se , 
+symmetry_worst ) THEN DO;
+108092    +   SUBSTR(_WARN_, 1, 1) = 'M';
+MPRINT(EM_DIAGRAM):   SUBSTR(_WARN_, 1, 1) = 'M';
+108093    +
+108094    +   _DM_BAD = 1;
+MPRINT(EM_DIAGRAM):   _DM_BAD = 1;
+108095    +END;
+MPRINT(EM_DIAGRAM):   END;
+108096    +*** *************************;
+MPRINT(EM_DIAGRAM):   *** *************************;
+108097    +*** Writing the Node intvl ;
+MPRINT(EM_DIAGRAM):   *** Writing the Node intvl ;
+108098    +*** *************************;
+MPRINT(EM_DIAGRAM):   *** *************************;
+108099    +IF _DM_BAD EQ 0 THEN DO;
+MPRINT(EM_DIAGRAM):   IF _DM_BAD EQ 0 THEN DO;
+108100    +   S_area_mean  =    -1.86155221068433 +     0.00284371116064 * area_mean ;
+MPRINT(EM_DIAGRAM):   S_area_mean = -1.86155221068433 + 0.00284371116064 * area_mean ;
+108101    +   S_area_se  =    -0.82845717837421 +     0.02048291691749 * area_se ;
+MPRINT(EM_DIAGRAM):   S_area_se = -0.82845717837421 + 0.02048291691749 * area_se ;
+108102    +   S_area_worst  =    -1.52782645672378 +     0.00173417139448 * area_worst ;
+MPRINT(EM_DIAGRAM):   S_area_worst = -1.52782645672378 + 0.00173417139448 * area_worst ;
+108103    +   S_compactness_mean  =    -1.98985478375849 +     19.1473294438856 *
+108104    +        compactness_mean ;
+MPRINT(EM_DIAGRAM):   S_compactness_mean = -1.98985478375849 + 19.1473294438856 * compactness_mean ;
+108105    +   S_compactness_se  =    -1.46966611690372 +     58.8177170660739 *
+108106    +        compactness_se ;
+MPRINT(EM_DIAGRAM):   S_compactness_se = -1.46966611690372 + 58.8177170660739 * compactness_se ;
+108107    +   S_compactness_worst  =    -1.62636444042546 +     6.44034972918207 *
+108108    +        compactness_worst ;
+MPRINT(EM_DIAGRAM):   S_compactness_worst = -1.62636444042546 + 6.44034972918207 * compactness_worst ;
+108109    +   S_concave_points_mean  =    -1.25205252854053 +      25.620888810128 *
+108110    +        concave_points_mean ;
+MPRINT(EM_DIAGRAM):   S_concave_points_mean = -1.25205252854053 + 25.620888810128 * concave_points_mean ;
+108111    +   S_concave_points_se  =    -1.85502867799946 +     158.959518400178 *
+108112    +        concave_points_se ;
+MPRINT(EM_DIAGRAM):   S_concave_points_se = -1.85502867799946 + 158.959518400178 * concave_points_se ;
+108113    +   S_concave_points_worst  =    -1.71297809378767 +     15.0189205761679 *
+108114    +        concave_points_worst ;
+MPRINT(EM_DIAGRAM):   S_concave_points_worst = -1.71297809378767 + 15.0189205761679 * concave_points_worst ;
+108115    +   S_concavity_mean  =    -1.11382232257536 +     12.5605844423819 *
+108116    +        concavity_mean ;
+MPRINT(EM_DIAGRAM):   S_concavity_mean = -1.11382232257536 + 12.5605844423819 * concavity_mean ;
+108117    +   S_concavity_se  =    -1.06340744420102 +     33.9549878051086 *
+108118    +        concavity_se ;
+MPRINT(EM_DIAGRAM):   S_concavity_se = -1.06340744420102 + 33.9549878051086 * concavity_se ;
+108119    +   S_concavity_worst  =    -1.32449308670687 +     4.91583845296763 *
+108120    +        concavity_worst ;
+MPRINT(EM_DIAGRAM):   S_concavity_worst = -1.32449308670687 + 4.91583845296763 * concavity_worst ;
+108121    +   S_fractal_dimension_mean  =    -9.00253413939402 +     143.666896205708 *
+108122    +        fractal_dimension_mean ;
+MPRINT(EM_DIAGRAM):   S_fractal_dimension_mean = -9.00253413939402 + 143.666896205708 * fractal_dimension_mean ;
+108123    +   S_fractal_dimension_se  =    -1.36136539788035 +     367.305791698724 *
+108124    +        fractal_dimension_se ;
+MPRINT(EM_DIAGRAM):   S_fractal_dimension_se = -1.36136539788035 + 367.305791698724 * fractal_dimension_se ;
+108125    +   S_fractal_dimension_worst  =    -4.86183926084573 +     58.4930718814694 *
+108126    +        fractal_dimension_worst ;
+MPRINT(EM_DIAGRAM):   S_fractal_dimension_worst = -4.86183926084573 + 58.4930718814694 * fractal_dimension_worst ;
+108127    +   S_perimeter_mean  =    -3.82488652457676 +     0.04156966188435 *
+108128    +        perimeter_mean ;
+MPRINT(EM_DIAGRAM):   S_perimeter_mean = -3.82488652457676 + 0.04156966188435 * perimeter_mean ;
+108129    +   S_perimeter_se  =    -1.34775754728092 +      0.4681121145196 *
+108130    +        perimeter_se ;
+MPRINT(EM_DIAGRAM):   S_perimeter_se = -1.34775754728092 + 0.4681121145196 * perimeter_se ;
+108131    +   S_perimeter_worst  =    -3.17563903366227 +     0.02955372716892 *
+108132    +        perimeter_worst ;
+MPRINT(EM_DIAGRAM):   S_perimeter_worst = -3.17563903366227 + 0.02955372716892 * perimeter_worst ;
+108133    +   S_radius_mean  =    -4.05764977496878 +     0.28713377367946 * radius_mean
+108134    +         ;
+MPRINT(EM_DIAGRAM):   S_radius_mean = -4.05764977496878 + 0.28713377367946 * radius_mean ;
+108135    +   S_radius_se  =    -1.40283152653658 +     3.48147110181667 * radius_se ;
+MPRINT(EM_DIAGRAM):   S_radius_se = -1.40283152653658 + 3.48147110181667 * radius_se ;
+108136    +   S_radius_worst  =    -3.36551320681228 +     0.20684720574392 *
+108137    +        radius_worst ;
+MPRINT(EM_DIAGRAM):   S_radius_worst = -3.36551320681228 + 0.20684720574392 * radius_worst ;
+108138    +   S_smoothness_mean  =    -6.99342760420755 +     72.8736992704779 *
+108139    +        smoothness_mean ;
+MPRINT(EM_DIAGRAM):   S_smoothness_mean = -6.99342760420755 + 72.8736992704779 * smoothness_mean ;
+108140    +   S_smoothness_se  =    -2.36630202368779 +     345.757326476785 *
+108141    +        smoothness_se ;
+MPRINT(EM_DIAGRAM):   S_smoothness_se = -2.36630202368779 + 345.757326476785 * smoothness_se ;
+108142    +   S_smoothness_worst  =    -5.79475029800394 +     44.1748287995126 *
+108143    +        smoothness_worst ;
+MPRINT(EM_DIAGRAM):   S_smoothness_worst = -5.79475029800394 + 44.1748287995126 * smoothness_worst ;
+108144    +   S_symmetry_mean  =    -6.56848536936401 +     36.4978834207944 *
+108145    +        symmetry_mean ;
+MPRINT(EM_DIAGRAM):   S_symmetry_mean = -6.56848536936401 + 36.4978834207944 * symmetry_mean ;
+108146    +   S_symmetry_se  =    -2.58149167419602 +     125.750050862589 * symmetry_se
+108147    +         ;
+MPRINT(EM_DIAGRAM):   S_symmetry_se = -2.58149167419602 + 125.750050862589 * symmetry_se ;
+108148    +   S_symmetry_worst  =    -4.59287080342021 +     15.8682160344868 *
+108149    +        symmetry_worst ;
+MPRINT(EM_DIAGRAM):   S_symmetry_worst = -4.59287080342021 + 15.8682160344868 * symmetry_worst ;
+108150    +END;
+MPRINT(EM_DIAGRAM):   END;
+108151    +ELSE DO;
+MPRINT(EM_DIAGRAM):   ELSE DO;
+108152    +   IF MISSING( area_mean ) THEN S_area_mean  = . ;
+MPRINT(EM_DIAGRAM):   IF MISSING( area_mean ) THEN S_area_mean = . ;
+108153    +   ELSE S_area_mean  =    -1.86155221068433 +     0.00284371116064 * area_mean
+108154    +         ;
+MPRINT(EM_DIAGRAM):   ELSE S_area_mean = -1.86155221068433 + 0.00284371116064 * area_mean ;
+108155    +   IF MISSING( area_se ) THEN S_area_se  = . ;
+MPRINT(EM_DIAGRAM):   IF MISSING( area_se ) THEN S_area_se = . ;
+108156    +   ELSE S_area_se  =    -0.82845717837421 +     0.02048291691749 * area_se ;
+MPRINT(EM_DIAGRAM):   ELSE S_area_se = -0.82845717837421 + 0.02048291691749 * area_se ;
+108157    +   IF MISSING( area_worst ) THEN S_area_worst  = . ;
+MPRINT(EM_DIAGRAM):   IF MISSING( area_worst ) THEN S_area_worst = . ;
+108158    +   ELSE S_area_worst  =    -1.52782645672378 +     0.00173417139448 *
+108159    +        area_worst ;
+MPRINT(EM_DIAGRAM):   ELSE S_area_worst = -1.52782645672378 + 0.00173417139448 * area_worst ;
+108160    +   IF MISSING( compactness_mean ) THEN S_compactness_mean  = . ;
+MPRINT(EM_DIAGRAM):   IF MISSING( compactness_mean ) THEN S_compactness_mean = . ;
+108161    +   ELSE S_compactness_mean  =    -1.98985478375849 +     19.1473294438856 *
+108162    +        compactness_mean ;
+MPRINT(EM_DIAGRAM):   ELSE S_compactness_mean = -1.98985478375849 + 19.1473294438856 * compactness_mean ;
+108163    +   IF MISSING( compactness_se ) THEN S_compactness_se  = . ;
+MPRINT(EM_DIAGRAM):   IF MISSING( compactness_se ) THEN S_compactness_se = . ;
+108164    +   ELSE S_compactness_se  =    -1.46966611690372 +     58.8177170660739 *
+108165    +        compactness_se ;
+MPRINT(EM_DIAGRAM):   ELSE S_compactness_se = -1.46966611690372 + 58.8177170660739 * compactness_se ;
+108166    +   IF MISSING( compactness_worst ) THEN S_compactness_worst  = . ;
+MPRINT(EM_DIAGRAM):   IF MISSING( compactness_worst ) THEN S_compactness_worst = . ;
+108167    +   ELSE S_compactness_worst  =    -1.62636444042546 +     6.44034972918207 *
+108168    +        compactness_worst ;
+MPRINT(EM_DIAGRAM):   ELSE S_compactness_worst = -1.62636444042546 + 6.44034972918207 * compactness_worst ;
+108169    +   IF MISSING( concave_points_mean ) THEN S_concave_points_mean  = . ;
+MPRINT(EM_DIAGRAM):   IF MISSING( concave_points_mean ) THEN S_concave_points_mean = . ;
+108170    +   ELSE S_concave_points_mean
+108171    +          =    -1.25205252854053 +      25.620888810128 * concave_points_mean
+108172    +         ;
+MPRINT(EM_DIAGRAM):   ELSE S_concave_points_mean = -1.25205252854053 + 25.620888810128 * concave_points_mean ;
+108173    +   IF MISSING( concave_points_se ) THEN S_concave_points_se  = . ;
+MPRINT(EM_DIAGRAM):   IF MISSING( concave_points_se ) THEN S_concave_points_se = . ;
+108174    +   ELSE S_concave_points_se  =    -1.85502867799946 +     158.959518400178 *
+108175    +        concave_points_se ;
+MPRINT(EM_DIAGRAM):   ELSE S_concave_points_se = -1.85502867799946 + 158.959518400178 * concave_points_se ;
+108176    +   IF MISSING( concave_points_worst ) THEN S_concave_points_worst  = . ;
+MPRINT(EM_DIAGRAM):   IF MISSING( concave_points_worst ) THEN S_concave_points_worst = . ;
+108177    +   ELSE S_concave_points_worst
+108178    +          =    -1.71297809378767 +     15.0189205761679 * concave_points_worst
+108179    +         ;
+MPRINT(EM_DIAGRAM):   ELSE S_concave_points_worst = -1.71297809378767 + 15.0189205761679 * concave_points_worst ;
+108180    +   IF MISSING( concavity_mean ) THEN S_concavity_mean  = . ;
+MPRINT(EM_DIAGRAM):   IF MISSING( concavity_mean ) THEN S_concavity_mean = . ;
+108181    +   ELSE S_concavity_mean  =    -1.11382232257536 +     12.5605844423819 *
+108182    +        concavity_mean ;
+MPRINT(EM_DIAGRAM):   ELSE S_concavity_mean = -1.11382232257536 + 12.5605844423819 * concavity_mean ;
+108183    +   IF MISSING( concavity_se ) THEN S_concavity_se  = . ;
+MPRINT(EM_DIAGRAM):   IF MISSING( concavity_se ) THEN S_concavity_se = . ;
+108184    +   ELSE S_concavity_se  =    -1.06340744420102 +     33.9549878051086 *
+108185    +        concavity_se ;
+MPRINT(EM_DIAGRAM):   ELSE S_concavity_se = -1.06340744420102 + 33.9549878051086 * concavity_se ;
+108186    +   IF MISSING( concavity_worst ) THEN S_concavity_worst  = . ;
+MPRINT(EM_DIAGRAM):   IF MISSING( concavity_worst ) THEN S_concavity_worst = . ;
+108187    +   ELSE S_concavity_worst  =    -1.32449308670687 +     4.91583845296763 *
+108188    +        concavity_worst ;
+MPRINT(EM_DIAGRAM):   ELSE S_concavity_worst = -1.32449308670687 + 4.91583845296763 * concavity_worst ;
+108189    +   IF MISSING( fractal_dimension_mean ) THEN S_fractal_dimension_mean  = . ;
+MPRINT(EM_DIAGRAM):   IF MISSING( fractal_dimension_mean ) THEN S_fractal_dimension_mean = . ;
+108190    +   ELSE S_fractal_dimension_mean
+108191    +          =    -9.00253413939402 +     143.666896205708 *
+108192    +        fractal_dimension_mean ;
+MPRINT(EM_DIAGRAM):   ELSE S_fractal_dimension_mean = -9.00253413939402 + 143.666896205708 * fractal_dimension_mean ;
+108193    +   IF MISSING( fractal_dimension_se ) THEN S_fractal_dimension_se  = . ;
+MPRINT(EM_DIAGRAM):   IF MISSING( fractal_dimension_se ) THEN S_fractal_dimension_se = . ;
+108194    +   ELSE S_fractal_dimension_se
+108195    +          =    -1.36136539788035 +     367.305791698724 * fractal_dimension_se
+108196    +         ;
+MPRINT(EM_DIAGRAM):   ELSE S_fractal_dimension_se = -1.36136539788035 + 367.305791698724 * fractal_dimension_se ;
+108197    +   IF MISSING( fractal_dimension_worst ) THEN S_fractal_dimension_worst  = . ;
+MPRINT(EM_DIAGRAM):   IF MISSING( fractal_dimension_worst ) THEN S_fractal_dimension_worst = . ;
+108198    +   ELSE S_fractal_dimension_worst
+108199    +          =    -4.86183926084573 +     58.4930718814694 *
+108200    +        fractal_dimension_worst ;
+MPRINT(EM_DIAGRAM):   ELSE S_fractal_dimension_worst = -4.86183926084573 + 58.4930718814694 * fractal_dimension_worst ;
+108201    +   IF MISSING( perimeter_mean ) THEN S_perimeter_mean  = . ;
+MPRINT(EM_DIAGRAM):   IF MISSING( perimeter_mean ) THEN S_perimeter_mean = . ;
+108202    +   ELSE S_perimeter_mean  =    -3.82488652457676 +     0.04156966188435 *
+108203    +        perimeter_mean ;
+MPRINT(EM_DIAGRAM):   ELSE S_perimeter_mean = -3.82488652457676 + 0.04156966188435 * perimeter_mean ;
+108204    +   IF MISSING( perimeter_se ) THEN S_perimeter_se  = . ;
+MPRINT(EM_DIAGRAM):   IF MISSING( perimeter_se ) THEN S_perimeter_se = . ;
+108205    +   ELSE S_perimeter_se  =    -1.34775754728092 +      0.4681121145196 *
+108206    +        perimeter_se ;
+MPRINT(EM_DIAGRAM):   ELSE S_perimeter_se = -1.34775754728092 + 0.4681121145196 * perimeter_se ;
+108207    +   IF MISSING( perimeter_worst ) THEN S_perimeter_worst  = . ;
+MPRINT(EM_DIAGRAM):   IF MISSING( perimeter_worst ) THEN S_perimeter_worst = . ;
+108208    +   ELSE S_perimeter_worst  =    -3.17563903366227 +     0.02955372716892 *
+108209    +        perimeter_worst ;
+MPRINT(EM_DIAGRAM):   ELSE S_perimeter_worst = -3.17563903366227 + 0.02955372716892 * perimeter_worst ;
+108210    +   IF MISSING( radius_mean ) THEN S_radius_mean  = . ;
+MPRINT(EM_DIAGRAM):   IF MISSING( radius_mean ) THEN S_radius_mean = . ;
+108211    +   ELSE S_radius_mean  =    -4.05764977496878 +     0.28713377367946 *
+108212    +        radius_mean ;
+MPRINT(EM_DIAGRAM):   ELSE S_radius_mean = -4.05764977496878 + 0.28713377367946 * radius_mean ;
+108213    +   IF MISSING( radius_se ) THEN S_radius_se  = . ;
+MPRINT(EM_DIAGRAM):   IF MISSING( radius_se ) THEN S_radius_se = . ;
+108214    +   ELSE S_radius_se  =    -1.40283152653658 +     3.48147110181667 * radius_se
+108215    +         ;
+MPRINT(EM_DIAGRAM):   ELSE S_radius_se = -1.40283152653658 + 3.48147110181667 * radius_se ;
+108216    +   IF MISSING( radius_worst ) THEN S_radius_worst  = . ;
+MPRINT(EM_DIAGRAM):   IF MISSING( radius_worst ) THEN S_radius_worst = . ;
+108217    +   ELSE S_radius_worst  =    -3.36551320681228 +     0.20684720574392 *
+108218    +        radius_worst ;
+MPRINT(EM_DIAGRAM):   ELSE S_radius_worst = -3.36551320681228 + 0.20684720574392 * radius_worst ;
+108219    +   IF MISSING( smoothness_mean ) THEN S_smoothness_mean  = . ;
+MPRINT(EM_DIAGRAM):   IF MISSING( smoothness_mean ) THEN S_smoothness_mean = . ;
+108220    +   ELSE S_smoothness_mean  =    -6.99342760420755 +     72.8736992704779 *
+108221    +        smoothness_mean ;
+MPRINT(EM_DIAGRAM):   ELSE S_smoothness_mean = -6.99342760420755 + 72.8736992704779 * smoothness_mean ;
+108222    +   IF MISSING( smoothness_se ) THEN S_smoothness_se  = . ;
+MPRINT(EM_DIAGRAM):   IF MISSING( smoothness_se ) THEN S_smoothness_se = . ;
+108223    +   ELSE S_smoothness_se  =    -2.36630202368779 +     345.757326476785 *
+108224    +        smoothness_se ;
+MPRINT(EM_DIAGRAM):   ELSE S_smoothness_se = -2.36630202368779 + 345.757326476785 * smoothness_se ;
+108225    +   IF MISSING( smoothness_worst ) THEN S_smoothness_worst  = . ;
+MPRINT(EM_DIAGRAM):   IF MISSING( smoothness_worst ) THEN S_smoothness_worst = . ;
+108226    +   ELSE S_smoothness_worst  =    -5.79475029800394 +     44.1748287995126 *
+108227    +        smoothness_worst ;
+MPRINT(EM_DIAGRAM):   ELSE S_smoothness_worst = -5.79475029800394 + 44.1748287995126 * smoothness_worst ;
+108228    +   IF MISSING( symmetry_mean ) THEN S_symmetry_mean  = . ;
+MPRINT(EM_DIAGRAM):   IF MISSING( symmetry_mean ) THEN S_symmetry_mean = . ;
+108229    +   ELSE S_symmetry_mean  =    -6.56848536936401 +     36.4978834207944 *
+108230    +        symmetry_mean ;
+MPRINT(EM_DIAGRAM):   ELSE S_symmetry_mean = -6.56848536936401 + 36.4978834207944 * symmetry_mean ;
+108231    +   IF MISSING( symmetry_se ) THEN S_symmetry_se  = . ;
+MPRINT(EM_DIAGRAM):   IF MISSING( symmetry_se ) THEN S_symmetry_se = . ;
+108232    +   ELSE S_symmetry_se  =    -2.58149167419602 +     125.750050862589 *
+108233    +        symmetry_se ;
+MPRINT(EM_DIAGRAM):   ELSE S_symmetry_se = -2.58149167419602 + 125.750050862589 * symmetry_se ;
+108234    +   IF MISSING( symmetry_worst ) THEN S_symmetry_worst  = . ;
+MPRINT(EM_DIAGRAM):   IF MISSING( symmetry_worst ) THEN S_symmetry_worst = . ;
+108235    +   ELSE S_symmetry_worst  =    -4.59287080342021 +     15.8682160344868 *
+108236    +        symmetry_worst ;
+MPRINT(EM_DIAGRAM):   ELSE S_symmetry_worst = -4.59287080342021 + 15.8682160344868 * symmetry_worst ;
+108237    +END;
+MPRINT(EM_DIAGRAM):   END;
+108238    +*** *************************;
+MPRINT(EM_DIAGRAM):   *** *************************;
+108239    +*** Writing the Node H1 ;
+MPRINT(EM_DIAGRAM):   *** Writing the Node H1 ;
+108240    +*** *************************;
+MPRINT(EM_DIAGRAM):   *** *************************;
+108241    +IF _DM_BAD EQ 0 THEN DO;
+MPRINT(EM_DIAGRAM):   IF _DM_BAD EQ 0 THEN DO;
+108242    +   H11  =     -1.0384770268112 * S_area_mean  +    -0.31624446915027 *
+108243    +        S_area_se  +    -0.44266983908294 * S_area_worst
+108244    +          +      0.1753440124127 * S_compactness_mean
+108245    +          +      0.3074051337239 * S_compactness_se  +    -1.11207892626932 *
+108246    +        S_compactness_worst  +     0.55468287665186 * S_concave_points_mean
+108247    +          +     0.67989295120372 * S_concave_points_se
+108248    +          +     0.06387513523687 * S_concave_points_worst
+108249    +          +     0.68775860084696 * S_concavity_mean  +    -0.61307778424691 *
+108250    +        S_concavity_se  +     0.27890196865159 * S_concavity_worst
+108251    +          +     -0.9630128793529 * S_fractal_dimension_mean
+108252    +          +    -1.62527836301815 * S_fractal_dimension_se
+108253    +          +    -1.08889532062515 * S_fractal_dimension_worst
+108254    +          +      -0.195370769471 * S_perimeter_mean  +      1.0752564229519 *
+108255    +        S_perimeter_se  +     0.29711606400543 * S_perimeter_worst
+108256    +          +    -0.37006594668447 * S_radius_mean  +    -0.33824577831892 *
+108257    +        S_radius_se  +      -0.265664872654 * S_radius_worst
+108258    +          +    -1.88155613424655 * S_smoothness_mean
+108259    +          +     0.38505019821322 * S_smoothness_se  +    -1.90321250461932 *
+108260    +        S_smoothness_worst  +     -0.8930305178327 * S_symmetry_mean
+108261    +          +     0.62021519389082 * S_symmetry_se  +    -0.77615427846851 *
+108262    +        S_symmetry_worst ;
+MPRINT(EM_DIAGRAM):   H11 = -1.0384770268112 * S_area_mean + -0.31624446915027 * S_area_se + -0.44266983908294 * S_area_worst + 0.1753440124127 * S_compactness_mean + 0.3074051337239 * S_compactness_se + -1.11207892626932 * S_compactness_worst + 
+0.55468287665186 * S_concave_points_mean + 0.67989295120372 * S_concave_points_se + 0.06387513523687 * S_concave_points_worst + 0.68775860084696 * S_concavity_mean + -0.61307778424691 * S_concavity_se + 0.27890196865159 * S_concavity_worst + 
+-0.9630128793529 * S_fractal_dimension_mean + -1.62527836301815 * S_fractal_dimension_se + -1.08889532062515 * S_fractal_dimension_worst + -0.195370769471 * S_perimeter_mean + 1.0752564229519 * S_perimeter_se + 0.29711606400543 * S_perimeter_worst + 
+-0.37006594668447 * S_radius_mean + -0.33824577831892 * S_radius_se + -0.265664872654 * S_radius_worst + -1.88155613424655 * S_smoothness_mean + 0.38505019821322 * S_smoothness_se + -1.90321250461932 * S_smoothness_worst + -0.8930305178327 * 
+S_symmetry_mean + 0.62021519389082 * S_symmetry_se + -0.77615427846851 * S_symmetry_worst ;
+108263    +   H12  =    -1.32175801026771 * S_area_mean  +      -0.477409143452 *
+108264    +        S_area_se  +     0.93735320579474 * S_area_worst
+108265    +          +     0.39593875195771 * S_compactness_mean
+108266    +          +     0.25667488874755 * S_compactness_se  +     1.11220412397512 *
+108267    +        S_compactness_worst  +    -0.67808106831669 * S_concave_points_mean
+108268    +          +    -0.03815665637598 * S_concave_points_se
+108269    +          +    -1.33902575939572 * S_concave_points_worst
+108270    +          +    -2.34143519960228 * S_concavity_mean  +     0.47865507866866 *
+108271    +        S_concavity_se  +    -0.53446416088267 * S_concavity_worst
+108272    +          +     0.92827862863326 * S_fractal_dimension_mean
+108273    +          +     1.72045368124118 * S_fractal_dimension_se
+108274    +          +    -2.26580025054762 * S_fractal_dimension_worst
+108275    +          +     0.22860540781086 * S_perimeter_mean  +    -0.27213447709692 *
+108276    +        S_perimeter_se  +     0.33944621197489 * S_perimeter_worst
+108277    +          +    -0.62784619082323 * S_radius_mean  +    -0.68106450710717 *
+108278    +        S_radius_se  +     0.47529684777241 * S_radius_worst
+108279    +          +    -0.33517905918522 * S_smoothness_mean
+108280    +          +    -1.32925198102113 * S_smoothness_se  +     1.23611236760884 *
+108281    +        S_smoothness_worst  +     -0.1579681037859 * S_symmetry_mean
+108282    +          +     0.37265471206316 * S_symmetry_se  +    -0.44570723571297 *
+108283    +        S_symmetry_worst ;
+MPRINT(EM_DIAGRAM):   H12 = -1.32175801026771 * S_area_mean + -0.477409143452 * S_area_se + 0.93735320579474 * S_area_worst + 0.39593875195771 * S_compactness_mean + 0.25667488874755 * S_compactness_se + 1.11220412397512 * S_compactness_worst + 
+-0.67808106831669 * S_concave_points_mean + -0.03815665637598 * S_concave_points_se + -1.33902575939572 * S_concave_points_worst + -2.34143519960228 * S_concavity_mean + 0.47865507866866 * S_concavity_se + -0.53446416088267 * S_concavity_worst + 
+0.92827862863326 * S_fractal_dimension_mean + 1.72045368124118 * S_fractal_dimension_se + -2.26580025054762 * S_fractal_dimension_worst + 0.22860540781086 * S_perimeter_mean + -0.27213447709692 * S_perimeter_se + 0.33944621197489 * S_perimeter_worst + 
+-0.62784619082323 * S_radius_mean + -0.68106450710717 * S_radius_se + 0.47529684777241 * S_radius_worst + -0.33517905918522 * S_smoothness_mean + -1.32925198102113 * S_smoothness_se + 1.23611236760884 * S_smoothness_worst + -0.1579681037859 * 
+S_symmetry_mean + 0.37265471206316 * S_symmetry_se + -0.44570723571297 * S_symmetry_worst ;
+108284    +   H13  =       0.484280306054 * S_area_mean  +     2.69156050870574 *
+108285    +        S_area_se  +     4.11824028006232 * S_area_worst
+108286    +          +    -1.57450764150447 * S_compactness_mean
+108287    +          +    -3.22512115198253 * S_compactness_se  +     0.24729246928114 *
+108288    +        S_compactness_worst  +     2.37450441243376 * S_concave_points_mean
+108289    +          +     1.90666537716128 * S_concave_points_se
+108290    +          +    -1.53644061122821 * S_concave_points_worst
+108291    +          +    -0.57929201231017 * S_concavity_mean  +    -0.71379802777961 *
+108292    +        S_concavity_se  +     0.77294721068184 * S_concavity_worst
+108293    +          +     3.81316016367013 * S_fractal_dimension_mean
+108294    +          +     0.37475266546511 * S_fractal_dimension_se
+108295    +          +     0.31048915687575 * S_fractal_dimension_worst
+108296    +          +    -0.77594722358713 * S_perimeter_mean  +     1.14606140740303 *
+108297    +        S_perimeter_se  +     1.48797572524387 * S_perimeter_worst
+108298    +          +    -0.09478126862438 * S_radius_mean  +     2.04648928433954 *
+108299    +        S_radius_se  +     1.26485148325018 * S_radius_worst
+108300    +          +    -1.82082389811315 * S_smoothness_mean
+108301    +          +    -0.61837190979605 * S_smoothness_se  +     0.95418941055518 *
+108302    +        S_smoothness_worst  +     0.06629101577789 * S_symmetry_mean
+108303    +          +    -3.61813368055851 * S_symmetry_se  +     2.19817175831678 *
+108304    +        S_symmetry_worst ;
+MPRINT(EM_DIAGRAM):   H13 = 0.484280306054 * S_area_mean + 2.69156050870574 * S_area_se + 4.11824028006232 * S_area_worst + -1.57450764150447 * S_compactness_mean + -3.22512115198253 * S_compactness_se + 0.24729246928114 * S_compactness_worst + 
+2.37450441243376 * S_concave_points_mean + 1.90666537716128 * S_concave_points_se + -1.53644061122821 * S_concave_points_worst + -0.57929201231017 * S_concavity_mean + -0.71379802777961 * S_concavity_se + 0.77294721068184 * S_concavity_worst + 
+3.81316016367013 * S_fractal_dimension_mean + 0.37475266546511 * S_fractal_dimension_se + 0.31048915687575 * S_fractal_dimension_worst + -0.77594722358713 * S_perimeter_mean + 1.14606140740303 * S_perimeter_se + 1.48797572524387 * S_perimeter_worst + 
+-0.09478126862438 * S_radius_mean + 2.04648928433954 * S_radius_se + 1.26485148325018 * S_radius_worst + -1.82082389811315 * S_smoothness_mean + -0.61837190979605 * S_smoothness_se + 0.95418941055518 * S_smoothness_worst + 0.06629101577789 * 
+S_symmetry_mean + -3.61813368055851 * S_symmetry_se + 2.19817175831678 * S_symmetry_worst ;
+108305    +   H11  =    -3.49423316205934 + H11 ;
+MPRINT(EM_DIAGRAM):   H11 = -3.49423316205934 + H11 ;
+108306    +   H12  =     0.92561567129862 + H12 ;
+MPRINT(EM_DIAGRAM):   H12 = 0.92561567129862 + H12 ;
+108307    +   H13  =    -0.53792252310284 + H13 ;
+MPRINT(EM_DIAGRAM):   H13 = -0.53792252310284 + H13 ;
+108308    +   H11  = TANH(H11 );
+MPRINT(EM_DIAGRAM):   H11 = TANH(H11 );
+108309    +   H12  = TANH(H12 );
+MPRINT(EM_DIAGRAM):   H12 = TANH(H12 );
+108310    +   H13  = TANH(H13 );
+MPRINT(EM_DIAGRAM):   H13 = TANH(H13 );
+108311    +END;
+MPRINT(EM_DIAGRAM):   END;
+108312    +ELSE DO;
+MPRINT(EM_DIAGRAM):   ELSE DO;
+108313    +   H11  = .;
+MPRINT(EM_DIAGRAM):   H11 = .;
+108314    +   H12  = .;
+MPRINT(EM_DIAGRAM):   H12 = .;
+108315    +   H13  = .;
+MPRINT(EM_DIAGRAM):   H13 = .;
+108316    +END;
+MPRINT(EM_DIAGRAM):   END;
+108317    +*** *************************;
+MPRINT(EM_DIAGRAM):   *** *************************;
+108318    +*** Writing the Node diagnosis ;
+MPRINT(EM_DIAGRAM):   *** Writing the Node diagnosis ;
+108319    +*** *************************;
+MPRINT(EM_DIAGRAM):   *** *************************;
+108320    +
+108321    +*** Generate dummy variables for diagnosis ;
+MPRINT(EM_DIAGRAM):   *** Generate dummy variables for diagnosis ;
+108322    +drop diagnosisM diagnosisB ;
+MPRINT(EM_DIAGRAM):   drop diagnosisM diagnosisB ;
+108323    +label F_diagnosis = 'From: diagnosis' ;
+MPRINT(EM_DIAGRAM):   label F_diagnosis = 'From: diagnosis' ;
+108324    +length F_diagnosis $ 1;
+MPRINT(EM_DIAGRAM):   length F_diagnosis $ 1;
+108325    +F_diagnosis = put( diagnosis , $1. );
+MPRINT(EM_DIAGRAM):   F_diagnosis = put( diagnosis , $1. );
+108326    +%DMNORMIP( F_diagnosis )
+MPRINT(DMNORMIP):   call dmnorm(F_diagnosis,
+MPRINT(DMNORLEN):  32
+MPRINT(DMNORMIP):  );
+MPRINT(EM_DIAGRAM):   if missing( diagnosis ) then do;
+MPRINT(EM_DIAGRAM):   diagnosisM = .;
+MPRINT(EM_DIAGRAM):   diagnosisB = .;
+MPRINT(EM_DIAGRAM):   end;
+108327    +if missing( diagnosis ) then do;
+MPRINT(EM_DIAGRAM):   else do;
+108328    +   diagnosisM = .;
+MPRINT(EM_DIAGRAM):   if F_diagnosis = 'B' then do;
+108329    +   diagnosisB = .;
+MPRINT(EM_DIAGRAM):   diagnosisM = 0;
+108330    +end;
+MPRINT(EM_DIAGRAM):   diagnosisB = 1;
+108331    +else do;
+MPRINT(EM_DIAGRAM):   end;
+108332    +   if F_diagnosis = 'B'  then do;
+MPRINT(EM_DIAGRAM):   else if F_diagnosis = 'M' then do;
+108333    +      diagnosisM = 0;
+MPRINT(EM_DIAGRAM):   diagnosisM = 1;
+108334    +      diagnosisB = 1;
+MPRINT(EM_DIAGRAM):   diagnosisB = 0;
+108335    +   end;
+MPRINT(EM_DIAGRAM):   end;
+108336    +   else if F_diagnosis = 'M'  then do;
+MPRINT(EM_DIAGRAM):   else do;
+108337    +      diagnosisM = 1;
+MPRINT(EM_DIAGRAM):   diagnosisM = .;
+108338    +      diagnosisB = 0;
+MPRINT(EM_DIAGRAM):   diagnosisB = .;
+108339    +   end;
+MPRINT(EM_DIAGRAM):   end;
+108340    +   else do;
+MPRINT(EM_DIAGRAM):   end;
+MPRINT(EM_DIAGRAM):   IF _DM_BAD EQ 0 THEN DO;
+108341    +      diagnosisM = .;
+108342    +      diagnosisB = .;
+MPRINT(EM_DIAGRAM):   P_diagnosisM = 1.11412583555609 * H11 + -10.3986784889356 * H12 + 7.76015562844953 * H13 ;
+108343    +   end;
+MPRINT(EM_DIAGRAM):   P_diagnosisM = 6.69385588428352 + P_diagnosisM ;
+108344    +end;
+MPRINT(EM_DIAGRAM):   P_diagnosisB = 0;
+108345    +IF _DM_BAD EQ 0 THEN DO;
+MPRINT(EM_DIAGRAM):   _MAX_ = MAX (P_diagnosisM , P_diagnosisB );
+108346    +   P_diagnosisM  =     1.11412583555609 * H11  +    -10.3986784889356 * H12
+MPRINT(EM_DIAGRAM):   _SUM_ = 0.;
+108347    +          +     7.76015562844953 * H13 ;
+MPRINT(EM_DIAGRAM):   P_diagnosisM = EXP(P_diagnosisM - _MAX_);
+108348    +   P_diagnosisM  =     6.69385588428352 + P_diagnosisM ;
+MPRINT(EM_DIAGRAM):   _SUM_ = _SUM_ + P_diagnosisM ;
+108349    +   P_diagnosisB  = 0;
+MPRINT(EM_DIAGRAM):   P_diagnosisB = EXP(P_diagnosisB - _MAX_);
+108350    +   _MAX_ = MAX (P_diagnosisM , P_diagnosisB );
+MPRINT(EM_DIAGRAM):   _SUM_ = _SUM_ + P_diagnosisB ;
+108351    +   _SUM_ = 0.;
+MPRINT(EM_DIAGRAM):   P_diagnosisM = P_diagnosisM / _SUM_;
+108352    +   P_diagnosisM  = EXP(P_diagnosisM  - _MAX_);
+MPRINT(EM_DIAGRAM):   P_diagnosisB = P_diagnosisB / _SUM_;
+108353    +   _SUM_ = _SUM_ + P_diagnosisM ;
+MPRINT(EM_DIAGRAM):   END;
+108354    +   P_diagnosisB  = EXP(P_diagnosisB  - _MAX_);
+108355    +   _SUM_ = _SUM_ + P_diagnosisB ;
+MPRINT(EM_DIAGRAM):   ELSE DO;
+108356    +   P_diagnosisM  = P_diagnosisM  / _SUM_;
+MPRINT(EM_DIAGRAM):   P_diagnosisM = .;
+108357    +   P_diagnosisB  = P_diagnosisB  / _SUM_;
+MPRINT(EM_DIAGRAM):   P_diagnosisB = .;
+108358    +END;
+MPRINT(EM_DIAGRAM):   END;
+108359    +ELSE DO;
+MPRINT(EM_DIAGRAM):   IF _DM_BAD EQ 1 THEN DO;
+MPRINT(EM_DIAGRAM):   P_diagnosisM = 0.37121212121212;
+108360    +   P_diagnosisM  = .;
+MPRINT(EM_DIAGRAM):   P_diagnosisB = 0.62878787878787;
+108361    +   P_diagnosisB  = .;
+MPRINT(EM_DIAGRAM):   END;
+108362    +END;
+MPRINT(EM_DIAGRAM):   *** *****************************;
+108363    +IF _DM_BAD EQ 1 THEN DO;
+MPRINT(EM_DIAGRAM):   *** Writing the Residuals of the Node diagnosis ;
+108364    +   P_diagnosisM  =     0.37121212121212;
+MPRINT(EM_DIAGRAM):   *** ******************************;
+108365    +   P_diagnosisB  =     0.62878787878787;
+MPRINT(EM_DIAGRAM):   IF MISSING( diagnosisM ) THEN R_diagnosisM = . ;
+108366    +END;
+108367    +*** *****************************;
+MPRINT(EM_DIAGRAM):   ELSE R_diagnosisM = diagnosisM - P_diagnosisM ;
+108368    +*** Writing the Residuals  of the Node diagnosis ;
+MPRINT(EM_DIAGRAM):   IF MISSING( diagnosisB ) THEN R_diagnosisB = . ;
+108369    +*** ******************************;
+108370    +IF MISSING( diagnosisM ) THEN R_diagnosisM  = . ;
+MPRINT(EM_DIAGRAM):   ELSE R_diagnosisB = diagnosisB - P_diagnosisB ;
+108371    +ELSE R_diagnosisM  = diagnosisM  - P_diagnosisM ;
+MPRINT(EM_DIAGRAM):   *** *************************;
+MPRINT(EM_DIAGRAM):   *** Writing the I_diagnosis AND U_diagnosis ;
+108372    +IF MISSING( diagnosisB ) THEN R_diagnosisB  = . ;
+MPRINT(EM_DIAGRAM):   *** *************************;
+108373    +ELSE R_diagnosisB  = diagnosisB  - P_diagnosisB ;
+MPRINT(EM_DIAGRAM):   _MAXP_ = P_diagnosisM ;
+MPRINT(EM_DIAGRAM):   I_diagnosis = "M" ;
+108374    +*** *************************;
+MPRINT(EM_DIAGRAM):   U_diagnosis = "M" ;
+108375    +*** Writing the I_diagnosis  AND U_diagnosis ;
+MPRINT(EM_DIAGRAM):   IF( _MAXP_ LT P_diagnosisB ) THEN DO;
+108376    +*** *************************;
+MPRINT(EM_DIAGRAM):   _MAXP_ = P_diagnosisB ;
+108377    +_MAXP_ = P_diagnosisM ;
+MPRINT(EM_DIAGRAM):   I_diagnosis = "B" ;
+108378    +I_diagnosis  = "M" ;
+MPRINT(EM_DIAGRAM):   U_diagnosis = "B" ;
+108379    +U_diagnosis  = "M" ;
+MPRINT(EM_DIAGRAM):   END;
+108380    +IF( _MAXP_ LT P_diagnosisB  ) THEN DO;
+MPRINT(EM_DIAGRAM):   ********************************;
+108381    +   _MAXP_ = P_diagnosisB ;
+MPRINT(EM_DIAGRAM):   *** End Scoring Code for Neural;
+108382    +   I_diagnosis  = "B" ;
+MPRINT(EM_DIAGRAM):   ********************************;
+108383    +   U_diagnosis  = "B" ;
+108384    +END;
+108385    +********************************;
+108386    +*** End Scoring Code for Neural;
+108387    +********************************;
+108388    +drop
+108389    +S_area_mean
+108390    +S_area_se
+108391    +S_area_worst
+108392    +S_compactness_mean
+108393    +S_compactness_se
+108394    +S_compactness_worst
+108395    +S_concave_points_mean
+108396    +S_concave_points_se
+108397    +S_concave_points_worst
+108398    +S_concavity_mean
+108399    +S_concavity_se
+108400    +S_concavity_worst
+108401    +S_fractal_dimension_mean
+108402    +S_fractal_dimension_se
+108403    +S_fractal_dimension_worst
+108404    +S_perimeter_mean
+108405    +S_perimeter_se
+108406    +S_perimeter_worst
+108407    +S_radius_mean
+108408    +S_radius_se
+108409    +S_radius_worst
+108410    +S_smoothness_mean
+108411    +S_smoothness_se
+108412    +S_smoothness_worst
+108413    +S_symmetry_mean
+108414    +S_symmetry_se
+MPRINT(EM_DIAGRAM):   drop S_area_mean S_area_se S_area_worst S_compactness_mean S_compactness_se S_compactness_worst S_concave_points_mean S_concave_points_se S_concave_points_worst S_concavity_mean S_concavity_se S_concavity_worst 
+S_fractal_dimension_mean S_fractal_dimension_se S_fractal_dimension_worst S_perimeter_mean S_perimeter_se S_perimeter_worst S_radius_mean S_radius_se S_radius_worst S_smoothness_mean S_smoothness_se S_smoothness_worst S_symmetry_mean S_symmetry_se 
+S_symmetry_worst H11 H12 H13 ;
+108415    +S_symmetry_worst
+108416    +H11
+108417    +H12
+108418    +H13
+108419    +;
+NOTE: %INCLUDE (level 1) ending.
+MPRINT(EM_DIAGRAM):   run;
+108420     run;
+
+NOTE: DATA STEP view saved on file EMWS1.NEURAL_TRAIN.
+NOTE: A stored DATA STEP view cannot run under a different operating system.
+NOTE: DATA statement used (Total process time):
+      real time           0.10 seconds
+      cpu time            0.04 seconds
+      
+
+MPRINT(EM_DIAGRAM):   quit;
+108421     quit;
+108422     filename emflow;
+MPRINT(EM_DIAGRAM):   filename emflow;
+NOTE: Fileref EMFLOW has been deassigned.
+108423     filename emflow "C:\Users\student\OneDrive - Bryant University\Documents\GitHub\Projects_in_R\Assignments\Assignment_5\Workspaces\EMWS1\Neural\EMFLOWSCORE.sas";
+MPRINT(EM_DIAGRAM):    filename emflow "C:\Users\student\OneDrive - Bryant University\Documents\GitHub\Projects_in_R\Assignments\Assignment_5\Workspaces\EMWS1\Neural\EMFLOWSCORE.sas";
+MPRINT(EM_DIAGRAM):   *------------------------------------------------------------*;
+MPRINT(EM_DIAGRAM):   * Neural: Scoring VALIDATE data;
+MPRINT(EM_DIAGRAM):   *------------------------------------------------------------*;
+108424     *------------------------------------------------------------*;
+108425     * Neural: Scoring VALIDATE data;
+108426     *------------------------------------------------------------*;
+108427     data EMWS1.Neural_VALIDATE
+108428     / view=EMWS1.Neural_VALIDATE
+108429     ;
+MPRINT(EM_DIAGRAM):   data EMWS1.Neural_VALIDATE / view=EMWS1.Neural_VALIDATE ;
+108430     set EMWS1.Part_VALIDATE
+108431     ;
+MPRINT(EM_DIAGRAM):   set EMWS1.Part_VALIDATE ;
+108432     %inc emflow;
+NOTE: %INCLUDE (level 1) file EMFLOW is file C:\Users\student\OneDrive - Bryant University\Documents\GitHub\Projects_in_R\Assignments\Assignment_5\Workspaces\EMWS1\Neural\EMFLOWSCORE.sas.
+108433    +***********************************;
+MPRINT(EM_DIAGRAM):   ***********************************;
+108434    +*** Begin Scoring Code for Neural;
+MPRINT(EM_DIAGRAM):   *** Begin Scoring Code for Neural;
+108435    +***********************************;
+MPRINT(EM_DIAGRAM):   ***********************************;
+108436    +DROP _DM_BAD _EPS _NOCL_ _MAX_ _MAXP_ _SUM_ _NTRIALS;
+MPRINT(EM_DIAGRAM):   DROP _DM_BAD _EPS _NOCL_ _MAX_ _MAXP_ _SUM_ _NTRIALS;
+108437    + _DM_BAD = 0;
+MPRINT(EM_DIAGRAM):   _DM_BAD = 0;
+108438    + _NOCL_ = .;
+MPRINT(EM_DIAGRAM):   _NOCL_ = .;
+108439    + _MAX_ = .;
+MPRINT(EM_DIAGRAM):   _MAX_ = .;
+108440    + _MAXP_ = .;
+MPRINT(EM_DIAGRAM):   _MAXP_ = .;
+108441    + _SUM_ = .;
+MPRINT(EM_DIAGRAM):   _SUM_ = .;
+108442    + _NTRIALS = .;
+MPRINT(EM_DIAGRAM):   _NTRIALS = .;
+108443    + _EPS =                1E-10;
+MPRINT(EM_DIAGRAM):   _EPS = 1E-10;
+108444    +LENGTH _WARN_ $4
+108445    +      F_diagnosis  $ 1
+108446    +      I_diagnosis  $ 1
+108447    +      U_diagnosis  $ 1
+108448    +;
+MPRINT(EM_DIAGRAM):   LENGTH _WARN_ $4 F_diagnosis $ 1 I_diagnosis $ 1 U_diagnosis $ 1 ;
+108449    +      label S_area_mean = 'Standard: area_mean' ;
+MPRINT(EM_DIAGRAM):   label S_area_mean = 'Standard: area_mean' ;
+108450    +
+108451    +      label S_area_se = 'Standard: area_se' ;
+MPRINT(EM_DIAGRAM):   label S_area_se = 'Standard: area_se' ;
+108452    +
+108453    +      label S_area_worst = 'Standard: area_worst' ;
+MPRINT(EM_DIAGRAM):   label S_area_worst = 'Standard: area_worst' ;
+108454    +
+108455    +      label S_compactness_mean = 'Standard: compactness_mean' ;
+MPRINT(EM_DIAGRAM):   label S_compactness_mean = 'Standard: compactness_mean' ;
+108456    +
+108457    +      label S_compactness_se = 'Standard: compactness_se' ;
+MPRINT(EM_DIAGRAM):   label S_compactness_se = 'Standard: compactness_se' ;
+108458    +
+108459    +      label S_compactness_worst = 'Standard: compactness_worst' ;
+MPRINT(EM_DIAGRAM):   label S_compactness_worst = 'Standard: compactness_worst' ;
+108460    +
+108461    +      label S_concave_points_mean = 'Standard: concave_points_mean' ;
+MPRINT(EM_DIAGRAM):   label S_concave_points_mean = 'Standard: concave_points_mean' ;
+108462    +
+108463    +      label S_concave_points_se = 'Standard: concave_points_se' ;
+MPRINT(EM_DIAGRAM):   label S_concave_points_se = 'Standard: concave_points_se' ;
+108464    +
+108465    +      label S_concave_points_worst = 'Standard: concave_points_worst' ;
+MPRINT(EM_DIAGRAM):   label S_concave_points_worst = 'Standard: concave_points_worst' ;
+108466    +
+108467    +      label S_concavity_mean = 'Standard: concavity_mean' ;
+MPRINT(EM_DIAGRAM):   label S_concavity_mean = 'Standard: concavity_mean' ;
+108468    +
+108469    +      label S_concavity_se = 'Standard: concavity_se' ;
+MPRINT(EM_DIAGRAM):   label S_concavity_se = 'Standard: concavity_se' ;
+108470    +
+108471    +      label S_concavity_worst = 'Standard: concavity_worst' ;
+MPRINT(EM_DIAGRAM):   label S_concavity_worst = 'Standard: concavity_worst' ;
+108472    +
+108473    +      label S_fractal_dimension_mean = 'Standard: fractal_dimension_mean' ;
+MPRINT(EM_DIAGRAM):   label S_fractal_dimension_mean = 'Standard: fractal_dimension_mean' ;
+108474    +
+108475    +      label S_fractal_dimension_se = 'Standard: fractal_dimension_se' ;
+MPRINT(EM_DIAGRAM):   label S_fractal_dimension_se = 'Standard: fractal_dimension_se' ;
+108476    +
+108477    +      label S_fractal_dimension_worst = 'Standard: fractal_dimension_worst' ;
+MPRINT(EM_DIAGRAM):   label S_fractal_dimension_worst = 'Standard: fractal_dimension_worst' ;
+108478    +
+108479    +      label S_perimeter_mean = 'Standard: perimeter_mean' ;
+MPRINT(EM_DIAGRAM):   label S_perimeter_mean = 'Standard: perimeter_mean' ;
+108480    +
+108481    +      label S_perimeter_se = 'Standard: perimeter_se' ;
+MPRINT(EM_DIAGRAM):   label S_perimeter_se = 'Standard: perimeter_se' ;
+108482    +
+108483    +      label S_perimeter_worst = 'Standard: perimeter_worst' ;
+MPRINT(EM_DIAGRAM):   label S_perimeter_worst = 'Standard: perimeter_worst' ;
+108484    +
+108485    +      label S_radius_mean = 'Standard: radius_mean' ;
+MPRINT(EM_DIAGRAM):   label S_radius_mean = 'Standard: radius_mean' ;
+108486    +
+108487    +      label S_radius_se = 'Standard: radius_se' ;
+MPRINT(EM_DIAGRAM):   label S_radius_se = 'Standard: radius_se' ;
+108488    +
+108489    +      label S_radius_worst = 'Standard: radius_worst' ;
+MPRINT(EM_DIAGRAM):   label S_radius_worst = 'Standard: radius_worst' ;
+108490    +
+108491    +      label S_smoothness_mean = 'Standard: smoothness_mean' ;
+MPRINT(EM_DIAGRAM):   label S_smoothness_mean = 'Standard: smoothness_mean' ;
+108492    +
+108493    +      label S_smoothness_se = 'Standard: smoothness_se' ;
+MPRINT(EM_DIAGRAM):   label S_smoothness_se = 'Standard: smoothness_se' ;
+108494    +
+108495    +      label S_smoothness_worst = 'Standard: smoothness_worst' ;
+MPRINT(EM_DIAGRAM):   label S_smoothness_worst = 'Standard: smoothness_worst' ;
+108496    +
+108497    +      label S_symmetry_mean = 'Standard: symmetry_mean' ;
+MPRINT(EM_DIAGRAM):   label S_symmetry_mean = 'Standard: symmetry_mean' ;
+108498    +
+108499    +      label S_symmetry_se = 'Standard: symmetry_se' ;
+MPRINT(EM_DIAGRAM):   label S_symmetry_se = 'Standard: symmetry_se' ;
+108500    +
+108501    +      label S_symmetry_worst = 'Standard: symmetry_worst' ;
+MPRINT(EM_DIAGRAM):   label S_symmetry_worst = 'Standard: symmetry_worst' ;
+108502    +
+108503    +      label H11 = 'Hidden: H1=1' ;
+MPRINT(EM_DIAGRAM):   label H11 = 'Hidden: H1=1' ;
+108504    +
+108505    +      label H12 = 'Hidden: H1=2' ;
+MPRINT(EM_DIAGRAM):   label H12 = 'Hidden: H1=2' ;
+108506    +
+108507    +      label H13 = 'Hidden: H1=3' ;
+MPRINT(EM_DIAGRAM):   label H13 = 'Hidden: H1=3' ;
+108508    +
+108509    +      label I_diagnosis = 'Into: diagnosis' ;
+MPRINT(EM_DIAGRAM):   label I_diagnosis = 'Into: diagnosis' ;
+108510    +
+108511    +      label F_diagnosis = 'From: diagnosis' ;
+MPRINT(EM_DIAGRAM):   label F_diagnosis = 'From: diagnosis' ;
+108512    +
+108513    +      label U_diagnosis = 'Unnormalized Into: diagnosis' ;
+MPRINT(EM_DIAGRAM):   label U_diagnosis = 'Unnormalized Into: diagnosis' ;
+108514    +
+108515    +      label P_diagnosisM = 'Predicted: diagnosis=M' ;
+MPRINT(EM_DIAGRAM):   label P_diagnosisM = 'Predicted: diagnosis=M' ;
+108516    +
+108517    +      label R_diagnosisM = 'Residual: diagnosis=M' ;
+MPRINT(EM_DIAGRAM):   label R_diagnosisM = 'Residual: diagnosis=M' ;
+108518    +
+108519    +      label P_diagnosisB = 'Predicted: diagnosis=B' ;
+MPRINT(EM_DIAGRAM):   label P_diagnosisB = 'Predicted: diagnosis=B' ;
+108520    +
+108521    +      label R_diagnosisB = 'Residual: diagnosis=B' ;
+MPRINT(EM_DIAGRAM):   label R_diagnosisB = 'Residual: diagnosis=B' ;
+108522    +
+108523    +      label  _WARN_ = "Warnings";
+MPRINT(EM_DIAGRAM):   label _WARN_ = "Warnings";
+108524    +
+108525    +*** *************************;
+MPRINT(EM_DIAGRAM):   *** *************************;
+108526    +*** Checking missing input Interval
+108527    +*** *************************;
+MPRINT(EM_DIAGRAM):   *** Checking missing input Interval *** *************************;
+108528    +
+108529    +IF NMISS(
+108530    +   area_mean ,
+108531    +   area_se ,
+108532    +   area_worst ,
+108533    +   compactness_mean ,
+108534    +   compactness_se ,
+108535    +   compactness_worst ,
+108536    +   concave_points_mean ,
+108537    +   concave_points_se ,
+108538    +   concave_points_worst ,
+108539    +   concavity_mean ,
+108540    +   concavity_se ,
+108541    +   concavity_worst ,
+108542    +   fractal_dimension_mean ,
+108543    +   fractal_dimension_se ,
+108544    +   fractal_dimension_worst ,
+108545    +   perimeter_mean ,
+108546    +   perimeter_se ,
+108547    +   perimeter_worst ,
+108548    +   radius_mean ,
+108549    +   radius_se ,
+108550    +   radius_worst ,
+108551    +   smoothness_mean ,
+108552    +   smoothness_se ,
+108553    +   smoothness_worst ,
+108554    +   symmetry_mean ,
+108555    +   symmetry_se ,
+108556    +   symmetry_worst   ) THEN DO;
+MPRINT(EM_DIAGRAM):   IF NMISS( area_mean , area_se , area_worst , compactness_mean , compactness_se , compactness_worst , concave_points_mean , concave_points_se , concave_points_worst , concavity_mean , concavity_se , concavity_worst , 
+fractal_dimension_mean , fractal_dimension_se , fractal_dimension_worst , perimeter_mean , perimeter_se , perimeter_worst , radius_mean , radius_se , radius_worst , smoothness_mean , smoothness_se , smoothness_worst , symmetry_mean , symmetry_se , 
+symmetry_worst ) THEN DO;
+108557    +   SUBSTR(_WARN_, 1, 1) = 'M';
+MPRINT(EM_DIAGRAM):   SUBSTR(_WARN_, 1, 1) = 'M';
+108558    +
+108559    +   _DM_BAD = 1;
+MPRINT(EM_DIAGRAM):   _DM_BAD = 1;
+108560    +END;
+MPRINT(EM_DIAGRAM):   END;
+108561    +*** *************************;
+MPRINT(EM_DIAGRAM):   *** *************************;
+108562    +*** Writing the Node intvl ;
+MPRINT(EM_DIAGRAM):   *** Writing the Node intvl ;
+108563    +*** *************************;
+MPRINT(EM_DIAGRAM):   *** *************************;
+108564    +IF _DM_BAD EQ 0 THEN DO;
+MPRINT(EM_DIAGRAM):   IF _DM_BAD EQ 0 THEN DO;
+108565    +   S_area_mean  =    -1.86155221068433 +     0.00284371116064 * area_mean ;
+MPRINT(EM_DIAGRAM):   S_area_mean = -1.86155221068433 + 0.00284371116064 * area_mean ;
+108566    +   S_area_se  =    -0.82845717837421 +     0.02048291691749 * area_se ;
+MPRINT(EM_DIAGRAM):   S_area_se = -0.82845717837421 + 0.02048291691749 * area_se ;
+108567    +   S_area_worst  =    -1.52782645672378 +     0.00173417139448 * area_worst ;
+MPRINT(EM_DIAGRAM):   S_area_worst = -1.52782645672378 + 0.00173417139448 * area_worst ;
+108568    +   S_compactness_mean  =    -1.98985478375849 +     19.1473294438856 *
+108569    +        compactness_mean ;
+MPRINT(EM_DIAGRAM):   S_compactness_mean = -1.98985478375849 + 19.1473294438856 * compactness_mean ;
+108570    +   S_compactness_se  =    -1.46966611690372 +     58.8177170660739 *
+108571    +        compactness_se ;
+MPRINT(EM_DIAGRAM):   S_compactness_se = -1.46966611690372 + 58.8177170660739 * compactness_se ;
+108572    +   S_compactness_worst  =    -1.62636444042546 +     6.44034972918207 *
+108573    +        compactness_worst ;
+MPRINT(EM_DIAGRAM):   S_compactness_worst = -1.62636444042546 + 6.44034972918207 * compactness_worst ;
+108574    +   S_concave_points_mean  =    -1.25205252854053 +      25.620888810128 *
+108575    +        concave_points_mean ;
+MPRINT(EM_DIAGRAM):   S_concave_points_mean = -1.25205252854053 + 25.620888810128 * concave_points_mean ;
+108576    +   S_concave_points_se  =    -1.85502867799946 +     158.959518400178 *
+108577    +        concave_points_se ;
+MPRINT(EM_DIAGRAM):   S_concave_points_se = -1.85502867799946 + 158.959518400178 * concave_points_se ;
+108578    +   S_concave_points_worst  =    -1.71297809378767 +     15.0189205761679 *
+108579    +        concave_points_worst ;
+MPRINT(EM_DIAGRAM):   S_concave_points_worst = -1.71297809378767 + 15.0189205761679 * concave_points_worst ;
+108580    +   S_concavity_mean  =    -1.11382232257536 +     12.5605844423819 *
+108581    +        concavity_mean ;
+MPRINT(EM_DIAGRAM):   S_concavity_mean = -1.11382232257536 + 12.5605844423819 * concavity_mean ;
+108582    +   S_concavity_se  =    -1.06340744420102 +     33.9549878051086 *
+108583    +        concavity_se ;
+MPRINT(EM_DIAGRAM):   S_concavity_se = -1.06340744420102 + 33.9549878051086 * concavity_se ;
+108584    +   S_concavity_worst  =    -1.32449308670687 +     4.91583845296763 *
+108585    +        concavity_worst ;
+MPRINT(EM_DIAGRAM):   S_concavity_worst = -1.32449308670687 + 4.91583845296763 * concavity_worst ;
+108586    +   S_fractal_dimension_mean  =    -9.00253413939402 +     143.666896205708 *
+108587    +        fractal_dimension_mean ;
+MPRINT(EM_DIAGRAM):   S_fractal_dimension_mean = -9.00253413939402 + 143.666896205708 * fractal_dimension_mean ;
+108588    +   S_fractal_dimension_se  =    -1.36136539788035 +     367.305791698724 *
+108589    +        fractal_dimension_se ;
+MPRINT(EM_DIAGRAM):   S_fractal_dimension_se = -1.36136539788035 + 367.305791698724 * fractal_dimension_se ;
+108590    +   S_fractal_dimension_worst  =    -4.86183926084573 +     58.4930718814694 *
+108591    +        fractal_dimension_worst ;
+MPRINT(EM_DIAGRAM):   S_fractal_dimension_worst = -4.86183926084573 + 58.4930718814694 * fractal_dimension_worst ;
+108592    +   S_perimeter_mean  =    -3.82488652457676 +     0.04156966188435 *
+108593    +        perimeter_mean ;
+MPRINT(EM_DIAGRAM):   S_perimeter_mean = -3.82488652457676 + 0.04156966188435 * perimeter_mean ;
+108594    +   S_perimeter_se  =    -1.34775754728092 +      0.4681121145196 *
+108595    +        perimeter_se ;
+MPRINT(EM_DIAGRAM):   S_perimeter_se = -1.34775754728092 + 0.4681121145196 * perimeter_se ;
+108596    +   S_perimeter_worst  =    -3.17563903366227 +     0.02955372716892 *
+108597    +        perimeter_worst ;
+MPRINT(EM_DIAGRAM):   S_perimeter_worst = -3.17563903366227 + 0.02955372716892 * perimeter_worst ;
+108598    +   S_radius_mean  =    -4.05764977496878 +     0.28713377367946 * radius_mean
+108599    +         ;
+MPRINT(EM_DIAGRAM):   S_radius_mean = -4.05764977496878 + 0.28713377367946 * radius_mean ;
+108600    +   S_radius_se  =    -1.40283152653658 +     3.48147110181667 * radius_se ;
+MPRINT(EM_DIAGRAM):   S_radius_se = -1.40283152653658 + 3.48147110181667 * radius_se ;
+108601    +   S_radius_worst  =    -3.36551320681228 +     0.20684720574392 *
+108602    +        radius_worst ;
+MPRINT(EM_DIAGRAM):   S_radius_worst = -3.36551320681228 + 0.20684720574392 * radius_worst ;
+108603    +   S_smoothness_mean  =    -6.99342760420755 +     72.8736992704779 *
+108604    +        smoothness_mean ;
+MPRINT(EM_DIAGRAM):   S_smoothness_mean = -6.99342760420755 + 72.8736992704779 * smoothness_mean ;
+108605    +   S_smoothness_se  =    -2.36630202368779 +     345.757326476785 *
+108606    +        smoothness_se ;
+MPRINT(EM_DIAGRAM):   S_smoothness_se = -2.36630202368779 + 345.757326476785 * smoothness_se ;
+108607    +   S_smoothness_worst  =    -5.79475029800394 +     44.1748287995126 *
+108608    +        smoothness_worst ;
+MPRINT(EM_DIAGRAM):   S_smoothness_worst = -5.79475029800394 + 44.1748287995126 * smoothness_worst ;
+108609    +   S_symmetry_mean  =    -6.56848536936401 +     36.4978834207944 *
+108610    +        symmetry_mean ;
+MPRINT(EM_DIAGRAM):   S_symmetry_mean = -6.56848536936401 + 36.4978834207944 * symmetry_mean ;
+108611    +   S_symmetry_se  =    -2.58149167419602 +     125.750050862589 * symmetry_se
+108612    +         ;
+MPRINT(EM_DIAGRAM):   S_symmetry_se = -2.58149167419602 + 125.750050862589 * symmetry_se ;
+108613    +   S_symmetry_worst  =    -4.59287080342021 +     15.8682160344868 *
+108614    +        symmetry_worst ;
+MPRINT(EM_DIAGRAM):   S_symmetry_worst = -4.59287080342021 + 15.8682160344868 * symmetry_worst ;
+108615    +END;
+MPRINT(EM_DIAGRAM):   END;
+108616    +ELSE DO;
+MPRINT(EM_DIAGRAM):   ELSE DO;
+108617    +   IF MISSING( area_mean ) THEN S_area_mean  = . ;
+MPRINT(EM_DIAGRAM):   IF MISSING( area_mean ) THEN S_area_mean = . ;
+108618    +   ELSE S_area_mean  =    -1.86155221068433 +     0.00284371116064 * area_mean
+108619    +         ;
+MPRINT(EM_DIAGRAM):   ELSE S_area_mean = -1.86155221068433 + 0.00284371116064 * area_mean ;
+108620    +   IF MISSING( area_se ) THEN S_area_se  = . ;
+MPRINT(EM_DIAGRAM):   IF MISSING( area_se ) THEN S_area_se = . ;
+108621    +   ELSE S_area_se  =    -0.82845717837421 +     0.02048291691749 * area_se ;
+MPRINT(EM_DIAGRAM):   ELSE S_area_se = -0.82845717837421 + 0.02048291691749 * area_se ;
+108622    +   IF MISSING( area_worst ) THEN S_area_worst  = . ;
+MPRINT(EM_DIAGRAM):   IF MISSING( area_worst ) THEN S_area_worst = . ;
+108623    +   ELSE S_area_worst  =    -1.52782645672378 +     0.00173417139448 *
+108624    +        area_worst ;
+MPRINT(EM_DIAGRAM):   ELSE S_area_worst = -1.52782645672378 + 0.00173417139448 * area_worst ;
+108625    +   IF MISSING( compactness_mean ) THEN S_compactness_mean  = . ;
+MPRINT(EM_DIAGRAM):   IF MISSING( compactness_mean ) THEN S_compactness_mean = . ;
+108626    +   ELSE S_compactness_mean  =    -1.98985478375849 +     19.1473294438856 *
+108627    +        compactness_mean ;
+MPRINT(EM_DIAGRAM):   ELSE S_compactness_mean = -1.98985478375849 + 19.1473294438856 * compactness_mean ;
+108628    +   IF MISSING( compactness_se ) THEN S_compactness_se  = . ;
+MPRINT(EM_DIAGRAM):   IF MISSING( compactness_se ) THEN S_compactness_se = . ;
+108629    +   ELSE S_compactness_se  =    -1.46966611690372 +     58.8177170660739 *
+108630    +        compactness_se ;
+MPRINT(EM_DIAGRAM):   ELSE S_compactness_se = -1.46966611690372 + 58.8177170660739 * compactness_se ;
+108631    +   IF MISSING( compactness_worst ) THEN S_compactness_worst  = . ;
+MPRINT(EM_DIAGRAM):   IF MISSING( compactness_worst ) THEN S_compactness_worst = . ;
+108632    +   ELSE S_compactness_worst  =    -1.62636444042546 +     6.44034972918207 *
+108633    +        compactness_worst ;
+MPRINT(EM_DIAGRAM):   ELSE S_compactness_worst = -1.62636444042546 + 6.44034972918207 * compactness_worst ;
+108634    +   IF MISSING( concave_points_mean ) THEN S_concave_points_mean  = . ;
+MPRINT(EM_DIAGRAM):   IF MISSING( concave_points_mean ) THEN S_concave_points_mean = . ;
+108635    +   ELSE S_concave_points_mean
+108636    +          =    -1.25205252854053 +      25.620888810128 * concave_points_mean
+108637    +         ;
+MPRINT(EM_DIAGRAM):   ELSE S_concave_points_mean = -1.25205252854053 + 25.620888810128 * concave_points_mean ;
+108638    +   IF MISSING( concave_points_se ) THEN S_concave_points_se  = . ;
+MPRINT(EM_DIAGRAM):   IF MISSING( concave_points_se ) THEN S_concave_points_se = . ;
+108639    +   ELSE S_concave_points_se  =    -1.85502867799946 +     158.959518400178 *
+108640    +        concave_points_se ;
+MPRINT(EM_DIAGRAM):   ELSE S_concave_points_se = -1.85502867799946 + 158.959518400178 * concave_points_se ;
+108641    +   IF MISSING( concave_points_worst ) THEN S_concave_points_worst  = . ;
+MPRINT(EM_DIAGRAM):   IF MISSING( concave_points_worst ) THEN S_concave_points_worst = . ;
+108642    +   ELSE S_concave_points_worst
+108643    +          =    -1.71297809378767 +     15.0189205761679 * concave_points_worst
+108644    +         ;
+MPRINT(EM_DIAGRAM):   ELSE S_concave_points_worst = -1.71297809378767 + 15.0189205761679 * concave_points_worst ;
+108645    +   IF MISSING( concavity_mean ) THEN S_concavity_mean  = . ;
+MPRINT(EM_DIAGRAM):   IF MISSING( concavity_mean ) THEN S_concavity_mean = . ;
+108646    +   ELSE S_concavity_mean  =    -1.11382232257536 +     12.5605844423819 *
+108647    +        concavity_mean ;
+MPRINT(EM_DIAGRAM):   ELSE S_concavity_mean = -1.11382232257536 + 12.5605844423819 * concavity_mean ;
+108648    +   IF MISSING( concavity_se ) THEN S_concavity_se  = . ;
+MPRINT(EM_DIAGRAM):   IF MISSING( concavity_se ) THEN S_concavity_se = . ;
+108649    +   ELSE S_concavity_se  =    -1.06340744420102 +     33.9549878051086 *
+108650    +        concavity_se ;
+MPRINT(EM_DIAGRAM):   ELSE S_concavity_se = -1.06340744420102 + 33.9549878051086 * concavity_se ;
+108651    +   IF MISSING( concavity_worst ) THEN S_concavity_worst  = . ;
+MPRINT(EM_DIAGRAM):   IF MISSING( concavity_worst ) THEN S_concavity_worst = . ;
+108652    +   ELSE S_concavity_worst  =    -1.32449308670687 +     4.91583845296763 *
+108653    +        concavity_worst ;
+MPRINT(EM_DIAGRAM):   ELSE S_concavity_worst = -1.32449308670687 + 4.91583845296763 * concavity_worst ;
+108654    +   IF MISSING( fractal_dimension_mean ) THEN S_fractal_dimension_mean  = . ;
+MPRINT(EM_DIAGRAM):   IF MISSING( fractal_dimension_mean ) THEN S_fractal_dimension_mean = . ;
+108655    +   ELSE S_fractal_dimension_mean
+108656    +          =    -9.00253413939402 +     143.666896205708 *
+108657    +        fractal_dimension_mean ;
+MPRINT(EM_DIAGRAM):   ELSE S_fractal_dimension_mean = -9.00253413939402 + 143.666896205708 * fractal_dimension_mean ;
+108658    +   IF MISSING( fractal_dimension_se ) THEN S_fractal_dimension_se  = . ;
+MPRINT(EM_DIAGRAM):   IF MISSING( fractal_dimension_se ) THEN S_fractal_dimension_se = . ;
+108659    +   ELSE S_fractal_dimension_se
+108660    +          =    -1.36136539788035 +     367.305791698724 * fractal_dimension_se
+108661    +         ;
+MPRINT(EM_DIAGRAM):   ELSE S_fractal_dimension_se = -1.36136539788035 + 367.305791698724 * fractal_dimension_se ;
+108662    +   IF MISSING( fractal_dimension_worst ) THEN S_fractal_dimension_worst  = . ;
+MPRINT(EM_DIAGRAM):   IF MISSING( fractal_dimension_worst ) THEN S_fractal_dimension_worst = . ;
+108663    +   ELSE S_fractal_dimension_worst
+108664    +          =    -4.86183926084573 +     58.4930718814694 *
+108665    +        fractal_dimension_worst ;
+MPRINT(EM_DIAGRAM):   ELSE S_fractal_dimension_worst = -4.86183926084573 + 58.4930718814694 * fractal_dimension_worst ;
+108666    +   IF MISSING( perimeter_mean ) THEN S_perimeter_mean  = . ;
+MPRINT(EM_DIAGRAM):   IF MISSING( perimeter_mean ) THEN S_perimeter_mean = . ;
+108667    +   ELSE S_perimeter_mean  =    -3.82488652457676 +     0.04156966188435 *
+108668    +        perimeter_mean ;
+MPRINT(EM_DIAGRAM):   ELSE S_perimeter_mean = -3.82488652457676 + 0.04156966188435 * perimeter_mean ;
+108669    +   IF MISSING( perimeter_se ) THEN S_perimeter_se  = . ;
+MPRINT(EM_DIAGRAM):   IF MISSING( perimeter_se ) THEN S_perimeter_se = . ;
+108670    +   ELSE S_perimeter_se  =    -1.34775754728092 +      0.4681121145196 *
+108671    +        perimeter_se ;
+MPRINT(EM_DIAGRAM):   ELSE S_perimeter_se = -1.34775754728092 + 0.4681121145196 * perimeter_se ;
+108672    +   IF MISSING( perimeter_worst ) THEN S_perimeter_worst  = . ;
+MPRINT(EM_DIAGRAM):   IF MISSING( perimeter_worst ) THEN S_perimeter_worst = . ;
+108673    +   ELSE S_perimeter_worst  =    -3.17563903366227 +     0.02955372716892 *
+108674    +        perimeter_worst ;
+MPRINT(EM_DIAGRAM):   ELSE S_perimeter_worst = -3.17563903366227 + 0.02955372716892 * perimeter_worst ;
+108675    +   IF MISSING( radius_mean ) THEN S_radius_mean  = . ;
+MPRINT(EM_DIAGRAM):   IF MISSING( radius_mean ) THEN S_radius_mean = . ;
+108676    +   ELSE S_radius_mean  =    -4.05764977496878 +     0.28713377367946 *
+108677    +        radius_mean ;
+MPRINT(EM_DIAGRAM):   ELSE S_radius_mean = -4.05764977496878 + 0.28713377367946 * radius_mean ;
+108678    +   IF MISSING( radius_se ) THEN S_radius_se  = . ;
+MPRINT(EM_DIAGRAM):   IF MISSING( radius_se ) THEN S_radius_se = . ;
+108679    +   ELSE S_radius_se  =    -1.40283152653658 +     3.48147110181667 * radius_se
+108680    +         ;
+MPRINT(EM_DIAGRAM):   ELSE S_radius_se = -1.40283152653658 + 3.48147110181667 * radius_se ;
+108681    +   IF MISSING( radius_worst ) THEN S_radius_worst  = . ;
+MPRINT(EM_DIAGRAM):   IF MISSING( radius_worst ) THEN S_radius_worst = . ;
+108682    +   ELSE S_radius_worst  =    -3.36551320681228 +     0.20684720574392 *
+108683    +        radius_worst ;
+MPRINT(EM_DIAGRAM):   ELSE S_radius_worst = -3.36551320681228 + 0.20684720574392 * radius_worst ;
+108684    +   IF MISSING( smoothness_mean ) THEN S_smoothness_mean  = . ;
+MPRINT(EM_DIAGRAM):   IF MISSING( smoothness_mean ) THEN S_smoothness_mean = . ;
+108685    +   ELSE S_smoothness_mean  =    -6.99342760420755 +     72.8736992704779 *
+108686    +        smoothness_mean ;
+MPRINT(EM_DIAGRAM):   ELSE S_smoothness_mean = -6.99342760420755 + 72.8736992704779 * smoothness_mean ;
+108687    +   IF MISSING( smoothness_se ) THEN S_smoothness_se  = . ;
+MPRINT(EM_DIAGRAM):   IF MISSING( smoothness_se ) THEN S_smoothness_se = . ;
+108688    +   ELSE S_smoothness_se  =    -2.36630202368779 +     345.757326476785 *
+108689    +        smoothness_se ;
+MPRINT(EM_DIAGRAM):   ELSE S_smoothness_se = -2.36630202368779 + 345.757326476785 * smoothness_se ;
+108690    +   IF MISSING( smoothness_worst ) THEN S_smoothness_worst  = . ;
+MPRINT(EM_DIAGRAM):   IF MISSING( smoothness_worst ) THEN S_smoothness_worst = . ;
+108691    +   ELSE S_smoothness_worst  =    -5.79475029800394 +     44.1748287995126 *
+108692    +        smoothness_worst ;
+MPRINT(EM_DIAGRAM):   ELSE S_smoothness_worst = -5.79475029800394 + 44.1748287995126 * smoothness_worst ;
+108693    +   IF MISSING( symmetry_mean ) THEN S_symmetry_mean  = . ;
+MPRINT(EM_DIAGRAM):   IF MISSING( symmetry_mean ) THEN S_symmetry_mean = . ;
+108694    +   ELSE S_symmetry_mean  =    -6.56848536936401 +     36.4978834207944 *
+108695    +        symmetry_mean ;
+MPRINT(EM_DIAGRAM):   ELSE S_symmetry_mean = -6.56848536936401 + 36.4978834207944 * symmetry_mean ;
+108696    +   IF MISSING( symmetry_se ) THEN S_symmetry_se  = . ;
+MPRINT(EM_DIAGRAM):   IF MISSING( symmetry_se ) THEN S_symmetry_se = . ;
+108697    +   ELSE S_symmetry_se  =    -2.58149167419602 +     125.750050862589 *
+108698    +        symmetry_se ;
+MPRINT(EM_DIAGRAM):   ELSE S_symmetry_se = -2.58149167419602 + 125.750050862589 * symmetry_se ;
+108699    +   IF MISSING( symmetry_worst ) THEN S_symmetry_worst  = . ;
+MPRINT(EM_DIAGRAM):   IF MISSING( symmetry_worst ) THEN S_symmetry_worst = . ;
+108700    +   ELSE S_symmetry_worst  =    -4.59287080342021 +     15.8682160344868 *
+108701    +        symmetry_worst ;
+MPRINT(EM_DIAGRAM):   ELSE S_symmetry_worst = -4.59287080342021 + 15.8682160344868 * symmetry_worst ;
+108702    +END;
+MPRINT(EM_DIAGRAM):   END;
+108703    +*** *************************;
+MPRINT(EM_DIAGRAM):   *** *************************;
+108704    +*** Writing the Node H1 ;
+MPRINT(EM_DIAGRAM):   *** Writing the Node H1 ;
+108705    +*** *************************;
+MPRINT(EM_DIAGRAM):   *** *************************;
+108706    +IF _DM_BAD EQ 0 THEN DO;
+MPRINT(EM_DIAGRAM):   IF _DM_BAD EQ 0 THEN DO;
+108707    +   H11  =     -1.0384770268112 * S_area_mean  +    -0.31624446915027 *
+108708    +        S_area_se  +    -0.44266983908294 * S_area_worst
+108709    +          +      0.1753440124127 * S_compactness_mean
+108710    +          +      0.3074051337239 * S_compactness_se  +    -1.11207892626932 *
+108711    +        S_compactness_worst  +     0.55468287665186 * S_concave_points_mean
+108712    +          +     0.67989295120372 * S_concave_points_se
+108713    +          +     0.06387513523687 * S_concave_points_worst
+108714    +          +     0.68775860084696 * S_concavity_mean  +    -0.61307778424691 *
+108715    +        S_concavity_se  +     0.27890196865159 * S_concavity_worst
+108716    +          +     -0.9630128793529 * S_fractal_dimension_mean
+108717    +          +    -1.62527836301815 * S_fractal_dimension_se
+108718    +          +    -1.08889532062515 * S_fractal_dimension_worst
+108719    +          +      -0.195370769471 * S_perimeter_mean  +      1.0752564229519 *
+108720    +        S_perimeter_se  +     0.29711606400543 * S_perimeter_worst
+108721    +          +    -0.37006594668447 * S_radius_mean  +    -0.33824577831892 *
+108722    +        S_radius_se  +      -0.265664872654 * S_radius_worst
+108723    +          +    -1.88155613424655 * S_smoothness_mean
+The SAS System
+
+108724    +          +     0.38505019821322 * S_smoothness_se  +    -1.90321250461932 *
+108725    +        S_smoothness_worst  +     -0.8930305178327 * S_symmetry_mean
+108726    +          +     0.62021519389082 * S_symmetry_se  +    -0.77615427846851 *
+108727    +        S_symmetry_worst ;
+MPRINT(EM_DIAGRAM):   H11 = -1.0384770268112 * S_area_mean + -0.31624446915027 * S_area_se + -0.44266983908294 * S_area_worst + 0.1753440124127 * S_compactness_mean + 0.3074051337239 * S_compactness_se + -1.11207892626932 * S_compactness_worst + 
+0.55468287665186 * S_concave_points_mean + 0.67989295120372 * S_concave_points_se + 0.06387513523687 * S_concave_points_worst + 0.68775860084696 * S_concavity_mean + -0.61307778424691 * S_concavity_se + 0.27890196865159 * S_concavity_worst + 
+-0.9630128793529 * S_fractal_dimension_mean + -1.62527836301815 * S_fractal_dimension_se + -1.08889532062515 * S_fractal_dimension_worst + -0.195370769471 * S_perimeter_mean + 1.0752564229519 * S_perimeter_se + 0.29711606400543 * S_perimeter_worst + 
+-0.37006594668447 * S_radius_mean + -0.33824577831892 * S_radius_se + -0.265664872654 * S_radius_worst + -1.88155613424655 * S_smoothness_mean + 0.38505019821322 * S_smoothness_se + -1.90321250461932 * S_smoothness_worst + -0.8930305178327 * 
+S_symmetry_mean + 0.62021519389082 * S_symmetry_se + -0.77615427846851 * S_symmetry_worst ;
+108728    +   H12  =    -1.32175801026771 * S_area_mean  +      -0.477409143452 *
+108729    +        S_area_se  +     0.93735320579474 * S_area_worst
+108730    +          +     0.39593875195771 * S_compactness_mean
+108731    +          +     0.25667488874755 * S_compactness_se  +     1.11220412397512 *
+108732    +        S_compactness_worst  +    -0.67808106831669 * S_concave_points_mean
+108733    +          +    -0.03815665637598 * S_concave_points_se
+108734    +          +    -1.33902575939572 * S_concave_points_worst
+108735    +          +    -2.34143519960228 * S_concavity_mean  +     0.47865507866866 *
+108736    +        S_concavity_se  +    -0.53446416088267 * S_concavity_worst
+108737    +          +     0.92827862863326 * S_fractal_dimension_mean
+108738    +          +     1.72045368124118 * S_fractal_dimension_se
+108739    +          +    -2.26580025054762 * S_fractal_dimension_worst
+108740    +          +     0.22860540781086 * S_perimeter_mean  +    -0.27213447709692 *
+108741    +        S_perimeter_se  +     0.33944621197489 * S_perimeter_worst
+108742    +          +    -0.62784619082323 * S_radius_mean  +    -0.68106450710717 *
+108743    +        S_radius_se  +     0.47529684777241 * S_radius_worst
+108744    +          +    -0.33517905918522 * S_smoothness_mean
+108745    +          +    -1.32925198102113 * S_smoothness_se  +     1.23611236760884 *
+108746    +        S_smoothness_worst  +     -0.1579681037859 * S_symmetry_mean
+108747    +          +     0.37265471206316 * S_symmetry_se  +    -0.44570723571297 *
+108748    +        S_symmetry_worst ;
+MPRINT(EM_DIAGRAM):   H12 = -1.32175801026771 * S_area_mean + -0.477409143452 * S_area_se + 0.93735320579474 * S_area_worst + 0.39593875195771 * S_compactness_mean + 0.25667488874755 * S_compactness_se + 1.11220412397512 * S_compactness_worst + 
+-0.67808106831669 * S_concave_points_mean + -0.03815665637598 * S_concave_points_se + -1.33902575939572 * S_concave_points_worst + -2.34143519960228 * S_concavity_mean + 0.47865507866866 * S_concavity_se + -0.53446416088267 * S_concavity_worst + 
+0.92827862863326 * S_fractal_dimension_mean + 1.72045368124118 * S_fractal_dimension_se + -2.26580025054762 * S_fractal_dimension_worst + 0.22860540781086 * S_perimeter_mean + -0.27213447709692 * S_perimeter_se + 0.33944621197489 * S_perimeter_worst + 
+-0.62784619082323 * S_radius_mean + -0.68106450710717 * S_radius_se + 0.47529684777241 * S_radius_worst + -0.33517905918522 * S_smoothness_mean + -1.32925198102113 * S_smoothness_se + 1.23611236760884 * S_smoothness_worst + -0.1579681037859 * 
+S_symmetry_mean + 0.37265471206316 * S_symmetry_se + -0.44570723571297 * S_symmetry_worst ;
+108749    +   H13  =       0.484280306054 * S_area_mean  +     2.69156050870574 *
+108750    +        S_area_se  +     4.11824028006232 * S_area_worst
+108751    +          +    -1.57450764150447 * S_compactness_mean
+108752    +          +    -3.22512115198253 * S_compactness_se  +     0.24729246928114 *
+108753    +        S_compactness_worst  +     2.37450441243376 * S_concave_points_mean
+108754    +          +     1.90666537716128 * S_concave_points_se
+108755    +          +    -1.53644061122821 * S_concave_points_worst
+108756    +          +    -0.57929201231017 * S_concavity_mean  +    -0.71379802777961 *
+108757    +        S_concavity_se  +     0.77294721068184 * S_concavity_worst
+108758    +          +     3.81316016367013 * S_fractal_dimension_mean
+108759    +          +     0.37475266546511 * S_fractal_dimension_se
+108760    +          +     0.31048915687575 * S_fractal_dimension_worst
+108761    +          +    -0.77594722358713 * S_perimeter_mean  +     1.14606140740303 *
+108762    +        S_perimeter_se  +     1.48797572524387 * S_perimeter_worst
+108763    +          +    -0.09478126862438 * S_radius_mean  +     2.04648928433954 *
+108764    +        S_radius_se  +     1.26485148325018 * S_radius_worst
+108765    +          +    -1.82082389811315 * S_smoothness_mean
+108766    +          +    -0.61837190979605 * S_smoothness_se  +     0.95418941055518 *
+108767    +        S_smoothness_worst  +     0.06629101577789 * S_symmetry_mean
+108768    +          +    -3.61813368055851 * S_symmetry_se  +     2.19817175831678 *
+108769    +        S_symmetry_worst ;
+MPRINT(EM_DIAGRAM):   H13 = 0.484280306054 * S_area_mean + 2.69156050870574 * S_area_se + 4.11824028006232 * S_area_worst + -1.57450764150447 * S_compactness_mean + -3.22512115198253 * S_compactness_se + 0.24729246928114 * S_compactness_worst + 
+2.37450441243376 * S_concave_points_mean + 1.90666537716128 * S_concave_points_se + -1.53644061122821 * S_concave_points_worst + -0.57929201231017 * S_concavity_mean + -0.71379802777961 * S_concavity_se + 0.77294721068184 * S_concavity_worst + 
+3.81316016367013 * S_fractal_dimension_mean + 0.37475266546511 * S_fractal_dimension_se + 0.31048915687575 * S_fractal_dimension_worst + -0.77594722358713 * S_perimeter_mean + 1.14606140740303 * S_perimeter_se + 1.48797572524387 * S_perimeter_worst + 
+-0.09478126862438 * S_radius_mean + 2.04648928433954 * S_radius_se + 1.26485148325018 * S_radius_worst + -1.82082389811315 * S_smoothness_mean + -0.61837190979605 * S_smoothness_se + 0.95418941055518 * S_smoothness_worst + 0.06629101577789 * 
+S_symmetry_mean + -3.61813368055851 * S_symmetry_se + 2.19817175831678 * S_symmetry_worst ;
+108770    +   H11  =    -3.49423316205934 + H11 ;
+MPRINT(EM_DIAGRAM):   H11 = -3.49423316205934 + H11 ;
+108771    +   H12  =     0.92561567129862 + H12 ;
+MPRINT(EM_DIAGRAM):   H12 = 0.92561567129862 + H12 ;
+108772    +   H13  =    -0.53792252310284 + H13 ;
+MPRINT(EM_DIAGRAM):   H13 = -0.53792252310284 + H13 ;
+108773    +   H11  = TANH(H11 );
+MPRINT(EM_DIAGRAM):   H11 = TANH(H11 );
+108774    +   H12  = TANH(H12 );
+MPRINT(EM_DIAGRAM):   H12 = TANH(H12 );
+108775    +   H13  = TANH(H13 );
+MPRINT(EM_DIAGRAM):   H13 = TANH(H13 );
+108776    +END;
+MPRINT(EM_DIAGRAM):   END;
+108777    +ELSE DO;
+MPRINT(EM_DIAGRAM):   ELSE DO;
+108778    +   H11  = .;
+MPRINT(EM_DIAGRAM):   H11 = .;
+108779    +   H12  = .;
+MPRINT(EM_DIAGRAM):   H12 = .;
+108780    +   H13  = .;
+MPRINT(EM_DIAGRAM):   H13 = .;
+108781    +END;
+MPRINT(EM_DIAGRAM):   END;
+108782    +*** *************************;
+MPRINT(EM_DIAGRAM):   *** *************************;
+108783    +*** Writing the Node diagnosis ;
+MPRINT(EM_DIAGRAM):   *** Writing the Node diagnosis ;
+108784    +*** *************************;
+MPRINT(EM_DIAGRAM):   *** *************************;
+108785    +
+108786    +*** Generate dummy variables for diagnosis ;
+MPRINT(EM_DIAGRAM):   *** Generate dummy variables for diagnosis ;
+108787    +drop diagnosisM diagnosisB ;
+MPRINT(EM_DIAGRAM):   drop diagnosisM diagnosisB ;
+108788    +label F_diagnosis = 'From: diagnosis' ;
+MPRINT(EM_DIAGRAM):   label F_diagnosis = 'From: diagnosis' ;
+108789    +length F_diagnosis $ 1;
+MPRINT(EM_DIAGRAM):   length F_diagnosis $ 1;
+108790    +F_diagnosis = put( diagnosis , $1. );
+MPRINT(EM_DIAGRAM):   F_diagnosis = put( diagnosis , $1. );
+108791    +%DMNORMIP( F_diagnosis )
+MPRINT(DMNORMIP):   call dmnorm(F_diagnosis,
+MPRINT(DMNORLEN):  32
+MPRINT(DMNORMIP):  );
+108792    +if missing( diagnosis ) then do;
+MPRINT(EM_DIAGRAM):   if missing( diagnosis ) then do;
+108793    +   diagnosisM = .;
+MPRINT(EM_DIAGRAM):   diagnosisM = .;
+108794    +   diagnosisB = .;
+MPRINT(EM_DIAGRAM):   diagnosisB = .;
+108795    +end;
+MPRINT(EM_DIAGRAM):   end;
+108796    +else do;
+MPRINT(EM_DIAGRAM):   else do;
+108797    +   if F_diagnosis = 'B'  then do;
+MPRINT(EM_DIAGRAM):   if F_diagnosis = 'B' then do;
+108798    +      diagnosisM = 0;
+MPRINT(EM_DIAGRAM):   diagnosisM = 0;
+108799    +      diagnosisB = 1;
+MPRINT(EM_DIAGRAM):   diagnosisB = 1;
+108800    +   end;
+MPRINT(EM_DIAGRAM):   end;
+108801    +   else if F_diagnosis = 'M'  then do;
+MPRINT(EM_DIAGRAM):   else if F_diagnosis = 'M' then do;
+108802    +      diagnosisM = 1;
+MPRINT(EM_DIAGRAM):   diagnosisM = 1;
+108803    +      diagnosisB = 0;
+MPRINT(EM_DIAGRAM):   diagnosisB = 0;
+108804    +   end;
+MPRINT(EM_DIAGRAM):   end;
+108805    +   else do;
+MPRINT(EM_DIAGRAM):   else do;
+108806    +      diagnosisM = .;
+MPRINT(EM_DIAGRAM):   diagnosisM = .;
+108807    +      diagnosisB = .;
+MPRINT(EM_DIAGRAM):   diagnosisB = .;
+108808    +   end;
+MPRINT(EM_DIAGRAM):   end;
+108809    +end;
+MPRINT(EM_DIAGRAM):   end;
+108810    +IF _DM_BAD EQ 0 THEN DO;
+MPRINT(EM_DIAGRAM):   IF _DM_BAD EQ 0 THEN DO;
+108811    +   P_diagnosisM  =     1.11412583555609 * H11  +    -10.3986784889356 * H12
+108812    +          +     7.76015562844953 * H13 ;
+MPRINT(EM_DIAGRAM):   P_diagnosisM = 1.11412583555609 * H11 + -10.3986784889356 * H12 + 7.76015562844953 * H13 ;
+108813    +   P_diagnosisM  =     6.69385588428352 + P_diagnosisM ;
+MPRINT(EM_DIAGRAM):   P_diagnosisM = 6.69385588428352 + P_diagnosisM ;
+108814    +   P_diagnosisB  = 0;
+MPRINT(EM_DIAGRAM):   P_diagnosisB = 0;
+108815    +   _MAX_ = MAX (P_diagnosisM , P_diagnosisB );
+MPRINT(EM_DIAGRAM):   _MAX_ = MAX (P_diagnosisM , P_diagnosisB );
+108816    +   _SUM_ = 0.;
+MPRINT(EM_DIAGRAM):   _SUM_ = 0.;
+108817    +   P_diagnosisM  = EXP(P_diagnosisM  - _MAX_);
+MPRINT(EM_DIAGRAM):   P_diagnosisM = EXP(P_diagnosisM - _MAX_);
+108818    +   _SUM_ = _SUM_ + P_diagnosisM ;
+MPRINT(EM_DIAGRAM):   _SUM_ = _SUM_ + P_diagnosisM ;
+108819    +   P_diagnosisB  = EXP(P_diagnosisB  - _MAX_);
+MPRINT(EM_DIAGRAM):   P_diagnosisB = EXP(P_diagnosisB - _MAX_);
+108820    +   _SUM_ = _SUM_ + P_diagnosisB ;
+MPRINT(EM_DIAGRAM):   _SUM_ = _SUM_ + P_diagnosisB ;
+108821    +   P_diagnosisM  = P_diagnosisM  / _SUM_;
+MPRINT(EM_DIAGRAM):   P_diagnosisM = P_diagnosisM / _SUM_;
+108822    +   P_diagnosisB  = P_diagnosisB  / _SUM_;
+MPRINT(EM_DIAGRAM):   P_diagnosisB = P_diagnosisB / _SUM_;
+108823    +END;
+MPRINT(EM_DIAGRAM):   END;
+108824    +ELSE DO;
+MPRINT(EM_DIAGRAM):   ELSE DO;
+108825    +   P_diagnosisM  = .;
+MPRINT(EM_DIAGRAM):   P_diagnosisM = .;
+108826    +   P_diagnosisB  = .;
+MPRINT(EM_DIAGRAM):   P_diagnosisB = .;
+108827    +END;
+MPRINT(EM_DIAGRAM):   END;
+108828    +IF _DM_BAD EQ 1 THEN DO;
+MPRINT(EM_DIAGRAM):   IF _DM_BAD EQ 1 THEN DO;
+108829    +   P_diagnosisM  =     0.37121212121212;
+MPRINT(EM_DIAGRAM):   P_diagnosisM = 0.37121212121212;
+108830    +   P_diagnosisB  =     0.62878787878787;
+MPRINT(EM_DIAGRAM):   P_diagnosisB = 0.62878787878787;
+108831    +END;
+MPRINT(EM_DIAGRAM):   END;
+108832    +*** *****************************;
+MPRINT(EM_DIAGRAM):   *** *****************************;
+108833    +*** Writing the Residuals  of the Node diagnosis ;
+MPRINT(EM_DIAGRAM):   *** Writing the Residuals of the Node diagnosis ;
+108834    +*** ******************************;
+MPRINT(EM_DIAGRAM):   *** ******************************;
+108835    +IF MISSING( diagnosisM ) THEN R_diagnosisM  = . ;
+MPRINT(EM_DIAGRAM):   IF MISSING( diagnosisM ) THEN R_diagnosisM = . ;
+108836    +ELSE R_diagnosisM  = diagnosisM  - P_diagnosisM ;
+MPRINT(EM_DIAGRAM):   ELSE R_diagnosisM = diagnosisM - P_diagnosisM ;
+108837    +IF MISSING( diagnosisB ) THEN R_diagnosisB  = . ;
+MPRINT(EM_DIAGRAM):   IF MISSING( diagnosisB ) THEN R_diagnosisB = . ;
+108838    +ELSE R_diagnosisB  = diagnosisB  - P_diagnosisB ;
+MPRINT(EM_DIAGRAM):   ELSE R_diagnosisB = diagnosisB - P_diagnosisB ;
+108839    +*** *************************;
+MPRINT(EM_DIAGRAM):   *** *************************;
+108840    +*** Writing the I_diagnosis  AND U_diagnosis ;
+MPRINT(EM_DIAGRAM):   *** Writing the I_diagnosis AND U_diagnosis ;
+108841    +*** *************************;
+MPRINT(EM_DIAGRAM):   *** *************************;
+108842    +_MAXP_ = P_diagnosisM ;
+MPRINT(EM_DIAGRAM):   _MAXP_ = P_diagnosisM ;
+108843    +I_diagnosis  = "M" ;
+MPRINT(EM_DIAGRAM):   I_diagnosis = "M" ;
+108844    +U_diagnosis  = "M" ;
+MPRINT(EM_DIAGRAM):   U_diagnosis = "M" ;
+108845    +IF( _MAXP_ LT P_diagnosisB  ) THEN DO;
+MPRINT(EM_DIAGRAM):   IF( _MAXP_ LT P_diagnosisB ) THEN DO;
+108846    +   _MAXP_ = P_diagnosisB ;
+MPRINT(EM_DIAGRAM):   _MAXP_ = P_diagnosisB ;
+108847    +   I_diagnosis  = "B" ;
+MPRINT(EM_DIAGRAM):   I_diagnosis = "B" ;
+108848    +   U_diagnosis  = "B" ;
+MPRINT(EM_DIAGRAM):   U_diagnosis = "B" ;
+108849    +END;
+MPRINT(EM_DIAGRAM):   END;
+108850    +********************************;
+MPRINT(EM_DIAGRAM):   ********************************;
+108851    +*** End Scoring Code for Neural;
+MPRINT(EM_DIAGRAM):   *** End Scoring Code for Neural;
+108852    +********************************;
+MPRINT(EM_DIAGRAM):   ********************************;
+108853    +drop
+108854    +S_area_mean
+108855    +S_area_se
+108856    +S_area_worst
+108857    +S_compactness_mean
+108858    +S_compactness_se
+108859    +S_compactness_worst
+108860    +S_concave_points_mean
+108861    +S_concave_points_se
+108862    +S_concave_points_worst
+108863    +S_concavity_mean
+108864    +S_concavity_se
+108865    +S_concavity_worst
+108866    +S_fractal_dimension_mean
+108867    +S_fractal_dimension_se
+108868    +S_fractal_dimension_worst
+108869    +S_perimeter_mean
+108870    +S_perimeter_se
+108871    +S_perimeter_worst
+108872    +S_radius_mean
+108873    +S_radius_se
+108874    +S_radius_worst
+108875    +S_smoothness_mean
+108876    +S_smoothness_se
+108877    +S_smoothness_worst
+108878    +S_symmetry_mean
+108879    +S_symmetry_se
+108880    +S_symmetry_worst
+108881    +H11
+108882    +H12
+108883    +H13
+108884    +;
+MPRINT(EM_DIAGRAM):   drop S_area_mean S_area_se S_area_worst S_compactness_mean S_compactness_se S_compactness_worst S_concave_points_mean S_concave_points_se S_concave_points_worst S_concavity_mean S_concavity_se S_concavity_worst 
+S_fractal_dimension_mean S_fractal_dimension_se S_fractal_dimension_worst S_perimeter_mean S_perimeter_se S_perimeter_worst S_radius_mean S_radius_se S_radius_worst S_smoothness_mean S_smoothness_se S_smoothness_worst S_symmetry_mean S_symmetry_se 
+S_symmetry_worst H11 H12 H13 ;
+NOTE: %INCLUDE (level 1) ending.
+MPRINT(EM_DIAGRAM):   run;
+108885     run;
+
+NOTE: DATA STEP view saved on file EMWS1.NEURAL_VALIDATE.
+NOTE: A stored DATA STEP view cannot run under a different operating system.
+NOTE: DATA statement used (Total process time):
+      real time           0.05 seconds
+      cpu time            0.04 seconds
+      
+
+MPRINT(EM_DIAGRAM):   quit;
+108886     quit;
+108887     filename emflow;
+MPRINT(EM_DIAGRAM):   filename emflow;
+NOTE: Fileref EMFLOW has been deassigned.
+108888     *------------------------------------------------------------*;
+MPRINT(EM_DIAGRAM):    *------------------------------------------------------------*;
+108889     * Neural: Computing metadata for TRAIN data;
+MPRINT(EM_DIAGRAM):   * Neural: Computing metadata for TRAIN data;
+108890     *------------------------------------------------------------*;
+MPRINT(EM_DIAGRAM):   *------------------------------------------------------------*;
+
+NOTE: View EMWS1.NEURAL_TRAIN.VIEW used (Total process time):
+      real time           0.07 seconds
+      cpu time            0.07 seconds
+      
+MPRINT(EM_DIAGRAM):    *------------------------------------------------------------*;
+MPRINT(EM_DIAGRAM):   * &nodeid: Computing Metadata for TRAIN data;
+MPRINT(EM_DIAGRAM):   *------------------------------------------------------------*;
+MPRINT(EM_DIAGRAM):   filename _delta "C:\Users\student\OneDrive - Bryant University\Documents\GitHub\Projects_in_R\Assignments\Assignment_5\Workspaces\EMWS1\Neural\CDELTA_TRAIN.sas";
+MPRINT(EMADVISECOLUMNS):   proc display c=sashelp.emmeta.advisecolumns.scl;
+MPRINT(EMADVISECOLUMNS):   run;
+MPRINT(EMADVISECOLUMNS):    options validvarname=any;
+MPRINT(EMADVISECOLUMNS):   proc contents data=EMWS1.Neural_TRAIN out=_tempAdvisor noprint;
+MPRINT(EMADVISECOLUMNS):   run;
+MPRINT(EMADVISECOLUMNS):   options validvarname=V7;
+MPRINT(EMADVISECOLUMNS):    data _null_;
+MPRINT(EMADVISECOLUMNS):   dsid = open('EMWS1.Neural_TRAIN');
+MPRINT(EMADVISECOLUMNS):   call symput('_dsidTable', strip(put(dsid, best.)));
+MPRINT(EMADVISECOLUMNS):   if dsid then do;
+MPRINT(EMADVISECOLUMNS):   call symput('_engineTable', attrc(dsid, 'ENGINE'));
+MPRINT(EMADVISECOLUMNS):   dsid = close(dsid);
+MPRINT(EMADVISECOLUMNS):   end;
+MPRINT(EMADVISECOLUMNS):   run;
+MPRINT(EMADVISECOLUMNS):    proc contents data=EMWS1.Neural_TRAIN out=WORK.M171L_1C noprint;
+MPRINT(EMADVISECOLUMNS):   run;
+MPRINT(EMADVISECOLUMNS):    data WORK.M171L_1C;
+MPRINT(EMADVISECOLUMNS):   length NAME $ 64 TYPE $ 1 LABEL $ 200 FORMAT $ 36 INFORMAT $36 INDEX $ 1 INDEXTYPE $ 9;
+MPRINT(EMADVISECOLUMNS):   label NAME =;
+MPRINT(EMADVISECOLUMNS):   set WORK.M171L_1C(keep=name type length label format formatl formatd informat informl informd idxusage rename=(type=itype));
+MPRINT(EMADVISECOLUMNS):   if itype = 1 then type = 'N';
+MPRINT(EMADVISECOLUMNS):   else type = 'C';
+MPRINT(EMADVISECOLUMNS):   if formatl > 0 then do;
+MPRINT(EMADVISECOLUMNS):   if format ne '' then do;
+MPRINT(EMADVISECOLUMNS):   if type='N' then format = strip(format)!!strip(put(formatl, best12.))!!'.'!!strip(put(formatd, best12.));
+MPRINT(EMADVISECOLUMNS):   else format = strip(format)!!strip(put(formatl, best12.))!!'.';
+MPRINT(EMADVISECOLUMNS):   end;
+MPRINT(EMADVISECOLUMNS):   else format = strip(put(formatl, best12.))!!'.'!!strip(put(formatd, best12.));
+MPRINT(EMADVISECOLUMNS):   end;
+MPRINT(EMADVISECOLUMNS):   else if format ne '' then format = strip(format)!!'.';
+MPRINT(EMADVISECOLUMNS):   if informl > 0 then do;
+MPRINT(EMADVISECOLUMNS):   if informat ne ' ' then do;
+MPRINT(EMADVISECOLUMNS):   if type='N' then informat = strip(informat)!!strip(put(informl, best12.))!!'.'!!strip(put(informd, best12.));
+MPRINT(EMADVISECOLUMNS):   else informat = strip(informat)!!strip(put(informl, best12.))!!'.';
+MPRINT(EMADVISECOLUMNS):   end;
+MPRINT(EMADVISECOLUMNS):   else informat = strip(put(informl, best12.))!!'.'!!strip(put(informd, best12.));
+MPRINT(EMADVISECOLUMNS):   end;
+MPRINT(EMADVISECOLUMNS):   else if informat ne '' then informat = strip(informat)!!'.';
+MPRINT(EMADVISECOLUMNS):   if idxusage = 'NONE' then index ="N";
+MPRINT(EMADVISECOLUMNS):   else index = "Y";
+MPRINT(EMADVISECOLUMNS):   indextype = idxusage;
+MPRINT(EMADVISECOLUMNS):   drop idxusage itype formatl formatd informl informd;
+MPRINT(EMADVISECOLUMNS):   run;
+MPRINT(EMADVISECOLUMNS):    data WORK.M171L_1C;
+MPRINT(EMADVISECOLUMNS):   length UNAME $64;
+MPRINT(EMADVISECOLUMNS):   set WORK.M171L_1C;
+MPRINT(EMADVISECOLUMNS):   UNAME = upcase(NAME);
+MPRINT(EMADVISECOLUMNS):   run;
+MPRINT(EMADVISECOLUMNS):    proc sort data=WORK.M2Y9D7JW NOTHREADS;
+MPRINT(EMADVISECOLUMNS):   by UNAME;
+MPRINT(EMADVISECOLUMNS):   run;
+MPRINT(EMADVISECOLUMNS):    data WORK.M2Y9D7JW;
+MPRINT(EMADVISECOLUMNS):   drop UNAME;
+MPRINT(EMADVISECOLUMNS):   set WORK.M2Y9D7JW;
+MPRINT(EMADVISECOLUMNS):   run;
+MPRINT(EMADVISECOLUMNS):    data WORK.M3VVMK6C(keep=NAME ATTR);
+MPRINT(EMADVISECOLUMNS):   length ATTR $ 20;
+MPRINT(EMADVISECOLUMNS):   set WORK.M2Y9D7JW;
+MPRINT(EMADVISECOLUMNS):   if level ne "INTERVAL" then do;
+MPRINT(EMADVISECOLUMNS):   if order = ' ' then do;
+MPRINT(EMADVISECOLUMNS):   attr = 'ORDER';
+MPRINT(EMADVISECOLUMNS):   output;
+MPRINT(EMADVISECOLUMNS):   end;
+MPRINT(EMADVISECOLUMNS):   end;
+MPRINT(EMADVISECOLUMNS):   if format ne ' ' and formattype = ' ' then do;
+MPRINT(EMADVISECOLUMNS):   attr = 'FORMATTYPE';
+MPRINT(EMADVISECOLUMNS):   output;
+MPRINT(EMADVISECOLUMNS):   end;
+MPRINT(EMADVISECOLUMNS):   if role = ' ' then do;
+MPRINT(EMADVISECOLUMNS):   attr = 'ROLE';
+MPRINT(EMADVISECOLUMNS):   output;
+MPRINT(EMADVISECOLUMNS):   end;
+MPRINT(EMADVISECOLUMNS):   if level = ' ' then do;
+MPRINT(EMADVISECOLUMNS):   attr = 'LEVEL';
+MPRINT(EMADVISECOLUMNS):   output;
+MPRINT(EMADVISECOLUMNS):   end;
+MPRINT(EMADVISECOLUMNS):   if type = ' ' then do;
+MPRINT(EMADVISECOLUMNS):   attr = 'TYPE';
+MPRINT(EMADVISECOLUMNS):   output;
+MPRINT(EMADVISECOLUMNS):   end;
+MPRINT(EMADVISECOLUMNS):   if index = ' ' then do;
+MPRINT(EMADVISECOLUMNS):   attr = 'INDEX';
+MPRINT(EMADVISECOLUMNS):   output;
+MPRINT(EMADVISECOLUMNS):   end;
+MPRINT(EMADVISECOLUMNS):   if report = ' ' then do;
+MPRINT(EMADVISECOLUMNS):   attr = 'REPORT';
+MPRINT(EMADVISECOLUMNS):   output;
+MPRINT(EMADVISECOLUMNS):   end;
+MPRINT(EMADVISECOLUMNS):   run;
+MPRINT(EMADVISECOLUMNS):   proc sort NOTHREADS;
+MPRINT(EMADVISECOLUMNS):   by attr;
+MPRINT(EMADVISECOLUMNS):   run;
+MPRINT(EMADVISECOLUMNS):    data WORK.M2Y9D7JW;
+MPRINT(EMADVISECOLUMNS):   length NAME $64 ROLE $ 32 LEVEL $ 10 ORDER $ 8 CREATOR $32 FORMATTYPE $ 10 FAMILY $ 10 LOWERLIMIT 8 UPPERLIMIT 8 REPORT $1 DISTRIBUTION $ 20 COMMENT $64;
+MPRINT(EMADVISECOLUMNS):   length levelAssigned 8 roleAssigned 8 PRICE 8;
+MPRINT(EMADVISECOLUMNS):   set WORK.M2Y9D7JW;
+MPRINT(EMADVISECOLUMNS):   if formattype = ' ' then do;
+MPRINT(EMADVISECOLUMNS):   if format ne ' ' then do;
+MPRINT(EMADVISECOLUMNS):   if type = 'N' then do;
+MPRINT(EMADVISECOLUMNS):   pos = indexc(format,'.1234567890');
+MPRINT(EMADVISECOLUMNS):   if pos > 1 then tempfmt = substr(format,1, pos-1);
+MPRINT(EMADVISECOLUMNS):   else tempfmt = ' ';
+MPRINT(EMADVISECOLUMNS):   flen = length(tempfmt);
+MPRINT(EMADVISECOLUMNS):   select;
+MPRINT(EMADVISECOLUMNS):   when(tempfmt in ("DATE" "DAY" "DDMMYY" "DOWNAME" "JULDAY" "JULIAN" "MMDDYY" "MMDDYYD" "MMDDYYC" "MMDDYYN" "MMDDYYP" "MMDDYYS" "MONNAME" "MONTH" "MONYY" "NENGO" "QTR" "QTRR" "WEEKDATE" "WEEKDATX" "WEEKDAY" "WORDDATE" "WORDDATX" 
+"YEAR" "YYMMDD" "YYMON" "YYMMDDC" "YYMMDDD" "YYMMDDN" "YYMMDDP" "YYMMDDS" "EURDFDE" "NJDATE" "NLDATE" "EURDFDD" "EURDFDWN" "EURDFMN" "EURDFMY" "EURDFWK" "EURDFWKX" "EURDFWDX" "EURDFDN" "EURDFDE" )) formattype = 'DATE';
+MPRINT(EMADVISECOLUMNS):   when(tempfmt in ("DATETIME" "EURDFDT" "TOD" )) formattype = "DATETIME";
+MPRINT(EMADVISECOLUMNS):   when(tempfmt in ("HHMM" "HOUR" "MMSS" "TIME" "TIMEAMPM" )) formattype = "TIME";
+MPRINT(EMADVISECOLUMNS):   when(tempfmt in ("COMMA" "COMMAX" "DOLLAR" "DOLLARX" "E" "FRACT" "NEGPAREN" "PERCENT")) formattype="QUANTITY";
+MPRINT(EMADVISECOLUMNS):   when(tempfmt in ("BINARY" "HEX" "IB" "OCTAL" "PD" "PIB" "PK" "RB" "SSN" "Z" "ZD")) formattype = "CODING";
+MPRINT(EMADVISECOLUMNS):   otherwise do;
+MPRINT(EMADVISECOLUMNS):   formattype = "USER";
+MPRINT(EMADVISECOLUMNS):   if compress(tempfmt, '0123456789.', '') = '' then formattype='NUM';
+MPRINT(EMADVISECOLUMNS):   else if substr(tempfmt, 1, 6)='NLDATE' then formattype = "DATE";
+MPRINT(EMADVISECOLUMNS):   else if substr(tempfmt, 1, 6)='NLDATM' then formattype = "DATETIME";
+MPRINT(EMADVISECOLUMNS):   else if substr(tempfmt, 1, 4)='NLTIM' then formattype = "TIME";
+MPRINT(EMADVISECOLUMNS):   else if flen >= 4 then do;
+MPRINT(EMADVISECOLUMNS):   str = substr(tempfmt,1,4);
+MPRINT(EMADVISECOLUMNS):   if str in ("MMYY" "YYMM" "YYQR") then formattype ="DATE";
+MPRINT(EMADVISECOLUMNS):   else if str = "S370" then formattype = "CODING";
+MPRINT(EMADVISECOLUMNS):   else if str = "BEST" then formattype = "NUM";
+MPRINT(EMADVISECOLUMNS):   drop str;
+MPRINT(EMADVISECOLUMNS):   end;
+MPRINT(EMADVISECOLUMNS):   else if flen >=3 and substr(tempfmt,1,3) = "YYQ" then formatType = "DATE";
+MPRINT(EMADVISECOLUMNS):   end;
+MPRINT(EMADVISECOLUMNS):   end;
+MPRINT(EMADVISECOLUMNS):   drop flen tempfmt pos;
+MPRINT(EMADVISECOLUMNS):   end;
+MPRINT(EMADVISECOLUMNS):   else do;
+MPRINT(EMADVISECOLUMNS):   formatType = "CATEGORY";
+MPRINT(EMADVISECOLUMNS):   end;
+MPRINT(EMADVISECOLUMNS):   end;
+MPRINT(EMADVISECOLUMNS):   if formatType = "NUM" then do;
+MPRINT(EMADVISECOLUMNS):   if index = "Y" then formatType = "DISCRETE";
+MPRINT(EMADVISECOLUMNS):   else formatType = "QUANTITY";
+MPRINT(EMADVISECOLUMNS):   end;
+MPRINT(EMADVISECOLUMNS):   end;
+MPRINT(EMADVISECOLUMNS):   if level = ' ' then do;
+MPRINT(EMADVISECOLUMNS):   if formatType in ("CATEGORY", "CODING", "ID") or type = "C" then level = "NOMINAL";
+MPRINT(EMADVISECOLUMNS):   else level = "INTERVAL";
+MPRINT(EMADVISECOLUMNS):   levelAssigned = 1;
+MPRINT(EMADVISECOLUMNS):   end;
+MPRINT(EMADVISECOLUMNS):   else level = upcase(level);
+MPRINT(EMADVISECOLUMNS):   if role = ' ' then do;
+MPRINT(EMADVISECOLUMNS):   length name_prefix $8 _uname $64;
+MPRINT(EMADVISECOLUMNS):   drop name_prefix _uname _freqflag;
+MPRINT(EMADVISECOLUMNS):   retain _freqflag;
+MPRINT(EMADVISECOLUMNS):   if LENGTH> 80 then ROLE = 'TEXT';
+MPRINT(EMADVISECOLUMNS):   _uname = upcase(NAME);
+MPRINT(EMADVISECOLUMNS):   select(_uname);
+MPRINT(EMADVISECOLUMNS):   when('_PARTIND_') do;
+MPRINT(EMADVISECOLUMNS):   ROLE = 'ID';
+MPRINT(EMADVISECOLUMNS):   LEVEL = 'NOMINAL';
+MPRINT(EMADVISECOLUMNS):   end;
+MPRINT(EMADVISECOLUMNS):   when('_WARN_') ROLE = 'ASSESS';
+MPRINT(EMADVISECOLUMNS):   when('EM_SEGMENT') do;
+MPRINT(EMADVISECOLUMNS):   ROLE = 'SEGMENT';
+MPRINT(EMADVISECOLUMNS):   LEVEL = 'NOMINAL';
+MPRINT(EMADVISECOLUMNS):   end;
+MPRINT(EMADVISECOLUMNS):   when('_NODE_') do;
+MPRINT(EMADVISECOLUMNS):   ROLE = 'SEGMENT';
+MPRINT(EMADVISECOLUMNS):   LEVEL = 'NOMINAL';
+MPRINT(EMADVISECOLUMNS):   end;
+MPRINT(EMADVISECOLUMNS):   when('EM_CLASSTARGET') ROLE = 'ASSESS';
+MPRINT(EMADVISECOLUMNS):   when('EM_VALUETARGET') ROLE = 'ASSESS';
+MPRINT(EMADVISECOLUMNS):   when('EM_PREDICTION') ROLE = 'PREDICT';
+MPRINT(EMADVISECOLUMNS):   when('EM_PROBABILITY') ROLE = 'PREDICT';
+MPRINT(EMADVISECOLUMNS):   when('EM_EVENTPROBABILITY') ROLE = 'PREDICT';
+MPRINT(EMADVISECOLUMNS):   when('EM_CLASSIFICATION') ROLE = 'CLASSIFICATION';
+MPRINT(EMADVISECOLUMNS):   when('EM_DECISION') ROLE = 'DECISION';
+MPRINT(EMADVISECOLUMNS):   when('EM_PROFIT') ROLE = 'ASSESS';
+MPRINT(EMADVISECOLUMNS):   when('EM_LOSS') ROLE = 'ASSESS';
+MPRINT(EMADVISECOLUMNS):   when('EM_ROI') ROLE = 'ASSESS';
+MPRINT(EMADVISECOLUMNS):   when('URI') ROLE = 'URL';
+MPRINT(EMADVISECOLUMNS):   when('FILTERED') ROLE = 'TEXTLOC';
+MPRINT(EMADVISECOLUMNS):   otherwise do;
+MPRINT(EMADVISECOLUMNS):   if upcase(NAME) =: 'ZIP' then do;
+MPRINT(EMADVISECOLUMNS):   ROLE = 'REJECTED';
+MPRINT(EMADVISECOLUMNS):   LEVEL = 'NOMINAL';
+MPRINT(EMADVISECOLUMNS):   COMMENT = 'Rejected by: Exceed the maximum class level of %s';
+MPRINT(EMADVISECOLUMNS):   end;
+MPRINT(EMADVISECOLUMNS):   else if upcase(NAME) in('FREQ', 'FREQUENCY') then do;
+MPRINT(EMADVISECOLUMNS):   ROLE = 'FREQ';
+MPRINT(EMADVISECOLUMNS):   if TYPE = 'C' then ROLE = 'INPUT';
+MPRINT(EMADVISECOLUMNS):   else if _freqflag =1 then ROLE='REJECTED';
+MPRINT(EMADVISECOLUMNS):   end;
+MPRINT(EMADVISECOLUMNS):   else do;
+MPRINT(EMADVISECOLUMNS):   name_prefix = scan(_uname, 1, '_');
+MPRINT(EMADVISECOLUMNS):   if scan(_uname, 2, '_') = '' then name_prefix='';
+MPRINT(EMADVISECOLUMNS):   if name_prefix in('F', 'I', 'U') then do;
+MPRINT(EMADVISECOLUMNS):   ROLE = 'CLASSIFICATION';
+MPRINT(EMADVISECOLUMNS):   LEVEL = 'NOMINAL';
+MPRINT(EMADVISECOLUMNS):   end;
+MPRINT(EMADVISECOLUMNS):   else if name_prefix in('Q') then ROLE = 'ASSESS';
+MPRINT(EMADVISECOLUMNS):   else if name_prefix in('P', 'V') then ROLE = 'PREDICT';
+MPRINT(EMADVISECOLUMNS):   else if name_prefix in('R', 'RS', 'RT', 'RD', 'RDS', 'RDT', 'RA', 'RAS', 'RAT') then ROLE = 'RESIDUAL';
+MPRINT(EMADVISECOLUMNS):   else if name_prefix ='D' then do;
+MPRINT(EMADVISECOLUMNS):   ROLE = 'DECISION';
+MPRINT(EMADVISECOLUMNS):   LEVEL = 'NOMINAL';
+MPRINT(EMADVISECOLUMNS):   end;
+MPRINT(EMADVISECOLUMNS):   else if name_prefix ='B' then do;
+MPRINT(EMADVISECOLUMNS):   ROLE = 'SEGMENT';
+MPRINT(EMADVISECOLUMNS):   LEVEL = 'NOMINAL';
+MPRINT(EMADVISECOLUMNS):   end;
+MPRINT(EMADVISECOLUMNS):   else if name_prefix in('EP', 'BP', 'CP', 'EL', 'CL', 'BL', 'ROI', 'IC') then ROLE = 'ASSESS';
+MPRINT(EMADVISECOLUMNS):   else do;
+MPRINT(EMADVISECOLUMNS):   array _ROLE_ (19) $32 _TEMPORARY_ ('ASSESS','CLASSIFICATION','CENSOR', 'COST', 'CROSSID', 'DECISION', 'ID','INPUT', 'LABEL', 'MISSING','PREDICT','REFERRER','REJECTED', 'RESIDUAL','SEGMENT', 'SEQUENCE','TARGET', 'TEXT', 'TIMEID');
+MPRINT(EMADVISECOLUMNS):   drop _found_ i;
+MPRINT(EMADVISECOLUMNS):   _found_=0;
+MPRINT(EMADVISECOLUMNS):   do i=1 to 19 until(_found_=1);
+MPRINT(EMADVISECOLUMNS):   if index(_uname, trim(_ROLE_{i}))=1 then do;
+MPRINT(EMADVISECOLUMNS):   ROLE=_ROLE_{i};
+MPRINT(EMADVISECOLUMNS):   if ROLE = 'ID' then LEVEL = 'NOMINAL';
+MPRINT(EMADVISECOLUMNS):   else if ROLE = 'SEGMENT' then LEVEL = 'NOMINAL';
+MPRINT(EMADVISECOLUMNS):   else if ROLE = 'TIMEID' and TYPE='N' then LEVEL = 'INTERVAL';
+MPRINT(EMADVISECOLUMNS):   _found_=1;
+MPRINT(EMADVISECOLUMNS):   end;
+MPRINT(EMADVISECOLUMNS):   end;
+MPRINT(EMADVISECOLUMNS):   if length(_uname)>2 then do;
+MPRINT(EMADVISECOLUMNS):   if substr(reverse(trim(_uname)), 1, 3) = 'DI_' then do;
+MPRINT(EMADVISECOLUMNS):   ROLE = 'ID';
+MPRINT(EMADVISECOLUMNS):   LEVEL = 'NOMINAL';
+MPRINT(EMADVISECOLUMNS):   end;
+MPRINT(EMADVISECOLUMNS):   end;
+MPRINT(EMADVISECOLUMNS):   end;
+MPRINT(EMADVISECOLUMNS):   end;
+MPRINT(EMADVISECOLUMNS):   end;
+MPRINT(EMADVISECOLUMNS):   end;
+MPRINT(EMADVISECOLUMNS):   if ROLE='FREQ' then _freqflag=1;
+MPRINT(EMADVISECOLUMNS):   else if ROLE = 'CLASSIFICATION' then LEVEL = 'NOMINAL';
+MPRINT(EMADVISECOLUMNS):   if symexist('RATEMKG_ROLE') then do;
+MPRINT(EMADVISECOLUMNS):   if upcase(symget('RATEMKG_ROLE')) in('Y', 'YES') then do;
+MPRINT(EMADVISECOLUMNS):   if _uname =: 'POLICY' then ROLE = 'POLICYID';
+MPRINT(EMADVISECOLUMNS):   else if _uname in ('PARTITION', '_PARTIND_') then ROLE = 'PARTITION';
+MPRINT(EMADVISECOLUMNS):   else if type = 'N' then do;
+MPRINT(EMADVISECOLUMNS):   if _uname = 'EXPOSURE' then ROLE = 'EXPOSURE';
+MPRINT(EMADVISECOLUMNS):   else if _uname = 'YEAR' then ROLE = 'YEAR';
+MPRINT(EMADVISECOLUMNS):   else if _uname = 'WEIGHT' then ROLE = 'WEIGHT';
+MPRINT(EMADVISECOLUMNS):   else if _uname = 'OFFSET' then ROLE = 'OFFSET';
+MPRINT(EMADVISECOLUMNS):   end;
+MPRINT(EMADVISECOLUMNS):   end;
+MPRINT(EMADVISECOLUMNS):   end;
+MPRINT(EMADVISECOLUMNS):   end;
+MPRINT(EMADVISECOLUMNS):   if role = ' ' then do;
+MPRINT(EMADVISECOLUMNS):   if formattype in('DATE', 'DATETIME', 'TIME') then role = 'TIMEID';
+MPRINT(EMADVISECOLUMNS):   else role = 'INPUT';
+MPRINT(EMADVISECOLUMNS):   roleAssigned = 1;
+MPRINT(EMADVISECOLUMNS):   end;
+MPRINT(EMADVISECOLUMNS):   else role = upcase(role);
+MPRINT(EMADVISECOLUMNS):   if REPORT = '' then REPORT = 'N';
+MPRINT(EMADVISECOLUMNS):   if symexist('dmwb_product') then do;
+MPRINT(EMADVISECOLUMNS):   if upcase(symget('dmwb_product')) = 'FACTORYMINER_DATASOURCE' then do;
+MPRINT(EMADVISECOLUMNS):   if ROLE ^in('INPUT', 'TARGET', 'REJECTED', 'SEGMENT', 'FREQ', 'ID', 'KEY') then ROLE='REJECTED';
+MPRINT(EMADVISECOLUMNS):   end;
+MPRINT(EMADVISECOLUMNS):   end;
+MPRINT(EMADVISECOLUMNS):   run;
+MPRINT(EMADVISECOLUMNS):    data WORK.M2Y9D7JW;
+MPRINT(EMADVISECOLUMNS):   set WORK.M2Y9D7JW;
+MPRINT(EMADVISECOLUMNS):   label NAME = "Variable Name" TYPE = "Type" ROLE = "Role" LEVEL= "Measurement Level" ORDER= "Order" CREATOR= "Creator" FORMATTYPE= "Format Type" FAMILY= "Family" DISTRIBUTION= "Distribution" PRICE= "Price" LOWERLIMIT= "Lower 
+limit" UPPERLIMIT= "Upper Limit" REPORT= "Report" COMMENT= "Comment" INDEX= "Index" INDEXTYPE= "IndexType" LABEL= "Label" LENGTH= "Length";
+MPRINT(EMADVISECOLUMNS):   drop levelAssigned roleAssigned;
+MPRINT(EMADVISECOLUMNS):   run;
+MPRINT(EMADVISECOLUMNS):   
+MPRINT(EM_DIAGRAM):  ;
+MPRINT(EM_DIAGRAM):   proc sort data=WORK.COLUMNMETA;
+MPRINT(EM_DIAGRAM):   by NAME;
+MPRINT(EM_DIAGRAM):   run;
+MPRINT(EM_DIAGRAM):   *------------------------------------------------------------*;
+MPRINT(EM_DIAGRAM):   * &nodeid: Merge incoming metadata;
+MPRINT(EM_DIAGRAM):   *------------------------------------------------------------*;
+MPRINT(EM_DIAGRAM):   proc contents data=EMWS1.Part_TRAIN noprint out=_temp2(keep=NAME);
+MPRINT(EM_DIAGRAM):   run;
+MPRINT(EM_DIAGRAM):   proc sort data=_temp2;
+MPRINT(EM_DIAGRAM):   by NAME;
+MPRINT(EM_DIAGRAM):   run;
+MPRINT(EM_DIAGRAM):   proc sort data=EMWS1.Part_CMeta_TRAIN out=_temp;
+MPRINT(EM_DIAGRAM):   by NAME;
+MPRINT(EM_DIAGRAM):   run;
+MPRINT(EM_DIAGRAM):   data EMWS1.Neural_CMeta_TRAIN;
+MPRINT(EM_DIAGRAM):   merge WORK.COLUMNMETA(in=_a) _temp2(in=_b) _temp(drop=FORMAT INFORMAT LENGTH INDEX INDEXTYPE in=_c) end=_eof_;
+MPRINT(EM_DIAGRAM):   by NAME;
+MPRINT(EM_DIAGRAM):   if (^_a and _b) or (^_c and _a and _b) then delete;
+MPRINT(EM_DIAGRAM):   if ^_b then CREATOR = "Neural";
+MPRINT(EM_DIAGRAM):   length model $200;
+MPRINT(EM_DIAGRAM):   label MODEL = "Model Node";
+MPRINT(EM_DIAGRAM):   select(upcase(name));
+MPRINT(EM_DIAGRAM):   when("DIAGNOSIS") model = "Neural";
+MPRINT(EM_DIAGRAM):   when('');
+MPRINT(EM_DIAGRAM):   otherwise;
+MPRINT(EM_DIAGRAM):   end;
+MPRINT(EM_DIAGRAM):   *------------------------------------------------------------*;
+MPRINT(EM_DIAGRAM):   * Neural: Apply Delta Code;
+MPRINT(EM_DIAGRAM):   *------------------------------------------------------------*;
+MPRINT(EM_DIAGRAM):   run;
+MPRINT(EM_DIAGRAM):   filename _delta;
+109235     data EMWS1.Neural_EMINFO;
+MPRINT(EM_DIAGRAM):    data EMWS1.Neural_EMINFO;
+109236     length TARGET KEY $32 DATA $43;
+MPRINT(EM_DIAGRAM):   length TARGET KEY $32 DATA $43;
+109237     input TARGET KEY DATA $;
+MPRINT(EM_DIAGRAM):   input TARGET KEY DATA $;
+109238     cards;
+MPRINT(EM_DIAGRAM):   cards;
+
+NOTE: The data set EMWS1.NEURAL_EMINFO has 3 observations and 3 variables.
+NOTE: DATA statement used (Total process time):
+      real time           0.01 seconds
+      cpu time            0.01 seconds
+      
+
+MPRINT(EM_DIAGRAM):   run;
+109242     run;
+109243     proc sort data = EMWS1.Neural_EMINFO NOTHREADS;
+MPRINT(EM_DIAGRAM):   proc sort data = EMWS1.Neural_EMINFO NOTHREADS;
+109244     by TARGET KEY;
+MPRINT(EM_DIAGRAM):   by TARGET KEY;
+109245     run;
+MPRINT(EM_DIAGRAM):   run;
+
+NOTE: There were 3 observations read from the data set EMWS1.NEURAL_EMINFO.
+NOTE: The data set EMWS1.NEURAL_EMINFO has 3 observations and 3 variables.
+NOTE: PROCEDURE SORT used (Total process time):
+      real time           0.03 seconds
+      cpu time            0.03 seconds
+      
+
+109246     proc sort data = EMWS1.Ids_EMINFO OUT=WORK.SORTEDEMINFO NOTHREADS;
+MPRINT(EM_DIAGRAM):    proc sort data = EMWS1.Ids_EMINFO OUT=WORK.SORTEDEMINFO NOTHREADS;
+109247     by TARGET KEY;
+MPRINT(EM_DIAGRAM):   by TARGET KEY;
+109248     run;
+MPRINT(EM_DIAGRAM):   run;
+
+NOTE: There were 4 observations read from the data set EMWS1.IDS_EMINFO.
+NOTE: The data set WORK.SORTEDEMINFO has 4 observations and 3 variables.
+NOTE: PROCEDURE SORT used (Total process time):
+      real time           0.02 seconds
+      cpu time            0.03 seconds
+      
+
+109249     proc sort data = EMWS1.Neural_EMINFO OUT=WORK.TEMP_INFO NOTHREADS;
+MPRINT(EM_DIAGRAM):   proc sort data = EMWS1.Neural_EMINFO OUT=WORK.TEMP_INFO NOTHREADS;
+109250     by TARGET KEY;
+MPRINT(EM_DIAGRAM):   by TARGET KEY;
+109251     run;
+MPRINT(EM_DIAGRAM):   run;
+
+NOTE: Input data set is already sorted; it has been copied to the output data set.
+NOTE: There were 3 observations read from the data set EMWS1.NEURAL_EMINFO.
+NOTE: The data set WORK.TEMP_INFO has 3 observations and 3 variables.
+NOTE: PROCEDURE SORT used (Total process time):
+      real time           0.01 seconds
+      cpu time            0.01 seconds
+      
+
+109252     data EMWS1.Neural_EMINFO;
+MPRINT(EM_DIAGRAM):   data EMWS1.Neural_EMINFO;
+109253     merge WORK.SORTEDEMINFO WORK.TEMP_INFO;
+MPRINT(EM_DIAGRAM):   merge WORK.SORTEDEMINFO WORK.TEMP_INFO;
+109254     by TARGET KEY;
+MPRINT(EM_DIAGRAM):   by TARGET KEY;
+109255     run;
+MPRINT(EM_DIAGRAM):   run;
+
+NOTE: There were 4 observations read from the data set WORK.SORTEDEMINFO.
+NOTE: There were 3 observations read from the data set WORK.TEMP_INFO.
+NOTE: The data set EMWS1.NEURAL_EMINFO has 5 observations and 3 variables.
+NOTE: DATA statement used (Total process time):
+      real time           0.03 seconds
+      cpu time            0.04 seconds
+      
+
+109256     proc datasets lib=work nolist;
+MPRINT(EM_DIAGRAM):   proc datasets lib=work nolist;
+109257     delete TEMP_INFO SORTEDEMINFO;
+MPRINT(EM_DIAGRAM):   delete TEMP_INFO SORTEDEMINFO;
+109258     run;
+MPRINT(EM_DIAGRAM):   run;
+
+NOTE: Deleting WORK.TEMP_INFO (memtype=DATA).
+NOTE: Deleting WORK.SORTEDEMINFO (memtype=DATA).
+109259     quit;
+MPRINT(EM_DIAGRAM):   quit;
+
+NOTE: PROCEDURE DATASETS used (Total process time):
+      real time           0.02 seconds
+      cpu time            0.03 seconds
+      
+
+NOTE: View EMWS1.NEURAL_TRAIN.VIEW used (Total process time):
+      real time           0.06 seconds
+      cpu time            0.07 seconds
+      
+NOTE: View EMWS1.NEURAL_VALIDATE.VIEW used (Total process time):
+      real time           0.09 seconds
+      cpu time            0.09 seconds
+      
+MPRINT(EM_DIAGRAM):    proc printto;
+MPRINT(EM_DIAGRAM):   run;

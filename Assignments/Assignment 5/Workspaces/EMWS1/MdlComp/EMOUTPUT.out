@@ -1,0 +1,273 @@
+*------------------------------------------------------------*
+User:                student
+Date:                October 21, 2026
+Time:                22:00:35
+*------------------------------------------------------------*
+* Training Output
+*------------------------------------------------------------*
+ 
+ 
+ 
+ 
+Variable Summary
+ 
+          Measurement    Frequency
+ Role        Level         Count
+ 
+TARGET      BINARY           1
+ 
+ 
+ 
+ 
+ 
+                                                                                     BINNED_KS_
+                                                            _KS_PROB_                   PROB_
+Obs     TARGET      TARGETLABEL    _AUR_    _GINI_    KS      CUTOFF     _KS_BIN_      CUTOFF
+ 
+ 1     diagnosis                     1         1       1       0.4         0.952        0.444
+ 
+ 
+ 
+ 
+ 
+                                                                  _VKS_              _VBINNED_
+                                                                  PROB_     _VKS_     KS_PROB_
+Obs     TARGET      TARGETLABEL    _VAUR_    _VGINI_     VKS     CUTOFF_     BIN_     CUTOFF_
+ 
+ 1     diagnosis                    0.974     0.949     0.855     0.209     0.855      0.535
+ 
+ 
+ 
+ 
+ 
+                                                                                     BINNED_KS_
+                                                            _KS_PROB_                   PROB_
+Obs     TARGET      TARGETLABEL    _AUR_    _GINI_    KS      CUTOFF     _KS_BIN_      CUTOFF
+ 
+ 1     diagnosis                     1         1       1      0.347        0.952        0.46
+ 
+ 
+ 
+ 
+ 
+                                                                  _VKS_              _VBINNED_
+                                                                  PROB_     _VKS_     KS_PROB_
+Obs     TARGET      TARGETLABEL    _VAUR_    _VGINI_     VKS     CUTOFF_     BIN_     CUTOFF_
+ 
+ 1     diagnosis                    0.971     0.941     0.871     0.301     0.855      0.543
+ 
+ 
+ 
+ 
+ 
+                                                                                     BINNED_KS_
+                                                            _KS_PROB_                   PROB_
+Obs     TARGET      TARGETLABEL    _AUR_    _GINI_    KS      CUTOFF     _KS_BIN_      CUTOFF
+ 
+ 1     diagnosis                     1         1       1      0.356        0.952        0.443
+ 
+ 
+ 
+ 
+ 
+                                                                 _VKS_              _VBINNED_
+                                                                 PROB_     _VKS_     KS_PROB_
+Obs     TARGET      TARGETLABEL    _VAUR_    _VGINI_     VKS    CUTOFF_     BIN_     CUTOFF_
+ 
+ 1     diagnosis                    0.971     0.941     0.88     0.326      0.88       0.53
+ 
+ 
+ 
+ 
+ 
+                                                                                     BINNED_KS_
+                                                            _KS_PROB_                   PROB_
+Obs     TARGET      TARGETLABEL    _AUR_    _GINI_    KS      CUTOFF     _KS_BIN_      CUTOFF
+ 
+ 1     diagnosis                     1         1       1      0.401        0.952        0.43
+ 
+ 
+ 
+ 
+ 
+                                                                  _VKS_              _VBINNED_
+                                                                  PROB_     _VKS_     KS_PROB_
+Obs     TARGET      TARGETLABEL    _VAUR_    _VGINI_     VKS     CUTOFF_     BIN_     CUTOFF_
+ 
+ 1     diagnosis                    0.972     0.944     0.874     0.341     0.855      0.545
+ 
+ 
+ 
+ 
+ 
+                                                                                        BINNED_KS_
+                                                               _KS_PROB_                   PROB_
+Obs     TARGET      TARGETLABEL    _AUR_    _GINI_      KS       CUTOFF     _KS_BIN_      CUTOFF
+ 
+ 1     diagnosis                   0.926     0.852    0.717      0.399        0.714        0.412
+ 
+ 
+ 
+ 
+ 
+                                                                  _VKS_              _VBINNED_
+                                                                  PROB_     _VKS_     KS_PROB_
+Obs     TARGET      TARGETLABEL    _VAUR_    _VGINI_     VKS     CUTOFF_     BIN_     CUTOFF_
+ 
+ 1     diagnosis                    0.888     0.775     0.671     0.566     0.658      0.404
+ 
+ 
+ 
+ 
+ 
+                                                                                     BINNED_KS_
+                                                            _KS_PROB_                   PROB_
+Obs     TARGET      TARGETLABEL    _AUR_    _GINI_    KS      CUTOFF     _KS_BIN_      CUTOFF
+ 
+ 1     diagnosis                     1         1       1      0.039        0.952        0.498
+ 
+ 
+ 
+ 
+ 
+                                                                  _VKS_              _VBINNED_
+                                                                  PROB_     _VKS_     KS_PROB_
+Obs     TARGET      TARGETLABEL    _VAUR_    _VGINI_     VKS     CUTOFF_     BIN_     CUTOFF_
+ 
+ 1     diagnosis                    0.943     0.885     0.815     0.158     0.806      0.579
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Fit Statistics
+Model Selection based on Valid: Misclassification Rate (_VMISC_)
+ 
+                                                                Train:                          Valid:
+                                                Valid:         Average          Train:         Average
+Selected                      Model       Misclassification    Squared    Misclassification    Squared
+ Model      Model Node     Description           Rate           Error            Rate           Error
+ 
+   Y        HPDMForest3     RF 150 m3          0.06936         0.00529         0.00000         0.05404
+            HPDMForest      RF 100             0.06936         0.00531         0.00000         0.05571
+            HPDMForest2     RF 200             0.06936         0.00525         0.00000         0.05676
+            Boost           GB 200             0.06936         0.00371         0.00000         0.06139
+            EndGrp2         Boosting           0.09249         0.00001         0.00000         0.09262
+            EndGrp          Bagging            0.28324         0.10762         0.33333         0.12696
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Fit Statistics Table
+Target: diagnosis
+ 
+Data Role=Train
+ 
+Statistics                                                        HPDMForest3    HPDMForest    HPDMForest2      Boost    EndGrp2     EndGrp
+ 
+Train: Bin-Based Two-Way Kolmogorov-Smirnov Probability Cutoff        0.460          0.430         0.443        0.444      0.498      0.412
+Train: Kolmogorov-Smirnov Statistic                                   1.000          1.000         1.000        1.000      1.000      0.717
+Train: Average Squared Error                                          0.005          0.005         0.005        0.004      0.000      0.108
+Train: Roc Index                                                      1.000          1.000         1.000        1.000      1.000      0.926
+Train: Cumulative Percent Captured Response                          27.211         27.211        27.211       27.211     27.211     25.850
+Train: Percent Captured Response                                     13.605         13.605        13.605       13.605     13.605     12.925
+Selection Criterion: Valid: Misclassification Rate                    0.069          0.069         0.069        0.069      0.092      0.283
+Train: Total Degrees of Freedom                                        .              .             .         396.000       .          .
+Train: Frequency of Classified Cases                                396.000        396.000       396.000         .       396.000    396.000
+Train: Divisor for ASE                                              792.000        792.000       792.000      792.000    792.000    792.000
+Train: Gain                                                         169.388        169.388       169.388      169.388    169.388    155.918
+Train: Gini Coefficient                                               1.000          1.000         1.000        1.000      1.000      0.852
+Train: Bin-Based Two-Way Kolmogorov-Smirnov Statistic                 0.952          0.952         0.952        0.952      0.952      0.714
+Train: Kolmogorov-Smirnov Probability Cutoff                          0.347          0.401         0.356        0.400      0.039      0.399
+Train: Cumulative Lift                                                2.694          2.694         2.694        2.694      2.694      2.559
+Train: Lift                                                           2.694          2.694         2.694        2.694      2.694      2.559
+Train: Maximum Absolute Error                                         0.373          0.400         0.375        0.435      0.039      1.000
+Train: Misclassification Rate                                         0.000          0.000         0.000        0.000      0.000      0.333
+Train: Sum of Frequencies                                           396.000        396.000       396.000      396.000    396.000    396.000
+Train: Root Average Squared Error                                     0.073          0.073         0.072        0.061      0.004      0.328
+Train: Cumulative Percent Response                                  100.000        100.000       100.000      100.000    100.000     95.000
+Train: Percent Response                                             100.000        100.000       100.000      100.000    100.000     95.000
+Train: Sum of Squared Errors                                          4.188          4.203         4.158        2.938      0.010     85.232
+Train: Sum of Case Weights Times Freq                                  .              .             .         792.000       .          .
+Train: Number of Wrong Classifications                                0.000          0.000         0.000         .         0.000    132.000
+ 
+ 
+Data Role=Valid
+ 
+Statistics                                                        HPDMForest3    HPDMForest    HPDMForest2      Boost    EndGrp2     EndGrp
+ 
+Valid: Kolmogorov-Smirnov Statistic                                   0.871          0.874         0.880        0.855      0.815      0.671
+Valid: Average Squared Error                                          0.054          0.056         0.057        0.061      0.093      0.127
+Valid: Roc Index                                                      0.971          0.972         0.971        0.974      0.943      0.888
+Valid: Bin-Based Two-Way Kolmogorov-Smirnov Probability Cutoff        0.543          0.545         0.530        0.535      0.579      0.404
+Valid: Cumulative Percent Captured Response                          27.692         27.692        27.692       27.692     25.096     26.154
+Valid: Percent Captured Response                                     13.846         13.846        13.846       13.846     12.548     12.308
+Valid: Frequency of Classified Cases                                173.000        173.000       173.000         .       173.000    173.000
+Valid: Divisor for VASE                                             346.000        346.000       346.000      346.000    346.000    346.000
+Valid: Gain                                                         166.154        166.154       166.154      166.154    141.202    151.368
+Valid: Gini Coefficient                                               0.941          0.944         0.941        0.949      0.885      0.775
+Valid: Bin-Based Two-Way Kolmogorov-Smirnov Statistic                 0.855          0.855         0.880        0.855      0.806      0.658
+Valid: Kolmogorov-Smirnov Probability Cutoff                          0.301          0.341         0.326        0.209      0.158      0.566
+Valid: Cumulative Lift                                                2.662          2.662         2.662        2.662      2.412      2.514
+Valid: Lift                                                           2.662          2.662         2.662        2.662      2.412      2.366
+Valid: Maximum Absolute Error                                         1.000          1.000         1.000        0.996      1.000      1.000
+Valid: Misclassification Rate                                         0.069          0.069         0.069        0.069      0.092      0.283
+Valid: Sum of Frequencies                                           173.000        173.000       173.000      173.000    173.000    173.000
+Valid: Root Average Squared Error                                     0.232          0.236         0.238        0.248      0.304      0.356
+Valid: Cumulative Percent Response                                  100.000        100.000       100.000      100.000     90.625     94.444
+Valid: Percent Response                                             100.000        100.000       100.000      100.000     90.625     88.889
+Valid: Sum of Squared Errors                                         18.697         19.276        19.639       21.242     32.047     43.927
+Valid: Sum of Case Weights Times Freq                                  .              .             .         346.000       .          .
+Valid: Number of Wrong Classifications                               12.000         12.000        12.000         .        16.000     49.000
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Event Classification Table
+Model Selection based on Valid: Misclassification Rate (_VMISC_)
+ 
+                  Model       Data                     Target      False       True        False       True
+Model Node     Description    Role         Target      Label     Negative    Negative    Positive    Positive
+ 
+Boost           GB 200        TRAIN       diagnosis                  .          249          .          147
+Boost           GB 200        VALIDATE    diagnosis                  6          102          6           59
+HPDMForest3     RF 150 m3     TRAIN       diagnosis                  .          249          .          147
+HPDMForest3     RF 150 m3     VALIDATE    diagnosis                  5          101          7           60
+HPDMForest2     RF 200        TRAIN       diagnosis                  .          249          .          147
+HPDMForest2     RF 200        VALIDATE    diagnosis                  5          101          7           60
+HPDMForest      RF 100        TRAIN       diagnosis                  .          249          .          147
+HPDMForest      RF 100        VALIDATE    diagnosis                  5          101          7           60
+EndGrp          Bagging       TRAIN       diagnosis                 73          190         59           74
+EndGrp          Bagging       VALIDATE    diagnosis                 25           84         24           40
+EndGrp2         Boosting      TRAIN       diagnosis                  .          249          .          147
+EndGrp2         Boosting      VALIDATE    diagnosis                  6           98         10           59
+
+
+*------------------------------------------------------------*
+* Score Output
+*------------------------------------------------------------*
+
+
+*------------------------------------------------------------*
+* Report Output
+*------------------------------------------------------------*

@@ -1,0 +1,177 @@
+ 
+                                                                                                                                                                                                                                                                
+ 
+ 
+Variable Summary
+
+          Measurement    Frequency
+ Role        Level         Count
+
+TARGET      BINARY           1    
+ 
+                                                                                                                                                                                                                                                                
+ 
+ 
+
+                                                                                     BINNED_KS_
+                                                            _KS_PROB_                   PROB_
+Obs     TARGET      TARGETLABEL    _AUR_    _GINI_    KS      CUTOFF     _KS_BIN_      CUTOFF
+
+ 1     diagnosis                     1         1       1       .007        0.952        0.494  
+ 
+                                                                                                                                                                                                                                                                
+ 
+ 
+
+                                                                  _VKS_              _VBINNED_
+                                                                  PROB_     _VKS_     KS_PROB_
+Obs     TARGET      TARGETLABEL    _VAUR_    _VGINI_     VKS     CUTOFF_     BIN_     CUTOFF_
+
+ 1     diagnosis                    0.965      0.93     0.865     0.972     0.865      0.996  
+ 
+                                                                                                                                                                                                                                                                
+ 
+ 
+
+                                                                                        BINNED_KS_
+                                                               _KS_PROB_                   PROB_
+Obs     TARGET      TARGETLABEL    _AUR_    _GINI_      KS       CUTOFF     _KS_BIN_      CUTOFF
+
+ 1     diagnosis                     1         1      0.993       0.44        0.952        0.461  
+ 
+                                                                                                                                                                                                                                                                
+ 
+ 
+
+                                                                  _VKS_              _VBINNED_
+                                                                  PROB_     _VKS_     KS_PROB_
+Obs     TARGET      TARGETLABEL    _VAUR_    _VGINI_     VKS     CUTOFF_     BIN_     CUTOFF_
+
+ 1     diagnosis                    0.972     0.943     0.855     0.262     0.855      0.573  
+ 
+                                                                                                                                                                                                                                                                
+ 
+ 
+
+
+
+
+
+
+
+Fit Statistics
+Model Selection based on Valid: Misclassification Rate (_VMISC_)
+
+                                                                 Train:                          Valid:
+                                              Valid:            Average          Train:          Average
+Selected    Model     Model             Misclassification       Squared    Misclassification     Squared
+ Model       Node     Description              Rate               Error           Rate            Error
+
+   Y        Neural    Neural Network         0.063584        .000011493        .000000000       0.062804
+            Boost2    GB 400                 0.069364        .006727815        .002525253       0.059386
+ 
+                                                                                                                                                                                                                                                                
+ 
+ 
+
+
+
+
+
+
+
+Fit Statistics Table
+Target: diagnosis
+
+Data Role=Train
+
+Statistics                                                         Neural     Boost2
+
+Train: Bin-Based Two-Way Kolmogorov-Smirnov Probability Cutoff      0.494      0.461
+Train: Kolmogorov-Smirnov Statistic                                 1.000      0.993
+Train: Akaike's Information Criterion                             176.513       .   
+Train: Average Squared Error                                        0.000      0.007
+Train: Roc Index                                                    1.000      1.000
+Train: Average Error Function                                       0.001       .   
+Train: Cumulative Percent Captured Response                        27.211     27.211
+Train: Percent Captured Response                                   13.605     13.605
+Selection Criterion: Valid: Misclassification Rate                  0.064      0.069
+Train: Degrees of Freedom for Error                               308.000       .   
+Train: Model Degrees of Freedom                                    88.000       .   
+Train: Total Degrees of Freedom                                   396.000    396.000
+Train: Divisor for ASE                                            792.000    792.000
+Train: Error Function                                               0.513       .   
+Train: Final Prediction Error                                       0.000       .   
+Train: Gain                                                       169.388    169.388
+Train: Gini Coefficient                                             1.000      1.000
+Train: Bin-Based Two-Way Kolmogorov-Smirnov Statistic               0.952      0.952
+Train: Kolmogorov-Smirnov Probability Cutoff                        0.007      0.440
+Train: Cumulative Lift                                              2.694      2.694
+Train: Lift                                                         2.694      2.694
+Train: Maximum Absolute Error                                       0.048      0.594
+Train: Misclassification Rate                                       0.000      0.003
+Train: Mean Squared Error                                           0.000       .   
+Train: Sum of Frequencies                                         396.000    396.000
+Train: Number of Estimated Weights                                 88.000       .   
+Train: Root Average Squared Error                                   0.003      0.082
+Train: Cumulative Percent Response                                100.000    100.000
+Train: Percent Response                                           100.000    100.000
+Train: Root Final Prediction Error                                  0.004       .   
+Train: Root Mean Squared Error                                      0.004       .   
+Train: Schwarz's Bayesian Criterion                               526.877       .   
+Train: Sum of Squared Errors                                        0.009      5.328
+Train: Sum of Case Weights Times Freq                             792.000    792.000
+Train: Number of Wrong Classifications                              0.000       .   
+
+
+Data Role=Valid
+
+Statistics                                                         Neural     Boost2
+
+Valid: Kolmogorov-Smirnov Statistic                                 0.865      0.855
+Valid: Average Squared Error                                        0.063      0.059
+Valid: Roc Index                                                    0.965      0.972
+Valid: Average Error Function                                       0.526       .   
+Valid: Bin-Based Two-Way Kolmogorov-Smirnov Probability Cutoff      0.996      0.573
+Valid: Cumulative Percent Captured Response                        27.692     27.692
+Valid: Percent Captured Response                                   13.846     13.846
+Valid: Divisor for VASE                                           346.000    346.000
+Valid: Error Function                                             182.147       .   
+Valid: Gain                                                       166.154    166.154
+Valid: Gini Coefficient                                             0.930      0.943
+Valid: Bin-Based Two-Way Kolmogorov-Smirnov Statistic               0.865      0.855
+Valid: Kolmogorov-Smirnov Probability Cutoff                        0.972      0.262
+Valid: Cumulative Lift                                              2.662      2.662
+Valid: Lift                                                         2.662      2.662
+Valid: Maximum Absolute Error                                       1.000      0.994
+Valid: Misclassification Rate                                       0.064      0.069
+Valid: Mean Squared Error                                           0.063       .   
+Valid: Sum of Frequencies                                         173.000    173.000
+Valid: Root Average Squared Error                                   0.251      0.244
+Valid: Cumulative Percent Response                                100.000    100.000
+Valid: Percent Response                                           100.000    100.000
+Valid: Root Mean Squared Error                                      0.251       .   
+Valid: Sum of Squared Errors                                       21.730     20.547
+Valid: Sum of Case Weights Times Freq                             346.000    346.000
+Valid: Number of Wrong Classifications                             11.000       .   
+ 
+                                                                                                                                                                                                                                                                
+ 
+ 
+
+
+
+
+
+
+
+Event Classification Table
+Model Selection based on Valid: Misclassification Rate (_VMISC_)
+
+Model     Model             Data                     Target      False       True        False       True
+ Node     Description       Role         Target      Label     Negative    Negative    Positive    Positive
+
+Neural    Neural Network    TRAIN       diagnosis                  .          249          .          147  
+Neural    Neural Network    VALIDATE    diagnosis                  7          104          4           58  
+Boost2    GB 400            TRAIN       diagnosis                  1          249          .          146  
+Boost2    GB 400            VALIDATE    diagnosis                  6          102          6           59  

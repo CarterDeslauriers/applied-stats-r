@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" ?><_ROOT_  Location="CATALOG" Catalog="SASHELP.EMUTIL.GP.SOURCE" ForceRun="N" TargetGroup="N"
+ Mode="BOOSTING" SizeType="PERCENT" SizePercent="10.0" SizeObs="." RandomSeed="12345"
+ MinimumObs="10" IndexCount="5" RunAction="Train" Component="StartGroup" DataNeeded="Y"
+ RawCreateTime="2108238615.2" CreateTime="21OCT2026:21:50:15" RunId="fcb098a0-cdf7-4673-8cbb-9425bc071ba7"
+>
+<VARIABLEPROPERTIES/>
+<FILEPROPERTIES ><![CDATA[
+USERTRAINCODE
+USERSCORECODE
+USERREPORTCODE
+]]>
+</FILEPROPERTIES></_ROOT_>

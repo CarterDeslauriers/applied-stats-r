@@ -1,0 +1,489 @@
+*------------------------------------------------------------*
+User:                student
+Date:                October 21, 2026
+Time:                22:28:31
+*------------------------------------------------------------*
+* Training Output
+*------------------------------------------------------------*
+ 
+ 
+ 
+ 
+Variable Summary
+ 
+            Measurement    Frequency
+Role           Level         Count
+ 
+INPUT        INTERVAL          27
+REJECTED     INTERVAL           4
+TARGET       BINARY             1
+ 
+ 
+ 
+ 
+Model Events
+ 
+                                     Number
+                      Measurement      of
+ Target      Event       Level       Levels      Order       Label
+ 
+diagnosis      M        BINARY          2      Descending
+ 
+ 
+ 
+ 
+Predicted and decision variables
+ 
+Type           Variable              Label
+ 
+TARGET       diagnosis
+PREDICTED    P_diagnosisM    Predicted: diagnosis=M
+RESIDUAL     R_diagnosisM    Residual: diagnosis=M
+PREDICTED    P_diagnosisB    Predicted: diagnosis=B
+RESIDUAL     R_diagnosisB    Residual: diagnosis=B
+FROM         F_diagnosis     From: diagnosis
+INTO         I_diagnosis     Into: diagnosis
+ 
+ 
+ 
+ 
+ 
+The NEURAL Procedure
+ 
+Preliminary       Starting         Objective         Number
+ Training          Random           Function           of        Terminating
+    Run             Seed             Value         Iterations     Criteria
+ 
+        1               12345    0.000647297371            9      ABSCONV
+        2          1589137630    0.003061741039           10
+        3           653604406    0.000831256249            8      ABSCONV
+        4          1116558348     0.00326815054           10
+        5          1805272876    0.006197808682           10
+ 
+ 
+ 
+ 
+ 
+The NEURAL Procedure
+ 
+                       Optimization Start
+                      Parameter Estimates
+                                                       Gradient
+                                                      Objective
+  N Parameter                          Estimate        Function
+ 
+  1 area_mean_H11                     -1.038477    -0.000037236
+  2 area_se_H11                       -0.316244    -0.000003417
+  3 area_worst_H11                    -0.442670    -0.000039715
+  4 compactness_mean_H11               0.175344     0.000071485
+  5 compactness_se_H11                 0.307405     0.000083063
+  6 compactness_worst_H11             -1.112079     0.000058440
+  7 concave_points_mean_H11            0.554683     0.000038613
+  8 concave_points_se_H11              0.679893     0.000054193
+  9 concave_points_worst_H11           0.063875     0.000023182
+ 10 concavity_mean_H11                 0.687759     0.000051690
+ 11 concavity_se_H11                  -0.613078     0.000040311
+ 12 concavity_worst_H11                0.278902     0.000031489
+ 13 fractal_dimension_mean_H11        -0.963013        0.000104
+ 14 fractal_dimension_se_H11          -1.625278     0.000079676
+ 15 fractal_dimension_worst_H11       -1.088895     0.000088903
+ 16 perimeter_mean_H11                -0.195371    -0.000041576
+ 17 perimeter_se_H11                   1.075256     0.000007572
+ 18 perimeter_worst_H11                0.297116    -0.000045737
+ 19 radius_mean_H11                   -0.370066    -0.000051349
+ 20 radius_se_H11                     -0.338246    -0.000004260
+ 21 radius_worst_H11                  -0.265665    -0.000057204
+ 22 smoothness_mean_H11               -1.881556     0.000063473
+ 23 smoothness_se_H11                  0.385050     0.000067357
+ 24 smoothness_worst_H11              -1.903213     0.000031566
+ 25 symmetry_mean_H11                 -0.893031     0.000092259
+ 26 symmetry_se_H11                    0.620215     0.000097757
+ 27 symmetry_worst_H11                -0.776154     0.000040950
+ 28 area_mean_H12                     -1.321758        0.000130
+ 29 area_se_H12                       -0.477409    -0.000008921
+ 30 area_worst_H12                     0.937353        0.000171
+ 31 compactness_mean_H12               0.395939       -0.000265
+ 32 compactness_se_H12                 0.256675       -0.000353
+ 33 compactness_worst_H12              1.112204       -0.000127
+ 34 concave_points_mean_H12           -0.678081       -0.000130
+ 35 concave_points_se_H12             -0.038157       -0.000158
+ 36 concave_points_worst_H12          -1.339026     0.000024301
+ 37 concavity_mean_H12                -2.341435       -0.000195
+ 38 concavity_se_H12                   0.478655       -0.000187
+ 39 concavity_worst_H12               -0.534464    -0.000050896
+ 40 fractal_dimension_mean_H12         0.928279       -0.000441
+ 41 fractal_dimension_se_H12           1.720454       -0.000216
+ 42 fractal_dimension_worst_H12       -2.265800    -0.000066245
+ 43 perimeter_mean_H12                 0.228605        0.000132
+ 44 perimeter_se_H12                  -0.272134    -0.000074090
+ 45 perimeter_worst_H12                0.339446        0.000191
+ 46 radius_mean_H12                   -0.627846        0.000155
+ 47 radius_se_H12                     -0.681065    -0.000072710
+ 48 radius_worst_H12                   0.475297        0.000215
+ 49 smoothness_mean_H12               -0.335179       -0.000396
+ 50 smoothness_se_H12                 -1.329252       -0.000488
+ 51 smoothness_worst_H12               1.236112       -0.000150
+ 52 symmetry_mean_H12                 -0.157968       -0.000347
+ 53 symmetry_se_H12                    0.372655       -0.000246
+ 54 symmetry_worst_H12                -0.445707        0.000187
+ 55 area_mean_H13                      0.484280     0.000021108
+ 56 area_se_H13                        2.691561    -0.000075521
+ 57 area_worst_H13                     4.118240     0.000025498
+ 58 compactness_mean_H13              -1.574508       -0.000187
+ 59 compactness_se_H13                -3.225121       -0.000112
+ 60 compactness_worst_H13              0.247292    -0.000091002
+ 61 concave_points_mean_H13            2.374504       -0.000142
+ 62 concave_points_se_H13              1.906665       -0.000132
+ 63 concave_points_worst_H13          -1.536441    -0.000043802
+ 64 concavity_mean_H13                -0.579292    -0.000091516
+ 65 concavity_se_H13                  -0.713798    -0.000054659
+ 66 concavity_worst_H13                0.772947    -0.000030604
+ 67 fractal_dimension_mean_H13         3.813160       -0.000337
+ 68 fractal_dimension_se_H13           0.374753       -0.000127
+ 69 fractal_dimension_worst_H13        0.310489       -0.000168
+ 70 perimeter_mean_H13                -0.775947     0.000026687
+ 71 perimeter_se_H13                   1.146061       -0.000128
+ 72 perimeter_worst_H13                1.487976     0.000034448
+ 73 radius_mean_H13                   -0.094781     0.000040998
+ 74 radius_se_H13                      2.046489       -0.000142
+ 75 radius_worst_H13                   1.264851     0.000050875
+ 76 smoothness_mean_H13               -1.820824       -0.000416
+ 77 smoothness_se_H13                 -0.618372       -0.000164
+ 78 smoothness_worst_H13               0.954189       -0.000254
+ 79 symmetry_mean_H13                  0.066291       -0.000263
+ 80 symmetry_se_H13                   -3.618134       -0.000219
+ 81 symmetry_worst_H13                 2.198172       -0.000146
+ 82 BIAS_H11                          -3.494233       -0.000120
+ 83 BIAS_H12                           0.925616        0.000272
+ 84 BIAS_H13                          -0.537923        0.000116
+ 85 H11_diagnosisM                     1.114126        0.000199
+ 86 H12_diagnosisM                   -10.398678       -0.000317
+ 87 H13_diagnosisM                     7.760156       -0.000501
+ 88 BIAS_diagnosisM                    6.693856       -0.000378
+ 
+Value of Objective Function = 0.0006472974
+ 
+ 
+ 
+ 
+ 
+ 
+The NEURAL Procedure
+ 
+Levenberg-Marquardt Optimization
+ 
+ 
+Minimum Iterations                                0
+Maximum Iterations                               50
+Maximum Function Calls                   2147483647
+Maximum CPU Time                              14400
+ABSGCONV Gradient Criterion                 0.00001
+GCONV Gradient Criterion                       1E-8
+GCONV2 Gradient Criterion                         0
+ABSFCONV Function Criterion                       0
+FCONV Function Criterion                     0.0001
+FCONV2 Function Criterion                         0
+FSIZE Parameter                                   0
+ABSXCONV Parameter Change Criterion               0
+XCONV Parameter Change Criterion                  0
+XSIZE Parameter                                   0
+ABSCONV Function Criterion             0.0014549429
+Trust Region Initial Radius Factor                1
+Singularity Tolerance (SINGULAR)               1E-8
+ 
+Levenberg-Marquardt Optimization
+ 
+Scaling Update of More (1978)
+ 
+Parameter Estimates              88
+ 
+                                             Optimization Start
+ 
+Active Constraints                                  0  Objective Function                       0.0006472974
+Max Abs Gradient Element                 0.0005011868  Radius                                              1
+ 
+                                            Optimization Results
+ 
+Iterations                                          0  Function Calls                                      3
+Jacobian Calls                                      1  Active Constraints                                  0
+Objective Function                       0.0006472974  Max Abs Gradient Element                 0.0005011868
+Lambda                                              0  Actual Over Pred Change                             0
+Radius                                              1
+ 
+Convergence criterion (ABSCONV=0.0014549429) satisfied.
+ 
+ 
+ 
+ 
+ 
+The NEURAL Procedure
+ 
+                      Optimization Results
+                      Parameter Estimates
+                                                       Gradient
+                                                      Objective
+  N Parameter                          Estimate        Function
+ 
+  1 area_mean_H11                     -1.038477    -0.000037236
+  2 area_se_H11                       -0.316244    -0.000003417
+  3 area_worst_H11                    -0.442670    -0.000039715
+  4 compactness_mean_H11               0.175344     0.000071485
+  5 compactness_se_H11                 0.307405     0.000083063
+  6 compactness_worst_H11             -1.112079     0.000058440
+  7 concave_points_mean_H11            0.554683     0.000038613
+  8 concave_points_se_H11              0.679893     0.000054193
+  9 concave_points_worst_H11           0.063875     0.000023182
+ 10 concavity_mean_H11                 0.687759     0.000051690
+ 11 concavity_se_H11                  -0.613078     0.000040311
+ 12 concavity_worst_H11                0.278902     0.000031489
+ 13 fractal_dimension_mean_H11        -0.963013        0.000104
+ 14 fractal_dimension_se_H11          -1.625278     0.000079676
+ 15 fractal_dimension_worst_H11       -1.088895     0.000088903
+ 16 perimeter_mean_H11                -0.195371    -0.000041576
+ 17 perimeter_se_H11                   1.075256     0.000007572
+ 18 perimeter_worst_H11                0.297116    -0.000045737
+ 19 radius_mean_H11                   -0.370066    -0.000051349
+ 20 radius_se_H11                     -0.338246    -0.000004260
+ 21 radius_worst_H11                  -0.265665    -0.000057204
+ 22 smoothness_mean_H11               -1.881556     0.000063473
+ 23 smoothness_se_H11                  0.385050     0.000067357
+ 24 smoothness_worst_H11              -1.903213     0.000031566
+ 25 symmetry_mean_H11                 -0.893031     0.000092259
+ 26 symmetry_se_H11                    0.620215     0.000097757
+ 27 symmetry_worst_H11                -0.776154     0.000040950
+ 28 area_mean_H12                     -1.321758        0.000130
+ 29 area_se_H12                       -0.477409    -0.000008921
+ 30 area_worst_H12                     0.937353        0.000171
+ 31 compactness_mean_H12               0.395939       -0.000265
+ 32 compactness_se_H12                 0.256675       -0.000353
+ 33 compactness_worst_H12              1.112204       -0.000127
+ 34 concave_points_mean_H12           -0.678081       -0.000130
+ 35 concave_points_se_H12             -0.038157       -0.000158
+ 36 concave_points_worst_H12          -1.339026     0.000024301
+ 37 concavity_mean_H12                -2.341435       -0.000195
+ 38 concavity_se_H12                   0.478655       -0.000187
+ 39 concavity_worst_H12               -0.534464    -0.000050896
+ 40 fractal_dimension_mean_H12         0.928279       -0.000441
+ 41 fractal_dimension_se_H12           1.720454       -0.000216
+ 42 fractal_dimension_worst_H12       -2.265800    -0.000066245
+ 43 perimeter_mean_H12                 0.228605        0.000132
+ 44 perimeter_se_H12                  -0.272134    -0.000074090
+ 45 perimeter_worst_H12                0.339446        0.000191
+ 46 radius_mean_H12                   -0.627846        0.000155
+ 47 radius_se_H12                     -0.681065    -0.000072710
+ 48 radius_worst_H12                   0.475297        0.000215
+ 49 smoothness_mean_H12               -0.335179       -0.000396
+ 50 smoothness_se_H12                 -1.329252       -0.000488
+ 51 smoothness_worst_H12               1.236112       -0.000150
+ 52 symmetry_mean_H12                 -0.157968       -0.000347
+ 53 symmetry_se_H12                    0.372655       -0.000246
+ 54 symmetry_worst_H12                -0.445707        0.000187
+ 55 area_mean_H13                      0.484280     0.000021108
+ 56 area_se_H13                        2.691561    -0.000075521
+ 57 area_worst_H13                     4.118240     0.000025498
+ 58 compactness_mean_H13              -1.574508       -0.000187
+ 59 compactness_se_H13                -3.225121       -0.000112
+ 60 compactness_worst_H13              0.247292    -0.000091002
+ 61 concave_points_mean_H13            2.374504       -0.000142
+ 62 concave_points_se_H13              1.906665       -0.000132
+ 63 concave_points_worst_H13          -1.536441    -0.000043802
+ 64 concavity_mean_H13                -0.579292    -0.000091516
+ 65 concavity_se_H13                  -0.713798    -0.000054659
+ 66 concavity_worst_H13                0.772947    -0.000030604
+ 67 fractal_dimension_mean_H13         3.813160       -0.000337
+ 68 fractal_dimension_se_H13           0.374753       -0.000127
+ 69 fractal_dimension_worst_H13        0.310489       -0.000168
+ 70 perimeter_mean_H13                -0.775947     0.000026687
+ 71 perimeter_se_H13                   1.146061       -0.000128
+ 72 perimeter_worst_H13                1.487976     0.000034448
+ 73 radius_mean_H13                   -0.094781     0.000040998
+ 74 radius_se_H13                      2.046489       -0.000142
+ 75 radius_worst_H13                   1.264851     0.000050875
+ 76 smoothness_mean_H13               -1.820824       -0.000416
+ 77 smoothness_se_H13                 -0.618372       -0.000164
+ 78 smoothness_worst_H13               0.954189       -0.000254
+ 79 symmetry_mean_H13                  0.066291       -0.000263
+ 80 symmetry_se_H13                   -3.618134       -0.000219
+ 81 symmetry_worst_H13                 2.198172       -0.000146
+ 82 BIAS_H11                          -3.494233       -0.000120
+ 83 BIAS_H12                           0.925616        0.000272
+ 84 BIAS_H13                          -0.537923        0.000116
+ 85 H11_diagnosisM                     1.114126        0.000199
+ 86 H12_diagnosisM                   -10.398678       -0.000317
+ 87 H13_diagnosisM                     7.760156       -0.000501
+ 88 BIAS_diagnosisM                    6.693856       -0.000378
+ 
+Value of Objective Function = 0.0006472974
+ 
+
+
+*------------------------------------------------------------*
+* Score Output
+*------------------------------------------------------------*
+
+
+*------------------------------------------------------------*
+* Report Output
+*------------------------------------------------------------*
+ 
+ 
+ 
+ 
+Fit Statistics
+ 
+Target=diagnosis Target Label=' '
+ 
+   Fit
+Statistics    Statistics Label                     Train    Validation
+ 
+ _DFT_        Total Degrees of Freedom           396.000         .
+ _DFE_        Degrees of Freedom for Error       308.000         .
+ _DFM_        Model Degrees of Freedom            88.000         .
+ _NW_         Number of Estimated Weights         88.000         .
+ _AIC_        Akaike's Information Criterion     176.513         .
+ _SBC_        Schwarz's Bayesian Criterion       526.877         .
+ _ASE_        Average Squared Error                0.000        0.063
+ _MAX_        Maximum Absolute Error               0.048        1.000
+ _DIV_        Divisor for ASE                    792.000      346.000
+ _NOBS_       Sum of Frequencies                 396.000      173.000
+ _RASE_       Root Average Squared Error           0.003        0.251
+ _SSE_        Sum of Squared Errors                0.009       21.730
+ _SUMW_       Sum of Case Weights Times Freq     792.000      346.000
+ _FPE_        Final Prediction Error               0.000         .
+ _MSE_        Mean Squared Error                   0.000        0.063
+ _RFPE_       Root Final Prediction Error          0.004         .
+ _RMSE_       Root Mean Squared Error              0.004        0.251
+ _AVERR_      Average Error Function               0.001        0.526
+ _ERR_        Error Function                       0.513      182.147
+ _MISC_       Misclassification Rate               0.000        0.064
+ _WRONG_      Number of Wrong Classifications      0.000       11.000
+ 
+ 
+ 
+ 
+Classification Table
+ 
+Data Role=TRAIN Target Variable=diagnosis Target Label=' '
+ 
+                       Target        Outcome     Frequency       Total
+Target    Outcome    Percentage    Percentage      Count      Percentage
+ 
+  B          B           100           100          249         62.8788
+  M          M           100           100          147         37.1212
+ 
+ 
+Data Role=VALIDATE Target Variable=diagnosis Target Label=' '
+ 
+                       Target        Outcome     Frequency       Total
+Target    Outcome    Percentage    Percentage      Count      Percentage
+ 
+  B          B         93.6937       96.2963        104         60.1156
+  M          B          6.3063       10.7692          7          4.0462
+  B          M          6.4516        3.7037          4          2.3121
+  M          M         93.5484       89.2308         58         33.5260
+ 
+ 
+ 
+ 
+Event Classification Table
+ 
+Data Role=TRAIN Target=diagnosis Target Label=' '
+ 
+  False       True        False       True
+Negative    Negative    Positive    Positive
+ 
+    .          249          .          147
+ 
+ 
+Data Role=VALIDATE Target=diagnosis Target Label=' '
+ 
+  False       True        False       True
+Negative    Negative    Positive    Positive
+ 
+    7          104          4          58
+ 
+ 
+ 
+ 
+Assessment Score Rankings
+ 
+Data Role=TRAIN Target Variable=diagnosis Target Label=' '
+ 
+                                                                                           Mean
+                               Cumulative        %       Cumulative      Number of      Posterior
+Depth       Gain      Lift        Lift       Response    % Response    Observations    Probability
+ 
+   5     169.388    2.69388      2.69388        100        100.000          20           1.00000
+  10     169.388    2.69388      2.69388        100        100.000          20           1.00000
+  15     169.388    2.69388      2.69388        100        100.000          20           1.00000
+  20     169.388    2.69388      2.69388        100        100.000          20           1.00000
+  25     169.388    2.69388      2.69388        100        100.000          19           1.00000
+  30     169.388    2.69388      2.69388        100        100.000          20           0.99997
+  35     169.388    2.69388      2.69388        100        100.000          20           0.99783
+  40     149.057    1.07755      2.49057         40         92.453          20           0.39429
+  45     121.229    0.00000      2.21229          0         82.123          20           0.00025
+  50     100.000    0.00000      2.00000          0         74.242          19           0.00003
+  55      81.651    0.00000      1.81651          0         67.431          20           0.00003
+  60      66.387    0.00000      1.66387          0         61.765          20           0.00003
+  65      53.488    0.00000      1.53488          0         56.977          20           0.00003
+  70      42.446    0.00000      1.42446          0         52.878          20           0.00002
+  75      33.333    0.00000      1.33333          0         49.495          19           0.00001
+  80      24.921    0.00000      1.24921          0         46.372          20           0.00001
+  85      17.507    0.00000      1.17507          0         43.620          20           0.00000
+  90      10.924    0.00000      1.10924          0         41.176          20           0.00000
+  95       5.040    0.00000      1.05040          0         38.992          20           0.00000
+ 100       0.000    0.00000      1.00000          0         37.121          19           0.00000
+ 
+ 
+Data Role=VALIDATE Target Variable=diagnosis Target Label=' '
+ 
+                                                                                           Mean
+                               Cumulative        %       Cumulative      Number of      Posterior
+Depth       Gain      Lift        Lift       Response    % Response    Observations    Probability
+ 
+   5     166.154    2.66154      2.66154      100.000      100.000           9           1.00000
+  10     166.154    2.66154      2.66154      100.000      100.000           9           1.00000
+  15     166.154    2.66154      2.66154      100.000      100.000           8           1.00000
+  20     166.154    2.66154      2.66154      100.000      100.000           9           1.00000
+  25     166.154    2.66154      2.66154      100.000      100.000           9           1.00000
+  30     166.154    2.66154      2.66154      100.000      100.000           8           1.00000
+  35     153.064    1.77436      2.53064       66.667       95.082           9           0.99820
+  40     124.330    0.29573      2.24330       11.111       84.286           9           0.13522
+  45     108.146    0.66538      2.08146       25.000       78.205           8           0.00024
+  50      89.673    0.29573      1.89673       11.111       71.264           9           0.00004
+  55      71.891    0.00000      1.71891        0.000       64.583           9           0.00003
+  60      58.669    0.00000      1.58669        0.000       59.615           8           0.00003
+  65      48.387    0.29573      1.48387       11.111       55.752           9           0.00001
+  70      37.440    0.00000      1.37440        0.000       51.639           9           0.00001
+  75      31.030    0.33269      1.31030       12.500       49.231           8           0.00001
+  80      24.460    0.29573      1.24460       11.111       46.763           9           0.00000
+  85      16.892    0.00000      1.16892        0.000       43.919           9           0.00000
+  90      10.897    0.00000      1.10897        0.000       41.667           8           0.00000
+  95       4.848    0.00000      1.04848        0.000       39.394           9           0.00000
+ 100       0.000    0.00000      1.00000        0.000       37.572           8           0.00000
+ 
+ 
+ 
+ 
+Assessment Score Distribution
+ 
+Data Role=TRAIN Target Variable=diagnosis Target Label=' '
+ 
+ Posterior     Number                     Mean
+Probability      of      Number of     Posterior
+   Range       Events    Nonevents    Probability    Percentage
+ 
+ 0.95-1.00       147          0         0.99863        37.1212
+ 0.00-0.05         0        249         0.00021        62.8788
+ 
+ 
+Data Role=VALIDATE Target Variable=diagnosis Target Label=' '
+ 
+ Posterior     Number                     Mean
+Probability      of      Number of     Posterior
+   Range       Events    Nonevents    Probability    Percentage
+ 
+ 0.95-1.00       58           4         0.99929        35.8382
+ 0.15-0.20        0           1         0.17381         0.5780
+ 0.05-0.10        1           0         0.05055         0.5780
+ 0.00-0.05        6         103         0.00022        63.0058
