@@ -6,6 +6,8 @@ format:
     scrollable: true
     smaller: true
     code-overflow: wrap
+execute:
+  echo: true
 editor: visual
 ---
 
