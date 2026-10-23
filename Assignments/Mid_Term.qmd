@@ -1,0 +1,382 @@
+---
+title: "Midterm"
+author: "Carter Deslauriers"
+format: revealjs
+editor: visual
+---
+
+
+# Data Wrangling
+
+```{r}
+library(tidyverse)
+library(haven)
+setwd("C:/Users/student/OneDrive - Bryant University/Documents/GitHub/Projects_in_R/Assignments")
+df = read_sas("Data/hdd0318cy.sas7bdat")
+```
+
+
+```{r}
+# Filter to 2018
+df = df %>% filter(yod == 18)
+
+# Keep the values we want
+df = df %>% select("yod", "payfix","pay_ub92","age",
+                    "sex","raceethn","provider","moa",
+                    "yoa","mod","admtype", "asource" ,
+                    "preopday" ,"los", "service" , "icu","ccu",
+                    "dispub92", "payer"  ,"drg","trandb",
+                    "randbg","randbs","orr", "anes","seq",
+                    "lab","dtest", "ther","blood","phar",
+                    "other","patcon","bwght","total","tot" ,
+                    "ecodub92","b_wt","pt_state","diag_adm","ancilar" ,
+                    "campus","er_fee","er_chrg","er_mode","obs_chrg",
+                    "obs_hour","psycchrg","nicu_day")
+
+# Save the smaller data to a CSV
+write_csv(df, "Data/midterm.csv")
+```
+
+
+```{r}
+# Read in the new Data
+df = read_csv("Data/midterm.csv")
+```
+
+
+```{r}
+# Sum the colns where a na appears as q
+colSums(is.na(df))
+# Show those names where the number > 0, so more than one missing
+names_na = names(df)[colSums(is.na(df)) > 0]
+names_na
+```
+
+
+```{r}
+# Keep only those where there are no missing data
+df = df %>% select(-all_of(names_na))
+```
+
+
+```{r}
+# moa = month of admission, mod = month of discharge
+print("month of admission is moa, and month of discharge is mod")
+```
+
+
+```{r}
+# Get the count, arrange descending
+df %>% count(moa) %>% arrange(desc(n))
+print("October")
+
+# Filter first to males then do the same
+df %>% filter(sex == 1) %>% count(moa) %>% arrange(desc(n))
+print("October")
+```
+
+
+```{r}
+# Filter to females, age teenager get count sort descending
+df %>% filter(sex == 2, age >= 13, age <= 19) %>% count(moa) %>% arrange(desc(n))
+```
+
+
+```{r}
+# Filter to femals and october, count by provider and arrange descending
+df %>% filter(sex == 2, moa == 10) %>% count(provider) %>% arrange(desc(n))
+```
+
+
+```{r}
+# Group by sex and then get the average age for each
+df %>% group_by(sex) %>% summarise(avg_age = mean(age))
+```
+
+
+```{r}
+# Group by month and again summarize average, arrange descending
+df %>% group_by(moa) %>% summarise(avg_age = mean(age)) %>% arrange(desc(avg_age))
+```
+
+```{r}
+# Add names from word file
+df = df %>% mutate(provider_name = case_when(
+  provider == 7201 ~ "Newport",
+  provider == 7202 ~ "St. Joseph Health Services of RI",
+  provider == 7203 ~ "Memorial",
+  provider == 7204 ~ "Miriam",
+  provider == 7205 ~ "Rhode Island Hospital",
+  provider == 7206 ~ "Roger Williams",
+  provider == 7209 ~ "South County",
+  provider == 7210 ~ "Kent County",
+  provider == 7211 ~ "Westerly",
+  provider == 7212 ~ "Rehab of RI",
+  provider == 7213 ~ "Landmark Medical Center",
+  provider == 7214 ~ "Women and Infants",
+  provider == 7215 ~ "Bradley",
+  provider == 7216 ~ "Butler"
+))
+
+```
+
+
+```{r}
+# Groupby provider names, get sum, arrange descending
+df %>% group_by(provider_name) %>% summarise(total_charge = sum(tot)) %>% arrange(desc(total_charge))
+```
+
+
+```{r}
+# Filter to male teenagers, group by provider, get average charge arrange ascending
+df %>% filter(sex == 1, age >= 13, age <= 19) %>% group_by(provider_name) %>% summarise(avg_charge = mean(tot)) %>% arrange(avg_charge)
+```
+
+
+```{r}
+# Create the seasons
+df = df %>% mutate(season = case_when(
+  moa %in% c(3, 4, 5)   ~ "Spring",
+  moa %in% c(6, 7, 8)   ~ "Summer",
+  moa %in% c(9, 10, 11) ~ "Fall",
+  moa %in% c(12, 1, 2)  ~ "Winter"
+))
+```
+
+
+```{r}
+# Group by season, get avgerage stay and arrange descending
+df %>% group_by(season) %>% summarise(avg_los = mean(los)) %>% arrange(desc(avg_los))
+```
+
+
+```{r}
+# Filter to male, 20, stay 1 day, in the fall, get the average charge
+df %>% filter(sex == 1, age == 20, los == 1, season == "Fall") %>% summarise(avg_charge = mean(tot))
+```
+
+
+```{r}
+print("The average stay was about 5 days, mostly even through the year. The charge has a large disparity between different providers, but the average charge is still pretty large across all the providers. Rholde Island Hositpal by far has the most charges but I know thats also one of the largest hospitals.")
+```
+
+
+
+# Data Visualization
+
+```{r}
+# Import libraries I need
+library(gganimate)
+library(gifski)
+```
+
+
+```{r}
+# Bar plot of patients admitted by month
+df %>% ggplot() + geom_bar(mapping = aes(x = factor(moa))) + labs(title = "Patients Admitted by Month", x = "Month", y = "Number of Patients", caption = "Source: RI Hospital Discharge Data 2018")
+```
+
+
+```{r}
+# Bar chart of admitted male patients per month
+df %>% filter(sex == 1) %>% ggplot() + geom_bar(mapping = aes(x = factor(moa))) + labs(title = "Male Patients Admitted by Month", x = "Month", y = "Number of Patients", caption = "Source: RI Hospital Discharge Data 2018")
+```
+
+
+```{r}
+# Male teenagers admitted per month
+df %>% filter(sex == 1, age >= 13, age <= 19) %>% ggplot() + geom_bar(mapping = aes(x = factor(moa))) + labs(title = "Teenage Male Patients by Month", x = "Month", y = "Number of Patients", caption = "Source: RI Hospital Discharge Data 2018")
+```
+
+
+```{r}
+# Female patients in october based on provider
+df %>% filter(sex == 2, moa == 10) %>% ggplot() + geom_bar(mapping = aes(y = provider_name)) + labs(title = "Female Patients in October by Provider", x = "Number of Patients", y = "Provider", caption = "Source: RI Hospital Discharge Data 2018")
+```
+
+
+```{r}
+# age distribution by sex
+df %>% ggplot() + geom_boxplot(mapping = aes(x = factor(sex), y = age)) + labs(title = "Patient Age by Sex", x = "Sex (1 = Male, 2 = Female)", y = "Age", caption = "Source: RI Hospital Discharge Data 2018")
+```
+
+
+```{r}
+# Average patient age based on the month
+df %>% group_by(moa) %>% summarise(avg_age = mean(age)) %>% ggplot() + geom_col(mapping = aes(x = factor(moa), y = avg_age)) + labs(title = "Average Patient Age by Month", x = "Month", y = "Average Age", caption = "Source: RI Hospital Discharge Data 2018")
+```
+
+
+```{r}
+# Total charge based on the provider
+df %>% group_by(provider_name) %>% summarise(total_charge = sum(tot)) %>% ggplot() + geom_col(mapping = aes(x = total_charge, y = provider_name)) + labs(title = "Total Charges by Provider", x = "Total Charge ($)", y = "Provider", caption = "Source: RI Hospital Discharge Data 2018")
+```
+
+
+```{r}
+# Average charge by male teenagers based on provider
+df %>% filter(sex == 1, age >= 13, age <= 19) %>% group_by(provider_name) %>% summarise(avg_charge = mean(tot)) %>% ggplot() + geom_col(mapping = aes(x = avg_charge, y = provider_name)) + labs(title = "Average Charge for Teenage Males by Provider", x = "Average Charge ($)", y = "Provider", caption = "Source: RI Hospital Discharge Data 2018")
+```
+
+
+```{r}
+# Average stay based on the season
+df %>% group_by(season) %>% summarise(avg_los = mean(los)) %>% ggplot() + geom_col(mapping = aes(x = season, y = avg_los)) + labs(title = "Average Length of Stay by Season", x = "Season", y = "Average Length of Stay (days)", caption = "Source: RI Hospital Discharge Data 2018")
+```
+
+
+```{r}
+# Length of stay by total charge
+df %>% ggplot() + geom_point(mapping = aes(x = los, y = tot)) + labs(title = "Length of Stay vs. Total Charge", x = "Length of Stay (days)", y = "Total Charge ($)", caption = "Source: RI Hospital Discharge Data 2018")
+```
+
+
+```{r}
+# Average charger by provider based on season
+g = df %>% group_by(season, provider_name) %>% summarise(avg_charge = mean(tot)) %>% ggplot() + geom_col(mapping = aes(x = avg_charge, y = provider_name)) + transition_states(season) + labs(title = "Average Charge by Provider - Season: {closest_state}", x = "Average Charge ($)", y = "Provider", caption = "Source: RI Hospital Discharge Data 2018")
+
+animate(g)
+```
+
+
+
+# Predictive Models
+
+```{r}
+# Load libraries
+library(rpart)
+library(rpart.plot)
+library(caret)
+```
+
+
+```{r}
+# Create new dataset with only the variables I need
+df2 = read_csv("Data/midterm.csv") %>% select(tot, age, sex, raceethn, provider, moa, mod, admtype, campus, los)
+```
+
+
+```{r}
+# Filter to variables that are not missing
+df2 = df2 %>% filter(!is.na(raceethn), !is.na(admtype)) %>% drop_na()
+```
+
+
+```{r}
+# Make the target into high and low splitting on median
+df2 = df2 %>% mutate(target = ifelse(tot < median(tot), "low", "high")) %>% select(-tot)
+
+# Mutate the variables to be factors
+df2 = df2 %>% mutate(target = factor(target),
+                     sex = factor(sex), raceethn = factor(raceethn),
+                     provider = factor(provider), moa = factor(moa),
+                     mod = factor(mod), admtype = factor(admtype),
+                     campus = factor(campus))
+
+# Set seed to be replicable and the data partition for training and testing
+set.seed(2018)
+splitIndex = createDataPartition(df2$target, p = 0.1, list = FALSE)
+df_train = df2[splitIndex, ]
+df_test = df2[-splitIndex, ]
+```
+
+
+```{r}
+# Build the decision tree
+tree_model = rpart(target ~ ., data = df_train)
+rpart.plot(tree_model)
+
+# Plot the variable importance
+barplot(tree_model$variable.importance, las = 2, main = "Variable Importance (Decision Tree)")
+```
+
+
+```{r}
+# Set our controls to find best tree
+trControl = trainControl(method = "cv", number = 5)
+
+# Train tree
+tree = train(target ~ ., data = df_train, method = "rpart", trControl = trControl, tuneLength = 5)
+
+plot(tree)
+
+# Train forest
+forest = train(target ~ ., data = df_train, method = "ranger", trControl = trControl, tuneLength = 3)
+
+plot(forest)
+```
+
+
+```{r}
+# Comapre the results
+results = resamples(list(Tree = tree, Forest = forest))
+bwplot(results)
+```
+
+
+```{r}
+# Plot the confusion matrix of the better model
+pred = predict(forest, df_test)
+confusionMatrix(pred, df_test$target, positive = "high")
+```
+
+
+```{r}
+# Create a new dataset
+df3 = read_csv("Data/midterm.csv") %>% select(los, age, sex, raceethn, provider, moa, admtype, campus) %>% drop_na()
+
+# Make the target based on stay length to long and short split on medican
+df3 = df3 %>% mutate(target = ifelse(los > median(los), "long", "short")) %>% select(-los)
+
+# Mutate factors
+df3 = df3 %>% mutate(target = factor(target),
+                     sex = factor(sex), raceethn = factor(raceethn),
+                     provider = factor(provider), moa = factor(moa),
+                     admtype = factor(admtype), campus = factor(campus))
+
+# Set the seed and get the data parittion split
+set.seed(2018)
+splitIndex = createDataPartition(df3$target, p = 0.1, list = FALSE)
+df_train = df3[splitIndex, ]
+df_test = df3[-splitIndex, ]
+
+# Train a tree model and plot it and importance
+tree_model = rpart(target ~ ., data = df_train)
+rpart.plot(tree_model)
+barplot(tree_model$variable.importance, las = 2, main = "Variable Importance (Decision Tree)")
+
+# Train tree again using rpart
+tree = train(target ~ ., data = df_train, method = "rpart", trControl = trControl, tuneLength = 5)
+
+plot(tree)
+
+# Train a forest in the same manner
+forest = train(target ~ ., data = df_train, method = "ranger", trControl = trControl, tuneLength = 3)
+
+plot(forest)
+
+# Plot the results and compare
+results = resamples(list(Tree = tree, Forest = forest))
+bwplot(results)
+
+# Plot the confusion matrix
+pred = predict(forest, df_test)
+confusionMatrix(pred, df_test$target, positive = "long")
+```
+
+
+
+```{r}
+print("Froests tend to outperform trees but take much longer to train. Decision tree seems to have los or time stayed as the best predictor or most important variable in terms of decisions. In some cases it turns out to be the provider but it depends on the question being ask ie the target. When time stayed in teh target then provider seems to be most important.")
+```
+
+
+
+
+
+
+
+
+
+
+
