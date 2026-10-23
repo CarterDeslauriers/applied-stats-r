@@ -18,6 +18,7 @@
 |10|[Assignment 10](Assignments/assignment10.html)|Predictive modeling - Tree and Forests|
 |11|[Assignment 11](Assignments/assignment11.html)|Universal package modeling|
 |12|[Assignment 12](Assignments/assignment12.html)|Model Tuning|
+|M|[Midterm Presentation](Assignments/Mid_Term_Presentation.html)|Midterm - RI Hospital Discharge Data|
 
 ## Imbalanced Learning Methods
 
