@@ -49,13 +49,24 @@ Result: most bad readings were recovered. Values set to missing: systolic 108, d
 | Random forest | Averaging many trees reduces variance | 18 | 0.7255 |
 | Extra trees | Random splits for more variety | 18 | 0.7186 |
 | LightGBM | Boosting fixes mistakes step by step; strong on tables | 16 | 0.7257 |
+| XGBoost | Most-cited boosting library in tabular benchmarks | 16 | **0.7265** |
 
 Decision tree: max_depth [3,5,7,10,None] best 7; min_samples_leaf [1,20,50,100] best 100
 Random forest: n_estimators [200,400] best 400; max_depth [8,12,None] best 12; min_samples_leaf [1,10,30] best 30
 Extra trees: n_estimators [200,400] best 400; max_depth [8,12,None] best None; min_samples_leaf [1,10,30] best 10
 LightGBM: n_estimators [200,500] best 200; learning_rate [0.03,0.1] best 0.03; num_leaves [15,31] best 15; min_child_samples [20,100] best 100
+XGBoost: n_estimators [200,500] best 500; learning_rate [0.03,0.1] best 0.03; max_depth [3,5] best 3; subsample [0.8,1.0] best 0.8
 
 Lesson: an unlimited-depth tree scored only 0.617 because it overfit (memorized training patients).
+
+## 6.5 Final model
+- **XGBoost**, best CV accuracy 0.7265
+- Why: highest CV score, and it matches the research consensus that gradient boosting is strongest on tabular data.
+  Honest caveat: XGBoost, LightGBM and random forest are within 0.001 of each other, which is noise.
+- Trained on: all of train.csv (GridSearchCV refits the best settings on every row after tuning)
+- Search method: grid search, 88 combinations total across 5 models (each run 5 times for the folds)
+- Submission: `submission.csv`, 14,700 rows, predicts 47% heart disease
+- Public leaderboard score: 0.73173 (4th place) vs CV 0.7265. Gap of +0.005 is noise: public board is only part of the test set, and the final model trained on all rows (25% more than each CV fold).
 
 ## Change log
 1. Created notebook: load, explore, missing-value table
@@ -64,3 +75,6 @@ Lesson: an unlimited-depth tree scored only 0.617 because it overfit (memorized 
 4. Added 5-fold CV + pipeline (median fill + missing indicators)
 5. Baseline decision tree: no limit 0.617, depth 5 0.712
 6. Tuned 4 models with grid search (results above)
+7. Added XGBoost (best, 0.7265), chose it as the final model
+8. Wrote submission.csv
+9. Submitted to Kaggle: public 0.73173, 4th place
