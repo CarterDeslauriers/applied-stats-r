@@ -465,4 +465,3 @@ print("Froests tend to outperform trees but take much longer to train. Decision 
 - Provider codes were just numbers so I mapped them to hospital names with `case_when()`.
 - Random forest took a long time to train, so I trained on a 10% sample with `tuneLength = 3`.
 - Warnings/messages cluttered the output so I had to include `message=FALSE, warning=FALSE` on each chunk.
-
