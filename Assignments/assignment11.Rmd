@@ -45,14 +45,6 @@ Train and Test a decision tree and a random forest with caret. Plot the variable
 library(caret)
 df <- df %>%
   mutate(
-    pregnant = as.factor(pregnant),
-    glucose  = as.factor(glucose),
-    pressure = as.factor(pressure),
-    triceps  = as.factor(triceps),
-    insulin  = as.factor(insulin),
-    mass     = as.factor(mass),
-    pedigree = as.factor(pedigree),
-    age      = as.factor(age),
     diabetes = as.factor(diabetes)
   )
 

@@ -10,7 +10,7 @@
   <meta name="generator" content="quarto-1.9.38">
 
   <meta name="author" content="Carter Deslauriers">
-  <title>Midterm</title>
+  <title>Midterm Presentation</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
@@ -31,74 +31,8 @@
       margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
       vertical-align: middle;
     }
-    /* CSS for syntax highlighting */
-    html { -webkit-text-size-adjust: 100%; }
-    pre > code.sourceCode { white-space: pre; position: relative; }
-    pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
-    pre > code.sourceCode > span:empty { height: 1.2em; }
-    .sourceCode { overflow: visible; }
-    code.sourceCode > span { color: inherit; text-decoration: inherit; }
-    div.sourceCode { margin: 1em 0; }
-    pre.sourceCode { margin: 0; }
-    @media screen {
-    div.sourceCode { overflow: auto; }
-    }
-    @media print {
-    pre > code.sourceCode { white-space: pre-wrap; }
-    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
-    }
-    pre.numberSource code
-      { counter-reset: source-line 0; }
-    pre.numberSource code > span
-      { position: relative; left: -4em; counter-increment: source-line; }
-    pre.numberSource code > span > a:first-child::before
-      { content: counter(source-line);
-        position: relative; left: -1em; text-align: right; vertical-align: baseline;
-        border: none; display: inline-block;
-        -webkit-touch-callout: none; -webkit-user-select: none;
-        -khtml-user-select: none; -moz-user-select: none;
-        -ms-user-select: none; user-select: none;
-        padding: 0 4px; width: 4em;
-        color: #aaaaaa;
-      }
-    pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
-    div.sourceCode
-      { color: #003b4f; background-color: #f1f3f5; }
-    @media screen {
-    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
-    }
-    code span { color: #003b4f; } /* Normal */
-    code span.al { color: #ad0000; } /* Alert */
-    code span.an { color: #5e5e5e; } /* Annotation */
-    code span.at { color: #657422; } /* Attribute */
-    code span.bn { color: #ad0000; } /* BaseN */
-    code span.bu { } /* BuiltIn */
-    code span.cf { color: #003b4f; font-weight: bold; } /* ControlFlow */
-    code span.ch { color: #20794d; } /* Char */
-    code span.cn { color: #8f5902; } /* Constant */
-    code span.co { color: #5e5e5e; } /* Comment */
-    code span.cv { color: #5e5e5e; font-style: italic; } /* CommentVar */
-    code span.do { color: #5e5e5e; font-style: italic; } /* Documentation */
-    code span.dt { color: #ad0000; } /* DataType */
-    code span.dv { color: #ad0000; } /* DecVal */
-    code span.er { color: #ad0000; } /* Error */
-    code span.ex { } /* Extension */
-    code span.fl { color: #ad0000; } /* Float */
-    code span.fu { color: #4758ab; } /* Function */
-    code span.im { color: #00769e; } /* Import */
-    code span.in { color: #5e5e5e; } /* Information */
-    code span.kw { color: #003b4f; font-weight: bold; } /* Keyword */
-    code span.op { color: #5e5e5e; } /* Operator */
-    code span.ot { color: #003b4f; } /* Other */
-    code span.pp { color: #ad0000; } /* Preprocessor */
-    code span.sc { color: #5e5e5e; } /* SpecialChar */
-    code span.ss { color: #20794d; } /* SpecialString */
-    code span.st { color: #20794d; } /* String */
-    code span.va { color: #111111; } /* Variable */
-    code span.vs { color: #20794d; } /* VerbatimString */
-    code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   </style>
-  <link rel="stylesheet" href="Mid_Term_Presentation_files/libs/revealjs/dist/theme/quarto-e7615ae3f47a09451c723600273e2044.css">
+  <link rel="stylesheet" href="Mid_Term_Presentation_files/libs/revealjs/dist/theme/quarto-2740581606dc327e82f18f789b69d8a0.css">
   <link href="Mid_Term_Presentation_files/libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
   <link href="Mid_Term_Presentation_files/libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
   <link href="Mid_Term_Presentation_files/libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
@@ -114,7 +48,6 @@
     }
     .reveal .slide:not(.center) {
       height: 100%;
-      overflow-y: auto;
     }
     .reveal .slide.scrollable {
       overflow-y: auto;
@@ -197,7 +130,8 @@
     <div class="slides">
 
 <section id="title-slide" class="quarto-title-block center">
-  <h1 class="title">Midterm</h1>
+  <h1 class="title">Midterm Presentation</h1>
+  <p class="subtitle">RI Hospital Discharge Data 2018</p>
 
 <div class="quarto-title-authors">
 <div class="quarto-title-author">
@@ -209,741 +143,129 @@ Carter Deslauriers
 
 </section>
 <section>
-<section id="part-1-data-wrangling" class="title-slide slide level1 center">
-<h1>Part 1: Data Wrangling</h1>
-
-</section>
-<section id="load-the-data" class="slide level2">
-<h2>Load the Data</h2>
-<p>Read in the 2018 RI hospital discharge SAS file.</p>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href=""></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb1-2"><a href=""></a><span class="fu">library</span>(haven)</span>
-<span id="cb1-3"><a href=""></a><span class="fu">setwd</span>(<span class="st">"C:/Users/student/OneDrive - Bryant University/Documents/GitHub/Projects_in_R/Assignments"</span>)</span>
-<span id="cb1-4"><a href=""></a>df <span class="ot">=</span> <span class="fu">read_sas</span>(<span class="st">"Data/hdd0318cy.sas7bdat"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</div>
-</section>
-<section id="filter-and-select" class="slide level2">
-<h2>Filter and Select</h2>
-<p>Keep 2018 and the variables we need, save to CSV.</p>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href=""></a><span class="co"># Filter to 2018</span></span>
-<span id="cb2-2"><a href=""></a>df <span class="ot">=</span> df <span class="sc">%&gt;%</span> <span class="fu">filter</span>(yod <span class="sc">==</span> <span class="dv">18</span>)</span>
-<span id="cb2-3"><a href=""></a></span>
-<span id="cb2-4"><a href=""></a><span class="co"># Keep the values we want</span></span>
-<span id="cb2-5"><a href=""></a>df <span class="ot">=</span> df <span class="sc">%&gt;%</span> <span class="fu">select</span>(<span class="st">"yod"</span>, <span class="st">"payfix"</span>,<span class="st">"pay_ub92"</span>,<span class="st">"age"</span>,</span>
-<span id="cb2-6"><a href=""></a>                    <span class="st">"sex"</span>,<span class="st">"raceethn"</span>,<span class="st">"provider"</span>,<span class="st">"moa"</span>,</span>
-<span id="cb2-7"><a href=""></a>                    <span class="st">"yoa"</span>,<span class="st">"mod"</span>,<span class="st">"admtype"</span>, <span class="st">"asource"</span> ,</span>
-<span id="cb2-8"><a href=""></a>                    <span class="st">"preopday"</span> ,<span class="st">"los"</span>, <span class="st">"service"</span> , <span class="st">"icu"</span>,<span class="st">"ccu"</span>,</span>
-<span id="cb2-9"><a href=""></a>                    <span class="st">"dispub92"</span>, <span class="st">"payer"</span>  ,<span class="st">"drg"</span>,<span class="st">"trandb"</span>,</span>
-<span id="cb2-10"><a href=""></a>                    <span class="st">"randbg"</span>,<span class="st">"randbs"</span>,<span class="st">"orr"</span>, <span class="st">"anes"</span>,<span class="st">"seq"</span>,</span>
-<span id="cb2-11"><a href=""></a>                    <span class="st">"lab"</span>,<span class="st">"dtest"</span>, <span class="st">"ther"</span>,<span class="st">"blood"</span>,<span class="st">"phar"</span>,</span>
-<span id="cb2-12"><a href=""></a>                    <span class="st">"other"</span>,<span class="st">"patcon"</span>,<span class="st">"bwght"</span>,<span class="st">"total"</span>,<span class="st">"tot"</span> ,</span>
-<span id="cb2-13"><a href=""></a>                    <span class="st">"ecodub92"</span>,<span class="st">"b_wt"</span>,<span class="st">"pt_state"</span>,<span class="st">"diag_adm"</span>,<span class="st">"ancilar"</span> ,</span>
-<span id="cb2-14"><a href=""></a>                    <span class="st">"campus"</span>,<span class="st">"er_fee"</span>,<span class="st">"er_chrg"</span>,<span class="st">"er_mode"</span>,<span class="st">"obs_chrg"</span>,</span>
-<span id="cb2-15"><a href=""></a>                    <span class="st">"obs_hour"</span>,<span class="st">"psycchrg"</span>,<span class="st">"nicu_day"</span>)</span>
-<span id="cb2-16"><a href=""></a></span>
-<span id="cb2-17"><a href=""></a><span class="co"># Save the smaller data to a CSV</span></span>
-<span id="cb2-18"><a href=""></a><span class="fu">write_csv</span>(df, <span class="st">"Data/midterm.csv"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</div>
-</section>
-<section id="read-the-smaller-data" class="slide level2">
-<h2>Read the Smaller Data</h2>
-<p>Load the saved CSV.</p>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href=""></a><span class="co"># Read in the new Data</span></span>
-<span id="cb3-2"><a href=""></a>df <span class="ot">=</span> <span class="fu">read_csv</span>(<span class="st">"Data/midterm.csv"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</div>
-</section>
-<section id="missing-values" class="slide level2">
-<h2>Missing Values</h2>
-<p>Find columns with missing values.</p>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href=""></a><span class="co"># Sum the colns where a na appears as q</span></span>
-<span id="cb4-2"><a href=""></a><span class="fu">colSums</span>(<span class="fu">is.na</span>(df))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>     yod   payfix pay_ub92      age      sex raceethn provider      moa 
-       0   131478        0        0        0     3950        0        0 
-     yoa      mod  admtype  asource preopday      los  service      icu 
-       0        0        1        6    60486        0        0        0 
-     ccu dispub92    payer      drg   trandb   randbg   randbs      orr 
-       0        0        0        0        0        0        0        0 
-    anes      seq      lab    dtest     ther    blood     phar    other 
-       0        0        0        0        0        0        0        0 
-  patcon    bwght    total      tot ecodub92     b_wt pt_state diag_adm 
-       0   131478        0        0   104339        0        3       50 
- ancilar   campus   er_fee  er_chrg  er_mode obs_chrg obs_hour psycchrg 
-       0        0        0        0    12158        0    77343        0 
-nicu_day 
-  124090 </code></pre>
-</div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href=""></a><span class="co"># Show those names where the number &gt; 0, so more than one missing</span></span>
-<span id="cb6-2"><a href=""></a>names_na <span class="ot">=</span> <span class="fu">names</span>(df)[<span class="fu">colSums</span>(<span class="fu">is.na</span>(df)) <span class="sc">&gt;</span> <span class="dv">0</span>]</span>
-<span id="cb6-3"><a href=""></a>names_na</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stdout">
-<pre><code> [1] "payfix"   "raceethn" "admtype"  "asource"  "preopday" "bwght"   
- [7] "ecodub92" "pt_state" "diag_adm" "er_mode"  "obs_hour" "nicu_day"</code></pre>
-</div>
-</div>
-</section>
-<section id="drop-missing-columns" class="slide level2">
-<h2>Drop Missing Columns</h2>
-<p>Remove columns that have any NAs.</p>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href=""></a><span class="co"># Keep only those where there are no missing data</span></span>
-<span id="cb8-2"><a href=""></a>df <span class="ot">=</span> df <span class="sc">%&gt;%</span> <span class="fu">select</span>(<span class="sc">-</span><span class="fu">all_of</span>(names_na))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</div>
-</section>
-<section id="month-variables" class="slide level2">
-<h2>Month Variables</h2>
-<p>Which columns are admission/discharge month.</p>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href=""></a><span class="co"># moa = month of admission, mod = month of discharge</span></span>
-<span id="cb9-2"><a href=""></a><span class="fu">print</span>(<span class="st">"month of admission is moa, and month of discharge is mod"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] "month of admission is moa, and month of discharge is mod"</code></pre>
-</div>
-</div>
-</section>
-<section id="admissions-by-month" class="slide level2">
-<h2>Admissions by Month</h2>
-<p>Most common admission month, overall and for males.</p>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href=""></a><span class="co"># Get the count, arrange descending</span></span>
-<span id="cb11-2"><a href=""></a>df <span class="sc">%&gt;%</span> <span class="fu">count</span>(moa) <span class="sc">%&gt;%</span> <span class="fu">arrange</span>(<span class="fu">desc</span>(n))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 12 × 2
-     moa     n
-   &lt;dbl&gt; &lt;int&gt;
- 1    10 11408
- 2     5 11404
- 3     1 11309
- 4     8 11199
- 5     4 11174
- 6     3 11073
- 7     7 10962
- 8    12 10698
- 9     6 10690
-10     9 10666
-11    11 10636
-12     2 10259</code></pre>
-</div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href=""></a><span class="fu">print</span>(<span class="st">"October"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] "October"</code></pre>
-</div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href=""></a><span class="co"># Filter first to males then do the same</span></span>
-<span id="cb15-2"><a href=""></a>df <span class="sc">%&gt;%</span> <span class="fu">filter</span>(sex <span class="sc">==</span> <span class="dv">1</span>) <span class="sc">%&gt;%</span> <span class="fu">count</span>(moa) <span class="sc">%&gt;%</span> <span class="fu">arrange</span>(<span class="fu">desc</span>(n))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 12 × 2
-     moa     n
-   &lt;dbl&gt; &lt;int&gt;
- 1    10  5164
- 2     5  5066
- 3     8  5028
- 4     4  4989
- 5     3  4978
- 6     1  4970
- 7     7  4910
- 8    12  4855
- 9     6  4810
-10    11  4800
-11     9  4683
-12     2  4546</code></pre>
-</div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href=""></a><span class="fu">print</span>(<span class="st">"October"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] "October"</code></pre>
-</div>
-</div>
-</section>
-<section id="teenage-females" class="slide level2">
-<h2>Teenage Females</h2>
-<p>Admissions by month for female teens.</p>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb19"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href=""></a><span class="co"># Filter to females, age teenager get count sort descending</span></span>
-<span id="cb19-2"><a href=""></a>df <span class="sc">%&gt;%</span> <span class="fu">filter</span>(sex <span class="sc">==</span> <span class="dv">2</span>, age <span class="sc">&gt;=</span> <span class="dv">13</span>, age <span class="sc">&lt;=</span> <span class="dv">19</span>) <span class="sc">%&gt;%</span> <span class="fu">count</span>(moa) <span class="sc">%&gt;%</span> <span class="fu">arrange</span>(<span class="fu">desc</span>(n))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 12 × 2
-     moa     n
-   &lt;dbl&gt; &lt;int&gt;
- 1     3   226
- 2     5   220
- 3    10   212
- 4    12   208
- 5     1   207
- 6     9   196
- 7     4   187
- 8    11   177
- 9     2   172
-10     8   172
-11     7   171
-12     6   169</code></pre>
-</div>
-</div>
-</section>
-<section id="females-in-october" class="slide level2">
-<h2>Females in October</h2>
-<p>Admissions by provider.</p>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb21"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href=""></a><span class="co"># Filter to femals and october, count by provider and arrange descending</span></span>
-<span id="cb21-2"><a href=""></a>df <span class="sc">%&gt;%</span> <span class="fu">filter</span>(sex <span class="sc">==</span> <span class="dv">2</span>, moa <span class="sc">==</span> <span class="dv">10</span>) <span class="sc">%&gt;%</span> <span class="fu">count</span>(provider) <span class="sc">%&gt;%</span> <span class="fu">arrange</span>(<span class="fu">desc</span>(n))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 12 × 2
-   provider     n
-      &lt;dbl&gt; &lt;int&gt;
- 1     7205  1517
- 2     7214  1224
- 3     7204   872
- 4     7210   699
- 5     7209   351
- 6     7206   333
- 7     7213   317
- 8     7201   294
- 9     7216   256
-10     7202   212
-11     7211   122
-12     7215    46</code></pre>
-</div>
-</div>
-</section>
-<section id="average-age-by-sex" class="slide level2">
-<h2>Average Age by Sex</h2>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb23"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href=""></a><span class="co"># Group by sex and then get the average age for each</span></span>
-<span id="cb23-2"><a href=""></a>df <span class="sc">%&gt;%</span> <span class="fu">group_by</span>(sex) <span class="sc">%&gt;%</span> <span class="fu">summarise</span>(<span class="at">avg_age =</span> <span class="fu">mean</span>(age))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 3 × 2
-    sex avg_age
-  &lt;dbl&gt;   &lt;dbl&gt;
-1     1    51.5
-2     2    50.9
-3     9    43  </code></pre>
-</div>
-</div>
-</section>
-<section id="average-age-by-month" class="slide level2">
-<h2>Average Age by Month</h2>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb25"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href=""></a><span class="co"># Group by month and again summarize average, arrange descending</span></span>
-<span id="cb25-2"><a href=""></a>df <span class="sc">%&gt;%</span> <span class="fu">group_by</span>(moa) <span class="sc">%&gt;%</span> <span class="fu">summarise</span>(<span class="at">avg_age =</span> <span class="fu">mean</span>(age)) <span class="sc">%&gt;%</span> <span class="fu">arrange</span>(<span class="fu">desc</span>(avg_age))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 12 × 2
-     moa avg_age
-   &lt;dbl&gt;   &lt;dbl&gt;
- 1     1    51.8
- 2     6    51.5
- 3    12    51.5
- 4     4    51.4
- 5     7    51.3
- 6     2    51.2
- 7     3    51.1
- 8    11    51.0
- 9     8    50.9
-10    10    50.8
-11     5    50.6
-12     9    50.6</code></pre>
-</div>
-</div>
-</section>
-<section id="provider-names" class="slide level2">
-<h2>Provider Names</h2>
-<p>Map provider codes to hospital names.</p>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb27"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href=""></a><span class="co"># Add names from word file</span></span>
-<span id="cb27-2"><a href=""></a>df <span class="ot">=</span> df <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">provider_name =</span> <span class="fu">case_when</span>(</span>
-<span id="cb27-3"><a href=""></a>  provider <span class="sc">==</span> <span class="dv">7201</span> <span class="sc">~</span> <span class="st">"Newport"</span>,</span>
-<span id="cb27-4"><a href=""></a>  provider <span class="sc">==</span> <span class="dv">7202</span> <span class="sc">~</span> <span class="st">"St. Joseph Health Services of RI"</span>,</span>
-<span id="cb27-5"><a href=""></a>  provider <span class="sc">==</span> <span class="dv">7203</span> <span class="sc">~</span> <span class="st">"Memorial"</span>,</span>
-<span id="cb27-6"><a href=""></a>  provider <span class="sc">==</span> <span class="dv">7204</span> <span class="sc">~</span> <span class="st">"Miriam"</span>,</span>
-<span id="cb27-7"><a href=""></a>  provider <span class="sc">==</span> <span class="dv">7205</span> <span class="sc">~</span> <span class="st">"Rhode Island Hospital"</span>,</span>
-<span id="cb27-8"><a href=""></a>  provider <span class="sc">==</span> <span class="dv">7206</span> <span class="sc">~</span> <span class="st">"Roger Williams"</span>,</span>
-<span id="cb27-9"><a href=""></a>  provider <span class="sc">==</span> <span class="dv">7209</span> <span class="sc">~</span> <span class="st">"South County"</span>,</span>
-<span id="cb27-10"><a href=""></a>  provider <span class="sc">==</span> <span class="dv">7210</span> <span class="sc">~</span> <span class="st">"Kent County"</span>,</span>
-<span id="cb27-11"><a href=""></a>  provider <span class="sc">==</span> <span class="dv">7211</span> <span class="sc">~</span> <span class="st">"Westerly"</span>,</span>
-<span id="cb27-12"><a href=""></a>  provider <span class="sc">==</span> <span class="dv">7212</span> <span class="sc">~</span> <span class="st">"Rehab of RI"</span>,</span>
-<span id="cb27-13"><a href=""></a>  provider <span class="sc">==</span> <span class="dv">7213</span> <span class="sc">~</span> <span class="st">"Landmark Medical Center"</span>,</span>
-<span id="cb27-14"><a href=""></a>  provider <span class="sc">==</span> <span class="dv">7214</span> <span class="sc">~</span> <span class="st">"Women and Infants"</span>,</span>
-<span id="cb27-15"><a href=""></a>  provider <span class="sc">==</span> <span class="dv">7215</span> <span class="sc">~</span> <span class="st">"Bradley"</span>,</span>
-<span id="cb27-16"><a href=""></a>  provider <span class="sc">==</span> <span class="dv">7216</span> <span class="sc">~</span> <span class="st">"Butler"</span></span>
-<span id="cb27-17"><a href=""></a>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</div>
-</section>
-<section id="total-charge-by-provider" class="slide level2">
-<h2>Total Charge by Provider</h2>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb28"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href=""></a><span class="co"># Groupby provider names, get sum, arrange descending</span></span>
-<span id="cb28-2"><a href=""></a>df <span class="sc">%&gt;%</span> <span class="fu">group_by</span>(provider_name) <span class="sc">%&gt;%</span> <span class="fu">summarise</span>(<span class="at">total_charge =</span> <span class="fu">sum</span>(tot)) <span class="sc">%&gt;%</span> <span class="fu">arrange</span>(<span class="fu">desc</span>(total_charge))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 12 × 2
-   provider_name                    total_charge
-   &lt;chr&gt;                                   &lt;dbl&gt;
- 1 Rhode Island Hospital              1788373499
- 2 Miriam                              678940049
- 3 Women and Infants                   428480981
- 4 Kent County                         427464111
- 5 Landmark Medical Center             240776070
- 6 Roger Williams                      212906243
- 7 St. Joseph Health Services of RI    187925007
- 8 South County                        163943679
- 9 Newport                             126539717
-10 Butler                              114603878
-11 Bradley                              77010051
-12 Westerly                             64990985</code></pre>
-</div>
-</div>
-</section>
-<section id="teen-male-charges" class="slide level2">
-<h2>Teen Male Charges</h2>
-<p>Average charge by provider for male teens.</p>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb30"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href=""></a><span class="co"># Filter to male teenagers, group by provider, get average charge arrange ascending</span></span>
-<span id="cb30-2"><a href=""></a>df <span class="sc">%&gt;%</span> <span class="fu">filter</span>(sex <span class="sc">==</span> <span class="dv">1</span>, age <span class="sc">&gt;=</span> <span class="dv">13</span>, age <span class="sc">&lt;=</span> <span class="dv">19</span>) <span class="sc">%&gt;%</span> <span class="fu">group_by</span>(provider_name) <span class="sc">%&gt;%</span> <span class="fu">summarise</span>(<span class="at">avg_charge =</span> <span class="fu">mean</span>(tot)) <span class="sc">%&gt;%</span> <span class="fu">arrange</span>(avg_charge)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 12 × 2
-   provider_name                    avg_charge
-   &lt;chr&gt;                                 &lt;dbl&gt;
- 1 Roger Williams                       10360.
- 2 Newport                              14434.
- 3 Kent County                          18586.
- 4 Westerly                             19742.
- 5 Landmark Medical Center              22618.
- 6 Butler                               24060.
- 7 Miriam                               24989.
- 8 South County                         26573.
- 9 Women and Infants                    28950 
-10 St. Joseph Health Services of RI     29389.
-11 Rhode Island Hospital                40215.
-12 Bradley                             100440.</code></pre>
-</div>
-</div>
-</section>
-<section id="seasons" class="slide level2">
-<h2>Seasons</h2>
-<p>Create a season variable from admission month.</p>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb32"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href=""></a><span class="co"># Create the seasons</span></span>
-<span id="cb32-2"><a href=""></a>df <span class="ot">=</span> df <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">season =</span> <span class="fu">case_when</span>(</span>
-<span id="cb32-3"><a href=""></a>  moa <span class="sc">%in%</span> <span class="fu">c</span>(<span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">5</span>)   <span class="sc">~</span> <span class="st">"Spring"</span>,</span>
-<span id="cb32-4"><a href=""></a>  moa <span class="sc">%in%</span> <span class="fu">c</span>(<span class="dv">6</span>, <span class="dv">7</span>, <span class="dv">8</span>)   <span class="sc">~</span> <span class="st">"Summer"</span>,</span>
-<span id="cb32-5"><a href=""></a>  moa <span class="sc">%in%</span> <span class="fu">c</span>(<span class="dv">9</span>, <span class="dv">10</span>, <span class="dv">11</span>) <span class="sc">~</span> <span class="st">"Fall"</span>,</span>
-<span id="cb32-6"><a href=""></a>  moa <span class="sc">%in%</span> <span class="fu">c</span>(<span class="dv">12</span>, <span class="dv">1</span>, <span class="dv">2</span>)  <span class="sc">~</span> <span class="st">"Winter"</span></span>
-<span id="cb32-7"><a href=""></a>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</div>
-</section>
-<section id="length-of-stay-by-season" class="slide level2">
-<h2>Length of Stay by Season</h2>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb33"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href=""></a><span class="co"># Group by season, get avgerage stay and arrange descending</span></span>
-<span id="cb33-2"><a href=""></a>df <span class="sc">%&gt;%</span> <span class="fu">group_by</span>(season) <span class="sc">%&gt;%</span> <span class="fu">summarise</span>(<span class="at">avg_los =</span> <span class="fu">mean</span>(los)) <span class="sc">%&gt;%</span> <span class="fu">arrange</span>(<span class="fu">desc</span>(avg_los))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 4 × 2
-  season avg_los
-  &lt;chr&gt;    &lt;dbl&gt;
-1 Summer    4.96
-2 Fall      4.96
-3 Winter    4.93
-4 Spring    4.84</code></pre>
-</div>
-</div>
-</section>
-<section id="fall-charge-example" class="slide level2">
-<h2>Fall Charge Example</h2>
-<p>Average charge for 20 year old males staying 1 day in the fall.</p>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb35"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href=""></a><span class="co"># Filter to male, 20, stay 1 day, in the fall, get the average charge</span></span>
-<span id="cb35-2"><a href=""></a>df <span class="sc">%&gt;%</span> <span class="fu">filter</span>(sex <span class="sc">==</span> <span class="dv">1</span>, age <span class="sc">==</span> <span class="dv">20</span>, los <span class="sc">==</span> <span class="dv">1</span>, season <span class="sc">==</span> <span class="st">"Fall"</span>) <span class="sc">%&gt;%</span> <span class="fu">summarise</span>(<span class="at">avg_charge =</span> <span class="fu">mean</span>(tot))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 1 × 1
-  avg_charge
-       &lt;dbl&gt;
-1      16511</code></pre>
-</div>
-</div>
-</section>
-<section id="wrangling-takeaways" class="slide level2">
-<h2>Wrangling Takeaways</h2>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb37"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href=""></a><span class="fu">print</span>(<span class="st">"The average stay was about 5 days, mostly even through the year. The charge has a large disparity between different providers, but the average charge is still pretty large across all the providers. Rholde Island Hositpal by far has the most charges but I know thats also one of the largest hospitals."</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] "The average stay was about 5 days, mostly even through the year. The charge has a large disparity between different providers, but the average charge is still pretty large across all the providers. Rholde Island Hositpal by far has the most charges but I know thats also one of the largest hospitals."</code></pre>
-</div>
-</div>
-</section></section>
-<section>
 <section id="part-2-visualization" class="title-slide slide level1 center">
 <h1>Part 2: Visualization</h1>
 
 </section>
-<section id="visualization-libraries" class="slide level2">
-<h2>Visualization Libraries</h2>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb39"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href=""></a><span class="co"># Import libraries I need</span></span>
-<span id="cb39-2"><a href=""></a><span class="fu">library</span>(gganimate)</span>
-<span id="cb39-3"><a href=""></a><span class="fu">library</span>(gifski)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</div>
-</section>
-<section id="admissions-by-month-1" class="slide level2">
-<h2>Admissions by Month</h2>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb40"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href=""></a><span class="co"># Bar plot of patients admitted by month</span></span>
-<span id="cb40-2"><a href=""></a>df <span class="sc">%&gt;%</span> <span class="fu">ggplot</span>() <span class="sc">+</span> <span class="fu">geom_bar</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">factor</span>(moa))) <span class="sc">+</span> <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Patients Admitted by Month"</span>, <span class="at">x =</span> <span class="st">"Month"</span>, <span class="at">y =</span> <span class="st">"Number of Patients"</span>, <span class="at">caption =</span> <span class="st">"Source: RI Hospital Discharge Data 2018"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<section id="patients-admitted-by-month" class="slide level2">
+<h2>Patients Admitted by Month</h2>
+<p>Admissions are fairly even across months, with October the highest.</p>
 
-</div>
-<img data-src="Mid_Term_Presentation_files/figure-revealjs/unnamed-chunk-20-1.png" width="960" class="r-stretch"></section>
-<section id="male-admissions-by-month" class="slide level2">
-<h2>Male Admissions by Month</h2>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb41"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb41-1"><a href=""></a><span class="co"># Bar chart of admitted male patients per month</span></span>
-<span id="cb41-2"><a href=""></a>df <span class="sc">%&gt;%</span> <span class="fu">filter</span>(sex <span class="sc">==</span> <span class="dv">1</span>) <span class="sc">%&gt;%</span> <span class="fu">ggplot</span>() <span class="sc">+</span> <span class="fu">geom_bar</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">factor</span>(moa))) <span class="sc">+</span> <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Male Patients Admitted by Month"</span>, <span class="at">x =</span> <span class="st">"Month"</span>, <span class="at">y =</span> <span class="st">"Number of Patients"</span>, <span class="at">caption =</span> <span class="st">"Source: RI Hospital Discharge Data 2018"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<img data-src="Mid_Term_Presentation_files/figure-revealjs/unnamed-chunk-2-1.png" width="960" class="r-stretch"></section>
+<section id="male-patients-admitted-by-month" class="slide level2">
+<h2>Male Patients Admitted by Month</h2>
+<p>Male admissions follow the same pattern; October is again the highest.</p>
 
-</div>
-<img data-src="Mid_Term_Presentation_files/figure-revealjs/unnamed-chunk-21-1.png" width="960" class="r-stretch"></section>
-<section id="teen-male-admissions" class="slide level2">
-<h2>Teen Male Admissions</h2>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb42"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a href=""></a><span class="co"># Male teenagers admitted per month</span></span>
-<span id="cb42-2"><a href=""></a>df <span class="sc">%&gt;%</span> <span class="fu">filter</span>(sex <span class="sc">==</span> <span class="dv">1</span>, age <span class="sc">&gt;=</span> <span class="dv">13</span>, age <span class="sc">&lt;=</span> <span class="dv">19</span>) <span class="sc">%&gt;%</span> <span class="fu">ggplot</span>() <span class="sc">+</span> <span class="fu">geom_bar</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">factor</span>(moa))) <span class="sc">+</span> <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Teenage Male Patients by Month"</span>, <span class="at">x =</span> <span class="st">"Month"</span>, <span class="at">y =</span> <span class="st">"Number of Patients"</span>, <span class="at">caption =</span> <span class="st">"Source: RI Hospital Discharge Data 2018"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<img data-src="Mid_Term_Presentation_files/figure-revealjs/unnamed-chunk-3-1.png" width="960" class="r-stretch"></section>
+<section id="teenage-male-patients-by-month" class="slide level2">
+<h2>Teenage Male Patients by Month</h2>
+<p>Admissions of male teenagers (13–19) by month.</p>
 
-</div>
-<img data-src="Mid_Term_Presentation_files/figure-revealjs/unnamed-chunk-22-1.png" width="960" class="r-stretch"></section>
-<section id="female-patients-in-october" class="slide level2">
-<h2>Female Patients in October</h2>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb43"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb43-1"><a href=""></a><span class="co"># Female patients in october based on provider</span></span>
-<span id="cb43-2"><a href=""></a>df <span class="sc">%&gt;%</span> <span class="fu">filter</span>(sex <span class="sc">==</span> <span class="dv">2</span>, moa <span class="sc">==</span> <span class="dv">10</span>) <span class="sc">%&gt;%</span> <span class="fu">ggplot</span>() <span class="sc">+</span> <span class="fu">geom_bar</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">y =</span> provider_name)) <span class="sc">+</span> <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Female Patients in October by Provider"</span>, <span class="at">x =</span> <span class="st">"Number of Patients"</span>, <span class="at">y =</span> <span class="st">"Provider"</span>, <span class="at">caption =</span> <span class="st">"Source: RI Hospital Discharge Data 2018"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<img data-src="Mid_Term_Presentation_files/figure-revealjs/unnamed-chunk-4-1.png" width="960" class="r-stretch"></section>
+<section id="female-patients-in-october-by-provider" class="slide level2">
+<h2>Female Patients in October by Provider</h2>
+<p>Rhode Island Hospital and Women and Infants see the most female patients.</p>
 
-</div>
-<img data-src="Mid_Term_Presentation_files/figure-revealjs/unnamed-chunk-23-1.png" width="960" class="r-stretch"></section>
-<section id="age-by-sex" class="slide level2">
-<h2>Age by Sex</h2>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb44"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb44-1"><a href=""></a><span class="co"># age distribution by sex</span></span>
-<span id="cb44-2"><a href=""></a>df <span class="sc">%&gt;%</span> <span class="fu">ggplot</span>() <span class="sc">+</span> <span class="fu">geom_boxplot</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">factor</span>(sex), <span class="at">y =</span> age)) <span class="sc">+</span> <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Patient Age by Sex"</span>, <span class="at">x =</span> <span class="st">"Sex (1 = Male, 2 = Female)"</span>, <span class="at">y =</span> <span class="st">"Age"</span>, <span class="at">caption =</span> <span class="st">"Source: RI Hospital Discharge Data 2018"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<img data-src="Mid_Term_Presentation_files/figure-revealjs/unnamed-chunk-5-1.png" width="960" class="r-stretch"></section>
+<section id="patient-age-by-sex" class="slide level2">
+<h2>Patient Age by Sex</h2>
+<p>Comparison of the age distribution of male and female patients.</p>
 
-</div>
-<img data-src="Mid_Term_Presentation_files/figure-revealjs/unnamed-chunk-24-1.png" width="960" class="r-stretch"></section>
-<section id="average-age-by-month-1" class="slide level2">
-<h2>Average Age by Month</h2>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb45"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb45-1"><a href=""></a><span class="co"># Average patient age based on the month</span></span>
-<span id="cb45-2"><a href=""></a>df <span class="sc">%&gt;%</span> <span class="fu">group_by</span>(moa) <span class="sc">%&gt;%</span> <span class="fu">summarise</span>(<span class="at">avg_age =</span> <span class="fu">mean</span>(age)) <span class="sc">%&gt;%</span> <span class="fu">ggplot</span>() <span class="sc">+</span> <span class="fu">geom_col</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">factor</span>(moa), <span class="at">y =</span> avg_age)) <span class="sc">+</span> <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Average Patient Age by Month"</span>, <span class="at">x =</span> <span class="st">"Month"</span>, <span class="at">y =</span> <span class="st">"Average Age"</span>, <span class="at">caption =</span> <span class="st">"Source: RI Hospital Discharge Data 2018"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<img data-src="Mid_Term_Presentation_files/figure-revealjs/unnamed-chunk-6-1.png" width="960" class="r-stretch"></section>
+<section id="average-patient-age-by-month" class="slide level2">
+<h2>Average Patient Age by Month</h2>
+<p>Average age stays about the same throughout the year.</p>
 
-</div>
-<img data-src="Mid_Term_Presentation_files/figure-revealjs/unnamed-chunk-25-1.png" width="960" class="r-stretch"></section>
+<img data-src="Mid_Term_Presentation_files/figure-revealjs/unnamed-chunk-7-1.png" width="960" class="r-stretch"></section>
 <section id="total-charges-by-provider" class="slide level2">
 <h2>Total Charges by Provider</h2>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb46"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb46-1"><a href=""></a><span class="co"># Total charge based on the provider</span></span>
-<span id="cb46-2"><a href=""></a>df <span class="sc">%&gt;%</span> <span class="fu">group_by</span>(provider_name) <span class="sc">%&gt;%</span> <span class="fu">summarise</span>(<span class="at">total_charge =</span> <span class="fu">sum</span>(tot)) <span class="sc">%&gt;%</span> <span class="fu">ggplot</span>() <span class="sc">+</span> <span class="fu">geom_col</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> total_charge, <span class="at">y =</span> provider_name)) <span class="sc">+</span> <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Total Charges by Provider"</span>, <span class="at">x =</span> <span class="st">"Total Charge ($)"</span>, <span class="at">y =</span> <span class="st">"Provider"</span>, <span class="at">caption =</span> <span class="st">"Source: RI Hospital Discharge Data 2018"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Rhode Island Hospital has by far the highest total charge, since it is one of the largest hospitals.</p>
 
-</div>
-<img data-src="Mid_Term_Presentation_files/figure-revealjs/unnamed-chunk-26-1.png" width="960" class="r-stretch"></section>
-<section id="teen-male-average-charge" class="slide level2">
-<h2>Teen Male Average Charge</h2>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb47"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb47-1"><a href=""></a><span class="co"># Average charge by male teenagers based on provider</span></span>
-<span id="cb47-2"><a href=""></a>df <span class="sc">%&gt;%</span> <span class="fu">filter</span>(sex <span class="sc">==</span> <span class="dv">1</span>, age <span class="sc">&gt;=</span> <span class="dv">13</span>, age <span class="sc">&lt;=</span> <span class="dv">19</span>) <span class="sc">%&gt;%</span> <span class="fu">group_by</span>(provider_name) <span class="sc">%&gt;%</span> <span class="fu">summarise</span>(<span class="at">avg_charge =</span> <span class="fu">mean</span>(tot)) <span class="sc">%&gt;%</span> <span class="fu">ggplot</span>() <span class="sc">+</span> <span class="fu">geom_col</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> avg_charge, <span class="at">y =</span> provider_name)) <span class="sc">+</span> <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Average Charge for Teenage Males by Provider"</span>, <span class="at">x =</span> <span class="st">"Average Charge ($)"</span>, <span class="at">y =</span> <span class="st">"Provider"</span>, <span class="at">caption =</span> <span class="st">"Source: RI Hospital Discharge Data 2018"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<img data-src="Mid_Term_Presentation_files/figure-revealjs/unnamed-chunk-8-1.png" width="960" class="r-stretch"></section>
+<section id="average-charge-for-teenage-males-by-provider" class="slide level2">
+<h2>Average Charge for Teenage Males by Provider</h2>
+<p>Average charges vary a lot between providers.</p>
 
-</div>
-<img data-src="Mid_Term_Presentation_files/figure-revealjs/unnamed-chunk-27-1.png" width="960" class="r-stretch"></section>
-<section id="length-of-stay-by-season-1" class="slide level2">
-<h2>Length of Stay by Season</h2>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb48"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb48-1"><a href=""></a><span class="co"># Average stay based on the season</span></span>
-<span id="cb48-2"><a href=""></a>df <span class="sc">%&gt;%</span> <span class="fu">group_by</span>(season) <span class="sc">%&gt;%</span> <span class="fu">summarise</span>(<span class="at">avg_los =</span> <span class="fu">mean</span>(los)) <span class="sc">%&gt;%</span> <span class="fu">ggplot</span>() <span class="sc">+</span> <span class="fu">geom_col</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> season, <span class="at">y =</span> avg_los)) <span class="sc">+</span> <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Average Length of Stay by Season"</span>, <span class="at">x =</span> <span class="st">"Season"</span>, <span class="at">y =</span> <span class="st">"Average Length of Stay (days)"</span>, <span class="at">caption =</span> <span class="st">"Source: RI Hospital Discharge Data 2018"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<img data-src="Mid_Term_Presentation_files/figure-revealjs/unnamed-chunk-9-1.png" width="960" class="r-stretch"></section>
+<section id="average-length-of-stay-by-season" class="slide level2">
+<h2>Average Length of Stay by Season</h2>
+<p>Average stay is about 5 days and is similar across seasons.</p>
 
-</div>
-<img data-src="Mid_Term_Presentation_files/figure-revealjs/unnamed-chunk-28-1.png" width="960" class="r-stretch"></section>
-<section id="length-of-stay-vs.-charge" class="slide level2">
-<h2>Length of Stay vs.&nbsp;Charge</h2>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb49"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb49-1"><a href=""></a><span class="co"># Length of stay by total charge</span></span>
-<span id="cb49-2"><a href=""></a>df <span class="sc">%&gt;%</span> <span class="fu">ggplot</span>() <span class="sc">+</span> <span class="fu">geom_point</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> los, <span class="at">y =</span> tot)) <span class="sc">+</span> <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Length of Stay vs. Total Charge"</span>, <span class="at">x =</span> <span class="st">"Length of Stay (days)"</span>, <span class="at">y =</span> <span class="st">"Total Charge ($)"</span>, <span class="at">caption =</span> <span class="st">"Source: RI Hospital Discharge Data 2018"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<img data-src="Mid_Term_Presentation_files/figure-revealjs/unnamed-chunk-10-1.png" width="960" class="r-stretch"></section>
+<section id="length-of-stay-vs.-total-charge" class="slide level2">
+<h2>Length of Stay vs.&nbsp;Total Charge</h2>
+<p>Longer stays generally lead to higher charges.</p>
 
-</div>
-<img data-src="Mid_Term_Presentation_files/figure-revealjs/unnamed-chunk-29-1.png" width="960" class="r-stretch"></section>
-<section id="animated-charge-by-season" class="slide level2">
-<h2>Animated: Charge by Season</h2>
-<p>Average charge by provider, animated across seasons.</p>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb50"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb50-1"><a href=""></a><span class="co"># Average charger by provider based on season</span></span>
-<span id="cb50-2"><a href=""></a>g <span class="ot">=</span> df <span class="sc">%&gt;%</span> <span class="fu">group_by</span>(season, provider_name) <span class="sc">%&gt;%</span> <span class="fu">summarise</span>(<span class="at">avg_charge =</span> <span class="fu">mean</span>(tot)) <span class="sc">%&gt;%</span> <span class="fu">ggplot</span>() <span class="sc">+</span> <span class="fu">geom_col</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> avg_charge, <span class="at">y =</span> provider_name)) <span class="sc">+</span> <span class="fu">transition_states</span>(season) <span class="sc">+</span> <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Average Charge by Provider - Season: {closest_state}"</span>, <span class="at">x =</span> <span class="st">"Average Charge ($)"</span>, <span class="at">y =</span> <span class="st">"Provider"</span>, <span class="at">caption =</span> <span class="st">"Source: RI Hospital Discharge Data 2018"</span>)</span>
-<span id="cb50-3"><a href=""></a></span>
-<span id="cb50-4"><a href=""></a><span class="fu">animate</span>(g)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<img data-src="Mid_Term_Presentation_files/figure-revealjs/unnamed-chunk-11-1.png" width="960" class="r-stretch"></section>
+<section id="animation-average-charge-by-provider-and-season" class="slide level2">
+<h2>Animation: Average Charge by Provider and Season</h2>
+<p>How the average charge at each provider changes across the seasons.</p>
 
-</div>
-<img data-src="Mid_Term_Presentation_files/figure-revealjs/unnamed-chunk-30-1.gif" class="r-stretch"></section></section>
+<img data-src="Mid_Term_Presentation_files/figure-revealjs/unnamed-chunk-12-1.gif" class="r-stretch"></section></section>
 <section>
 <section id="part-3-predictive-models" class="title-slide slide level1 center">
 <h1>Part 3: Predictive Models</h1>
 
 </section>
-<section id="modeling-libraries" class="slide level2">
-<h2>Modeling Libraries</h2>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb51"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb51-1"><a href=""></a><span class="co"># Load libraries</span></span>
-<span id="cb51-2"><a href=""></a><span class="fu">library</span>(rpart)</span>
-<span id="cb51-3"><a href=""></a><span class="fu">library</span>(rpart.plot)</span>
-<span id="cb51-4"><a href=""></a><span class="fu">library</span>(caret)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</div>
-</section>
-<section id="model-data" class="slide level2">
-<h2>Model Data</h2>
-<p>Select predictors and total charge.</p>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb52"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb52-1"><a href=""></a><span class="co"># Create new dataset with only the variables I need</span></span>
-<span id="cb52-2"><a href=""></a>df2 <span class="ot">=</span> <span class="fu">read_csv</span>(<span class="st">"Data/midterm.csv"</span>) <span class="sc">%&gt;%</span> <span class="fu">select</span>(tot, age, sex, raceethn, provider, moa, mod, admtype, campus, los)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</div>
-</section>
-<section id="remove-missing" class="slide level2">
-<h2>Remove Missing</h2>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb53"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb53-1"><a href=""></a><span class="co"># Filter to variables that are not missing</span></span>
-<span id="cb53-2"><a href=""></a>df2 <span class="ot">=</span> df2 <span class="sc">%&gt;%</span> <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(raceethn), <span class="sc">!</span><span class="fu">is.na</span>(admtype)) <span class="sc">%&gt;%</span> <span class="fu">drop_na</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</div>
-</section>
-<section id="q1-target-and-split" class="slide level2">
-<h2>Q1: Target and Split</h2>
-<p>Target = high/low charge (median split); 10% train.</p>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb54"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb54-1"><a href=""></a><span class="co"># Make the target into high and low splitting on median</span></span>
-<span id="cb54-2"><a href=""></a>df2 <span class="ot">=</span> df2 <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">target =</span> <span class="fu">ifelse</span>(tot <span class="sc">&lt;</span> <span class="fu">median</span>(tot), <span class="st">"low"</span>, <span class="st">"high"</span>)) <span class="sc">%&gt;%</span> <span class="fu">select</span>(<span class="sc">-</span>tot)</span>
-<span id="cb54-3"><a href=""></a></span>
-<span id="cb54-4"><a href=""></a><span class="co"># Mutate the variables to be factors</span></span>
-<span id="cb54-5"><a href=""></a>df2 <span class="ot">=</span> df2 <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">target =</span> <span class="fu">factor</span>(target),</span>
-<span id="cb54-6"><a href=""></a>                     <span class="at">sex =</span> <span class="fu">factor</span>(sex), <span class="at">raceethn =</span> <span class="fu">factor</span>(raceethn),</span>
-<span id="cb54-7"><a href=""></a>                     <span class="at">provider =</span> <span class="fu">factor</span>(provider), <span class="at">moa =</span> <span class="fu">factor</span>(moa),</span>
-<span id="cb54-8"><a href=""></a>                     <span class="at">mod =</span> <span class="fu">factor</span>(mod), <span class="at">admtype =</span> <span class="fu">factor</span>(admtype),</span>
-<span id="cb54-9"><a href=""></a>                     <span class="at">campus =</span> <span class="fu">factor</span>(campus))</span>
-<span id="cb54-10"><a href=""></a></span>
-<span id="cb54-11"><a href=""></a><span class="co"># Set seed to be replicable and the data partition for training and testing</span></span>
-<span id="cb54-12"><a href=""></a><span class="fu">set.seed</span>(<span class="dv">2018</span>)</span>
-<span id="cb54-13"><a href=""></a>splitIndex <span class="ot">=</span> <span class="fu">createDataPartition</span>(df2<span class="sc">$</span>target, <span class="at">p =</span> <span class="fl">0.1</span>, <span class="at">list =</span> <span class="cn">FALSE</span>)</span>
-<span id="cb54-14"><a href=""></a>df_train <span class="ot">=</span> df2[splitIndex, ]</span>
-<span id="cb54-15"><a href=""></a>df_test <span class="ot">=</span> df2[<span class="sc">-</span>splitIndex, ]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</div>
-</section>
-<section id="q2-decision-tree" class="slide level2">
-<h2>Q2: Decision Tree</h2>
-<p>Fit a tree and plot variable importance.</p>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb55"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb55-1"><a href=""></a><span class="co"># Build the decision tree</span></span>
-<span id="cb55-2"><a href=""></a>tree_model <span class="ot">=</span> <span class="fu">rpart</span>(target <span class="sc">~</span> ., <span class="at">data =</span> df_train)</span>
-<span id="cb55-3"><a href=""></a><span class="fu">rpart.plot</span>(tree_model)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output-display">
-<div>
-<figure>
-<p><img data-src="Mid_Term_Presentation_files/figure-revealjs/unnamed-chunk-35-1.png" width="960"></p>
-</figure>
-</div>
-</div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb56"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb56-1"><a href=""></a><span class="co"># Plot the variable importance</span></span>
-<span id="cb56-2"><a href=""></a><span class="fu">barplot</span>(tree_model<span class="sc">$</span>variable.importance, <span class="at">las =</span> <span class="dv">2</span>, <span class="at">main =</span> <span class="st">"Variable Importance (Decision Tree)"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output-display">
-<div>
-<figure>
-<p><img data-src="Mid_Term_Presentation_files/figure-revealjs/unnamed-chunk-35-2.png" width="960"></p>
-</figure>
-</div>
-</div>
-</div>
-</section>
-<section id="q3-tree-vs.-forest-caret" class="slide level2">
-<h2>Q3: Tree vs.&nbsp;Forest (caret)</h2>
-<p>5-fold CV to tune a tree and a random forest.</p>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb57"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb57-1"><a href=""></a><span class="co"># Set our controls to find best tree</span></span>
-<span id="cb57-2"><a href=""></a>trControl <span class="ot">=</span> <span class="fu">trainControl</span>(<span class="at">method =</span> <span class="st">"cv"</span>, <span class="at">number =</span> <span class="dv">5</span>)</span>
-<span id="cb57-3"><a href=""></a></span>
-<span id="cb57-4"><a href=""></a><span class="co"># Train tree</span></span>
-<span id="cb57-5"><a href=""></a>tree <span class="ot">=</span> <span class="fu">train</span>(target <span class="sc">~</span> ., <span class="at">data =</span> df_train, <span class="at">method =</span> <span class="st">"rpart"</span>, <span class="at">trControl =</span> trControl, <span class="at">tuneLength =</span> <span class="dv">5</span>)</span>
-<span id="cb57-6"><a href=""></a></span>
-<span id="cb57-7"><a href=""></a><span class="fu">plot</span>(tree)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output-display">
-<div>
-<figure>
-<p><img data-src="Mid_Term_Presentation_files/figure-revealjs/unnamed-chunk-36-1.png" width="960"></p>
-</figure>
-</div>
-</div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb58"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb58-1"><a href=""></a><span class="co"># Train forest</span></span>
-<span id="cb58-2"><a href=""></a>forest <span class="ot">=</span> <span class="fu">train</span>(target <span class="sc">~</span> ., <span class="at">data =</span> df_train, <span class="at">method =</span> <span class="st">"ranger"</span>, <span class="at">trControl =</span> trControl, <span class="at">tuneLength =</span> <span class="dv">3</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>Growing trees.. Progress: 64%. Estimated remaining time: 17 seconds.
-Growing trees.. Progress: 85%. Estimated remaining time: 5 seconds.
-Growing trees.. Progress: 71%. Estimated remaining time: 12 seconds.
-Growing trees.. Progress: 41%. Estimated remaining time: 45 seconds.
-Growing trees.. Progress: 81%. Estimated remaining time: 14 seconds.
-Growing trees.. Progress: 65%. Estimated remaining time: 16 seconds.
-Growing trees.. Progress: 92%. Estimated remaining time: 2 seconds.
-Growing trees.. Progress: 38%. Estimated remaining time: 51 seconds.
-Growing trees.. Progress: 76%. Estimated remaining time: 19 seconds.
-Growing trees.. Progress: 70%. Estimated remaining time: 13 seconds.
-Growing trees.. Progress: 99%. Estimated remaining time: 0 seconds.
-Growing trees.. Progress: 43%. Estimated remaining time: 41 seconds.
-Growing trees.. Progress: 83%. Estimated remaining time: 12 seconds.
-Growing trees.. Progress: 85%. Estimated remaining time: 5 seconds.
-Growing trees.. Progress: 71%. Estimated remaining time: 12 seconds.
-Growing trees.. Progress: 77%. Estimated remaining time: 9 seconds.</code></pre>
-</div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb60"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb60-1"><a href=""></a><span class="fu">plot</span>(forest)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output-display">
-<div>
-<figure>
-<p><img data-src="Mid_Term_Presentation_files/figure-revealjs/unnamed-chunk-36-2.png" width="960"></p>
-</figure>
-</div>
-</div>
-</div>
-</section>
-<section id="q4-compare-models" class="slide level2">
-<h2>Q4: Compare Models</h2>
-<p>Resampled accuracy of both models.</p>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb61"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb61-1"><a href=""></a><span class="co"># Comapre the results</span></span>
-<span id="cb61-2"><a href=""></a>results <span class="ot">=</span> <span class="fu">resamples</span>(<span class="fu">list</span>(<span class="at">Tree =</span> tree, <span class="at">Forest =</span> forest))</span>
-<span id="cb61-3"><a href=""></a><span class="fu">bwplot</span>(results)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<section id="q4-model-comparison" class="slide level2">
+<h2>Q4: Model Comparison</h2>
+<p>Target: total charge <strong>high</strong> vs.&nbsp;<strong>low</strong> (split at the median). Decision tree vs.&nbsp;random forest, 5-fold cross-validation.</p>
 
-</div>
-<img data-src="Mid_Term_Presentation_files/figure-revealjs/unnamed-chunk-37-1.png" width="960" class="r-stretch"></section>
-<section id="q5-final-model---forest-on-test-data" class="slide level2">
-<h2>Q5: Final Model - Forest on Test Data</h2>
-<p>Test-set performance of the forest.</p>
+<img data-src="Mid_Term_Presentation_files/figure-revealjs/unnamed-chunk-14-1.png" width="960" class="r-stretch"><p>The random forest has higher accuracy than the decision tree.</p>
+</section>
+<section id="q5-final-model-on-test-data" class="slide level2">
+<h2>Q5: Final Model on Test Data</h2>
+<p>The final model is the <strong>random forest</strong>. Its accuracy on the 90% test set:</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb62"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb62-1"><a href=""></a><span class="co"># Plot the confusion matrix of the better model</span></span>
-<span id="cb62-2"><a href=""></a>pred <span class="ot">=</span> <span class="fu">predict</span>(forest, df_test)</span>
-<span id="cb62-3"><a href=""></a><span class="fu">confusionMatrix</span>(pred, df_test<span class="sc">$</span>target, <span class="at">positive =</span> <span class="st">"high"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Confusion Matrix and Statistics
 
           Reference
 Prediction  high   low
-      high 46406  9608
-      low  10982 47777
-                                          
-               Accuracy : 0.8206          
-                 95% CI : (0.8184, 0.8228)
-    No Information Rate : 0.5             
-    P-Value [Acc &gt; NIR] : &lt; 2.2e-16       
-                                          
-                  Kappa : 0.6412          
-                                          
- Mcnemar's Test P-Value : &lt; 2.2e-16       
-                                          
-            Sensitivity : 0.8086          
-            Specificity : 0.8326          
-         Pos Pred Value : 0.8285          
-         Neg Pred Value : 0.8131          
-             Prevalence : 0.5000          
-         Detection Rate : 0.4043          
-   Detection Prevalence : 0.4880          
-      Balanced Accuracy : 0.8206          
-                                          
-       'Positive' Class : high            
-                                          </code></pre>
+      high 46465  9711
+      low  10923 47674
+                                         
+               Accuracy : 0.8202         
+                 95% CI : (0.818, 0.8224)
+    No Information Rate : 0.5            
+    P-Value [Acc &gt; NIR] : &lt; 2.2e-16      
+                                         
+                  Kappa : 0.6404         
+                                         
+ Mcnemar's Test P-Value : &lt; 2.2e-16      
+                                         
+            Sensitivity : 0.8097         
+            Specificity : 0.8308         
+         Pos Pred Value : 0.8271         
+         Neg Pred Value : 0.8136         
+             Prevalence : 0.5000         
+         Detection Rate : 0.4048         
+   Detection Prevalence : 0.4895         
+      Balanced Accuracy : 0.8202         
+                                         
+       'Positive' Class : high           
+                                         </code></pre>
 </div>
 </div>
 </section>
 <section id="q6-new-target---length-of-stay" class="slide level2">
 <h2>Q6: New Target - Length of Stay</h2>
-<p>Repeat the process predicting long vs.&nbsp;short stays.</p>
+<p>New target: length of stay <strong>long</strong> vs.&nbsp;<strong>short</strong> (split at the median). The decision tree:</p>
+
+<img data-src="Mid_Term_Presentation_files/figure-revealjs/unnamed-chunk-17-1.png" width="960" class="r-stretch"></section>
+<section id="q6-variable-importance" class="slide level2">
+<h2>Q6: Variable Importance</h2>
+<p>When length of stay is the target, provider is the most important variable.</p>
+
+<img data-src="Mid_Term_Presentation_files/figure-revealjs/unnamed-chunk-18-1.png" width="960" class="r-stretch"></section>
+<section id="q6-model-comparison" class="slide level2">
+<h2>Q6: Model Comparison</h2>
+
+<img data-src="Mid_Term_Presentation_files/figure-revealjs/unnamed-chunk-19-1.png" width="960" class="r-stretch"><p>The random forest again does better than the tree.</p>
+</section>
+<section id="q6-final-model-on-test-data" class="slide level2">
+<h2>Q6: Final Model on Test Data</h2>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb64"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb64-1"><a href=""></a><span class="co"># Create a new dataset</span></span>
-<span id="cb64-2"><a href=""></a>df3 <span class="ot">=</span> <span class="fu">read_csv</span>(<span class="st">"Data/midterm.csv"</span>) <span class="sc">%&gt;%</span> <span class="fu">select</span>(los, age, sex, raceethn, provider, moa, admtype, campus) <span class="sc">%&gt;%</span> <span class="fu">drop_na</span>()</span>
-<span id="cb64-3"><a href=""></a></span>
-<span id="cb64-4"><a href=""></a><span class="co"># Make the target based on stay length to long and short split on medican</span></span>
-<span id="cb64-5"><a href=""></a>df3 <span class="ot">=</span> df3 <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">target =</span> <span class="fu">ifelse</span>(los <span class="sc">&gt;</span> <span class="fu">median</span>(los), <span class="st">"long"</span>, <span class="st">"short"</span>)) <span class="sc">%&gt;%</span> <span class="fu">select</span>(<span class="sc">-</span>los)</span>
-<span id="cb64-6"><a href=""></a></span>
-<span id="cb64-7"><a href=""></a><span class="co"># Mutate factors</span></span>
-<span id="cb64-8"><a href=""></a>df3 <span class="ot">=</span> df3 <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">target =</span> <span class="fu">factor</span>(target),</span>
-<span id="cb64-9"><a href=""></a>                     <span class="at">sex =</span> <span class="fu">factor</span>(sex), <span class="at">raceethn =</span> <span class="fu">factor</span>(raceethn),</span>
-<span id="cb64-10"><a href=""></a>                     <span class="at">provider =</span> <span class="fu">factor</span>(provider), <span class="at">moa =</span> <span class="fu">factor</span>(moa),</span>
-<span id="cb64-11"><a href=""></a>                     <span class="at">admtype =</span> <span class="fu">factor</span>(admtype), <span class="at">campus =</span> <span class="fu">factor</span>(campus))</span>
-<span id="cb64-12"><a href=""></a></span>
-<span id="cb64-13"><a href=""></a><span class="co"># Set the seed and get the data parittion split</span></span>
-<span id="cb64-14"><a href=""></a><span class="fu">set.seed</span>(<span class="dv">2018</span>)</span>
-<span id="cb64-15"><a href=""></a>splitIndex <span class="ot">=</span> <span class="fu">createDataPartition</span>(df3<span class="sc">$</span>target, <span class="at">p =</span> <span class="fl">0.1</span>, <span class="at">list =</span> <span class="cn">FALSE</span>)</span>
-<span id="cb64-16"><a href=""></a>df_train <span class="ot">=</span> df3[splitIndex, ]</span>
-<span id="cb64-17"><a href=""></a>df_test <span class="ot">=</span> df3[<span class="sc">-</span>splitIndex, ]</span>
-<span id="cb64-18"><a href=""></a></span>
-<span id="cb64-19"><a href=""></a><span class="co"># Train a tree model and plot it and importance</span></span>
-<span id="cb64-20"><a href=""></a>tree_model <span class="ot">=</span> <span class="fu">rpart</span>(target <span class="sc">~</span> ., <span class="at">data =</span> df_train)</span>
-<span id="cb64-21"><a href=""></a><span class="fu">rpart.plot</span>(tree_model)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output-display">
-<div>
-<figure>
-<p><img data-src="Mid_Term_Presentation_files/figure-revealjs/unnamed-chunk-39-1.png" width="960"></p>
-</figure>
-</div>
-</div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb65"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb65-1"><a href=""></a><span class="fu">barplot</span>(tree_model<span class="sc">$</span>variable.importance, <span class="at">las =</span> <span class="dv">2</span>, <span class="at">main =</span> <span class="st">"Variable Importance (Decision Tree)"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output-display">
-<div>
-<figure>
-<p><img data-src="Mid_Term_Presentation_files/figure-revealjs/unnamed-chunk-39-2.png" width="960"></p>
-</figure>
-</div>
-</div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb66"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb66-1"><a href=""></a><span class="co"># Train tree again using rpart</span></span>
-<span id="cb66-2"><a href=""></a>tree <span class="ot">=</span> <span class="fu">train</span>(target <span class="sc">~</span> ., <span class="at">data =</span> df_train, <span class="at">method =</span> <span class="st">"rpart"</span>, <span class="at">trControl =</span> trControl, <span class="at">tuneLength =</span> <span class="dv">5</span>)</span>
-<span id="cb66-3"><a href=""></a></span>
-<span id="cb66-4"><a href=""></a><span class="fu">plot</span>(tree)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output-display">
-<div>
-<figure>
-<p><img data-src="Mid_Term_Presentation_files/figure-revealjs/unnamed-chunk-39-3.png" width="960"></p>
-</figure>
-</div>
-</div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb67"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb67-1"><a href=""></a><span class="co"># Train a forest in the same manner</span></span>
-<span id="cb67-2"><a href=""></a>forest <span class="ot">=</span> <span class="fu">train</span>(target <span class="sc">~</span> ., <span class="at">data =</span> df_train, <span class="at">method =</span> <span class="st">"ranger"</span>, <span class="at">trControl =</span> trControl, <span class="at">tuneLength =</span> <span class="dv">3</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>Computing prediction error.. Progress: 95%. Estimated remaining time: 5 minutes, 53 seconds.
-Growing trees.. Progress: 48%. Estimated remaining time: 33 seconds.
-Growing trees.. Progress: 48%. Estimated remaining time: 33 seconds.
-Growing trees.. Progress: 86%. Estimated remaining time: 4 seconds.
-Growing trees.. Progress: 34%. Estimated remaining time: 1 minute, 0 seconds.
-Growing trees.. Progress: 75%. Estimated remaining time: 21 seconds.
-Growing trees.. Progress: 94%. Estimated remaining time: 1 seconds.
-Growing trees.. Progress: 51%. Estimated remaining time: 29 seconds.
-Growing trees.. Progress: 85%. Estimated remaining time: 5 seconds.
-Growing trees.. Progress: 43%. Estimated remaining time: 41 seconds.
-Growing trees.. Progress: 88%. Estimated remaining time: 8 seconds.
-Growing trees.. Progress: 63%. Estimated remaining time: 18 seconds.
-Growing trees.. Progress: 88%. Estimated remaining time: 4 seconds.
-Growing trees.. Progress: 45%. Estimated remaining time: 37 seconds.
-Growing trees.. Progress: 90%. Estimated remaining time: 7 seconds.
-Growing trees.. Progress: 60%. Estimated remaining time: 20 seconds.
-Growing trees.. Progress: 89%. Estimated remaining time: 3 seconds.
-Growing trees.. Progress: 45%. Estimated remaining time: 37 seconds.
-Growing trees.. Progress: 91%. Estimated remaining time: 5 seconds.
-Growing trees.. Progress: 57%. Estimated remaining time: 23 seconds.
-Growing trees.. Progress: 88%. Estimated remaining time: 4 seconds.
-Growing trees.. Progress: 44%. Estimated remaining time: 40 seconds.
-Growing trees.. Progress: 88%. Estimated remaining time: 8 seconds.</code></pre>
-</div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb69"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb69-1"><a href=""></a><span class="fu">plot</span>(forest)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output-display">
-<div>
-<figure>
-<p><img data-src="Mid_Term_Presentation_files/figure-revealjs/unnamed-chunk-39-4.png" width="960"></p>
-</figure>
-</div>
-</div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb70"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb70-1"><a href=""></a><span class="co"># Plot the results and compare</span></span>
-<span id="cb70-2"><a href=""></a>results <span class="ot">=</span> <span class="fu">resamples</span>(<span class="fu">list</span>(<span class="at">Tree =</span> tree, <span class="at">Forest =</span> forest))</span>
-<span id="cb70-3"><a href=""></a><span class="fu">bwplot</span>(results)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output-display">
-<div>
-<figure>
-<p><img data-src="Mid_Term_Presentation_files/figure-revealjs/unnamed-chunk-39-5.png" width="960"></p>
-</figure>
-</div>
-</div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb71"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb71-1"><a href=""></a><span class="co"># Plot the confusion matrix</span></span>
-<span id="cb71-2"><a href=""></a>pred <span class="ot">=</span> <span class="fu">predict</span>(forest, df_test)</span>
-<span id="cb71-3"><a href=""></a><span class="fu">confusionMatrix</span>(pred, df_test<span class="sc">$</span>target, <span class="at">positive =</span> <span class="st">"long"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Confusion Matrix and Statistics
 
@@ -974,15 +296,6 @@ Prediction  long short
                                           </code></pre>
 </div>
 </div>
-</section>
-<section id="modeling-takeaways" class="slide level2">
-<h2>Modeling Takeaways</h2>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb73"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb73-1"><a href=""></a><span class="fu">print</span>(<span class="st">"Froests tend to outperform trees but take much longer to train. Decision tree seems to have los or time stayed as the best predictor or most important variable in terms of decisions. In some cases it turns out to be the provider but it depends on the question being ask ie the target. When time stayed in teh target then provider seems to be most important."</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] "Froests tend to outperform trees but take much longer to train. Decision tree seems to have los or time stayed as the best predictor or most important variable in terms of decisions. In some cases it turns out to be the provider but it depends on the question being ask ie the target. When time stayed in teh target then provider seems to be most important."</code></pre>
-</div>
-</div>
 </section></section>
 <section>
 <section id="challenges" class="title-slide slide level1 center">
@@ -992,11 +305,11 @@ Prediction  long short
 <section id="challenges-and-fixes" class="slide level2">
 <h2>Challenges and Fixes</h2>
 <ul>
-<li>Large SAS file was slow to load, filtered to 2018, kept needed columns, saved a smaller CSV.</li>
-<li>Missing values existed so I dropped columns with NAs; used <code>drop_na()</code> for modeling data.</li>
-<li>Provider codes were just numbers so I mapped them to hospital names with <code>case_when()</code>.</li>
-<li>Random forest took a long time to train, so I trained on a 10% sample with <code>tuneLength = 3</code>.</li>
-<li>Warnings/messages cluttered the output so I had to include <code>message=FALSE, warning=FALSE</code> on each chunk.</li>
+<li><strong>Large SAS file was slow to load</strong> → filtered to 2018, kept needed columns, and saved a smaller CSV.</li>
+<li><strong>Missing values</strong> → dropped columns with NAs; used <code>drop_na()</code> for the modeling data.</li>
+<li><strong>Provider codes were just numbers</strong> → mapped them to hospital names with <code>case_when()</code>.</li>
+<li><strong>Random forest took a long time to train</strong> → trained on the 10% training set with <code>tuneLength = 3</code>.</li>
+<li><strong>Messages and warnings cluttered the output</strong> → turned them off with <code>message=FALSE, warning=FALSE</code>.</li>
 </ul>
 
 </section></section>

@@ -41,14 +41,6 @@ df %>% names
 library(caret)
 df <- df %>%
   mutate(
-    pregnant = as.factor(pregnant),
-    glucose  = as.factor(glucose),
-    pressure = as.factor(pressure),
-    triceps  = as.factor(triceps),
-    insulin  = as.factor(insulin),
-    mass     = as.factor(mass),
-    pedigree = as.factor(pedigree),
-    age      = as.factor(age),
     diabetes = as.factor(diabetes)
   )
 
@@ -69,6 +61,8 @@ forest$bestTune
 predict = predict(forest, df_test)
 confusion = confusionMatrix(data=predict, reference=df_test$diabetes, positive="pos")
 confusion$overall[1]
+
+plot(forest)
 ```
 
 
@@ -80,16 +74,16 @@ confusion$overall[1]
 # maxdepth, the tree depth
 # nu, the learning rate
 trControl = trainControl(method = "cv", number=7)
-tuneGrid <- expand.grid(iter = c(50, 100),
-                        maxdepth = c(1, 2),
-                        nu = 0.1)
-adaboost = train(diabetes ~., data=df_train, method="ada", trControl=trControl, tuneGrid=tuneGrid)
+
+adaboost = train(diabetes ~., data=df_train, method="ada", trControl=trControl)
 
 adaboost$bestTune
 
 predict = predict(adaboost, df_test)
 confusion = confusionMatrix(data=predict, reference=df_test$diabetes, positive="pos")
 confusion$overall[1]
+
+plot(adaboost)
 ```
 
 
@@ -104,6 +98,8 @@ pda$bestTune
 predict = predict(pda, df_test)
 confusion = confusionMatrix(data=predict, reference=df_test$diabetes, positive="pos")
 confusion$overall[1]
+
+plot(pda)
 ```
 
 ```{r}
@@ -115,6 +111,8 @@ knn$bestTune
 predict = predict(knn, df_test)
 confusion = confusionMatrix(data=predict, reference=df_test$diabetes, positive="pos")
 confusion$overall[1]
+
+plot(knn)
 ```
 
 

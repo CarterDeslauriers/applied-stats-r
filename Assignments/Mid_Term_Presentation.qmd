@@ -1,145 +1,29 @@
 ---
-title: "Midterm"
+title: "Midterm Presentation"
+subtitle: "RI Hospital Discharge Data 2018"
 author: "Carter Deslauriers"
 format:
   revealjs:
-    scrollable: true
     smaller: true
-    code-overflow: wrap
 execute:
-  echo: true
-editor: visual
+  echo: false
+  message: false
+  warning: false
 ---
 
-# Part 1: Data Wrangling
-
-## Load the Data
-
-Read in the 2018 RI hospital discharge SAS file.
-
-```{r, message=FALSE, warning=FALSE}
+```{r, include=FALSE}
 library(tidyverse)
-library(haven)
+library(gganimate)
+library(gifski)
+library(rpart)
+library(rpart.plot)
+library(caret)
 setwd("C:/Users/student/OneDrive - Bryant University/Documents/GitHub/Projects_in_R/Assignments")
-df = read_sas("Data/hdd0318cy.sas7bdat")
-```
 
-## Filter and Select
-
-Keep 2018 and the variables we need, save to CSV.
-
-```{r, message=FALSE, warning=FALSE}
-# Filter to 2018
-df = df %>% filter(yod == 18)
-
-# Keep the values we want
-df = df %>% select("yod", "payfix","pay_ub92","age",
-                    "sex","raceethn","provider","moa",
-                    "yoa","mod","admtype", "asource" ,
-                    "preopday" ,"los", "service" , "icu","ccu",
-                    "dispub92", "payer"  ,"drg","trandb",
-                    "randbg","randbs","orr", "anes","seq",
-                    "lab","dtest", "ther","blood","phar",
-                    "other","patcon","bwght","total","tot" ,
-                    "ecodub92","b_wt","pt_state","diag_adm","ancilar" ,
-                    "campus","er_fee","er_chrg","er_mode","obs_chrg",
-                    "obs_hour","psycchrg","nicu_day")
-
-# Save the smaller data to a CSV
-write_csv(df, "Data/midterm.csv")
-```
-
-## Read the Smaller Data
-
-Load the saved CSV.
-
-```{r, message=FALSE, warning=FALSE}
-# Read in the new Data
 df = read_csv("Data/midterm.csv")
-```
-
-## Missing Values
-
-Find columns with missing values.
-
-```{r, message=FALSE, warning=FALSE}
-# Sum the colns where a na appears as q
-colSums(is.na(df))
-# Show those names where the number > 0, so more than one missing
 names_na = names(df)[colSums(is.na(df)) > 0]
-names_na
-```
-
-## Drop Missing Columns
-
-Remove columns that have any NAs.
-
-```{r, message=FALSE, warning=FALSE}
-# Keep only those where there are no missing data
 df = df %>% select(-all_of(names_na))
-```
 
-## Month Variables
-
-Which columns are admission/discharge month.
-
-```{r, message=FALSE, warning=FALSE}
-# moa = month of admission, mod = month of discharge
-print("month of admission is moa, and month of discharge is mod")
-```
-
-## Admissions by Month
-
-Most common admission month, overall and for males.
-
-```{r, message=FALSE, warning=FALSE}
-# Get the count, arrange descending
-df %>% count(moa) %>% arrange(desc(n))
-print("October")
-
-# Filter first to males then do the same
-df %>% filter(sex == 1) %>% count(moa) %>% arrange(desc(n))
-print("October")
-```
-
-## Teenage Females
-
-Admissions by month for female teens.
-
-```{r, message=FALSE, warning=FALSE}
-# Filter to females, age teenager get count sort descending
-df %>% filter(sex == 2, age >= 13, age <= 19) %>% count(moa) %>% arrange(desc(n))
-```
-
-## Females in October
-
-Admissions by provider.
-
-```{r, message=FALSE, warning=FALSE}
-# Filter to femals and october, count by provider and arrange descending
-df %>% filter(sex == 2, moa == 10) %>% count(provider) %>% arrange(desc(n))
-```
-
-## Average Age by Sex
-
-```{r, message=FALSE, warning=FALSE}
-# Group by sex and then get the average age for each
-df %>% group_by(sex) %>% summarise(avg_age = mean(age))
-```
-
-## Average Age by Month
-
-```{r, message=FALSE, warning=FALSE}
-# Group by month and again summarize average, arrange descending
-df %>% group_by(moa) %>% summarise(avg_age = mean(age)) %>% arrange(desc(avg_age))
-```
-
-## Provider Names
-
-Map provider codes to hospital names.
-
-```{r, message=FALSE, warning=FALSE}
-# Add names from word file
 df = df %>% mutate(provider_name = case_when(
   provider == 7201 ~ "Newport",
   provider == 7202 ~ "St. Joseph Health Services of RI",
@@ -157,30 +41,6 @@ df = df %>% mutate(provider_name = case_when(
   provider == 7216 ~ "Butler"
 ))
 
-```
-
-## Total Charge by Provider
-
-```{r, message=FALSE, warning=FALSE}
-# Groupby provider names, get sum, arrange descending
-df %>% group_by(provider_name) %>% summarise(total_charge = sum(tot)) %>% arrange(desc(total_charge))
-```
-
-## Teen Male Charges
-
-Average charge by provider for male teens.
-
-```{r, message=FALSE, warning=FALSE}
-# Filter to male teenagers, group by provider, get average charge arrange ascending
-df %>% filter(sex == 1, age >= 13, age <= 19) %>% group_by(provider_name) %>% summarise(avg_charge = mean(tot)) %>% arrange(avg_charge)
-```
-
-## Seasons
-
-Create a season variable from admission month.
-
-```{r, message=FALSE, warning=FALSE}
-# Create the seasons
 df = df %>% mutate(season = case_when(
   moa %in% c(3, 4, 5)   ~ "Spring",
   moa %in% c(6, 7, 8)   ~ "Summer",
@@ -189,279 +49,193 @@ df = df %>% mutate(season = case_when(
 ))
 ```
 
-## Length of Stay by Season
-
-```{r, message=FALSE, warning=FALSE}
-# Group by season, get avgerage stay and arrange descending
-df %>% group_by(season) %>% summarise(avg_los = mean(los)) %>% arrange(desc(avg_los))
-```
-
-## Fall Charge Example
-
-Average charge for 20 year old males staying 1 day in the fall.
-
-```{r, message=FALSE, warning=FALSE}
-# Filter to male, 20, stay 1 day, in the fall, get the average charge
-df %>% filter(sex == 1, age == 20, los == 1, season == "Fall") %>% summarise(avg_charge = mean(tot))
-```
-
-## Wrangling Takeaways
-
-```{r, message=FALSE, warning=FALSE}
-print("The average stay was about 5 days, mostly even through the year. The charge has a large disparity between different providers, but the average charge is still pretty large across all the providers. Rholde Island Hositpal by far has the most charges but I know thats also one of the largest hospitals.")
-```
-
 # Part 2: Visualization
 
-## Visualization Libraries
+## Patients Admitted by Month
 
-```{r, message=FALSE, warning=FALSE}
-# Import libraries I need
-library(gganimate)
-library(gifski)
-```
+Admissions are fairly even across months, with October the highest.
 
-## Admissions by Month
-
-```{r, message=FALSE, warning=FALSE}
-# Bar plot of patients admitted by month
+```{r}
 df %>% ggplot() + geom_bar(mapping = aes(x = factor(moa))) + labs(title = "Patients Admitted by Month", x = "Month", y = "Number of Patients", caption = "Source: RI Hospital Discharge Data 2018")
 ```
 
-## Male Admissions by Month
+## Male Patients Admitted by Month
 
-```{r, message=FALSE, warning=FALSE}
-# Bar chart of admitted male patients per month
+Male admissions follow the same pattern; October is again the highest.
+
+```{r}
 df %>% filter(sex == 1) %>% ggplot() + geom_bar(mapping = aes(x = factor(moa))) + labs(title = "Male Patients Admitted by Month", x = "Month", y = "Number of Patients", caption = "Source: RI Hospital Discharge Data 2018")
 ```
 
-## Teen Male Admissions
+## Teenage Male Patients by Month
 
-```{r, message=FALSE, warning=FALSE}
-# Male teenagers admitted per month
+Admissions of male teenagers (13–19) by month.
+
+```{r}
 df %>% filter(sex == 1, age >= 13, age <= 19) %>% ggplot() + geom_bar(mapping = aes(x = factor(moa))) + labs(title = "Teenage Male Patients by Month", x = "Month", y = "Number of Patients", caption = "Source: RI Hospital Discharge Data 2018")
 ```
 
-## Female Patients in October
+## Female Patients in October by Provider
 
-```{r, message=FALSE, warning=FALSE}
-# Female patients in october based on provider
+Rhode Island Hospital and Women and Infants see the most female patients.
+
+```{r}
 df %>% filter(sex == 2, moa == 10) %>% ggplot() + geom_bar(mapping = aes(y = provider_name)) + labs(title = "Female Patients in October by Provider", x = "Number of Patients", y = "Provider", caption = "Source: RI Hospital Discharge Data 2018")
 ```
 
-## Age by Sex
+## Patient Age by Sex
 
-```{r, message=FALSE, warning=FALSE}
-# age distribution by sex
+Comparison of the age distribution of male and female patients.
+
+```{r}
 df %>% ggplot() + geom_boxplot(mapping = aes(x = factor(sex), y = age)) + labs(title = "Patient Age by Sex", x = "Sex (1 = Male, 2 = Female)", y = "Age", caption = "Source: RI Hospital Discharge Data 2018")
 ```
 
-## Average Age by Month
+## Average Patient Age by Month
 
-```{r, message=FALSE, warning=FALSE}
-# Average patient age based on the month
+Average age stays about the same throughout the year.
+
+```{r}
 df %>% group_by(moa) %>% summarise(avg_age = mean(age)) %>% ggplot() + geom_col(mapping = aes(x = factor(moa), y = avg_age)) + labs(title = "Average Patient Age by Month", x = "Month", y = "Average Age", caption = "Source: RI Hospital Discharge Data 2018")
 ```
 
 ## Total Charges by Provider
 
-```{r, message=FALSE, warning=FALSE}
-# Total charge based on the provider
+Rhode Island Hospital has by far the highest total charge, since it is one of the largest hospitals.
+
+```{r}
 df %>% group_by(provider_name) %>% summarise(total_charge = sum(tot)) %>% ggplot() + geom_col(mapping = aes(x = total_charge, y = provider_name)) + labs(title = "Total Charges by Provider", x = "Total Charge ($)", y = "Provider", caption = "Source: RI Hospital Discharge Data 2018")
 ```
 
-## Teen Male Average Charge
+## Average Charge for Teenage Males by Provider
 
-```{r, message=FALSE, warning=FALSE}
-# Average charge by male teenagers based on provider
+Average charges vary a lot between providers.
+
+```{r}
 df %>% filter(sex == 1, age >= 13, age <= 19) %>% group_by(provider_name) %>% summarise(avg_charge = mean(tot)) %>% ggplot() + geom_col(mapping = aes(x = avg_charge, y = provider_name)) + labs(title = "Average Charge for Teenage Males by Provider", x = "Average Charge ($)", y = "Provider", caption = "Source: RI Hospital Discharge Data 2018")
 ```
 
-## Length of Stay by Season
+## Average Length of Stay by Season
 
-```{r, message=FALSE, warning=FALSE}
-# Average stay based on the season
+Average stay is about 5 days and is similar across seasons.
+
+```{r}
 df %>% group_by(season) %>% summarise(avg_los = mean(los)) %>% ggplot() + geom_col(mapping = aes(x = season, y = avg_los)) + labs(title = "Average Length of Stay by Season", x = "Season", y = "Average Length of Stay (days)", caption = "Source: RI Hospital Discharge Data 2018")
 ```
 
-## Length of Stay vs. Charge
+## Length of Stay vs. Total Charge
 
-```{r, message=FALSE, warning=FALSE}
-# Length of stay by total charge
+Longer stays generally lead to higher charges.
+
+```{r}
 df %>% ggplot() + geom_point(mapping = aes(x = los, y = tot)) + labs(title = "Length of Stay vs. Total Charge", x = "Length of Stay (days)", y = "Total Charge ($)", caption = "Source: RI Hospital Discharge Data 2018")
 ```
 
-## Animated: Charge by Season
+## Animation: Average Charge by Provider and Season
 
-Average charge by provider, animated across seasons.
+How the average charge at each provider changes across the seasons.
 
-```{r, message=FALSE, warning=FALSE}
-# Average charger by provider based on season
+```{r}
 g = df %>% group_by(season, provider_name) %>% summarise(avg_charge = mean(tot)) %>% ggplot() + geom_col(mapping = aes(x = avg_charge, y = provider_name)) + transition_states(season) + labs(title = "Average Charge by Provider - Season: {closest_state}", x = "Average Charge ($)", y = "Provider", caption = "Source: RI Hospital Discharge Data 2018")
 
 animate(g)
 ```
 
-# Part 3: Predictive Models
-
-## Modeling Libraries
-
-```{r, message=FALSE, warning=FALSE}
-# Load libraries
-library(rpart)
-library(rpart.plot)
-library(caret)
-```
-
-## Model Data
-
-Select predictors and total charge.
-
-```{r, message=FALSE, warning=FALSE}
-# Create new dataset with only the variables I need
+```{r, include=FALSE}
 df2 = read_csv("Data/midterm.csv") %>% select(tot, age, sex, raceethn, provider, moa, mod, admtype, campus, los)
-```
-
-## Remove Missing
-
-```{r, message=FALSE, warning=FALSE}
-# Filter to variables that are not missing
 df2 = df2 %>% filter(!is.na(raceethn), !is.na(admtype)) %>% drop_na()
-```
-
-## Q1: Target and Split
-
-Target = high/low charge (median split); 10% train.
-
-```{r, message=FALSE, warning=FALSE}
-# Make the target into high and low splitting on median
 df2 = df2 %>% mutate(target = ifelse(tot < median(tot), "low", "high")) %>% select(-tot)
-
-# Mutate the variables to be factors
 df2 = df2 %>% mutate(target = factor(target),
                      sex = factor(sex), raceethn = factor(raceethn),
                      provider = factor(provider), moa = factor(moa),
                      mod = factor(mod), admtype = factor(admtype),
                      campus = factor(campus))
-
-# Set seed to be replicable and the data partition for training and testing
 set.seed(2018)
 splitIndex = createDataPartition(df2$target, p = 0.1, list = FALSE)
 df_train = df2[splitIndex, ]
 df_test = df2[-splitIndex, ]
-```
 
-## Q2: Decision Tree
-
-Fit a tree and plot variable importance.
-
-```{r, message=FALSE, warning=FALSE}
-# Build the decision tree
-tree_model = rpart(target ~ ., data = df_train)
-rpart.plot(tree_model)
-
-# Plot the variable importance
-barplot(tree_model$variable.importance, las = 2, main = "Variable Importance (Decision Tree)")
-```
-
-## Q3: Tree vs. Forest (caret)
-
-5-fold CV to tune a tree and a random forest.
-
-```{r, message=FALSE, warning=FALSE}
-# Set our controls to find best tree
 trControl = trainControl(method = "cv", number = 5)
-
-# Train tree
 tree = train(target ~ ., data = df_train, method = "rpart", trControl = trControl, tuneLength = 5)
-
-plot(tree)
-
-# Train forest
 forest = train(target ~ ., data = df_train, method = "ranger", trControl = trControl, tuneLength = 3)
-
-plot(forest)
 ```
 
-## Q4: Compare Models
+# Part 3: Predictive Models
 
-Resampled accuracy of both models.
+## Q4: Model Comparison
 
-```{r, message=FALSE, warning=FALSE}
-# Comapre the results
+Target: total charge **high** vs. **low** (split at the median). Decision tree vs. random forest, 5-fold cross-validation.
+
+```{r}
 results = resamples(list(Tree = tree, Forest = forest))
 bwplot(results)
 ```
 
-## Q5: Final Model - Forest on Test Data
+The random forest has higher accuracy than the decision tree.
 
-Test-set performance of the forest.
+## Q5: Final Model on Test Data
 
-```{r, message=FALSE, warning=FALSE}
-# Plot the confusion matrix of the better model
+The final model is the **random forest**. Its accuracy on the 90% test set:
+
+```{r}
 pred = predict(forest, df_test)
 confusionMatrix(pred, df_test$target, positive = "high")
 ```
 
-## Q6: New Target - Length of Stay
-
-Repeat the process predicting long vs. short stays.
-
-```{r, message=FALSE, warning=FALSE}
-# Create a new dataset
+```{r, include=FALSE}
 df3 = read_csv("Data/midterm.csv") %>% select(los, age, sex, raceethn, provider, moa, admtype, campus) %>% drop_na()
-
-# Make the target based on stay length to long and short split on medican
 df3 = df3 %>% mutate(target = ifelse(los > median(los), "long", "short")) %>% select(-los)
-
-# Mutate factors
 df3 = df3 %>% mutate(target = factor(target),
                      sex = factor(sex), raceethn = factor(raceethn),
                      provider = factor(provider), moa = factor(moa),
                      admtype = factor(admtype), campus = factor(campus))
-
-# Set the seed and get the data parittion split
 set.seed(2018)
 splitIndex = createDataPartition(df3$target, p = 0.1, list = FALSE)
 df_train = df3[splitIndex, ]
 df_test = df3[-splitIndex, ]
-
-# Train a tree model and plot it and importance
 tree_model = rpart(target ~ ., data = df_train)
-rpart.plot(tree_model)
-barplot(tree_model$variable.importance, las = 2, main = "Variable Importance (Decision Tree)")
-
-# Train tree again using rpart
 tree = train(target ~ ., data = df_train, method = "rpart", trControl = trControl, tuneLength = 5)
-
-plot(tree)
-
-# Train a forest in the same manner
 forest = train(target ~ ., data = df_train, method = "ranger", trControl = trControl, tuneLength = 3)
-
-plot(forest)
-
-# Plot the results and compare
-results = resamples(list(Tree = tree, Forest = forest))
-bwplot(results)
-
-# Plot the confusion matrix
-pred = predict(forest, df_test)
-confusionMatrix(pred, df_test$target, positive = "long")
 ```
 
-## Modeling Takeaways
+## Q6: New Target - Length of Stay
 
-```{r, message=FALSE, warning=FALSE}
-print("Froests tend to outperform trees but take much longer to train. Decision tree seems to have los or time stayed as the best predictor or most important variable in terms of decisions. In some cases it turns out to be the provider but it depends on the question being ask ie the target. When time stayed in teh target then provider seems to be most important.")
+New target: length of stay **long** vs. **short** (split at the median). The decision tree:
+
+```{r}
+rpart.plot(tree_model)
+```
+
+## Q6: Variable Importance
+
+When length of stay is the target, provider is the most important variable.
+
+```{r}
+barplot(tree_model$variable.importance, las = 2, main = "Variable Importance (Decision Tree)")
+```
+
+## Q6: Model Comparison
+
+```{r}
+results = resamples(list(Tree = tree, Forest = forest))
+bwplot(results)
+```
+
+The random forest again does better than the tree.
+
+## Q6: Final Model on Test Data
+
+```{r}
+pred = predict(forest, df_test)
+confusionMatrix(pred, df_test$target, positive = "long")
 ```
 
 # Challenges
 
 ## Challenges and Fixes
 
-- Large SAS file was slow to load, filtered to 2018, kept needed columns, saved a smaller CSV.
-- Missing values existed so I dropped columns with NAs; used `drop_na()` for modeling data.
-- Provider codes were just numbers so I mapped them to hospital names with `case_when()`.
-- Random forest took a long time to train, so I trained on a 10% sample with `tuneLength = 3`.
-- Warnings/messages cluttered the output so I had to include `message=FALSE, warning=FALSE` on each chunk.
+- **Large SAS file was slow to load** → filtered to 2018, kept needed columns, and saved a smaller CSV.
+- **Missing values** → dropped columns with NAs; used `drop_na()` for the modeling data.
+- **Provider codes were just numbers** → mapped them to hospital names with `case_when()`.
+- **Random forest took a long time to train** → trained on the 10% training set with `tuneLength = 3`.
+- **Messages and warnings cluttered the output** → turned them off with `message=FALSE, warning=FALSE`.
