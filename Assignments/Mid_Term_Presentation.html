@@ -149,57 +149,57 @@ Carter Deslauriers
 </section>
 <section id="patients-admitted-by-month" class="slide level2">
 <h2>Patients Admitted by Month</h2>
-<p>Admissions are fairly even across months, with October the highest.</p>
+<p>We start with the big picture: admissions are fairly even across months, with October the highest.</p>
 
 <img data-src="Mid_Term_Presentation_files/figure-revealjs/unnamed-chunk-2-1.png" width="960" class="r-stretch"></section>
 <section id="male-patients-admitted-by-month" class="slide level2">
 <h2>Male Patients Admitted by Month</h2>
-<p>Male admissions follow the same pattern; October is again the highest.</p>
+<p>Narrowing to men, the pattern holds: October is again the highest.</p>
 
 <img data-src="Mid_Term_Presentation_files/figure-revealjs/unnamed-chunk-3-1.png" width="960" class="r-stretch"></section>
 <section id="teenage-male-patients-by-month" class="slide level2">
 <h2>Teenage Male Patients by Month</h2>
-<p>Admissions of male teenagers (13–19) by month.</p>
+<p>Narrowing further to teenage men (13–19), the numbers are much smaller and less even.</p>
 
 <img data-src="Mid_Term_Presentation_files/figure-revealjs/unnamed-chunk-4-1.png" width="960" class="r-stretch"></section>
 <section id="female-patients-in-october-by-provider" class="slide level2">
 <h2>Female Patients in October by Provider</h2>
-<p>Rhode Island Hospital and Women and Infants see the most female patients.</p>
+<p>Switching to women in October (the busiest month): Rhode Island Hospital and Women and Infants see the most.</p>
 
 <img data-src="Mid_Term_Presentation_files/figure-revealjs/unnamed-chunk-5-1.png" width="960" class="r-stretch"></section>
 <section id="patient-age-by-sex" class="slide level2">
 <h2>Patient Age by Sex</h2>
-<p>Comparison of the age distribution of male and female patients.</p>
+<p>Next, who are the patients? Comparing the age distribution of men and women.</p>
 
 <img data-src="Mid_Term_Presentation_files/figure-revealjs/unnamed-chunk-6-1.png" width="960" class="r-stretch"></section>
 <section id="average-patient-age-by-month" class="slide level2">
 <h2>Average Patient Age by Month</h2>
-<p>Average age stays about the same throughout the year.</p>
+<p>And age does not change with the season: the average stays about the same all year.</p>
 
 <img data-src="Mid_Term_Presentation_files/figure-revealjs/unnamed-chunk-7-1.png" width="960" class="r-stretch"></section>
 <section id="total-charges-by-provider" class="slide level2">
 <h2>Total Charges by Provider</h2>
-<p>Rhode Island Hospital has by far the highest total charge, since it is one of the largest hospitals.</p>
+<p>Now the money: Rhode Island Hospital has by far the highest total charge, since it is one of the largest hospitals.</p>
 
 <img data-src="Mid_Term_Presentation_files/figure-revealjs/unnamed-chunk-8-1.png" width="960" class="r-stretch"></section>
 <section id="average-charge-for-teenage-males-by-provider" class="slide level2">
 <h2>Average Charge for Teenage Males by Provider</h2>
-<p>Average charges vary a lot between providers.</p>
+<p>Per patient it’s different: for teenage men, average charges vary a lot between providers.</p>
 
 <img data-src="Mid_Term_Presentation_files/figure-revealjs/unnamed-chunk-9-1.png" width="960" class="r-stretch"></section>
 <section id="average-length-of-stay-by-season" class="slide level2">
 <h2>Average Length of Stay by Season</h2>
-<p>Average stay is about 5 days and is similar across seasons.</p>
+<p>What drives charges? Season doesn’t change length of stay much (about 5 days)…</p>
 
 <img data-src="Mid_Term_Presentation_files/figure-revealjs/unnamed-chunk-10-1.png" width="960" class="r-stretch"></section>
 <section id="length-of-stay-vs.-total-charge" class="slide level2">
 <h2>Length of Stay vs.&nbsp;Total Charge</h2>
-<p>Longer stays generally lead to higher charges.</p>
+<p>…but length of stay itself matters: longer stays generally lead to higher charges.</p>
 
 <img data-src="Mid_Term_Presentation_files/figure-revealjs/unnamed-chunk-11-1.png" width="960" class="r-stretch"></section>
 <section id="animation-average-charge-by-provider-and-season" class="slide level2">
 <h2>Animation: Average Charge by Provider and Season</h2>
-<p>How the average charge at each provider changes across the seasons.</p>
+<p>Finally, putting provider and season together: how each provider’s average charge changes through the year.</p>
 
 <img data-src="Mid_Term_Presentation_files/figure-revealjs/unnamed-chunk-12-1.gif" class="r-stretch"></section></section>
 <section>
@@ -218,33 +218,14 @@ Carter Deslauriers
 <p>The final model is the <strong>random forest</strong>. Its accuracy on the 90% test set:</p>
 <div class="cell">
 <div class="cell-output cell-output-stdout">
-<pre><code>Confusion Matrix and Statistics
-
-          Reference
+<pre><code>          Reference
 Prediction  high   low
       high 46465  9711
-      low  10923 47674
-                                         
-               Accuracy : 0.8202         
-                 95% CI : (0.818, 0.8224)
-    No Information Rate : 0.5            
-    P-Value [Acc &gt; NIR] : &lt; 2.2e-16      
-                                         
-                  Kappa : 0.6404         
-                                         
- Mcnemar's Test P-Value : &lt; 2.2e-16      
-                                         
-            Sensitivity : 0.8097         
-            Specificity : 0.8308         
-         Pos Pred Value : 0.8271         
-         Neg Pred Value : 0.8136         
-             Prevalence : 0.5000         
-         Detection Rate : 0.4048         
-   Detection Prevalence : 0.4895         
-      Balanced Accuracy : 0.8202         
-                                         
-       'Positive' Class : high           
-                                         </code></pre>
+      low  10923 47674</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Accuracy 
+0.820219 </code></pre>
 </div>
 </div>
 </section>
@@ -261,41 +242,23 @@ Prediction  high   low
 <section id="q6-model-comparison" class="slide level2">
 <h2>Q6: Model Comparison</h2>
 
-<img data-src="Mid_Term_Presentation_files/figure-revealjs/unnamed-chunk-19-1.png" width="960" class="r-stretch"><p>The random forest again does better than the tree.</p>
+<img data-src="Mid_Term_Presentation_files/figure-revealjs/unnamed-chunk-19-1.png" width="960" class="r-stretch"><p>The tree and forest have almost the same accuracy here, so the forest is only slightly better.</p>
 </section>
 <section id="q6-final-model-on-test-data" class="slide level2">
 <h2>Q6: Final Model on Test Data</h2>
 <div class="cell">
 <div class="cell-output cell-output-stdout">
-<pre><code>Confusion Matrix and Statistics
-
-          Reference
+<pre><code>          Reference
 Prediction  long short
      long  17816 12421
-     short 31153 53384
-                                          
-               Accuracy : 0.6203          
-                 95% CI : (0.6175, 0.6232)
-    No Information Rate : 0.5733          
-    P-Value [Acc &gt; NIR] : &lt; 2.2e-16       
-                                          
-                  Kappa : 0.1841          
-                                          
- Mcnemar's Test P-Value : &lt; 2.2e-16       
-                                          
-            Sensitivity : 0.3638          
-            Specificity : 0.8112          
-         Pos Pred Value : 0.5892          
-         Neg Pred Value : 0.6315          
-             Prevalence : 0.4267          
-         Detection Rate : 0.1552          
-   Detection Prevalence : 0.2634          
-      Balanced Accuracy : 0.5875          
-                                          
-       'Positive' Class : long            
-                                          </code></pre>
+     short 31153 53384</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code> Accuracy 
+0.6203496 </code></pre>
 </div>
 </div>
+<p>We use the forest, but the simpler decision tree would perform about the same on this target.</p>
 </section></section>
 <section>
 <section id="challenges" class="title-slide slide level1 center">
