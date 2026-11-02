@@ -53,90 +53,90 @@ df = df %>% mutate(season = case_when(
 
 ## Patients Admitted by Month
 
-Admissions are fairly even across months, with October the highest.
+We start with the big picture: admissions are fairly even across months, with October the highest.
 
 ```{r}
-df %>% ggplot() + geom_bar(mapping = aes(x = factor(moa))) + labs(title = "Patients Admitted by Month", x = "Month", y = "Number of Patients", caption = "Source: RI Hospital Discharge Data 2018")
+df %>% ggplot() + geom_bar(mapping = aes(x = factor(moa)), fill = "steelblue") + labs(title = "Patients Admitted by Month", x = "Month", y = "Number of Patients", caption = "Source: RI Hospital Discharge Data 2018")
 ```
 
 ## Male Patients Admitted by Month
 
-Male admissions follow the same pattern; October is again the highest.
+Narrowing to men, the pattern holds: October is again the highest.
 
 ```{r}
-df %>% filter(sex == 1) %>% ggplot() + geom_bar(mapping = aes(x = factor(moa))) + labs(title = "Male Patients Admitted by Month", x = "Month", y = "Number of Patients", caption = "Source: RI Hospital Discharge Data 2018")
+df %>% filter(sex == 1) %>% ggplot() + geom_bar(mapping = aes(x = factor(moa)), fill = "darkorange") + labs(title = "Male Patients Admitted by Month", x = "Month", y = "Number of Patients", caption = "Source: RI Hospital Discharge Data 2018")
 ```
 
 ## Teenage Male Patients by Month
 
-Admissions of male teenagers (13–19) by month.
+Narrowing further to teenage men (13–19), the numbers are much smaller and less even.
 
 ```{r}
-df %>% filter(sex == 1, age >= 13, age <= 19) %>% ggplot() + geom_bar(mapping = aes(x = factor(moa))) + labs(title = "Teenage Male Patients by Month", x = "Month", y = "Number of Patients", caption = "Source: RI Hospital Discharge Data 2018")
+df %>% filter(sex == 1, age >= 13, age <= 19) %>% ggplot() + geom_bar(mapping = aes(x = factor(moa)), fill = "firebrick") + labs(title = "Teenage Male Patients by Month", x = "Month", y = "Number of Patients", caption = "Source: RI Hospital Discharge Data 2018")
 ```
 
 ## Female Patients in October by Provider
 
-Rhode Island Hospital and Women and Infants see the most female patients.
+Switching to women in October (the busiest month): Rhode Island Hospital and Women and Infants see the most.
 
 ```{r}
-df %>% filter(sex == 2, moa == 10) %>% ggplot() + geom_bar(mapping = aes(y = provider_name)) + labs(title = "Female Patients in October by Provider", x = "Number of Patients", y = "Provider", caption = "Source: RI Hospital Discharge Data 2018")
+df %>% filter(sex == 2, moa == 10) %>% ggplot() + geom_bar(mapping = aes(y = provider_name), fill = "mediumpurple") + labs(title = "Female Patients in October by Provider", x = "Number of Patients", y = "Provider", caption = "Source: RI Hospital Discharge Data 2018")
 ```
 
 ## Patient Age by Sex
 
-Comparison of the age distribution of male and female patients.
+Next, who are the patients? Comparing the age distribution of men and women.
 
 ```{r}
-df %>% ggplot() + geom_boxplot(mapping = aes(x = factor(sex), y = age)) + labs(title = "Patient Age by Sex", x = "Sex (1 = Male, 2 = Female)", y = "Age", caption = "Source: RI Hospital Discharge Data 2018")
+df %>% ggplot() + geom_boxplot(mapping = aes(x = factor(sex), y = age, fill = factor(sex)), show.legend = FALSE) + labs(title = "Patient Age by Sex", x = "Sex (1 = Male, 2 = Female)", y = "Age", caption = "Source: RI Hospital Discharge Data 2018")
 ```
 
 ## Average Patient Age by Month
 
-Average age stays about the same throughout the year.
+And age does not change with the season: the average stays about the same all year.
 
 ```{r}
-df %>% group_by(moa) %>% summarise(avg_age = mean(age)) %>% ggplot() + geom_col(mapping = aes(x = factor(moa), y = avg_age)) + labs(title = "Average Patient Age by Month", x = "Month", y = "Average Age", caption = "Source: RI Hospital Discharge Data 2018")
+df %>% group_by(moa) %>% summarise(avg_age = mean(age)) %>% ggplot() + geom_col(mapping = aes(x = factor(moa), y = avg_age), fill = "seagreen") + labs(title = "Average Patient Age by Month", x = "Month", y = "Average Age", caption = "Source: RI Hospital Discharge Data 2018")
 ```
 
 ## Total Charges by Provider
 
-Rhode Island Hospital has by far the highest total charge, since it is one of the largest hospitals.
+Now the money: Rhode Island Hospital has by far the highest total charge, since it is one of the largest hospitals.
 
 ```{r}
-df %>% group_by(provider_name) %>% summarise(total_charge = sum(tot)) %>% ggplot() + geom_col(mapping = aes(x = total_charge, y = provider_name)) + labs(title = "Total Charges by Provider", x = "Total Charge ($)", y = "Provider", caption = "Source: RI Hospital Discharge Data 2018")
+df %>% group_by(provider_name) %>% summarise(total_charge = sum(tot)) %>% ggplot() + geom_col(mapping = aes(x = total_charge, y = provider_name), fill = "goldenrod") + labs(title = "Total Charges by Provider", x = "Total Charge ($)", y = "Provider", caption = "Source: RI Hospital Discharge Data 2018")
 ```
 
 ## Average Charge for Teenage Males by Provider
 
-Average charges vary a lot between providers.
+Per patient it's different: for teenage men, average charges vary a lot between providers.
 
 ```{r}
-df %>% filter(sex == 1, age >= 13, age <= 19) %>% group_by(provider_name) %>% summarise(avg_charge = mean(tot)) %>% ggplot() + geom_col(mapping = aes(x = avg_charge, y = provider_name)) + labs(title = "Average Charge for Teenage Males by Provider", x = "Average Charge ($)", y = "Provider", caption = "Source: RI Hospital Discharge Data 2018")
+df %>% filter(sex == 1, age >= 13, age <= 19) %>% group_by(provider_name) %>% summarise(avg_charge = mean(tot)) %>% ggplot() + geom_col(mapping = aes(x = avg_charge, y = provider_name), fill = "firebrick") + labs(title = "Average Charge for Teenage Males by Provider", x = "Average Charge ($)", y = "Provider", caption = "Source: RI Hospital Discharge Data 2018")
 ```
 
 ## Average Length of Stay by Season
 
-Average stay is about 5 days and is similar across seasons.
+What drives charges? Season doesn't change length of stay much (about 5 days)...
 
 ```{r}
-df %>% group_by(season) %>% summarise(avg_los = mean(los)) %>% ggplot() + geom_col(mapping = aes(x = season, y = avg_los)) + labs(title = "Average Length of Stay by Season", x = "Season", y = "Average Length of Stay (days)", caption = "Source: RI Hospital Discharge Data 2018")
+df %>% group_by(season) %>% summarise(avg_los = mean(los)) %>% ggplot() + geom_col(mapping = aes(x = season, y = avg_los, fill = season), show.legend = FALSE) + labs(title = "Average Length of Stay by Season", x = "Season", y = "Average Length of Stay (days)", caption = "Source: RI Hospital Discharge Data 2018")
 ```
 
 ## Length of Stay vs. Total Charge
 
-Longer stays generally lead to higher charges.
+...but length of stay itself matters: longer stays generally lead to higher charges.
 
 ```{r}
-df %>% ggplot() + geom_point(mapping = aes(x = los, y = tot)) + labs(title = "Length of Stay vs. Total Charge", x = "Length of Stay (days)", y = "Total Charge ($)", caption = "Source: RI Hospital Discharge Data 2018")
+df %>% ggplot() + geom_point(mapping = aes(x = los, y = tot), color = "steelblue", alpha = 0.3) + labs(title = "Length of Stay vs. Total Charge", x = "Length of Stay (days)", y = "Total Charge ($)", caption = "Source: RI Hospital Discharge Data 2018")
 ```
 
 ## Animation: Average Charge by Provider and Season
 
-How the average charge at each provider changes across the seasons.
+Finally, putting provider and season together: how each provider's average charge changes through the year.
 
 ```{r}
-g = df %>% group_by(season, provider_name) %>% summarise(avg_charge = mean(tot)) %>% ggplot() + geom_col(mapping = aes(x = avg_charge, y = provider_name)) + transition_states(season) + labs(title = "Average Charge by Provider - Season: {closest_state}", x = "Average Charge ($)", y = "Provider", caption = "Source: RI Hospital Discharge Data 2018")
+g = df %>% group_by(season, provider_name) %>% summarise(avg_charge = mean(tot)) %>% ggplot() + geom_col(mapping = aes(x = avg_charge, y = provider_name), fill = "goldenrod") + transition_states(season) + labs(title = "Average Charge by Provider - Season: {closest_state}", x = "Average Charge ($)", y = "Provider", caption = "Source: RI Hospital Discharge Data 2018")
 
 animate(g)
 ```
@@ -168,7 +168,7 @@ Target: total charge **high** vs. **low** (split at the median). Decision tree v
 
 ```{r}
 results = resamples(list(Tree = tree, Forest = forest))
-bwplot(results)
+bwplot(results, metric = "Accuracy")
 ```
 
 The random forest has higher accuracy than the decision tree.
@@ -179,7 +179,9 @@ The final model is the **random forest**. Its accuracy on the 90% test set:
 
 ```{r}
 pred = predict(forest, df_test)
-confusionMatrix(pred, df_test$target, positive = "high")
+cm = confusionMatrix(pred, df_test$target, positive = "high")
+cm$table
+cm$overall["Accuracy"]
 ```
 
 ```{r, include=FALSE}
@@ -218,17 +220,21 @@ barplot(tree_model$variable.importance, las = 2, main = "Variable Importance (De
 
 ```{r}
 results = resamples(list(Tree = tree, Forest = forest))
-bwplot(results)
+bwplot(results, metric = "Accuracy")
 ```
 
-The random forest again does better than the tree.
+The tree and forest have almost the same accuracy here, so the forest is only slightly better.
 
 ## Q6: Final Model on Test Data
 
 ```{r}
 pred = predict(forest, df_test)
-confusionMatrix(pred, df_test$target, positive = "long")
+cm = confusionMatrix(pred, df_test$target, positive = "long")
+cm$table
+cm$overall["Accuracy"]
 ```
+
+We use the forest, but the simpler decision tree would perform about the same on this target.
 
 # Challenges
 
