@@ -19,32 +19,8 @@
 |11|[Assignment 11](Assignments/assignment11.html)|Universal package modeling|
 |12|[Assignment 12](Assignments/assignment12.html)|Model Tuning|
 |M|[Midterm Presentation](Assignments/Mid_Term_Presentation.html)|Midterm - RI Hospital Discharge Data|
+|K|[Heart Disease Kaggle Project](Kaggle_Assignment/heart_disease.ipynb)|Kaggle - Heart Disease Prediction ([slides](Kaggle_Assignment/Heart%20Disease%20Prediction.pdf), [notes](Kaggle_Assignment/heart_disease_notes.md))|
 
-## Imbalanced Learning Methods
+## Archived
 
-### Data-level
-
-|**Methods**|Description|Code|
-|:-|:-|:-|
-|SMOTE|Synthetic Minority Over-sampling Technique|[SMOTE.py](Data-level-methods/SMOTE.py)|
-
-### Algorithm-level
-
-### Hybrid-level
-|**Methods**|Description|Code|
-|:-|:-|:-|
-|Ensemble|Easy Ensemble|[Ensemble.py](Hybrid-level-methods/Ensemble.py)|
-
-## Other code
-|**Methods**|Description|Code|
-|:-|:-|:-|
-|Data Creation|The python code that splits my data into train/test, creates z-scores for each observation, and return the training and tests dataframes|[Data-Creation.py](IBL_General/Data_Creation.py)|
-|Model Validation|The python code that takes in the models p values and determines the FP, FN, TP, TN|[Model-Validation.py](IBL_General/Validation.py)|
-|Visualization|The python code that takes in FP, FN, TP, TN and creates ROC and PR curves|[Visualization.py](IBL_General/Visualize.py)|
-
-## Notes
-
-|**Methods**|Description|Code|
-|:-|:-|:-|
-|Logistic Regression|Set up logistic functions for one row; show probability function bounds and limits; show loss function; derive the gradient; show for n rows; observe equality of probability and true y at optimum|[Gradient Derivations LaTeX](Notes/Derivations/Logistic_Gradient.pdf)|
-
+The Imbalanced Learning material (Data-level, Hybrid-level, IBL general code, and Notes) has been moved to [Archive/](Archive/) and is being migrated to a separate repository.
