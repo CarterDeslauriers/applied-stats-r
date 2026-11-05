@@ -20,6 +20,7 @@
 |12|[Assignment 12](Assignments/assignment12.html)|Model Tuning|
 |M|[Midterm Presentation](Assignments/Mid_Term_Presentation.html)|Midterm - RI Hospital Discharge Data|
 |K|[Heart Disease Kaggle Project](Kaggle_Assignment/heart_disease.ipynb)|Kaggle - Heart Disease Prediction ([slides](Kaggle_Assignment/Heart%20Disease%20Prediction.pdf), [notes](Kaggle_Assignment/heart_disease_notes.md))|
+|L|[LASSO vs. OLS](Assignments/LASSO_vs_OLS.html)|In-class - LASSO vs. Linear Regression ([notebook](Assignments/LASSO_vs_OLS.ipynb))|
 
 ## Archived
 
