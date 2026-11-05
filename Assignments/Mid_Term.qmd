@@ -215,7 +215,9 @@ df %>% group_by(provider_name) %>% summarise(total_charge = sum(tot)) %>% ggplot
 
 ```{r}
 # Average charge by male teenagers based on provider
-df %>% filter(sex == 1, age >= 13, age <= 19) %>% group_by(provider_name) %>% summarise(avg_charge = mean(tot)) %>% ggplot() + geom_col(mapping = aes(x = avg_charge, y = provider_name)) + labs(title = "Average Charge for Teenage Males by Provider", x = "Average Charge ($)", y = "Provider", caption = "Source: RI Hospital Discharge Data 2018")
+df %>% 
+  filter(sex == 1, age >= 13, age <= 19) %>% 
+  group_by(provider_name) %>% summarise(avg_charge = mean(tot)) %>% ggplot() + geom_col(mapping = aes(x = avg_charge, y = provider_name)) + labs(title = "Average Charge for Teenage Males by Provider", x = "Average Charge ($)", y = "Provider", caption = "Source: RI Hospital Discharge Data 2018")
 ```
 
 
@@ -227,7 +229,7 @@ df %>% group_by(season) %>% summarise(avg_los = mean(los)) %>% ggplot() + geom_c
 
 ```{r}
 # Length of stay by total charge
-df %>% ggplot() + geom_point(mapping = aes(x = los, y = tot)) + labs(title = "Length of Stay vs. Total Charge", x = "Length of Stay (days)", y = "Total Charge ($)", caption = "Source: RI Hospital Discharge Data 2018")
+df %>% group_by(los) %>% summarize(avg_charge = mean(tot)) %>% ggplot() + geom_point(mapping = aes(x = los, y = avg_charge)) + labs(title = "Length of Stay vs. Total Charge", x = "Length of Stay (days)", y = "Total Charge ($)", caption = "Source: RI Hospital Discharge Data 2018")
 ```
 
 
