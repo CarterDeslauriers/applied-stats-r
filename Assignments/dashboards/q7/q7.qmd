@@ -1,0 +1,53 @@
+---
+title: "Cars - radioButtons"
+format: dashboard
+server: shiny
+---
+
+```{r}
+#| context: setup
+library(shiny)
+library(tidyverse)
+library(plotly)
+library(DT)
+df <- mpg
+```
+
+# Plots
+
+## {.sidebar}
+
+```{r}
+radioButtons("year", "Model year", choices = c(1999, 2008))
+```
+
+## Column
+
+```{r}
+#| title: Highway mpg by class
+plotlyOutput("p1")
+```
+
+```{r}
+#| title: Engine size
+plotlyOutput("p2")
+```
+
+# Data
+
+```{r}
+#| title: Cars
+DTOutput("tbl")
+```
+
+```{r}
+#| context: server
+filtered <- reactive(df |> filter(year == input$year))
+output$p1 <- renderPlotly({
+  ggplotly(ggplot(filtered(), aes(class, hwy)) + geom_boxplot())
+})
+output$p2 <- renderPlotly({
+  ggplotly(ggplot(filtered(), aes(displ)) + geom_histogram(bins = 15))
+})
+output$tbl <- renderDT(datatable(filtered()))
+```

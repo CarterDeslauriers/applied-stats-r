@@ -38,11 +38,12 @@ knitr::opts_chunk$set(message = FALSE)
 Hint: [Similar Function](https://bryantstats.github.io/math421/gganimate/17_writing_functions.html#42)
 
 ```{r}
-def age(x):
-  y = 2026 - x
-  print(f"You are {y} age")
-
-age(2005)
+library(tidyverse)
+age <- function(x) {
+  r <- 2020 - x
+  print(paste0('You are ', r, ' age'))
+}
+age(2000)
 ```
 
 
@@ -55,6 +56,18 @@ age(2005)
 - Output: print out: "You input an even number!" if the number is event, or "You input an odd number!" otherwise. 
 
 Hint: [Similar Function](https://bryantstats.github.io/math421/gganimate/17_writing_functions.html#46)
+
+```{r}
+even_odd <- function(x) {
+  if (x %% 2 == 0) {
+    print('You input an even number!')
+  } else {
+    print('You input an odd number!')
+  }
+}
+even_odd(4)
+even_odd(7)
+```
 
 -------
 
@@ -70,6 +83,17 @@ Hint: [Similar Function](https://bryantstats.github.io/math421/gganimate/17_writ
   
 Hint: [Similar Function](https://bryantstats.github.io/math421/gganimate/17_writing_functions.html#50)
 
+```{r}
+mean_impute <- function(x) {
+  if (sum(is.na(x)) > 0) {
+    x[is.na(x)] <- mean(x, na.rm = TRUE)
+  }
+  return(x)
+}
+mean_impute(c(1, NA, 3))
+mean_impute(c(1, 2, 3))
+```
+
 -------
 
 4. Write the following function.  Give an example to test your function. 
@@ -79,6 +103,24 @@ Hint: [Similar Function](https://bryantstats.github.io/math421/gganimate/17_writ
 - Output:  The vector x where the missing values replaced by the mean (if x is numeric) or the mode (if x is non-numeric).  If x does not have missing value, return the same vector x.  
 
 Hint: Use If-statement to combine the function in Question 3 and [this function](https://bryantstats.github.io/math421/gganimate/17_writing_functions.html#49)
+
+```{r}
+mode_impute <- function(x) {
+  if (!is.numeric(x)) {
+    mode_of_x <- names(sort(-table(x)))[1]
+    x <- replace_na(x, mode_of_x)
+  }
+  return(x)
+}
+impute <- function(x) {
+  if (is.numeric(x)) {
+    return(mean_impute(x))
+  }
+  return(mode_impute(x))
+}
+impute(c(1, NA, 3))
+impute(c('a', 'a', NA, 'b'))
+```
 
 -------
 
@@ -99,10 +141,45 @@ Hint:
 - [Similar Function](https://bryantstats.github.io/math421/gganimate/17_writing_functions.html#53)
  
 - You can refer to this slide to plot a boxplot: https://bryantstats.github.io/math421/slides/6_viz.html#36
+
+```{r, warning=FALSE}
+df <- read_csv('Data/titanic.csv')
+box_viz <- function(d) {
+  if (is.numeric(d[[1]]) & !is.numeric(d[[2]])) {
+    ggplot(d, aes(x = d[[2]], y = d[[1]])) + geom_boxplot() +
+      labs(x = names(d)[2], y = names(d)[1])
+  } else if (is.numeric(d[[2]]) & !is.numeric(d[[1]])) {
+    ggplot(d, aes(x = d[[1]], y = d[[2]])) + geom_boxplot() +
+      labs(x = names(d)[1], y = names(d)[2])
+  } else {
+    print('This function cannot visualize your data')
+  }
+}
+box_viz(df %>% select(Age, Sex))
+box_viz(df %>% select(Sex, Fare))
+box_viz(df %>% select(Age, Fare))
+```
  
 -------
  
-6. Combine the function in Question 5 and the function in this example ([Link](https://bryantstats.github.io/math421/gganimate/17_writing_functions.html#53)) to have a function that can plot all possible cases (2 categorical, 2 numeric, 1 numeric and 1 categorical). 
+6. Combine the function in Question 5 and the function in this example ([Link](https://bryantstats.github.io/math421/gganimate/17_writing_functions.html#53)) to have a function that can plot all possible cases (2 categorical, 2 numeric, 1 numeric and 1 categorical).
+
+```{r, warning=FALSE}
+viz <- function(d) {
+  if (is.numeric(d[[1]]) & is.numeric(d[[2]])) {
+    ggplot(d, aes(x = d[[1]], y = d[[2]])) + geom_point() +
+      labs(x = names(d)[1], y = names(d)[2])
+  } else if (!(is.numeric(d[[1]]) | is.numeric(d[[2]]))) {
+    ggplot(d, aes(x = d[[1]], fill = d[[2]])) + geom_bar(position = 'dodge') +
+      labs(x = names(d)[1], fill = names(d)[2])
+  } else {
+    box_viz(d)
+  }
+}
+viz(df %>% select(Age, Fare))
+viz(df %>% select(Sex, Embarked))
+viz(df %>% select(Sex, Age))
+```
 
 -------
 
@@ -118,7 +195,28 @@ Hint:
   
   - train_percent: a number presenting a proportion of training data. The default train_percent is .8
 
-- Output: the accuracy of the decision model `rpart` where the training data is train_percent. 
+- Output: the accuracy of the decision model `rpart` where the training data is train_percent.
+
+```{r}
+library(caret)
+library(rpart)
+clean <- df %>%
+  select(target = Survived, Pclass, Sex, Age, SibSp, Parch, Fare, Embarked) %>%
+  drop_na() %>%
+  mutate(across(c(target, Pclass, Sex, Embarked), factor))
+
+rpart_acc <- function(input_data, train_percent = .8) {
+  set.seed(00000)
+  splitIndex <- createDataPartition(input_data$target, p = train_percent, list = FALSE)
+  df_train <- input_data[splitIndex, ]
+  df_test <- input_data[-splitIndex, ]
+  tree1 <- rpart(target ~ ., data = df_train)
+  pred <- predict(tree1, df_test, type = 'class')
+  confusionMatrix(data = pred, reference = df_test$target)$overall[1]
+}
+rpart_acc(clean)
+rpart_acc(clean, .7)
+```
 
 -------
 
@@ -130,7 +228,19 @@ Hint:
   
   - train_percent: a number presenting a proportion of training data. The default train_percent is .8
 
-- Output: the plot of variable important by random forest trained by caret. 
+- Output: the plot of variable important by random forest trained by caret.
+
+```{r}
+rf_importance <- function(input_data, train_percent = .8) {
+  set.seed(00000)
+  splitIndex <- createDataPartition(input_data$target, p = train_percent, list = FALSE)
+  model <- train(target ~ ., data = input_data[splitIndex, ],
+                 method = 'ranger', importance = 'impurity')
+  plot(varImp(model))
+}
+rf_importance(clean)
+rf_importance(clean, .7)
+```
 
 
 ---
@@ -149,5 +259,18 @@ Sample codes
 - [Word Cloud codes](https://bryantstats.github.io/math421/assignments/text_mining_sample_codes2.html#Total_Word_Cloud)
 
 - [A similar function](https://bryantstats.github.io/math421/gganimate/17_writing_functions.html#10)
+
+```{r, warning=FALSE}
+library(tidytext)
+library(wordcloud)
+word_cloud <- function(text_df, text_col) {
+  counts <- text_df %>%
+    unnest_tokens(input = !!sym(text_col), output = word) %>%
+    anti_join(get_stopwords()) %>%
+    count(word, sort = TRUE)
+  wordcloud(counts$word, counts$n, max.words = 50, random.order = FALSE)
+}
+word_cloud(read_csv('Data/imdb_top_1000.csv'), 'Overview')
+```
 
 

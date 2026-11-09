@@ -1,0 +1,28 @@
+---
+title: "My First Dashboard"
+format: dashboard
+---
+
+# Overview
+
+## {.sidebar}
+
+This is my first Quarto dashboard.
+
+## Row
+
+::: {.card title="Sales summary"}
+:::
+
+::: {.card title="Customer summary"}
+:::
+
+# Details
+
+## Column
+
+::: {.card title="Trends"}
+:::
+
+::: {.card title="Notes"}
+:::

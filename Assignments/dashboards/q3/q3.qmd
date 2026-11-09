@@ -1,0 +1,44 @@
+---
+title: "Titanic - selectInput"
+format: dashboard
+server: shiny
+---
+
+```{r}
+#| context: setup
+library(shiny)
+library(tidyverse)
+library(plotly)
+library(DT)
+df <- read_csv("https://bryantstats.github.io/math421/data/titanic_final.csv")
+```
+
+# Plots
+
+## {.sidebar}
+
+```{r}
+selectInput("var", "Choose a variable", choices = c("Sex", "Pclass", "Embarked"))
+```
+
+## Column
+
+```{r}
+#| title: Survival by the chosen variable
+plotlyOutput("p1")
+```
+
+# Data
+
+```{r}
+#| title: Passengers
+DTOutput("tbl")
+```
+
+```{r}
+#| context: server
+output$p1 <- renderPlotly({
+  ggplotly(ggplot(df, aes(x = .data[[input$var]], fill = Survived)) + geom_bar(position = "fill"))
+})
+output$tbl <- renderDT(datatable(df))
+```

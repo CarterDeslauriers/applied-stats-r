@@ -1,0 +1,59 @@
+---
+title: "US Economy - dateRangeInput"
+format: dashboard
+server: shiny
+---
+
+```{r}
+#| context: setup
+library(shiny)
+library(tidyverse)
+library(plotly)
+library(DT)
+df <- economics
+empty_plot <- function() {
+  plotly_empty() |> layout(title = list(text = "No months match these inputs.", y = 0.5))
+}
+```
+
+# Plots
+
+## {.sidebar}
+
+```{r}
+dateRangeInput("dates", "Dates", start = min(df$date), end = max(df$date),
+               min = min(df$date), max = max(df$date))
+```
+
+## Column
+
+```{r}
+#| title: Unemployed (thousands)
+plotlyOutput("p1")
+```
+
+```{r}
+#| title: Personal savings rate
+plotlyOutput("p2")
+```
+
+# Data
+
+```{r}
+#| title: Economic data
+DTOutput("tbl")
+```
+
+```{r}
+#| context: server
+filtered <- reactive(df |> filter(date >= input$dates[1], date <= input$dates[2]))
+output$p1 <- renderPlotly({
+  if (nrow(filtered()) == 0) return(empty_plot())
+  ggplotly(ggplot(filtered(), aes(date, unemploy)) + geom_line())
+})
+output$p2 <- renderPlotly({
+  if (nrow(filtered()) == 0) return(empty_plot())
+  ggplotly(ggplot(filtered(), aes(date, psavert)) + geom_line())
+})
+output$tbl <- renderDT(datatable(filtered()))
+```

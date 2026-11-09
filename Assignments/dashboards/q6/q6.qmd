@@ -1,0 +1,58 @@
+---
+title: "Cars - sliderInput"
+format: dashboard
+server: shiny
+---
+
+```{r}
+#| context: setup
+library(shiny)
+library(tidyverse)
+library(plotly)
+library(DT)
+df <- mpg
+empty_plot <- function() {
+  plotly_empty() |> layout(title = list(text = "No cars match these inputs.", y = 0.5))
+}
+```
+
+# Plots
+
+## {.sidebar}
+
+```{r}
+sliderInput("displ", "Engine size", min = 1.6, max = 7, value = c(1.6, 7), step = 0.1)
+```
+
+## Column
+
+```{r}
+#| title: Engine size and highway mpg
+plotlyOutput("p1")
+```
+
+```{r}
+#| title: City mpg
+plotlyOutput("p2")
+```
+
+# Data
+
+```{r}
+#| title: Cars
+DTOutput("tbl")
+```
+
+```{r}
+#| context: server
+filtered <- reactive(df |> filter(displ >= input$displ[1], displ <= input$displ[2]))
+output$p1 <- renderPlotly({
+  if (nrow(filtered()) == 0) return(empty_plot())
+  ggplotly(ggplot(filtered(), aes(displ, hwy)) + geom_point())
+})
+output$p2 <- renderPlotly({
+  if (nrow(filtered()) == 0) return(empty_plot())
+  ggplotly(ggplot(filtered(), aes(cty)) + geom_histogram(bins = 15))
+})
+output$tbl <- renderDT(datatable(filtered()))
+```

@@ -1,0 +1,52 @@
+---
+title: "Cars - selectInput"
+format: dashboard
+server: shiny
+---
+
+```{r}
+#| context: setup
+library(shiny)
+library(tidyverse)
+library(plotly)
+library(DT)
+df <- mpg
+```
+
+# Plots
+
+## {.sidebar}
+
+```{r}
+selectInput("var", "Group by", choices = c("class", "drv", "fl"))
+```
+
+## Column
+
+```{r}
+#| title: Highway mpg
+plotlyOutput("p1")
+```
+
+```{r}
+#| title: Count
+plotlyOutput("p2")
+```
+
+# Data
+
+```{r}
+#| title: Cars
+DTOutput("tbl")
+```
+
+```{r}
+#| context: server
+output$p1 <- renderPlotly({
+  ggplotly(ggplot(df, aes(x = .data[[input$var]], y = hwy)) + geom_boxplot())
+})
+output$p2 <- renderPlotly({
+  ggplotly(ggplot(df, aes(x = .data[[input$var]])) + geom_bar())
+})
+output$tbl <- renderDT(datatable(df))
+```

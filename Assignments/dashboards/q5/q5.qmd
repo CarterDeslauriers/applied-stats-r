@@ -1,0 +1,58 @@
+---
+title: "Cars - checkboxGroupInput"
+format: dashboard
+server: shiny
+---
+
+```{r}
+#| context: setup
+library(shiny)
+library(tidyverse)
+library(plotly)
+library(DT)
+df <- mpg
+empty_plot <- function() {
+  plotly_empty() |> layout(title = list(text = "No cars match these inputs.", y = 0.5))
+}
+```
+
+# Plots
+
+## {.sidebar}
+
+```{r}
+checkboxGroupInput("drv", "Drive", choices = c("4", "f", "r"), selected = c("4", "f", "r"))
+```
+
+## Column
+
+```{r}
+#| title: Engine size and highway mpg
+plotlyOutput("p1")
+```
+
+```{r}
+#| title: Cars by class
+plotlyOutput("p2")
+```
+
+# Data
+
+```{r}
+#| title: Cars
+DTOutput("tbl")
+```
+
+```{r}
+#| context: server
+filtered <- reactive(df |> filter(drv %in% input$drv))
+output$p1 <- renderPlotly({
+  if (nrow(filtered()) == 0) return(empty_plot())
+  ggplotly(ggplot(filtered(), aes(displ, hwy, color = drv)) + geom_point())
+})
+output$p2 <- renderPlotly({
+  if (nrow(filtered()) == 0) return(empty_plot())
+  ggplotly(ggplot(filtered(), aes(y = class, fill = drv)) + geom_bar())
+})
+output$tbl <- renderDT(datatable(filtered()))
+```

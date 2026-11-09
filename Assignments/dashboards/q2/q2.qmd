@@ -1,0 +1,61 @@
+---
+title: "Titanic - Static"
+format: dashboard
+---
+
+```{r}
+#| include: false
+library(tidyverse)
+library(plotly)
+library(DT)
+df <- read_csv("https://bryantstats.github.io/math421/data/titanic_final.csv")
+```
+
+# Overview
+
+## {.sidebar}
+
+Passenger survival on the Titanic.
+
+## Column
+
+### Row {height=25%}
+
+```{r}
+#| content: valuebox
+#| title: "Passengers"
+list(icon = "people", color = "primary", value = nrow(df))
+```
+
+### Row {height=75%}
+
+```{r}
+#| title: Survival by class
+ggplotly(ggplot(df, aes(x = Pclass, fill = Survived)) + geom_bar(position = "fill"))
+```
+
+```{r}
+#| title: Survival by sex
+ggplotly(ggplot(df, aes(x = Sex, fill = Survived)) + geom_bar(position = "fill"))
+```
+
+# Distributions
+
+## Column {.tabset}
+
+```{r}
+#| title: Age
+ggplotly(ggplot(df, aes(x = Age, color = Survived)) + geom_density())
+```
+
+```{r}
+#| title: Fare
+ggplotly(ggplot(df, aes(x = Fare, color = Survived)) + geom_density())
+```
+
+# Data
+
+```{r}
+#| title: Passengers
+datatable(df)
+```
