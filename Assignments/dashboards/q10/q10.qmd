@@ -4,7 +4,7 @@ format:
   dashboard:
     nav-buttons:
       - icon: linkedin
-        href: https://www.linkedin.com/
+        href: https://www.linkedin.com/in/carter-deslauriers-a263a4353
         aria-label: LinkedIn profile
       - icon: code-slash
         href: https://raw.githubusercontent.com/CarterDeslauriers/applied-stats-r/main/Assignments/dashboards/q10/q10.qmd
