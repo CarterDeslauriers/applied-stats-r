@@ -37,6 +37,15 @@ knitr::opts_chunk$set(message = FALSE)
 
 Hint: [Similar Function](https://bryantstats.github.io/math421/gganimate/17_writing_functions.html#42)
 
+```{r}
+def age(x):
+  y = 2026 - x
+  print(f"You are {y} age")
+
+age(2005)
+```
+
+
 -------
 
 2. Write the following function. Give an example to test your function. 
