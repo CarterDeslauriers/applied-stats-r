@@ -7,8 +7,15 @@ __pycache__/
 .env
 .vscode/
 
-# LaTeX
-.DS_Store/
+# macOS
+.DS_Store
+
+# LaTeX build files
+*.aux
+*.fdb_latexmk
+*.fls
+*.synctex.gz
+Archive/**/*.log
 
 # Data
 Data/
