@@ -1,0 +1,92 @@
+---
+title: "Dashboard Project"
+author: "Carter Deslauriers"
+format:
+  html:
+    embed-resources: true
+    page-layout: full
+---
+
+```{=html}
+<!--
+  After publishing all/all.qmd on Posit Connect Cloud, paste its link below
+  (keep the trailing slash), then re-render this file.
+-->
+<script>
+  const POSIT_URL = "PASTE-YOUR-POSIT-LINK-HERE/";
+</script>
+
+<style>
+  .dash-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 1rem; margin-top: 1rem; }
+  .dash-card { border: 1px solid #dee2e6; border-radius: 10px; padding: 1rem; cursor: pointer; transition: box-shadow .15s, transform .15s; background: #fff; }
+  .dash-card:hover { box-shadow: 0 4px 14px rgba(0,0,0,.12); transform: translateY(-2px); }
+  .dash-card .num { font-size: .8rem; font-weight: 700; color: #2780e3; letter-spacing: .05em; }
+  .dash-card h3 { font-size: 1.05rem; margin: .3rem 0; }
+  .dash-card p { font-size: .85rem; color: #6c757d; margin: 0; }
+  .tag { display: inline-block; font-size: .7rem; padding: 1px 8px; border-radius: 10px; margin-top: .5rem; }
+  .tag.static { background: #e7f1ff; color: #0a58ca; }
+  .tag.shiny { background: #e8f7ee; color: #146c43; }
+  #dash-modal { display: none; position: fixed; inset: 0; background: rgba(0,0,0,.6); z-index: 2000; }
+  #dash-modal .box { position: absolute; inset: 3vh 3vw; background: #fff; border-radius: 10px; display: flex; flex-direction: column; overflow: hidden; }
+  #dash-modal .bar { display: flex; align-items: center; gap: 1rem; padding: .5rem 1rem; border-bottom: 1px solid #dee2e6; }
+  #dash-modal .bar strong { flex: 1; }
+  #dash-modal iframe { flex: 1; border: 0; width: 100%; }
+  #dash-modal button { border: 0; background: #dc3545; color: #fff; border-radius: 6px; padding: .25rem .8rem; }
+</style>
+```
+
+Click any dashboard to open it in a pop-up. Q1 and Q2 are static Quarto dashboards; Q3 to Q10 are interactive Shiny dashboards hosted together on Posit Connect Cloud (the first load can take ~30 seconds while the server wakes up).
+
+```{=html}
+<div class="dash-grid" id="grid"></div>
+
+<div id="dash-modal">
+  <div class="box">
+    <div class="bar">
+      <strong id="modal-title"></strong>
+      <a id="modal-newtab" href="#" target="_blank">Open in new tab ↗</a>
+      <button onclick="closeDash()">Close ✕</button>
+    </div>
+    <iframe id="modal-frame" src="about:blank"></iframe>
+  </div>
+</div>
+
+<script>
+  const dashboards = [
+    { n: "Q1",  title: "My First Dashboard",          desc: "Empty layout",          type: "static", url: "q1/q1.html" },
+    { n: "Q2",  title: "Titanic",                     desc: "Static dashboard",      type: "static", url: "q2/q2.html" },
+    { n: "Q3",  title: "Titanic",                     desc: "selectInput",           type: "shiny",  page: "q3" },
+    { n: "Q4",  title: "Cars",                        desc: "selectInput",           type: "shiny",  page: "q4" },
+    { n: "Q5",  title: "Cars",                        desc: "checkboxGroupInput",    type: "shiny",  page: "q5" },
+    { n: "Q6",  title: "Cars",                        desc: "sliderInput",           type: "shiny",  page: "q6" },
+    { n: "Q7",  title: "Cars",                        desc: "radioButtons",          type: "shiny",  page: "q7" },
+    { n: "Q8",  title: "US Economy",                  desc: "dateRangeInput",        type: "shiny",  page: "q8" },
+    { n: "Q9",  title: "Cars",                        desc: "Combined inputs",       type: "shiny",  page: "q9" },
+    { n: "Q10", title: "Texas Housing Market",        desc: "Final dashboard",       type: "shiny",  page: "q10" }
+  ];
+
+  const grid = document.getElementById("grid");
+  dashboards.forEach(d => {
+    const url = d.type === "static" ? d.url : POSIT_URL + "#" + d.page;
+    const card = document.createElement("div");
+    card.className = "dash-card";
+    card.innerHTML = `<div class="num">${d.n}</div><h3>${d.title}</h3><p>${d.desc}</p>
+      <span class="tag ${d.type}">${d.type === "static" ? "Static" : "Interactive (Shiny)"}</span>`;
+    card.onclick = () => openDash(`${d.n} - ${d.title}`, url);
+    grid.appendChild(card);
+  });
+
+  function openDash(title, url) {
+    document.getElementById("modal-title").textContent = title;
+    document.getElementById("modal-newtab").href = url;
+    document.getElementById("modal-frame").src = url;
+    document.getElementById("dash-modal").style.display = "block";
+  }
+  function closeDash() {
+    document.getElementById("dash-modal").style.display = "none";
+    document.getElementById("modal-frame").src = "about:blank";
+  }
+  document.addEventListener("keydown", e => { if (e.key === "Escape") closeDash(); });
+  document.getElementById("dash-modal").addEventListener("click", e => { if (e.target.id === "dash-modal") closeDash(); });
+</script>
+```

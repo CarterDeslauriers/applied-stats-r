@@ -20,6 +20,7 @@
 |12|[Assignment 12](Assignments/assignment12.html)|Model Tuning|
 |13|[Assignment 13](Assignments/assignment13_optional.html)|Writing Functions - Conditional Statements (Optional)|
 |14|[Assignment 14](Assignments/assignment14_optional.html)|Writing Functions - Loops (Optional)|
+|D|[**All Dashboards (Q1-Q10)**](Assignments/dashboards/index.html)|Dashboard Project - links to every dashboard
 |D1|[Dashboard Q1](Assignments/dashboards/q1/q1.html)|Quarto Dashboard - Empty Layout|
 |D2|[Dashboard Q2](Assignments/dashboards/q2/q2.html)|Quarto Dashboard - Static|
 |D3|[Dashboard Q3](Assignments/dashboards/q3/q3.qmd)|Shiny Dashboard - selectInput (Titanic)|
