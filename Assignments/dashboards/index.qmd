@@ -13,7 +13,7 @@ format:
   (keep the trailing slash), then re-render this file.
 -->
 <script>
-  const POSIT_URL = "PASTE-YOUR-POSIT-LINK-HERE/";
+  const POSIT_URL = "https://01a1d0f9-33bc-da48-d429-1f48965b3fef.share.connect.posit.cloud/";
 </script>
 
 <style>
@@ -53,16 +53,26 @@ Click any dashboard to open it in a pop-up. Q1 and Q2 are static Quarto dashboar
 
 <script>
   const dashboards = [
-    { n: "Q1",  title: "My First Dashboard",          desc: "Empty layout",          type: "static", url: "q1/q1.html" },
-    { n: "Q2",  title: "Titanic",                     desc: "Static dashboard",      type: "static", url: "q2/q2.html" },
-    { n: "Q3",  title: "Titanic",                     desc: "selectInput",           type: "shiny",  page: "q3" },
-    { n: "Q4",  title: "Cars",                        desc: "selectInput",           type: "shiny",  page: "q4" },
-    { n: "Q5",  title: "Cars",                        desc: "checkboxGroupInput",    type: "shiny",  page: "q5" },
-    { n: "Q6",  title: "Cars",                        desc: "sliderInput",           type: "shiny",  page: "q6" },
-    { n: "Q7",  title: "Cars",                        desc: "radioButtons",          type: "shiny",  page: "q7" },
-    { n: "Q8",  title: "US Economy",                  desc: "dateRangeInput",        type: "shiny",  page: "q8" },
-    { n: "Q9",  title: "Cars",                        desc: "Combined inputs",       type: "shiny",  page: "q9" },
-    { n: "Q10", title: "Texas Housing Market",        desc: "Final dashboard",       type: "shiny",  page: "q10" }
+    { n: "Q1",  title: "My First Dashboard", type: "static", url: "q1/q1.html",
+      desc: "Layout practice: two pages (Overview and Details) with a sidebar and empty cards, showing how Quarto dashboards are structured." },
+    { n: "Q2",  title: "Titanic (Static)", type: "static", url: "q2/q2.html",
+      desc: "Fixed charts and a table of Titanic passengers, comparing survival across groups. No inputs; everything is pre-rendered." },
+    { n: "Q3",  title: "Titanic - selectInput", type: "shiny", page: "q3",
+      desc: "Pick Sex, Pclass, or Embarked from a dropdown to see the share of passengers who survived in each group." },
+    { n: "Q4",  title: "Cars - selectInput", type: "shiny", page: "q4",
+      desc: "Group the mpg cars by class, drive, or fuel type to compare highway mileage (boxplot) and how many cars fall in each group." },
+    { n: "Q5",  title: "Cars - checkboxGroupInput", type: "shiny", page: "q5",
+      desc: "Tick drive types (4WD, front, rear) to filter cars; see engine size vs. highway mpg and counts by class." },
+    { n: "Q6",  title: "Cars - sliderInput", type: "shiny", page: "q6",
+      desc: "Slide an engine-size range to filter cars; see how mileage drops as engines get larger and the spread of city mpg." },
+    { n: "Q7",  title: "Cars - radioButtons", type: "shiny", page: "q7",
+      desc: "Switch between 1999 and 2008 models to compare highway mpg by class and the distribution of engine sizes." },
+    { n: "Q8",  title: "US Economy - dateRangeInput", type: "shiny", page: "q8",
+      desc: "Choose a date range to plot US unemployment and the personal savings rate over time (economics data, 1967-2015)." },
+    { n: "Q9",  title: "Cars - Combined Inputs", type: "shiny", page: "q9",
+      desc: "Uses a dropdown, checkboxes, and a slider together: filter by drive and engine size, and color the charts by a chosen variable." },
+    { n: "Q10", title: "Texas Housing Market", type: "shiny", page: "q10",
+      desc: "Final project: explore Texas home sales by city, measure, month, price, and date, with trends, seasonality, and written findings." }
   ];
 
   const grid = document.getElementById("grid");
