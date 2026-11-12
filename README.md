@@ -20,17 +20,7 @@
 |12|[Assignment 12](Assignments/assignment12.html)|Model Tuning|
 |13|[Assignment 13](Assignments/assignment13_optional.html)|Writing Functions - Conditional Statements (Optional)|
 |14|[Assignment 14](Assignments/assignment14_optional.html)|Writing Functions - Loops (Optional)|
-|D|[**All Dashboards (Q1-Q10)**](Assignments/dashboards/index.html)|Dashboard Project - links to every dashboard
-|D1|[Dashboard Q1](Assignments/dashboards/q1/q1.html)|Quarto Dashboard - Empty Layout|
-|D2|[Dashboard Q2](Assignments/dashboards/q2/q2.html)|Quarto Dashboard - Static|
-|D3|[Dashboard Q3](Assignments/dashboards/q3/q3.qmd)|Shiny Dashboard - selectInput (Titanic)|
-|D4|[Dashboard Q4](Assignments/dashboards/q4/q4.qmd)|Shiny Dashboard - selectInput|
-|D5|[Dashboard Q5](Assignments/dashboards/q5/q5.qmd)|Shiny Dashboard - checkboxGroupInput|
-|D6|[Dashboard Q6](Assignments/dashboards/q6/q6.qmd)|Shiny Dashboard - sliderInput|
-|D7|[Dashboard Q7](Assignments/dashboards/q7/q7.qmd)|Shiny Dashboard - radioButtons|
-|D8|[Dashboard Q8](Assignments/dashboards/q8/q8.qmd)|Shiny Dashboard - dateRangeInput|
-|D9|[Dashboard Q9](Assignments/dashboards/q9/q9.qmd)|Shiny Dashboard - Combined Inputs|
-|D10|[Dashboard Q10](Assignments/dashboards/q10/q10.qmd)|Shiny Dashboard - Texas Housing Market|
+|D|[Dashboard Project](Assignments/dashboards/index.html)|Quarto & Shiny Dashboards (Q1-Q10)|
 |M|[Midterm Presentation](Assignments/Mid_Term_Presentation.html)|Midterm - RI Hospital Discharge Data|
 |K|[Heart Disease Kaggle Project](Kaggle_Assignment/heart_disease.ipynb)|Kaggle - Heart Disease Prediction ([slides](Kaggle_Assignment/Heart%20Disease%20Prediction.pdf), [notes](Kaggle_Assignment/heart_disease_notes.md))|
 |L|[LASSO vs. OLS](Assignments/LASSO_vs_OLS.html)|In-class - LASSO vs. Linear Regression ([notebook](Assignments/LASSO_vs_OLS.ipynb))|
