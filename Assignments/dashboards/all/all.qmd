@@ -14,6 +14,7 @@ titanic <- read_csv("https://bryantstats.github.io/math421/data/titanic_final.cs
 tx <- txhousing |>
   drop_na(sales, median, listings) |>
   mutate(date = make_date(year, month))
+theme_set(theme_minimal())
 empty_plot <- function(msg = "No rows match these inputs.") {
   plotly_empty() |> layout(title = list(text = msg, y = 0.5))
 }
@@ -284,13 +285,15 @@ mostly because larger cities have more of both.
 
 # Q3
 output$q3_p1 <- renderPlotly({
-  ggplotly(ggplot(titanic, aes(x = .data[[input$q3_var]], fill = Survived)) + geom_bar(position = "fill"))
+  ggplotly(ggplot(titanic, aes(x = factor(.data[[input$q3_var]]), fill = factor(Survived))) + geom_bar(position = "fill") +
+           scale_fill_manual(values = c("0" = "#d95f02", "1" = "#1b9e77"), labels = c("No", "Yes")) +
+           labs(x = input$q3_var, y = "Proportion", fill = "Survived"))
 })
 output$q3_tbl <- renderDT(datatable(titanic))
 
 # Q4
-output$q4_p1 <- renderPlotly(ggplotly(ggplot(mpg, aes(x = .data[[input$q4_var]], y = hwy)) + geom_boxplot()))
-output$q4_p2 <- renderPlotly(ggplotly(ggplot(mpg, aes(x = .data[[input$q4_var]])) + geom_bar()))
+output$q4_p1 <- renderPlotly(ggplotly(ggplot(mpg, aes(x = .data[[input$q4_var]], y = hwy, fill = .data[[input$q4_var]])) + geom_boxplot(show.legend = FALSE)))
+output$q4_p2 <- renderPlotly(ggplotly(ggplot(mpg, aes(x = .data[[input$q4_var]], fill = .data[[input$q4_var]])) + geom_bar(show.legend = FALSE)))
 output$q4_tbl <- renderDT(datatable(mpg))
 
 # Q5
@@ -309,29 +312,29 @@ output$q5_tbl <- renderDT(datatable(q5()))
 q6 <- reactive(mpg |> filter(displ >= input$q6_displ[1], displ <= input$q6_displ[2]))
 output$q6_p1 <- renderPlotly({
   if (nrow(q6()) == 0) return(empty_plot("No cars match these inputs."))
-  ggplotly(ggplot(q6(), aes(displ, hwy)) + geom_point())
+  ggplotly(ggplot(q6(), aes(displ, hwy)) + geom_point(color = "#1b9e77"))
 })
 output$q6_p2 <- renderPlotly({
   if (nrow(q6()) == 0) return(empty_plot("No cars match these inputs."))
-  ggplotly(ggplot(q6(), aes(cty)) + geom_histogram(bins = 15))
+  ggplotly(ggplot(q6(), aes(cty)) + geom_histogram(bins = 15, fill = "#7570b3"))
 })
 output$q6_tbl <- renderDT(datatable(q6()))
 
 # Q7
 q7 <- reactive(mpg |> filter(year == input$q7_year))
-output$q7_p1 <- renderPlotly(ggplotly(ggplot(q7(), aes(class, hwy)) + geom_boxplot()))
-output$q7_p2 <- renderPlotly(ggplotly(ggplot(q7(), aes(displ)) + geom_histogram(bins = 15)))
+output$q7_p1 <- renderPlotly(ggplotly(ggplot(q7(), aes(class, hwy, fill = class)) + geom_boxplot(show.legend = FALSE)))
+output$q7_p2 <- renderPlotly(ggplotly(ggplot(q7(), aes(displ)) + geom_histogram(bins = 15, fill = "#d95f02")))
 output$q7_tbl <- renderDT(datatable(q7()))
 
 # Q8
 q8 <- reactive(economics |> filter(date >= input$q8_dates[1], date <= input$q8_dates[2]))
 output$q8_p1 <- renderPlotly({
   if (nrow(q8()) == 0) return(empty_plot("No months match these inputs."))
-  ggplotly(ggplot(q8(), aes(date, unemploy)) + geom_line())
+  ggplotly(ggplot(q8(), aes(date, unemploy)) + geom_line(color = "#d95f02"))
 })
 output$q8_p2 <- renderPlotly({
   if (nrow(q8()) == 0) return(empty_plot("No months match these inputs."))
-  ggplotly(ggplot(q8(), aes(date, psavert)) + geom_line())
+  ggplotly(ggplot(q8(), aes(date, psavert)) + geom_line(color = "#1b9e77"))
 })
 output$q8_tbl <- renderDT(datatable(q8()))
 
@@ -345,7 +348,7 @@ output$q9_p1 <- renderPlotly({
 })
 output$q9_p2 <- renderPlotly({
   if (nrow(q9()) == 0) return(empty_plot("No cars match these inputs."))
-  ggplotly(ggplot(q9(), aes(.data[[input$q9_var]])) + geom_bar())
+  ggplotly(ggplot(q9(), aes(.data[[input$q9_var]], fill = .data[[input$q9_var]])) + geom_bar(show.legend = FALSE))
 })
 output$q9_tbl <- renderDT(datatable(q9()))
 
@@ -358,23 +361,23 @@ q10 <- reactive({
 })
 output$q10_p1 <- renderPlotly({
   if (nrow(q10()) == 0) return(empty_plot())
-  ggplotly(ggplot(q10(), aes(date, .data[[input$q10_measure]])) + geom_line())
+  ggplotly(ggplot(q10(), aes(date, .data[[input$q10_measure]])) + geom_line(color = "#1b9e77"))
 })
 output$q10_p2 <- renderPlotly({
   if (nrow(q10()) == 0) return(empty_plot())
-  ggplotly(ggplot(q10(), aes(factor(month), .data[[input$q10_measure]])) + geom_boxplot() + labs(x = "Month"))
+  ggplotly(ggplot(q10(), aes(factor(month), .data[[input$q10_measure]])) + geom_boxplot(fill = "#7570b3", alpha = 0.6) + labs(x = "Month"))
 })
 output$q10_p3 <- renderPlotly({
   if (nrow(q10()) == 0) return(empty_plot())
-  ggplotly(ggplot(q10(), aes(.data[[input$q10_measure]])) + geom_histogram(bins = 20))
+  ggplotly(ggplot(q10(), aes(.data[[input$q10_measure]])) + geom_histogram(bins = 20, fill = "#d95f02"))
 })
 output$q10_p4 <- renderPlotly({
   if (nrow(q10()) == 0) return(empty_plot())
-  ggplotly(ggplot(q10(), aes(listings, sales)) + geom_point())
+  ggplotly(ggplot(q10(), aes(listings, sales)) + geom_point(color = "#1b9e77"))
 })
 output$q10_p5 <- renderPlotly({
   if (nrow(q10()) == 0) return(empty_plot())
-  ggplotly(ggplot(q10(), aes(year, .data[[input$q10_measure]])) + stat_summary(fun = sum, geom = "col"))
+  ggplotly(ggplot(q10(), aes(year, .data[[input$q10_measure]])) + stat_summary(fun = sum, geom = "col", fill = "#7570b3"))
 })
 output$q10_tbl <- renderDT(datatable(q10()))
 ```
