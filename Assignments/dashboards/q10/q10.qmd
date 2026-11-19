@@ -92,7 +92,9 @@ DTOutput("tbl")
 
 ::: {.card title="What the data show"}
 
-![](sales_by_year.png){width=500}
+```{r}
+imageOutput("findings_img", height = "auto")
+```
 
 Texas home sales rose from about 220,000 in 2000 to a 2006 high of about 326,000, fell to about
 240,000 in 2010 after the housing crash, and recovered to a new high of about 346,000 in 2014. Sales peak in June, and Houston
@@ -103,6 +105,7 @@ mostly because larger cities have more of both.
 
 ```{r}
 #| context: server
+output$findings_img <- renderImage(list(src = "sales_by_year.png", width = "100%", alt = "Texas home sales by year"), deleteFile = FALSE)
 filtered <- reactive({
   df |>
     filter(city == input$city, month %in% input$months,
