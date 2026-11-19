@@ -8,7 +8,9 @@ format: dashboard
 library(tidyverse)
 library(plotly)
 library(DT)
-df <- read_csv("https://bryantstats.github.io/math421/data/titanic_final.csv")
+df <- read_csv("https://bryantstats.github.io/math421/data/titanic_final.csv") |>
+  mutate(Survived = factor(Survived, levels = c(0, 1), labels = c("No", "Yes")))
+cols <- c("No" = "#d95f02", "Yes" = "#1b9e77")
 ```
 
 # Overview
@@ -31,12 +33,12 @@ list(icon = "people", color = "primary", value = nrow(df))
 
 ```{r}
 #| title: Survival by class
-ggplotly(ggplot(df, aes(x = Pclass, fill = Survived)) + geom_bar(position = "fill"))
+ggplotly(ggplot(df, aes(x = Pclass, fill = Survived)) + geom_bar(position = "fill") + scale_fill_manual(values = cols))
 ```
 
 ```{r}
 #| title: Survival by sex
-ggplotly(ggplot(df, aes(x = Sex, fill = Survived)) + geom_bar(position = "fill"))
+ggplotly(ggplot(df, aes(x = Sex, fill = Survived)) + geom_bar(position = "fill") + scale_fill_manual(values = cols))
 ```
 
 # Distributions
@@ -45,12 +47,12 @@ ggplotly(ggplot(df, aes(x = Sex, fill = Survived)) + geom_bar(position = "fill")
 
 ```{r}
 #| title: Age
-ggplotly(ggplot(df, aes(x = Age, color = Survived)) + geom_density())
+ggplotly(ggplot(df, aes(x = Age, color = Survived)) + geom_density() + scale_color_manual(values = cols))
 ```
 
 ```{r}
 #| title: Fare
-ggplotly(ggplot(df, aes(x = Fare, color = Survived)) + geom_density())
+ggplotly(ggplot(df, aes(x = Fare, color = Survived)) + geom_density() + scale_color_manual(values = cols))
 ```
 
 # Data
